@@ -21,10 +21,17 @@ jobs:
       - name: Install repository runtime
         run: python -m pip install numpy scipy sympy networkx
 
-      - name: Rebind identity
+      - name: Rebind identity and build final-state integrity
         shell: bash
         run: |
           set -euo pipefail
+          mkdir -p /tmp/4rfc-workflows
+          for f in .github/workflows/validate.yml .github/workflows/4rfc-clean-root.yml .github/workflows/identity-clean.yml; do
+            if git cat-file -e HEAD:"$f" 2>/dev/null; then
+              mkdir -p "/tmp/4rfc-workflows/$(dirname "$f")"
+              git show HEAD:"$f" > "/tmp/4rfc-workflows/$f"
+            fi
+          done
           python - <<'PY'
           from pathlib import Path
           root = Path('.')
@@ -43,7 +50,7 @@ jobs:
               p = root / name
               if p.exists(): p.unlink()
           for p in sorted(root.rglob('*')):
-              if not p.is_file() or '.git' in p.parts or p.name == 'identity-clean.yml':
+              if not p.is_file() or '.git' in p.parts:
                   continue
               if p.suffix.lower() in {'.zip','.pdf','.docx'}:
                   continue
@@ -53,10 +60,10 @@ jobs:
               for a,b in replacements: new = new.replace(a,b)
               if new != text: p.write_text(new, encoding='utf-8')
           PY
-          rm -f .github/workflows/4rfc-clean-root.yml
+          rm -f .github/workflows/4rfc-clean-root.yml .github/workflows/identity-clean.yml
           python tools/build_bundle.py
 
-      - name: Validate machinery
+      - name: Validate final-state machinery
         shell: bash
         run: |
           set -euo pipefail
@@ -78,7 +85,7 @@ jobs:
           hits=[]
           root=Path('.')
           for p in root.rglob('*'):
-              if not p.is_file() or '.git' in p.parts or p.name == 'identity-clean.yml': continue
+              if not p.is_file() or '.git' in p.parts: continue
               rel=p.as_posix()
               if any(x.lower() in rel.lower() for x in forbidden): hits.append('path:'+rel)
               if p.suffix.lower() in {'.zip','.pdf','.docx'}: continue
@@ -92,8 +99,7 @@ jobs:
               for zi in z.infolist():
                   if any(x.lower() in zi.filename.lower() for x in forbidden):hits.append('zip-path:'+label+'!'+zi.filename)
                   if zi.is_dir():continue
-                  d=z.read(zi)
-                  low=d.lower()
+                  d=z.read(zi); low=d.lower()
                   if any(x.encode().lower() in low for x in forbidden):hits.append('zip-data:'+label+'!'+zi.filename)
                   if d[:4]==b'PK\x03\x04':scan(d,label+'!'+zi.filename,depth+1)
           for p in root.rglob('*.zip'):
@@ -102,11 +108,18 @@ jobs:
           print('identity scan: PASS')
           PY
 
-      - name: Commit clean tree
+      - name: Commit non-workflow clean tree
         shell: bash
         run: |
           set -euo pipefail
-          rm -f .github/workflows/identity-clean.yml
+          for f in .github/workflows/validate.yml .github/workflows/4rfc-clean-root.yml .github/workflows/identity-clean.yml; do
+            if [ -f "/tmp/4rfc-workflows/$f" ]; then
+              mkdir -p "$(dirname "$f")"
+              cp "/tmp/4rfc-workflows/$f" "$f"
+            else
+              rm -f "$f"
+            fi
+          done
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
