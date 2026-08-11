@@ -28,7 +28,7 @@ jobs:
           set -euo pipefail
           RUN='C-120-20260811T142152Z'
           RUN_DIR="modules/C/runs/$RUN"
-          VERIFIED_SHA='f5dccfbdddb3b6bd0366983054528cdf60094681'
+          VERIFIED_SHA='9aba5d1e1c83506f03176e4bc08a74bafaa9249e'
           python - <<'PY'
           import json
           from datetime import datetime, timezone
@@ -42,7 +42,7 @@ jobs:
           if len(matches) != 1:
               raise SystemExit(f'expected exactly one C-120 artifact registry record, found {len(matches)}')
           rec = matches[0]
-          actual = rfc.sha256_tree(Path(target))
+          actual = rfc.sha256_tree(rfc.ROOT / target)
           old = rec.get('sha256')
           if old != actual:
               rec['sha256'] = actual
