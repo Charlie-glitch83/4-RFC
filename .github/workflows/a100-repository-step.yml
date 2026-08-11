@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install numpy networkx scipy sympy
-      - name: Governed E-140 source and prelock audit
+      - name: Record E-140 source-law underdetermination
         shell: bash
         run: |
           set -euo pipefail
@@ -31,45 +31,79 @@ jobs:
           bash tools/start_work.sh
           cat work_packets/ACTIVE_WORK_PACKET.md
           grep -q 'ACTIVE WORK PACKET — E-140' work_packets/ACTIVE_WORK_PACKET.md
+          grep -q '"status": "DRAFT"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
           python - <<'PY'
-          import hashlib, json, re
+          import hashlib, json
           from pathlib import Path
           root=Path('.')
           run=root/'modules/E/runs/E-140-20260811T175023Z'
           def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-          expected_h='79a8f4d5e06558d1114ccd3af832d92344c5d47a075f1f0b708a19ccfc6a59db'
           hp=root/'modules/D/runs/D-130-20260811T165602Z/H_D_to_E.json'
-          assert sha(hp)==expected_h,(sha(hp),expected_h)
-          hand=json.loads(hp.read_text())
-          assert hand['generation_mode']=='GENERATION_SEALED'
-          assert hand['preserved_obstructions']['primordial_abundances']=='OWNED_BY_MODULE_E'
-          manifest=json.loads((root/'sources/SOURCE_MANIFEST.json').read_text())
-          patterns=[re.compile(x,re.I) for x in [r'reaction',r'stoichi',r'rate law',r'rate coefficient',r'nucleosynth',r'BBN',r'Li7',r'Be7',r'deuter',r'helium']]
-          hits=[]
-          for rec in manifest['sources']:
-            if rec.get('classification') not in {'CANONICAL_AUTHORITY','ADMITTED_SOURCE','CANDIDATE_ADDENDUM'}:
-              continue
-            p=root/rec['frozen_path']
-            if p.suffix.lower() not in {'.md','.txt','.json','.tex'} or not p.exists():
-              continue
-            text=p.read_text(encoding='utf-8',errors='ignore')
-            for i,line in enumerate(text.splitlines(),1):
-              if any(rx.search(line) for rx in patterns):
-                hits.append({'source_label':rec['label'],'classification':rec['classification'],'path':rec['frozen_path'],'sha256':rec['sha256'],'line':i,'text':line[:500]})
-          audit={
+          mp=root/'sources/SOURCE_MANIFEST.json'
+          parent_sha=sha(hp)
+          manifest_sha=sha(mp)
+          assert parent_sha=='79a8f4d5e06558d1114ccd3af832d92344c5d47a075f1f0b708a19ccfc6a59db'
+          audit=json.loads((run/'E140_SOURCE_ADMISSION_AUDIT.json').read_text(encoding='utf-8'))
+          assert audit['decision']=='REQUIRES_EXACT_SOURCE_OWNED_SPECIES_STOICHIOMETRY_AND_RATE_LAWS_BEFORE_FREEZE'
+          example=root/'configured_runs/examples/E_reaction_network.json'
+          frozen_example=root/'configured_runs/results/E_reaction_network/frozen_config.json'
+          assert example.read_bytes()==frozen_example.read_bytes()
+          inspected=[]
+          for rec in audit['candidate_text_sources']:
+              inspected.append({'path':rec['path'],'sha256':rec['sha256'],'admission_role':'INSPECTED_NOT_GENERATIVE_FOR_E_RATE_LAW'})
+          source_register={
             'run_id':'E-140-20260811T175023Z',
-            'classification':'PRE_EXECUTION_SOURCE_OWNERSHIP_AUDIT',
-            'generation_mode':'GENERATION_SEALED',
-            'exact_parent_handoff':{'path':str(hp),'sha256':expected_h},
-            'parent_obstructions':hand['preserved_obstructions'],
-            'admitted_text_hits':hits,
-            'required_objects':['source-owned species and reaction graph','rate laws and uncertainty without public abundance fitting','conservation/nullspace structure','freeze-out witnesses and isotope covariance'],
-            'decision_rule':'Do not freeze E pre-execution lock unless admitted parent/source bytes specify a reaction graph/species and executable rate laws without observational targets or fitted abundance corrections.'
+            'exact_parents':[{'path':str(hp),'sha256':parent_sha,'kind':'EXACT_FROZEN_D_TO_E_HANDOFF'}],
+            'admitted_sources':inspected,
+            'imports':[],
+            'files':['recipes/E/WORK_ORDER.md','recipes/E/recipe.json','sources/SOURCE_MANIFEST.json','configured_runs/templates/E_reaction_network.template.json'],
+            'urls':[],
+            'constants':[],
+            'public_data_declaration':'NONE',
+            'source_law_status':'UNDERDETERMINED_BEFORE_PRE_EXECUTION_FREEZE',
+            'missing_required_objects':['source-owned species and reaction graph','executable source-owned rate laws','rate-law uncertainty state'],
+            'manufactured_example_status':'REJECTED_AS_NON_PARENT_EXAMPLE_FIXTURE'
           }
-          (run/'E140_SOURCE_OWNERSHIP_AUDIT.json').write_text(json.dumps(audit,indent=2,sort_keys=True)+'\n')
-          print(json.dumps({'exact_parent_sha256':expected_h,'admitted_text_hit_count':len(hits),'audit_path':str(run/'E140_SOURCE_OWNERSHIP_AUDIT.json')},indent=2))
-          for h in hits[:120]: print(f"SOURCE_HIT {h['classification']} {h['path']}:{h['line']}: {h['text']}")
+          (run/'SOURCE_REGISTER.json').write_text(json.dumps(source_register,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          blocked={
+            'run_id':'E-140-20260811T175023Z',
+            'classification':'BLOCKED_UNDERDETERMINED',
+            'stage':'PRE_EXECUTION_DEFINITION_AND_LOCK',
+            'exact_parent':{'path':str(hp),'sha256':parent_sha},
+            'source_manifest':{'path':str(mp),'sha256':manifest_sha},
+            'pre_execution_lock_status':'DRAFT_NOT_FROZEN',
+            'missing_objects':['source-owned species/reaction graph','executable source-owned rate laws and uncertainty'],
+            'manufactured_fixture':{'path':str(example),'sha256':sha(example),'decision':'REJECTED_NOT_AN_ADMITTED_PARENT_OR_DERIVATION'},
+            'proxy_closeout_decision':'Prior BBN proxy/observational comparison ledgers are comparison or methodological evidence only and are not generation inputs.',
+            'generation_mode':'GENERATION_SEALED',
+            'public_inputs_used':False,
+            'wolfram_calls_executed':False,
+            'reaction_solver_executed':False,
+            'earliest_affected_object':'E source-owned reaction-law definition before PRE_EXECUTION_LOCK',
+            'strongest_supported_claim':'Module D remains frozen at its verified MINIMAL_SPINE scope; Module E has verified its exact parent but has not established an executable source-owned reaction law.',
+            'strongest_unsupported_claim':'No primordial isotope abundance state, E reaction-network execution, or E-to-F handoff is established.',
+            'required_resolution':'Admit or derive exact source-owned species, stoichiometry, executable rate laws, and uncertainty without observational target fitting before any E pre-execution freeze.'
+          }
+          (run/'E140_BLOCKED_UNDERDETERMINED.json').write_text(json.dumps(blocked,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          with (run/'FAILURES.jsonl').open('a',encoding='utf-8') as f:
+              f.write(json.dumps({'classification':'BLOCKED_UNDERDETERMINED','stage':'PRE_EXECUTION_DEFINITION_AND_LOCK','description':'Exact admitted parent/source bytes do not yet establish the executable source-owned reaction graph and rate laws required to freeze E-140.','changes_frozen_science':False,'public_inputs_used':False})+'\n')
+          print(json.dumps(blocked,indent=2))
           PY
+          python tools/rfc.py advance --task E-140 --result FAIL --evidence "$RUN_DIR/E140_BLOCKED_UNDERDETERMINED.json" --note 'E-140 blocked before pre-execution freeze: admitted parent/source bytes do not specify an executable source-owned reaction graph and rate laws without prohibited target fitting.'
           python tools/rfc.py doctor
           python tools/director.py doctor
+          python -m unittest discover -s tests -v
           python tools/rfc.py firewall-scan
+      - name: Commit E-140 governed block evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git restore memory/CURRENT_CONTEXT.md || true
+          git add -A modules/E/runs/E-140-20260811T175023Z STATE.json WORK_QUEUE.json memory/FAILURE_LOG.jsonl || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'E-140: record source-law underdetermination'
+          git fetch origin agent/4rfc-universe-build
+          git rebase origin/agent/4rfc-universe-build
+          git push origin HEAD:agent/4rfc-universe-build
