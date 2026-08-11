@@ -16,6 +16,35 @@
       "gate_changed": false,
       "allowed_correction": "Compare replay-invariant spectral quantities (spectrum, symmetry, reconstruction, orthogonality, generator invariance, shape, classification, and success) while allowing eigenvector sign freedom.",
       "required_action": "Rerun the complete frozen C-120 verification matrix after the implementation-only replay comparator correction."
+    },
+    {
+      "attempt_id": "C120-VERIFY-TRANSPORT-002",
+      "timestamp_utc": "2026-08-11T16:45:11Z",
+      "workflow_run_id": 31514010351,
+      "workflow_job_id": 93854519804,
+      "result": "TRANSPORT_FAIL_AFTER_SCIENTIFIC_PASS",
+      "failed_component": "git_rebase_push",
+      "all_frozen_gates_passed": true,
+      "root_cause": "Concurrent governed update changed memory/CURRENT_CONTEXT.md after the verification commit was created, producing a rebase conflict. The complete frozen C-120 verification matrix had already passed.",
+      "scientific_definition_changed": false,
+      "frozen_parent_changed": false,
+      "tolerance_changed": false,
+      "gate_changed": false,
+      "required_action": "Use the newer authoritative branch head containing the PASS evidence; do not alter or rerun science solely to resolve transport ordering."
+    },
+    {
+      "attempt_id": "C120-CLOSEOUT-TRIGGER-003",
+      "timestamp_utc": "2026-08-11T16:47:43Z",
+      "workflow_run_id": 31514273944,
+      "result": "ACTION_REQUIRED_BEFORE_JOB_START",
+      "failed_component": "pull_request_reopen_trigger",
+      "all_frozen_gates_passed": true,
+      "root_cause": "GitHub marked the reopened-trigger workflow action_required before any repository job started. No C scientific command executed and no C state changed.",
+      "scientific_definition_changed": false,
+      "frozen_parent_changed": false,
+      "tolerance_changed": false,
+      "gate_changed": false,
+      "required_action": "Trigger the same governed closeout workflow through a normal synchronize event on the authoritative branch."
     }
   ]
 }
