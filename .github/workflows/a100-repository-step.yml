@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install numpy networkx scipy sympy
-      - name: Freeze C-120 exact parent-derived execution contract
+      - name: Execute frozen C-120 symbolic records reference checks and parent-derived spectral engine
         shell: bash
         run: |
           set -euo pipefail
@@ -30,11 +30,18 @@ jobs:
           RUN_DIR="modules/C/runs/$RUN"
           bash tools/start_work.sh
           grep -q 'ACTIVE WORK PACKET — C-120' work_packets/ACTIVE_WORK_PACKET.md
-          python "$RUN_DIR/C120_PREPARE.py"
+          python "$RUN_DIR/C120_PREPARE_BINDINGS.py"
+          python tools/director.py wolfram-record --run "$RUN" --call C-WL-001 --output "$RUN_DIR/wolfram_raw/C-WL-001.recorder.txt"
+          python tools/director.py wolfram-record --run "$RUN" --call C-WL-002 --output "$RUN_DIR/wolfram_raw/C-WL-002.recorder.txt"
+          python tools/run_reference_checks.py --module C --output "$RUN_DIR/reference_checks.json"
+          test -f "$RUN_DIR/solver_templates/C_spectral_model.template.json"
+          test -f "$RUN_DIR/binding_sheets/C_spectral_model.bindings.json"
+          python tools/materialize_solver_config.py --template "$RUN_DIR/solver_templates/C_spectral_model.template.json" --binding-sheet "$RUN_DIR/binding_sheets/C_spectral_model.bindings.json" --output "$RUN_DIR/solver_configs/C_spectral_model.json"
+          python tools/run_configured_solver.py --config "$RUN_DIR/solver_configs/C_spectral_model.json" --output-dir "$RUN_DIR/solver_outputs/spectral_model"
           python tools/rfc.py doctor
           python tools/director.py doctor
           python tools/rfc.py firewall-scan
-      - name: Commit frozen C-120 pre-execution records
+      - name: Commit C-120 primary execution evidence
         shell: bash
         run: |
           set -euo pipefail
@@ -42,7 +49,7 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add -A
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'C-120: freeze parent-derived microscopic execution contract'
+          git commit -m 'C-120: execute frozen parent-derived microscopic spectrum'
           git fetch origin agent/4rfc-universe-build
           git rebase origin/agent/4rfc-universe-build
           git push origin HEAD:agent/4rfc-universe-build
