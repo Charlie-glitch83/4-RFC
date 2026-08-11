@@ -1,28 +1,28 @@
-# ACTIVE WORK PACKET — A-100
+# ACTIVE WORK PACKET — B-110
 
 **This is the only authorized work. Execute it in order.**
 
-- Module: `A`
-- Objective: Constitute the exact prephysical RFC source law and integrate the revised N-body proof as the terminal relational completion of the kernel.
-- Run workspace: `modules/A/runs/A-100-20260811T115001Z`
+- Module: `B`
+- Objective: Execute the sole first physical event from the exact prephysical parent and generate the first restartable physical RFC state.
+- Run workspace: `modules/B/runs/B-110-20260811T140258Z`
 
 ## Exact sequence
 
-1. Read `recipes/A/WORK_ORDER.md` and `recipes/A/recipe.json`.
+1. Read `recipes/B/WORK_ORDER.md` and `recipes/B/recipe.json`.
 2. Verify all exact parent hashes and fill the run source register.
 3. Freeze the pre-execution lock before primary execution.
 4. Run these Wolfram calls exactly and record their complete outputs:
 
-   - `python tools/director.py wolfram-show --call A-WL-001`
-   - `python tools/director.py wolfram-show --call A-WL-002`
+   - `python tools/director.py wolfram-show --call B-WL-001`
+   - `python tools/director.py wolfram-show --call B-WL-002`
 
-5. Run `python tools/run_reference_checks.py --module A --output modules/A/runs/A-100-20260811T115001Z/reference_checks.json`.
+5. Run `python tools/run_reference_checks.py --module B --output modules/B/runs/B-110-20260811T140258Z/reference_checks.json`.
 6. Bind and run the prebuilt local engines listed below. Every `__BIND_` token is a hard stop:
 
-   - `python tools/director.py solver-copy --module A --solver triad_kernel --destination modules/A/runs/A-100-20260811T115001Z`
-   - fill `configured_runs/binding_sheets/A_triad_kernel.bindings.json` after it is copied into the run; every value requires an origin SHA-256
-   - `python tools/materialize_solver_config.py --template modules/A/runs/A-100-20260811T115001Z/solver_templates/A_triad_kernel.template.json --binding-sheet modules/A/runs/A-100-20260811T115001Z/binding_sheets/A_triad_kernel.bindings.json --output modules/A/runs/A-100-20260811T115001Z/solver_configs/A_triad_kernel.json`
-   - `python tools/run_configured_solver.py --config modules/A/runs/A-100-20260811T115001Z/solver_configs/A_triad_kernel.json --output-dir modules/A/runs/A-100-20260811T115001Z/solver_outputs/triad_kernel`
+   - `python tools/director.py solver-copy --module B --solver big_implosion --destination modules/B/runs/B-110-20260811T140258Z`
+   - fill `configured_runs/binding_sheets/B_big_implosion.bindings.json` after it is copied into the run; every value requires an origin SHA-256
+   - `python tools/materialize_solver_config.py --template modules/B/runs/B-110-20260811T140258Z/solver_templates/B_big_implosion.template.json --binding-sheet modules/B/runs/B-110-20260811T140258Z/binding_sheets/B_big_implosion.bindings.json --output modules/B/runs/B-110-20260811T140258Z/solver_configs/B_big_implosion.json`
+   - `python tools/run_configured_solver.py --config modules/B/runs/B-110-20260811T140258Z/solver_configs/B_big_implosion.json --output-dir modules/B/runs/B-110-20260811T140258Z/solver_outputs/big_implosion`
 
 7. Execute any remaining parent-driven domain code named in the recipe. Manufactured checks and generic engines do not replace the physical result.
 8. Run countermodels, ablations, convergence, restart, replay, uncertainty/covariance, and independent reconstruction.
@@ -31,24 +31,23 @@
 
 ## Required deliverables
 
-- modules/A/runs/<RUN_ID>/RUN_PLAN.md
-- modules/A/runs/<RUN_ID>/SOURCE_REGISTER.json
-- modules/A/runs/<RUN_ID>/GATE_RESULTS.json
-- modules/A/runs/<RUN_ID>/INDEPENDENT_VERIFICATION.md
-- modules/A/runs/<RUN_ID>/CLOSEOUT.md
+- modules/B/runs/<RUN_ID>/RUN_PLAN.md
+- modules/B/runs/<RUN_ID>/SOURCE_REGISTER.json
+- modules/B/runs/<RUN_ID>/GATE_RESULTS.json
+- modules/B/runs/<RUN_ID>/INDEPENDENT_VERIFICATION.md
+- modules/B/runs/<RUN_ID>/CLOSEOUT.md
 - frozen output packet and artifact registry entries
 
 ## Componentwise gates
 
-- canonical terminology exact
-- no physical time, geometry, constants, or later-module objects assumed
-- triad ablations fail as predeclared
-- scalar collapse countermodel rejected
-- lane increment 2N verified
-- new-solution claim requires non-gauge witnessed closure
-- dormant direct dynamics has zero backreaction
-- independent symbolic reconstruction
+- no pre-event physical time
+- exact parent bytes
+- strict nontrivial compression or derived equivalent
+- total ledger preservation
+- no-loss reopening
+- no later physics smuggled into B
+- ablation, replay, restart, and independent reconstruction
 
 ## Commit message
 
-`Close Module A at its verified scientific scope`
+`Close Module B at its verified scientific scope`
