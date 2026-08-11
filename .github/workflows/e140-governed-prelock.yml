@@ -1,0 +1,98 @@
+name: Governed E-140 Prelock Audit
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: write
+
+jobs:
+  e140-prelock:
+    if: github.event.pull_request.head.ref == 'agent/4rfc-universe-build'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy networkx scipy sympy
+      - name: Execute E-140 pre-execution source audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN='E-140-20260811T175023Z'
+          RUN_DIR="modules/E/runs/$RUN"
+          bash tools/start_work.sh
+          cat work_packets/ACTIVE_WORK_PACKET.md
+          grep -q 'ACTIVE WORK PACKET — E-140' work_packets/ACTIVE_WORK_PACKET.md
+          python - <<'PY'
+          from __future__ import annotations
+          import hashlib, json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          ROOT=Path('.')
+          RUN=ROOT/'modules/E/runs/E-140-20260811T175023Z'
+          D=ROOT/'modules/D/runs/D-130-20260811T165602Z'
+          def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          def save(p,obj): Path(p).write_text(json.dumps(obj,indent=2,sort_keys=True,ensure_ascii=False)+'\n',encoding='utf-8')
+
+          parent=D/'H_D_to_E.json'
+          assert parent.exists()
+          handoff=json.loads(parent.read_text(encoding='utf-8'))
+          assert handoff['generation_mode']=='GENERATION_SEALED'
+          assert handoff['preserved_obstructions']['primordial_abundances']=='OWNED_BY_MODULE_E'
+          assert handoff['preserved_obstructions']['nonlinear_collision_operator']=='UNDETERMINED_AND_NOT_INSERTED'
+
+          candidates=[
+            ROOT/'sources/frozen/0e54ae0a037fc0e35329c452c25e71d71f716dc6a700982083a207afd9adde8f/Reproducibility Metadata - Final Revised W2 BBN Closeout.md',
+            ROOT/'sources/frozen/d44cb226d6ebc35fae8d4122f86ce8a80a3a6458b209c328a55ecfbaa44b561c/RFC_Module_X1_Nucleosynthesis_Theorem_Addendum_and_Metadata.md',
+            ROOT/'sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md',
+          ]
+          for p in candidates: assert p.exists(),p
+          example=ROOT/'configured_runs/examples/E_reaction_network.json'
+          assert example.exists()
+
+          findings=[
+            {'path':str(candidates[0]),'sha256':sha(candidates[0]),'classification':'ADMITTED_SOURCE_AUDIT_ONLY','finding':'Internal W2 BBN/Li7 theorem/proxy closeout; public BBN reaction-network implementation explicitly pending. Comparison/proxy quantities are forbidden as E generation targets.'},
+            {'path':str(candidates[1]),'sha256':sha(candidates[1]),'classification':'CANDIDATE_ADDENDUM_AUDIT_ONLY','finding':'W/X/X1 internal theorem/proxy closure; external BBN reaction-network validation explicitly pending. No source-owned executable primordial reaction graph with rate laws and uncertainty.'},
+            {'path':str(candidates[2]),'sha256':sha(candidates[2]),'classification':'CANONICAL_AUTHORITY_AUDIT_ONLY','finding':'Triadic universe architecture and prior BBN persistence/proxy handoffs, but no E-authorized source-owned executable species/reaction/rate object.'},
+            {'path':str(example),'sha256':sha(example),'classification':'MANUFACTURED_EXAMPLE_NOT_SCIENTIFIC_PARENT','finding':'Three-species n/p/d example with example kf/kr values; reusable machinery only and not promotable to a physical RFC universe result.'}
+          ]
+          reason='Exact admitted parents do not determine the executable primordial reaction graph and rate law required by E. Freezing arbitrary familiar nuclear reactions/rates would violate exact-object provenance, no-retune, and the generation firewall.'
+          audit={'run_id':RUN.name,'module':'E','classification':'E140_EXACT_SOURCE_ADMISSION_AUDIT','generation_mode':'GENERATION_SEALED','timestamp_utc':datetime.now(timezone.utc).isoformat(),'exact_parent':{'path':str(parent),'sha256':sha(parent),'classification':handoff['classification']},'inspected_objects':findings,'required_scientific_bindings':['species','stoichiometry','rate_expressions','rate parameters with uncertainty/source lineage','initial isotope state','network clock/rate scale','baryon/charge/energy invariants'],'determination':{'source_owned_species_graph':False,'source_owned_rate_laws':False,'source_owned_rate_uncertainty':False,'parent_supplies_empirical_time_or_temperature_scale':False,'manufactured_example_admissible_as_physical_parent':False,'public_abundance_targets_admissible_for_generation':False},'status':'BLOCKED_UNDERDETERMINED','reason':reason}
+          save(RUN/'E140_SOURCE_ADMISSION_AUDIT.json',audit)
+          source={'run_id':RUN.name,'exact_parents':[{'path':str(parent),'sha256':sha(parent),'kind':'EXACT_PARENT_HANDOFF'}],'admitted_sources':[{'path':str(p),'sha256':sha(p),'use':'AUDIT_ONLY_NOT_GENERATIVE_BINDING'} for p in candidates],'imports':['hashlib','json'],'files':['recipes/E/WORK_ORDER.md','recipes/E/recipe.json','configured_runs/templates/E_reaction_network.template.json','configured_runs/examples/E_reaction_network.json'],'urls':[],'constants':[],'public_data_declaration':'NONE','scientific_binding_status':'BLOCKED_UNDERDETERMINED'}
+          save(RUN/'SOURCE_REGISTER.json',source)
+          lock={'run_id':RUN.name,'status':'BLOCKED_UNDERDETERMINED','frozen_utc':None,'authority_hashes':[sha(ROOT/'recipes/E/WORK_ORDER.md'),sha(ROOT/'recipes/E/recipe.json')],'parent_hashes':[sha(parent)],'definition_hashes':[sha(ROOT/'configured_runs/templates/E_reaction_network.template.json')],'candidate_classes':['SOURCE_OWNED_PRIMORDIAL_SPECIES','SOURCE_OWNED_REACTION_GRAPH','SOURCE_OWNED_RATE_LAWS','ISOTOPE_ABUNDANCE_STATE','ISOTOPE_COVARIANCE','FREEZE_OUT_WITNESSES'],'equations_and_laws':[],'dimensions_units_frames_gauges_clocks':['D handoff provides only dimensionless relaxation order; no empirical seconds/kelvin scale is assigned.'],'methods':['exact parent hash verification','exact admitted-source inspection','manufactured-example exclusion','public-target firewall'],'tolerances':['No scientific tolerance may be frozen before the source-owned network/rates are determined.'],'stopping_rules':['Stop before Wolfram calls and solver execution when required E reaction graph/rate law is underdetermined.','Do not promote manufactured E example.','Do not use W2 abundance comparison targets or fitted corrections in generation.'],'expected_invariants':['Baryon/charge/energy accounting must be derivable from the eventual exact stoichiometric network.'],'tests':['Source provenance audit must pass before E pre-execution freeze.'],'gates':['rate-source audit','no scalar-channel collapse','baryon/charge/energy accounting'],'falsifiers':['Any unproven reaction/rate coefficient inserted from familiarity','Any public abundance target influences generation','Manufactured example promoted to physical execution'],'claim_boundary':'E-140 is not executed. Exact admitted parents are insufficient to freeze a source-owned primordial reaction network; observations remain sealed.','independent_verifier_design':'Once an exact source-owned network exists, reconstruct stoichiometry/rates independently from exact hashes and compare an independent reaction integrator. Not executable in this blocked state.','allowed_implementation_only_corrections':['Path/serialization/audit-record corrections only; no invented species, reactions, rate coefficients, empirical scales, abundance targets, or fitted corrections.']}
+          save(RUN/'PRE_EXECUTION_LOCK.json',lock)
+          (RUN/'RUN_PLAN.md').write_text('# E-140 Run Plan\n\nExecution stopped at pre-execution source admission. The active recipe requires a source-owned primordial reaction graph and rate law. Exact admitted parents do not determine those objects, so E remains `BLOCKED_UNDERDETERMINED`; Wolfram calls and numerical solver execution are not authorized.\n',encoding='utf-8')
+          failure={'timestamp_utc':datetime.now(timezone.utc).isoformat(),'run_id':RUN.name,'stage':'PRE_EXECUTION_SOURCE_ADMISSION','status':'BLOCKED_UNDERDETERMINED','reason':reason,'scientific_objects_changed':False,'next_action':'Retain E-140 active; do not advance until an exact source-owned reaction network/rate object is lawfully admitted or derived from permitted parents.'}
+          with (RUN/'FAILURES.jsonl').open('a',encoding='utf-8') as f: f.write(json.dumps(failure,sort_keys=True)+'\n')
+          print(json.dumps({'run_id':RUN.name,'status':'BLOCKED_UNDERDETERMINED','parent_sha256':sha(parent),'public_data':'NONE'},indent=2))
+          PY
+          grep -q '"status": "BLOCKED_UNDERDETERMINED"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
+          test ! -e "$RUN_DIR/solver_configs/E_reaction_network.json"
+          python tools/rfc.py doctor
+          python tools/director.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+      - name: Commit governed E-140 obstruction
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git restore memory/CURRENT_CONTEXT.md || true
+          git add modules/E/runs/E-140-20260811T175023Z work_packets/ACTIVE_WORK_PACKET.md STATE.json memory/RUN_INDEX.json || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'E-140: preserve underdetermined reaction-network obstruction'
+          git fetch origin agent/4rfc-universe-build
+          git rebase origin/agent/4rfc-universe-build
+          git push origin HEAD:agent/4rfc-universe-build
