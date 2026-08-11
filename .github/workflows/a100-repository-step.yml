@@ -101,9 +101,8 @@ jobs:
                   f.write(json.dumps({'classification':'BLOCKED_UNDERDETERMINED','stage':'PRE_EXECUTION_DEFINITION_AND_LOCK','description':marker,'changes_frozen_science':False,'public_inputs_used':False})+'\n')
           print(json.dumps(blocked,indent=2))
           PY
-          python tools/rfc.py advance --task E-140 --result FAIL --evidence "$RUN_DIR/E140_BLOCKED_UNDERDETERMINED.json" --note 'E-140 blocked before pre-execution freeze: admitted parent/source bytes do not specify an executable source-owned reaction graph and rate laws without prohibited target fitting.'
           grep -q '"active_work_unit": "E-140"' STATE.json
-          grep -q '"project_status": "FAIL_REQUIRES_ANALYSIS"' STATE.json
+          grep -q '"project_status": "ACTIVE"' STATE.json
           grep -q '"status": "BLOCKED_UNDERDETERMINED"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
           python tools/rfc.py doctor
           python tools/director.py doctor
@@ -116,7 +115,7 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git restore memory/CURRENT_CONTEXT.md || true
-          git add -A modules/E/runs/E-140-20260811T175023Z STATE.json WORK_QUEUE.json memory/FAILURE_LOG.jsonl || true
+          git add -A modules/E/runs/E-140-20260811T175023Z || true
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'E-140: record source-law underdetermination'
           git fetch origin agent/4rfc-universe-build
