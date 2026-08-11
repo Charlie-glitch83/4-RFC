@@ -1,6 +1,6 @@
 # Current Context
 
-Generated: 2026-08-11T14:21:52.445035+00:00
+Generated: 2026-08-11T16:35:24.836922+00:00
 
 ## Project truth
 
@@ -65,7 +65,7 @@ Derive and execute the microscopic field, particle, interaction, mass, mixing, a
 
 - admitted sources: 29
 - frozen artifacts: 7
-- indexed runs: 7
+- indexed runs: 8
 
 ## Recent runs
 
@@ -76,6 +76,7 @@ Derive and execute the microscopic field, particle, interaction, mass, mixing, a
 - FRONTIER-050-20260811T114313Z: PASS (AUDIT)
 - A-100-20260811T115001Z: PASS (A)
 - B-110-20260811T140258Z: PASS (B)
+- C-120-20260811T142152Z: CREATED (C)
 
 ## Recent decisions
 
