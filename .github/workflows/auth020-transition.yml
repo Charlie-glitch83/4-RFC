@@ -1,0 +1,39 @@
+name: Singular AUTH-020 transition
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  transition:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy scipy sympy networkx
+      - name: Verify, record, advance, and prepare exactly one child
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/rfc.py doctor
+          cat >> memory/FAILURE_LOG.jsonl <<'EOF'
+          {"failure_id":"AUTH-020-POSTCLOSE-TREE-GUARD","work_unit":"AUTH-020","stage":"post-close GitHub verification","classification":"IMPLEMENTATION_ONLY","failure":"A post-close verification file was briefly placed inside the registered AUTH run tree, correctly triggering a tree-hash mismatch; it was removed before transition. A later transition push was rejected because multiple temporary runners raced on the same branch.","scientific_change":false,"resolution":"Restore the registered AUTH run tree exactly, close competing temporary PR triggers, then replay the verified transition from the latest authoritative branch head."}
+          EOF
+          python tools/rfc.py record-commit 24193b41f56e48b88261ce5726a2eff185e25e11 --branch agent/4rfc-universe-build --note 'Verified AUTH-020 lock commit, fetched PASS artifacts, exact admitted source hashes, and GitHub diff; frozen run tree restored.'
+          python tools/rfc.py doctor
+          python tools/rfc.py advance --task AUTH-020 --result PASS --evidence runs/AUTH-020-20260811T044245Z/CLOSEOUT.md
+          bash tools/start_work.sh
+          python tools/director.py active
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add STATE.json WORK_QUEUE.json memory/DECISION_LOG.jsonl memory/FAILURE_LOG.jsonl memory/CURRENT_CONTEXT.md work_packets/ACTIVE_WORK_PACKET.md runs
+          git commit -m 'Advance AUTH-020 to next authorized work unit'
+          git push origin HEAD:agent/4rfc-universe-build
