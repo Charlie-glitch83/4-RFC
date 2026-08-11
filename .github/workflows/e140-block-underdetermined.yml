@@ -33,7 +33,9 @@ jobs:
           grep -q '"status": "BLOCKED_UNDERDETERMINED"' "$RUN_DIR/E140_SOURCE_ADMISSION_AUDIT.json"
           grep -q '"status": "BLOCKED_UNDERDETERMINED"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
           test ! -e "$RUN_DIR/solver_configs/E_reaction_network.json"
-          python tools/rfc.py advance --task E-140 --result FAIL --evidence "$RUN_DIR/E140_SOURCE_ADMISSION_AUDIT.json" --note 'BLOCKED_UNDERDETERMINED: exact admitted parent/source bytes do not determine the executable primordial species graph, stoichiometry, source-owned reaction-rate laws/uncertainties, isotope mapping, or physical rate clock required to freeze Module E. No familiar/default/public BBN rates or abundance targets may be inserted.'
+          if ! grep -q '"project_status": "FAIL_REQUIRES_ANALYSIS"' STATE.json; then
+            python tools/rfc.py advance --task E-140 --result FAIL --evidence "$RUN_DIR/E140_SOURCE_ADMISSION_AUDIT.json" --note 'BLOCKED_UNDERDETERMINED: exact admitted parent/source bytes do not determine the executable primordial species graph, stoichiometry, source-owned reaction-rate laws/uncertainties, isotope mapping, or physical rate clock required to freeze Module E. No familiar/default/public BBN rates or abundance targets may be inserted.'
+          fi
           python tools/rfc.py doctor
           python tools/director.py doctor
           python -m unittest discover -s tests -v
@@ -49,6 +51,7 @@ jobs:
           git add STATE.json WORK_QUEUE.json memory/FAILURE_LOG.jsonl memory/CURRENT_CONTEXT.md work_packets/ACTIVE_WORK_PACKET.md modules/E/runs/E-140-20260811T175023Z/E140_SOURCE_ADMISSION_AUDIT.json modules/E/runs/E-140-20260811T175023Z/PRE_EXECUTION_LOCK.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'E-140: record blocked underdetermined source law'
+          git reset --hard HEAD
           git fetch origin agent/4rfc-universe-build
           git rebase origin/agent/4rfc-universe-build
           git push origin HEAD:agent/4rfc-universe-build
