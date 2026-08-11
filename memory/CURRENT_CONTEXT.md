@@ -1,14 +1,14 @@
 # Current Context
 
-Generated: 2026-08-11T11:40:39.611645+00:00
+Generated: 2026-08-11T11:43:13.110050+00:00
 
 ## Project truth
 
 - Status: `ACTIVE`
 - Generation mode: `GENERATION_SEALED`
-- Active work unit: `REC-040` — Recover Valid Prior 2-RFC Assets by Exact Object Admission
-- Current module: `RECOVERY`
-- Last verified commit: `143cb9e8ae72e0c3f0017d015195b367947b0e33`
+- Active work unit: `FRONTIER-050` — Determine the Earliest Missing Physical Parent
+- Current module: `AUDIT`
+- Last verified commit: `d79e18a736ef6f061b2dc79a6080d225a0ab67dc`
 
 ## Strongest supported claim
 
@@ -20,21 +20,19 @@ The enhanced RFC universe is complete, physically executed, or empirically valid
 
 ## Immediate objective
 
-Inspect old repository branches and libraries, admit only exact valid scientific objects, and quarantine obsolete machinery and failed outputs.
+Audit A–J and choose the earliest exact break between formal law and one physically executed parent chain.
 
 ## Required deliverables
 
-- recovery/LINEAGE_CROSSWALK.json
-- recovery/ADMITTED_ASSET_MANIFEST.json
-- recovery/QUARANTINE.md
-- runs/REC-040/CLOSEOUT.md
+- audit/PHYSICAL_FRONTIER.json
+- audit/PHYSICAL_FRONTIER.md
+- runs/FRONTIER-050/CLOSEOUT.md
 
 ## Mandatory gates
 
-- exact commit/file hashes
-- no old PASS auto-promoted
-- no public-data contamination
-- replay evidence
+- no status word hides a missing object
+- one frontier selected
+- recovered parents verified
 
 ## Module states
 
@@ -73,14 +71,14 @@ Inspect old repository branches and libraries, admit only exact valid scientific
 
 ## Recent decisions
 
-- COMMIT-39bcd805ff64: Verified BOOT-000 prescribed work-branch commit and diff.
-- ADVANCE-BOOT-000-20260811T044239Z: Marked BOOT-000 PASS and activated SRC-010
 - COMMIT-52f5ac9fd0c2: Verified SRC-010 source-admission commit after governed checks.
 - ADVANCE-SRC-010-20260811T044244Z: Marked SRC-010 PASS and activated AUTH-020
 - COMMIT-27b250a0d70f: Externally verified AUTH-020 scientific-constitution lock commit and diff; final run-bundle hash reconciled after required external verification record.
 - ADVANCE-AUTH-020-20260811T045239Z: Marked AUTH-020 PASS and activated XWALK-030
 - COMMIT-143cb9e8ae72: Externally verified XWALK-030 enhancement-crosswalk commit and diff.
 - ADVANCE-XWALK-030-20260811T045908Z: Marked XWALK-030 PASS and activated REC-040
+- COMMIT-d79e18a736ef: Externally verified closed REC-040 run commit and diff.
+- ADVANCE-REC-040-20260811T114312Z: Marked REC-040 PASS and activated FRONTIER-050
 
 ## Recent failures
 

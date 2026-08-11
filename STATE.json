@@ -5,9 +5,9 @@
   "project_status": "ACTIVE",
   "generation_mode": "GENERATION_SEALED",
   "authorization_mode": "AUTO_SINGLE_CHILD_AFTER_PASS",
-  "active_work_unit": "REC-040",
-  "current_module": "RECOVERY",
-  "current_run": null,
+  "active_work_unit": "FRONTIER-050",
+  "current_module": "AUDIT",
+  "current_run": "FRONTIER-050-20260811T114313Z",
   "source_state": "SEED_ADMITTED_INDEPENDENTLY_RECONSTRUCTED",
   "canonical_source_manifest": "sources/SOURCE_MANIFEST.json",
   "frozen_universe_hash": null,
@@ -262,8 +262,8 @@
       ]
     }
   },
-  "last_verified_commit": "143cb9e8ae72e0c3f0017d015195b367947b0e33",
-  "last_updated_utc": "2026-08-11T11:40:42.608573+00:00",
+  "last_verified_commit": "d79e18a736ef6f061b2dc79a6080d225a0ab67dc",
+  "last_updated_utc": "2026-08-11T11:43:13.264861+00:00",
   "strongest_supported_claim": "A governed scaffold and source seed have been prepared; no new 4-RFC scientific result has been executed.",
   "strongest_unsupported_claim": "The enhanced RFC universe is complete, physically executed, or empirically validated.",
   "last_verified_branch": "agent/4rfc-universe-build"
