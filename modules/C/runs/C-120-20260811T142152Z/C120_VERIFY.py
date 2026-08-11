@@ -82,11 +82,31 @@ abl={
 }
 abl['pass']=all(x['rejected'] for x in abl.values() if isinstance(x,dict) and 'rejected' in x)
 
-# Clean replay in fresh output directory.
+# Clean replay in fresh output directory. Eigenvector signs are a representation gauge,
+# so compare sign-invariant spectral content rather than raw JSON byte equality.
 with tempfile.TemporaryDirectory(prefix='c120-replay-') as td:
     subprocess.run([sys.executable,str(ROOT/'tools/run_configured_solver.py'),'--config',str(RUN/'solver_configs/C_spectral_model.json'),'--output-dir',td],check=True,cwd=ROOT)
     replay=load(Path(td)/'result.json')
-replay_equal=(replay==primary)
+primary_vals=np.asarray(primary['eigenvalues'],float)
+replay_vals=np.asarray(replay['eigenvalues'],float)
+primary_vecs=np.asarray(primary['eigenvectors'],float)
+replay_vecs=np.asarray(replay['eigenvectors'],float)
+projector_errors=[]
+for j in range(n):
+    pp=np.outer(primary_vecs[:,j],primary_vecs[:,j])
+    rp=np.outer(replay_vecs[:,j],replay_vecs[:,j])
+    projector_errors.append(float(np.linalg.norm(pp-rp)))
+replay_checks={
+ 'success_match':bool(replay['success']==primary['success']),
+ 'classification_match':bool(replay['classification']==primary['classification']),
+ 'shape_match':bool(replay['shape']==primary['shape']),
+ 'symmetric_match':bool(replay['symmetric']==primary['symmetric']),
+ 'eigenvalues_match':bool(np.allclose(replay_vals,primary_vals,rtol=0,atol=TOL)),
+ 'eigenprojectors_match':bool(max(projector_errors)<=TOL),
+ 'reconstruction_error_match':bool(abs(float(replay['reconstruction_error'])-float(primary['reconstruction_error']))<=TOL),
+ 'generator_audits_match':bool(replay['symmetry_generator_audits']==primary['symmetry_generator_audits']),
+}
+replay_equal=all(replay_checks.values())
 
 # Numerical residual covariance only; no empirical uncertainty enters.
 res=[]
@@ -122,11 +142,11 @@ gates={
 result={
  'run_id':RID,'classification':'C120_FROZEN_GATE_EXECUTION','overall':'PASS' if all(gates.values()) else 'FAIL',
  'gates':gates,'independent_reconstruction':ind,'prefix_runs':prefix,'ablations':abl,
- 'replay_restart':{'full_result_equal':replay_equal,'pass':replay_equal},
+ 'replay_restart':{'representation_rule':'eigenvector signs are gauge; compare eigenvalues and rank-1 eigenprojectors','checks':replay_checks,'maximum_projector_error':max(projector_errors),'pass':replay_equal},
  'uncertainty_covariance':unc,
  'physical_scope':{'candidate_dimension':n,'field_identity':'ANONYMOUS_RFC_SPECTRAL_MODES','standard_model_identity_assigned':False,'metric_geometry_assumed':False,'continuous_time_scale':None,'nonlinear_interactions':'UNDETERMINED_AT_C120'},
  'claim_boundary':lock['claim_boundary']
 }
 save('C120_GATE_EXECUTION.json',result)
-print(json.dumps({'overall':result['overall'],'gates':gates,'minimum_eigenvalue':ind['minimum_eigenvalue'],'population_sum':ind['population_sum']},indent=2))
+print(json.dumps({'overall':result['overall'],'gates':gates,'minimum_eigenvalue':ind['minimum_eigenvalue'],'population_sum':ind['population_sum'],'replay_checks':replay_checks},indent=2))
 raise SystemExit(0 if result['overall']=='PASS' else 1)
