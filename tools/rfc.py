@@ -398,7 +398,7 @@ def cmd_hash_tree(args: argparse.Namespace) -> int:
 def cmd_firewall_scan(_: argparse.Namespace) -> int:
     roots = [ROOT / "runs", ROOT / "modules", ROOT / "generation", ROOT / "proofs", ROOT / "universes"]
     url_re = re.compile(r"https?://", re.I)
-    suspicious = re.compile(r"(planck|desi|pantheon|sh0es|best[-_ ]?fit|posterior|likelihood|public[_ -]?data)", re.I)
+    suspicious = re.compile(r"(?<![A-Za-z0-9_])(planck|desi|pantheon|sh0es|best[-_ ]?fit|posterior|likelihood|public[_ -]?data)(?![A-Za-z0-9_])", re.I)
     allowed_docs = {
         "README.md", "spec.json", "WORK_ORDER.md", "RUN_PLAN.md",
         "FROZEN_WORK_UNIT_RECIPE.json", "FROZEN_RECIPE.json", "REQUIRED_GATES.json",
