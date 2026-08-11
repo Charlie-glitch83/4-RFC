@@ -1,5 +1,5 @@
 {
-  "finalized_utc": "2026-08-11T16:54:03.920416+00:00",
+  "finalized_utc": "2026-08-11T16:54:28.953920+00:00",
   "note": "Hash covers finalized generated scientific/evidence outputs listed here and excludes this manifest and mutable run-registration metadata.",
   "outputs": [
     {
@@ -28,14 +28,14 @@
       "sha256": "53ea809b8a03f71f448d1544aaca5992473163cbf1c313d7233b9bd541479070"
     },
     {
-      "bytes": 4717,
+      "bytes": 4735,
       "path": "C120_GATE_EXECUTION.json",
-      "sha256": "d18c460ff4085276b90fe5a3f878639cc85fd66b1fb1264e6cfc0d6a76ab219d"
+      "sha256": "f21414ba037ce2cf9068ec2c5e4b97c54b60c4b039fd4dc3be638ac6ff54bc6e"
     },
     {
-      "bytes": 458,
+      "bytes": 457,
       "path": "independent_reconstruction.json",
-      "sha256": "f6ba08b7377c6efd3977c9545f7f6fabcad5a9fcca7f669c0e034764e01f5737"
+      "sha256": "a0c7fba39bc5a1f7974266d0c337d6b08170ec481522ae9862dc34f568724fbe"
     },
     {
       "bytes": 662,
@@ -68,9 +68,9 @@
       "sha256": "acdc980d4bde62ab711f74641a0dd180c39fbf511bd527290ecd0e37c5d39023"
     },
     {
-      "bytes": 1449,
+      "bytes": 1447,
       "path": "INDEPENDENT_VERIFICATION.md",
-      "sha256": "8c231598614fe5317af23ec373817fc85e4774fef7111f1f1367d42438b417f6"
+      "sha256": "7f550beabc1c6d257467fef659cce5bf9fcbc6cbd62e02994ab67f8ba7bbd4d6"
     },
     {
       "bytes": 2203,
@@ -100,5 +100,5 @@
   ],
   "run_id": "C-120-20260811T142152Z",
   "status": "FINAL",
-  "tree_sha256": "53488b328bfc2ec27fc461a2840232f57cd25fb845c5d37f7fdd6fcabf28ffde"
+  "tree_sha256": "42521d328fd0f746ee361b971345ace22a08347c94bc1cabd58b71458d78f136"
 }
