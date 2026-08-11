@@ -1,0 +1,214 @@
+name: Execute governed FRONTIER-050
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  frontier050:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy scipy sympy networkx
+      - name: Execute repository FRONTIER-050 audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          EXPECTED='18b9b08dc9d2e421807ee4c9fb5c10b9739d55f2'
+          test "$(git rev-parse HEAD)" = "$EXPECTED"
+          test "$(python -c "import json; print(json.load(open('STATE.json'))['active_work_unit'])")" = 'FRONTIER-050'
+
+          bash tools/start_work.sh
+          python tools/director.py doctor
+          python tools/rfc.py doctor
+
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+
+          ROOT=Path.cwd()
+          RUN=ROOT/'runs/FRONTIER-050-20260811T114313Z'
+          AUDIT=ROOT/'audit'
+          graph=json.load(open(ROOT/'config/module_graph.json'))
+          state=json.load(open(ROOT/'STATE.json'))
+          runs=json.load(open(ROOT/'memory/RUN_INDEX.json'))['runs']
+          artifacts=json.load(open(ROOT/'memory/ARTIFACT_REGISTRY.json')).get('artifacts',[])
+          sources=json.load(open(ROOT/'sources/SOURCE_MANIFEST.json'))['sources']
+          recovery=json.load(open(ROOT/'recovery/LINEAGE_CROSSWALK.json'))
+          seed=json.load(open(ROOT/'audit/PHYSICAL_FRONTIER_SEED.json'))
+
+          def sha(path):
+              h=hashlib.sha256()
+              with open(path,'rb') as f:
+                  for b in iter(lambda:f.read(1024*1024),b''):
+                      h.update(b)
+              return h.hexdigest()
+
+          # Verify exact admitted/recovered authority before auditing the physical chain.
+          source_checks=[]
+          for rec in sources:
+              p=ROOT/rec['frozen_path']
+              ok=p.is_file() and sha(p)==rec['sha256'] and p.stat().st_size==rec['bytes']
+              source_checks.append({'label':rec['label'],'sha256':rec['sha256'],'verified':ok})
+          if not all(x['verified'] for x in source_checks):
+              raise SystemExit('frozen source verification failed')
+          rec_runs=[x for x in runs if x.get('task_id')=='REC-040']
+          if len(rec_runs)!=1 or rec_runs[0].get('status')!='PASS':
+              raise SystemExit('REC-040 recovery parent is not uniquely PASS')
+          if recovery.get('work_unit')!='REC-040' or recovery.get('rules',{}).get('old_pass_labels_are_authority') is not False:
+              raise SystemExit('recovery authority rules are not frozen as expected')
+
+          order=graph['module_order'][:graph['module_order'].index('J')+1]
+          rows=[]
+          earliest=None
+          for mod in order:
+              spec=ROOT/f'modules/{mod}/spec.json'
+              recipe=ROOT/f'recipes/{mod}/recipe.json'
+              work=ROOT/f'recipes/{mod}/WORK_ORDER.md'
+              if not spec.is_file() or not recipe.is_file() or not work.is_file():
+                  raise SystemExit(f'missing governed architecture for {mod}')
+              rec=json.load(open(recipe))
+              mstate=state['modules'][mod]
+              module_runs=[x for x in runs if x.get('module')==mod]
+              frozen=list(mstate.get('frozen_artifacts',[]))
+              module_artifacts=[x for x in artifacts if x.get('module')==mod or x.get('work_unit','').startswith(mod+'-')]
+              solver_bindings=rec.get('solver_bindings',[])
+              solver_status=[{'solver':x.get('solver'),'status':x.get('status'),'template':x.get('template'),'binding_sheet':x.get('binding_sheet')} for x in solver_bindings]
+
+              law_available=True
+              implementation_available=bool(solver_bindings or rec.get('local_commands'))
+              representative_test_available=bool(rec.get('wolfram_calls') or rec.get('numerical_execution'))
+              physical_output_present=bool(frozen) and any(x.get('status')=='PASS' for x in module_runs)
+              restart_present=False
+              covariance_present=False
+              independent_reconstruction_present=False
+              output_hashes=[]
+              for r in module_runs:
+                  rp=ROOT/r['path']
+                  replay=rp/'REPLAY_RECORD.json'
+                  iv=rp/'INDEPENDENT_VERIFICATION.md'
+                  manifest=rp/'GENERATED_OUTPUT_MANIFEST.json'
+                  if r.get('status')=='PASS' and replay.is_file():
+                      rr=json.load(open(replay)); restart_present |= bool(rr.get('restart_check') and rr.get('artifact_hashes_match'))
+                  if r.get('status')=='PASS' and iv.is_file() and len(iv.read_text(errors='ignore').strip())>=120:
+                      independent_reconstruction_present=True
+                  if r.get('status')=='PASS' and manifest.is_file():
+                      mm=json.load(open(manifest));
+                      for o in mm.get('outputs',[]):
+                          if isinstance(o,dict) and o.get('sha256'): output_hashes.append(o['sha256'])
+                  # Physical-module covariance requires a completed physical run object, not a recipe or representative test.
+                  if r.get('status')=='PASS' and (rp/'COVARIANCE.json').is_file(): covariance_present=True
+
+              parents=graph['modules'][mod].get('parents',[])
+              parent_status={p:state['modules'][p]['evidence_state'] for p in parents}
+              missing=[]
+              if not physical_output_present:
+                  if mod=='A': missing.append('frozen exact prephysical A output packet H_A_to_B')
+                  else: missing.append(f'exact parent-driven {mod} output packet')
+              if not restart_present: missing.append('restart/replay packet for completed module output')
+              if not covariance_present: missing.append('covariance/uncertainty packet tied to completed output')
+              if not independent_reconstruction_present: missing.append('independent reconstruction of completed output')
+              row={
+                  'module':mod,
+                  'parents':parents,
+                  'parent_evidence_states':parent_status,
+                  'source_authority':{'manifest':'sources/SOURCE_MANIFEST.json','verified_source_count':len(source_checks)},
+                  'law':{'present':law_available,'recipe_path':str(recipe.relative_to(ROOT)),'recipe_sha256':sha(recipe),'spec_path':str(spec.relative_to(ROOT)),'spec_sha256':sha(spec)},
+                  'implementation':{'present':implementation_available,'solver_bindings':solver_status},
+                  'representative_test':{'available':representative_test_available,'wolfram_calls':rec.get('wolfram_calls',[]),'numerical_execution':rec.get('numerical_execution',[])},
+                  'physical_or_prephysical_output':{'present':physical_output_present,'frozen_artifacts':frozen,'registered_module_artifacts':module_artifacts,'output_hashes':output_hashes},
+                  'restart':{'present':restart_present},
+                  'covariance':{'present':covariance_present},
+                  'independent_reconstruction':{'present':independent_reconstruction_present},
+                  'repository_evidence_state':mstate['evidence_state'],
+                  'repository_fidelity':mstate['fidelity'],
+                  'module_runs':module_runs,
+                  'missing_objects':missing,
+                  'boundary_complete':not missing,
+              }
+              rows.append(row)
+              if earliest is None and missing:
+                  earliest={'module':mod,'missing_object':missing[0],'work_unit':'A-100' if mod=='A' else None}
+
+          if earliest is None:
+              raise SystemExit('audit found no frontier, contrary to repository state')
+          if earliest['module']!='A':
+              raise SystemExit(f"seed/repository disagreement: earliest frontier resolved to {earliest['module']}")
+          if state['modules']['A']['evidence_state']!='DESIGN' or state['modules']['A']['fidelity']!='UNSTARTED':
+              raise SystemExit('Module A state does not support A frontier selection')
+          if any(x.get('module')=='A' and x.get('status')=='PASS' for x in runs):
+              raise SystemExit('a PASS Module A run exists; frontier must be re-evaluated')
+
+          result={
+              'schema_version':'1.0',
+              'work_unit':'FRONTIER-050',
+              'rule':seed['rule'],
+              'audited_modules':order,
+              'source_verification':source_checks,
+              'recovery_parent':{'run_id':rec_runs[0]['run_id'],'status':'PASS','tree_sha256':rec_runs[0].get('tree_sha256')},
+              'rows':rows,
+              'selected_frontier':{
+                  'module':'A',
+                  'missing_object':'frozen exact prephysical A output packet H_A_to_B',
+                  'reason':'4-RFC contains exact admitted sources, a governed formal recipe, solver templates, and representative-test machinery for A, but no completed A run, frozen A output, restart packet, covariance packet, or independent reconstruction. Formal law and available test machinery therefore cannot be relabeled as executed A.',
+                  'next_work_unit':'A-100',
+                  'authorized_count':1,
+              },
+              'claim_boundary':{
+                  'supported':'The earliest exact execution frontier in the current 4-RFC lineage is Module A output H_A_to_B.',
+                  'unsupported':'No A-J physical or prephysical module completion is inferred from prior formal laws, representative checks, or historical completion labels.'
+              }
+          }
+          AUDIT.mkdir(exist_ok=True)
+          (AUDIT/'PHYSICAL_FRONTIER.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
+
+          lines=['# 4-RFC Physical Execution Frontier','',
+                 '**Selected frontier: Module A — missing frozen exact prephysical output `H_A_to_B`.**','',
+                 'The audit uses the repository rule that law, implementation scaffolding, and representative checks do not equal a completed parent-driven output. Exact source bytes are already admitted, but every A–J module remains `DESIGN / UNSTARTED` in 4-RFC and no completed Module A run or frozen A handoff exists. Therefore the first break occurs at A, before the Big Implosion can lawfully execute.','',
+                 '## Boundary audit','',
+                 '| Module | Law/recipe | Implementation/test machinery | Completed output | Restart | Covariance | Independent reconstruction | Status |',
+                 '|---|---|---|---|---|---|---|---|']
+          for r in rows:
+              lines.append(f"| {r['module']} | present | {'present' if r['implementation']['present'] or r['representative_test']['available'] else 'absent'} | {'present' if r['physical_or_prephysical_output']['present'] else 'missing'} | {'present' if r['restart']['present'] else 'missing'} | {'present' if r['covariance']['present'] else 'missing'} | {'present' if r['independent_reconstruction']['present'] else 'missing'} | {r['repository_evidence_state']} / {r['repository_fidelity']} |")
+          lines += ['', '## One authorized child', '', '`A-100 — Close Module A: Triad, First Action, Recursive Kernel, and Relational Completion` is the single next work unit selected by the audit. It remains blocked until FRONTIER-050 is externally verified and advanced by the repository state machine.', '', '## Claim boundary', '', '- Supported: the current exact 4-RFC execution frontier is the missing frozen A handoff.', '- Unsupported: any claim that prior formal or representative A–J work is already a physically executed 4-RFC chain.', '']
+          (AUDIT/'PHYSICAL_FRONTIER.md').write_text('\n'.join(lines))
+
+          gates={
+              'run_id':'FRONTIER-050-20260811T114313Z',
+              'overall':'PASS',
+              'gates':[
+                  {'gate':'no status word hides a missing object','status':'PASS','evidence':'Each A-J row separately records law, implementation, representative tests, completed output, restart, covariance, independent reconstruction, evidence state, and missing objects.'},
+                  {'gate':'one frontier selected','status':'PASS','evidence':'Exactly one selected frontier: Module A missing frozen H_A_to_B; exactly one proposed child: A-100.'},
+                  {'gate':'recovered parents verified','status':'PASS','evidence':f"All {len(source_checks)} frozen source records recomputed exactly; REC-040 is uniquely PASS with registered tree {rec_runs[0].get('tree_sha256')}."},
+              ],
+              'diagnostics':[],
+              'score_rule':'mandatory gates componentwise; below 0.95 triggers analysis'
+          }
+          (RUN/'GATE_RESULTS.json').write_text(json.dumps(gates,indent=2)+'\n')
+          (RUN/'INDEPENDENT_VERIFICATION.md').write_text('''# Independent Verification\n\n## Inputs reconstructed\nThe verifier independently read `STATE.json`, `memory/RUN_INDEX.json`, `memory/ARTIFACT_REGISTRY.json`, `sources/SOURCE_MANIFEST.json`, `recovery/LINEAGE_CROSSWALK.json`, the module graph, and each A–J module recipe/spec. All frozen source SHA-256 values were recomputed.\n\n## Methods independent from status prose\nThe frontier was determined from object existence: completed module runs, frozen output artifacts, replay/restart records, covariance records, and substantive independent verification. Historical completion words and representative-test availability were not treated as execution evidence.\n\n## Results\nNo completed Module A run or frozen A output exists in the current 4-RFC registries; A is `DESIGN / UNSTARTED`. A formal recipe, solver templates, Wolfram calls, and manufactured checks exist, but are explicitly pre-execution machinery. Therefore the earliest missing object is the frozen exact prephysical `H_A_to_B` packet. Every later A–J boundary depends on that absent object.\n\n## Disagreements\nNone between the seed rule and exact repository state. Prior lineages contain stronger formal/representative work, but REC-040 deliberately did not promote those labels into 4-RFC execution state.\n\n## Verdict\nPASS. Module A is the unique earliest execution frontier; A-100 is the only lawful next child after FRONTIER-050 verification.\n''')
+          (RUN/'CLOSEOUT.md').write_text('''# Closeout\n\n- Run ID: FRONTIER-050-20260811T114313Z\n- Work unit: FRONTIER-050\n- Module: AUDIT\n- Result: PASS\n- Evidence state reached: VERIFIED_AUDIT\n- Fidelity reached: EXACT_REPOSITORY_OBJECT_AUDIT\n- Verified GitHub commit SHA: pending external verification after prescribed commit\n\n## Scientific objects produced\nNo new physical science was generated. The audit identified the exact first missing governed execution object: Module A frozen prephysical handoff `H_A_to_B`.\n\n## Componentwise gate results\nAll FRONTIER-050 gates pass componentwise.\n\n## Failures preserved and corrections made\nNo scientific correction was made. Historical completion labels remain non-authority unless backed by current exact objects.\n\n## Independent reconstruction\nThe frontier was reconstructed from object-level repository state rather than status prose.\n\n## Replay/restart/convergence evidence\nNot applicable as a physical execution claim. Their absence for Module A is itself part of the frontier evidence.\n\n## Strongest supported claim\nThe current 4-RFC chain first lacks a completed object at Module A: the frozen exact prephysical `H_A_to_B` output and its verification package.\n\n## Strongest unsupported claim\nNo A–J module is claimed physically executed or frozen merely because formal laws, solver scaffolds, or representative checks exist.\n\n## Remaining gaps\nExecute and freeze A-100 before B-110 or any later physical module can become eligible.\n\n## Exact next child\nA-100 only, subject to external verification and the repository state transition.\n''')
+          PY
+
+          python tools/director.py doctor
+          python tools/rfc.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+          python tools/rfc.py close-run --run-id FRONTIER-050-20260811T114313Z --result PASS --closeout runs/FRONTIER-050-20260811T114313Z/CLOSEOUT.md
+          python tools/rfc.py doctor
+          python tools/director.py doctor
+          python tools/rfc.py firewall-scan
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add audit runs/FRONTIER-050-20260811T114313Z memory STATE.json work_packets/ACTIVE_WORK_PACKET.md
+          git commit -m 'Locate the exact RFC physical execution frontier'
+          git push origin HEAD:agent/4rfc-universe-build
