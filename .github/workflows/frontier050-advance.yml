@@ -37,7 +37,7 @@ jobs:
           rows=[x for x in index if x.get('run_id')=='FRONTIER-050-20260811T114313Z']
           if len(rows)!=1 or rows[0].get('status')!='PASS':
               raise SystemExit('FRONTIER-050 is not uniquely closed PASS')
-          actual=sha256_tree(Path(rows[0]['path']))
+          actual=sha256_tree((Path.cwd()/rows[0]['path']).resolve())
           if actual!=rows[0].get('tree_sha256'):
               raise SystemExit('FRONTIER-050 run tree drift')
           selected=frontier.get('selected_frontier',{})
