@@ -1,10 +1,41 @@
 {
-  "run_id": "",
-  "exact_parents": [],
-  "admitted_sources": [],
-  "imports": [],
-  "files": [],
-  "urls": [],
+  "admitted_sources": [
+    {
+      "path": "sources/frozen/0e54ae0a037fc0e35329c452c25e71d71f716dc6a700982083a207afd9adde8f/Reproducibility Metadata - Final Revised W2 BBN Closeout.md",
+      "sha256": "0e54ae0a037fc0e35329c452c25e71d71f716dc6a700982083a207afd9adde8f",
+      "use": "AUDIT_ONLY_NOT_GENERATIVE_BINDING"
+    },
+    {
+      "path": "sources/frozen/d44cb226d6ebc35fae8d4122f86ce8a80a3a6458b209c328a55ecfbaa44b561c/RFC_Module_X1_Nucleosynthesis_Theorem_Addendum_and_Metadata.md",
+      "sha256": "d44cb226d6ebc35fae8d4122f86ce8a80a3a6458b209c328a55ecfbaa44b561c",
+      "use": "AUDIT_ONLY_NOT_GENERATIVE_BINDING"
+    },
+    {
+      "path": "sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md",
+      "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+      "use": "AUDIT_ONLY_NOT_GENERATIVE_BINDING"
+    }
+  ],
   "constants": [],
-  "public_data_declaration": "NONE"
+  "exact_parents": [
+    {
+      "kind": "EXACT_PARENT_HANDOFF",
+      "path": "modules/D/runs/D-130-20260811T165602Z/H_D_to_E.json",
+      "sha256": "79a8f4d5e06558d1114ccd3af832d92344c5d47a075f1f0b708a19ccfc6a59db"
+    }
+  ],
+  "files": [
+    "recipes/E/WORK_ORDER.md",
+    "recipes/E/recipe.json",
+    "configured_runs/templates/E_reaction_network.template.json",
+    "configured_runs/examples/E_reaction_network.json"
+  ],
+  "imports": [
+    "hashlib",
+    "json"
+  ],
+  "public_data_declaration": "NONE",
+  "run_id": "E-140-20260811T175023Z",
+  "scientific_binding_status": "BLOCKED_UNDERDETERMINED",
+  "urls": []
 }

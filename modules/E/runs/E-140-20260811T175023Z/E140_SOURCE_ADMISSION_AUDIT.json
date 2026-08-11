@@ -1,84 +1,57 @@
 {
-  "active_packet_verified": true,
-  "candidate_text_sources": [
+  "classification": "E140_EXACT_SOURCE_ADMISSION_AUDIT",
+  "determination": {
+    "manufactured_example_admissible_as_physical_parent": false,
+    "parent_supplies_empirical_time_or_temperature_scale": false,
+    "public_abundance_targets_admissible_for_generation": false,
+    "source_owned_rate_laws": false,
+    "source_owned_rate_uncertainty": false,
+    "source_owned_species_graph": false
+  },
+  "exact_parent": {
+    "classification": "EXACT_LINEAR_THERMAL_TO_PRIMORDIAL_HANDOFF_MINIMAL_SPINE",
+    "path": "modules/D/runs/D-130-20260811T165602Z/H_D_to_E.json",
+    "sha256": "79a8f4d5e06558d1114ccd3af832d92344c5d47a075f1f0b708a19ccfc6a59db"
+  },
+  "generation_mode": "GENERATION_SEALED",
+  "inspected_objects": [
     {
-      "bytes": 5346,
-      "path": "sources/frozen/275ce318acfb84f88e9edb91ca371bcfa8d8dd248172ee9444e4d108fb6472c7/2RFC_Revised_Work_Queue_after_Integration_Audit_20260805.md",
-      "sha256": "275ce318acfb84f88e9edb91ca371bcfa8d8dd248172ee9444e4d108fb6472c7"
-    },
-    {
-      "bytes": 9512,
-      "path": "sources/frozen/c0458d1905da03c21c7a93b1d11c19fa6679c18c5b1a0a95fefacf38e66a8240/2RFC_Triad_NBody_Enhancement_Lock_DRAFT_20260805.md",
-      "sha256": "c0458d1905da03c21c7a93b1d11c19fa6679c18c5b1a0a95fefacf38e66a8240"
-    },
-    {
-      "bytes": 86724,
-      "path": "sources/frozen/cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e/Presentation 29 revised  raw LaTeX.md",
-      "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e"
-    },
-    {
-      "bytes": 31773,
-      "path": "sources/frozen/dd4a84a3ac27c04a6e9b20d41696ef4896a25581e1184cbb7ac25c2f22edfb4b/2RFC_Architecture_Intent_and_Drift_Deep_Soak_20260805.md",
-      "sha256": "dd4a84a3ac27c04a6e9b20d41696ef4896a25581e1184cbb7ac25c2f22edfb4b"
-    },
-    {
-      "bytes": 274842,
+      "classification": "ADMITTED_SOURCE_AUDIT_ONLY",
+      "finding": "Internal W2 BBN/Li7 theorem/proxy closeout; public BBN reaction-network implementation explicitly pending. Comparison/proxy quantities are forbidden as E generation targets.",
       "path": "sources/frozen/0e54ae0a037fc0e35329c452c25e71d71f716dc6a700982083a207afd9adde8f/Reproducibility Metadata - Final Revised W2 BBN Closeout.md",
       "sha256": "0e54ae0a037fc0e35329c452c25e71d71f716dc6a700982083a207afd9adde8f"
     },
     {
-      "bytes": 3376,
-      "path": "sources/frozen/12575578458a7f908f4c10dcf69eddb095d436e21c9f4b51ea758e380ceda4d8/2RFC_Canonical_Enhancement_Map_20260805.md",
-      "sha256": "12575578458a7f908f4c10dcf69eddb095d436e21c9f4b51ea758e380ceda4d8"
-    },
-    {
-      "bytes": 10836,
+      "classification": "CANDIDATE_ADDENDUM_AUDIT_ONLY",
+      "finding": "W/X/X1 internal theorem/proxy closure; external BBN reaction-network validation explicitly pending. No source-owned executable primordial reaction graph with rate laws and uncertainty.",
       "path": "sources/frozen/d44cb226d6ebc35fae8d4122f86ce8a80a3a6458b209c328a55ecfbaa44b561c/RFC_Module_X1_Nucleosynthesis_Theorem_Addendum_and_Metadata.md",
       "sha256": "d44cb226d6ebc35fae8d4122f86ce8a80a3a6458b209c328a55ecfbaa44b561c"
     },
     {
-      "bytes": 42775,
-      "path": "sources/frozen/2f3539d6493f87a407765a9f24d6cd61e825a36fe9217d2adfa075c070d27b6e/2RFC_Deep_Soak_and_Realization_Blueprint_20260805.md",
-      "sha256": "2f3539d6493f87a407765a9f24d6cd61e825a36fe9217d2adfa075c070d27b6e"
-    },
-    {
-      "bytes": 10821,
-      "path": "sources/frozen/82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215/Presentation 29 revised Metadata.md",
-      "sha256": "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215"
-    },
-    {
-      "bytes": 7795,
-      "path": "sources/frozen/c3b22b3f6973cef75409162c406ac224b2d66aa8bb938a6f035d386384fab226/2RFC_Immediate_Execution_Queue_20260805.md",
-      "sha256": "c3b22b3f6973cef75409162c406ac224b2d66aa8bb938a6f035d386384fab226"
-    },
-    {
-      "bytes": 254488,
-      "path": "sources/frozen/65cbeb7259c126ecab705a9f5dca54a6c3e510a7cbe592448b7d7305f3c74e70/Reproducibility Metadata.md",
-      "sha256": "65cbeb7259c126ecab705a9f5dca54a6c3e510a7cbe592448b7d7305f3c74e70"
-    },
-    {
-      "bytes": 951976,
+      "classification": "CANONICAL_AUTHORITY_AUDIT_ONLY",
+      "finding": "Triadic universe architecture and prior BBN persistence/proxy handoffs, but no E-authorized source-owned executable species/reaction/rate object.",
       "path": "sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md",
       "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6"
     },
     {
-      "bytes": 18368,
-      "path": "sources/frozen/af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d/2RFC_Integration_Fidelity_Audit_20260805.md",
-      "sha256": "af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d"
-    },
-    {
-      "bytes": 8447,
-      "path": "sources/frozen/522da698be7c70b17e327d54fe5825321934550c0ee3a8a187fcce9098895d3a/RFC_Module_Y_Global_Collapse_Rebirth_Trace_Addendum_and_Metadata.md",
-      "sha256": "522da698be7c70b17e327d54fe5825321934550c0ee3a8a187fcce9098895d3a"
+      "classification": "MANUFACTURED_EXAMPLE_NOT_SCIENTIFIC_PARENT",
+      "finding": "Three-species n/p/d example with example kf/kr values; reusable machinery only and not promotable to a physical RFC universe result.",
+      "path": "configured_runs/examples/E_reaction_network.json",
+      "sha256": "8e7cce75dfd4c3d20b70c12c3058c5df48b5f3b1eee481063e6a7a509b8d4a47"
     }
   ],
-  "classification": "E_SOURCE_ADMISSION_PRELOCK_AUDIT",
-  "decision": "REQUIRES_EXACT_SOURCE_OWNED_SPECIES_STOICHIOMETRY_AND_RATE_LAWS_BEFORE_FREEZE",
-  "exact_parent": {
-    "path": "modules/D/runs/D-130-20260811T165602Z/H_D_to_E.json",
-    "sha256": "79a8f4d5e06558d1114ccd3af832d92344c5d47a075f1f0b708a19ccfc6a59db"
-  },
-  "public_data_used": false,
+  "module": "E",
+  "reason": "Exact admitted parents do not determine the executable primordial reaction graph and rate law required by E. Freezing arbitrary familiar nuclear reactions/rates would violate exact-object provenance, no-retune, and the generation firewall.",
+  "required_scientific_bindings": [
+    "species",
+    "stoichiometry",
+    "rate_expressions",
+    "rate parameters with uncertainty/source lineage",
+    "initial isotope state",
+    "network clock/rate scale",
+    "baryon/charge/energy invariants"
+  ],
   "run_id": "E-140-20260811T175023Z",
-  "source_manifest_sha256": "8ccc06209b6d165e87b91f9d46cba026f243d76d8b803ae5f95d858107194b04"
+  "status": "BLOCKED_UNDERDETERMINED",
+  "timestamp_utc": "2026-08-11T19:02:36.998171+00:00"
 }
