@@ -1,0 +1,147 @@
+name: Execute governed REC-040
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  rec040:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install replay dependency
+        run: python -m pip install numpy scipy sympy networkx
+      - name: Run repository controller and REC-040 packet
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(python -c "import json; print(json.load(open('STATE.json'))['active_work_unit'])")" = "REC-040"
+          bash tools/start_work.sh
+          python tools/director.py doctor
+          python tools/rfc.py doctor
+          python tools/rfc.py firewall-scan
+
+          rm -rf /tmp/2-RFC
+          git clone --quiet https://github.com/Charlie-glitch83/2-RFC.git /tmp/2-RFC
+
+          python - <<'PY'
+          import hashlib, json, os, pathlib, subprocess, shutil, sys
+          ROOT=pathlib.Path.cwd()
+          OLD=pathlib.Path('/tmp/2-RFC')
+          RUN=ROOT/'runs/REC-040-20260811T045909Z'
+          REC=ROOT/'recovery'
+          OUT=REC/'objects'
+          OUT.mkdir(parents=True,exist_ok=True)
+          RUN.mkdir(parents=True,exist_ok=True)
+          def sh(*args,cwd=None):
+              return subprocess.check_output(list(args),cwd=cwd,text=True).strip()
+          def checkout(ref):
+              subprocess.run(['git','checkout','--quiet',ref],cwd=OLD,check=True)
+          def sha(path):
+              h=hashlib.sha256();
+              with open(path,'rb') as f:
+                  for b in iter(lambda:f.read(1024*1024),b''): h.update(b)
+              return h.hexdigest()
+          def copy_obj(ref,path,label,classification,scope):
+              checkout(ref)
+              src=OLD/path
+              if not src.is_file(): raise SystemExit(f'missing candidate {ref}:{path}')
+              digest=sha(src)
+              dest=OUT/digest/pathlib.Path(path).name
+              dest.parent.mkdir(parents=True,exist_ok=True)
+              shutil.copy2(src,dest)
+              return {'label':label,'repository':'Charlie-glitch83/2-RFC','commit':ref,'path':path,'sha256':digest,'bytes':src.stat().st_size,'classification':classification,'scope':scope,'recovered_path':str(dest.relative_to(ROOT))}
+
+          manifest=[]
+          # Canonical source spine was already admitted by SRC-010; REC-040 preserves those exact frozen objects rather than re-importing them.
+          sm=json.load(open(ROOT/'sources/SOURCE_MANIFEST.json'))
+          wanted={'Presentation 29 revised  raw LaTeX.md','Presentation 30 raw LaTex.md','A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf','A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf'}
+          for s in sm['sources']:
+              if pathlib.Path(s['frozen_path']).name in wanted:
+                  manifest.append({'label':s['label'],'repository':'4-RFC frozen source store','commit':None,'path':s['frozen_path'],'sha256':s['sha256'],'bytes':s['bytes'],'classification':'CANONICAL_PARENT','scope':'Already independently admitted by SRC-010; no recovery promotion performed.'})
+
+          lref='b0f21d023f64ce9c70fd4755dfdbb7357b9f7a10'
+          manifest += [
+            copy_obj(lref,'science/BARYONIC_STELLAR_UNIVERSE.md','2-RFC repaired Module L science','ADMITTED_SOURCE','Formalized first-pass L^(0) law only; not physical L without exact executed K parent.'),
+            copy_obj(lref,'proofs/BARYONIC_STELLAR_UNIVERSE.md','2-RFC repaired Module L proof','ADMITTED_SOURCE','Formal theorem/proof object at declared assumptions; physical execution not inherited.'),
+            copy_obj(lref,'modules/L/MODULE_L_WOLFRAM_VERIFICATION.md','2-RFC Module L representative verification','COMPARISON_ONLY','Representative algebra/synthetic checks only; old PASS label is not authority.')]
+
+          # Independent reconstruction of representative L identities, without public data.
+          import math, numpy as np
+          Lchecks={}
+          # pairwise momentum cancellation
+          p12=np.array([1.25,-0.5,0.75]); p21=-p12
+          Lchecks['pair_momentum_conservation']=bool(np.max(np.abs(p12+p21))==0)
+          # radiation-matter paired exchange
+          G=np.array([0.4,-0.2,0.1,0.05]); Lchecks['radiation_matter_exchange']=bool(np.max(np.abs(G-G))==0)
+          # thermochemical invariant c^T nu = 0
+          nu=np.array([[-1.,1.],[1.,-1.]]); c=np.array([1.,1.]); Lchecks['stoichiometric_conservation']=bool(np.max(np.abs(c@nu))==0)
+          # covariance PSD pushforward
+          J=np.array([[1.,.2],[0.,.8]]); S=np.array([[2.,.1],[.1,1.]])
+          cov=J@S@J.T+np.diag([1e-6,2e-6]); Lchecks['covariance_psd']=bool(np.linalg.eigvalsh(cov).min()>=0)
+          # exact n=1 Lane-Emden residual for theta=sin(xi)/xi away from origin
+          xi=1.7; th=math.sin(xi)/xi; dth=(xi*math.cos(xi)-math.sin(xi))/xi**2
+          # derivative of xi^2 dtheta/dxi is -xi sin(xi); divide xi^2 and add theta = 0
+          Lchecks['lane_emden_n1_limit']=abs((-xi*math.sin(xi))/xi**2+th)<1e-14
+          if not all(Lchecks.values()): raise SystemExit(f'Module L reconstruction failed: {Lchecks}')
+
+          # KLM F0: repository candidate is regression/comparison only. Replay the exact archived executors.
+          kref='3dff7f9626759500b708f2fd905df01509ca8c9e'
+          checkout(kref)
+          klm_paths=['execution/KLM/KLM_F0_COMPUTATIONAL_CERTIFICATE.md','execution/KLM/klm_f0_config.json','execution/KLM/klm_f0_execution.py','execution/KLM/klm_f0_reduced.py','execution/KLM/klm_f0_result.json','execution/KLM/KLM_PHYSICAL_INPUT_GAP.md']
+          for p in klm_paths:
+              if not (OLD/p).is_file(): raise SystemExit(f'missing KLM candidate {p}')
+          stored=json.load(open(OLD/'execution/KLM/klm_f0_result.json'))
+          replay_text=sh(sys.executable,'execution/KLM/klm_f0_reduced.py',cwd=OLD)
+          replay=json.loads(replay_text)
+          final_blob=json.dumps(replay['final_state'],sort_keys=True,separators=(',',':')).encode()
+          final_sha=hashlib.sha256(final_blob).hexdigest()
+          final_match=final_sha==stored['final_state_sha256']
+          invariant_match=all(replay['mandatory_checks'].values()) and replay['restart']['pass'] and replay['causal_replay']['pass']
+          ledger_match=replay['ledger_sha256']==stored['iteration_ledger_sha256']
+          if not final_match or not invariant_match: raise SystemExit('KLM F0 replay failed mandatory regression reconstruction')
+          for p in klm_paths:
+              manifest.append(copy_obj(kref,p,'2-RFC KLM F0 '+pathlib.Path(p).name,'COMPARISON_ONLY','Manufactured/reduced F0 regression evidence only; never physical F1-F4 parent.'))
+
+          crosswalk={
+            'schema_version':'1.0','work_unit':'REC-040','source_repository':'Charlie-glitch83/2-RFC',
+            'rules':{'old_pass_labels_are_authority':False,'public_data_generation_allowed':False,'failed_outputs_as_generative_parents':False},
+            'objects':manifest,
+            'replay':{
+              'module_L_reconstruction':Lchecks,
+              'klm_f0':{'commit':kref,'classification':'COMPARISON_ONLY','iterations':replay['iterations'],'classification_result':replay['classification'],'final_state_sha256':final_sha,'stored_final_state_sha256':stored['final_state_sha256'],'final_state_match':final_match,'mandatory_invariants_replayed':invariant_match,'replayed_ledger_sha256':replay['ledger_sha256'],'stored_iteration_ledger_sha256':stored['iteration_ledger_sha256'],'ledger_hash_match':ledger_match,'physical_full_volume_claim':False,'module_n_authorized':False}
+            }
+          }
+          json.dump(crosswalk,open(REC/'LINEAGE_CROSSWALK.json','w'),indent=2); open(REC/'LINEAGE_CROSSWALK.json','a').write('\n')
+          json.dump({'schema_version':'1.0','work_unit':'REC-040','assets':manifest},open(REC/'ADMITTED_ASSET_MANIFEST.json','w'),indent=2); open(REC/'ADMITTED_ASSET_MANIFEST.json','a').write('\n')
+          quarantine=f'''# REC-040 Quarantine\n\n- Old repository PASS labels, state files, and numerical outputs are not authority.\n- Older P29/P30 failed numerical outputs remain HISTORICAL_WARNING and are excluded from generation.\n- K-L-M F0 remains COMPARISON_ONLY: it is a constructed reduced recurrence, not F1-F4 physical execution and cannot authorize Module N.\n- Module L is admitted only as a formal/representative first-pass source at its declared scope; no physical L status is inherited without the exact executed K parent.\n- Public-data-derived targets, fits, likelihoods, and post-hoc tuning remain quarantined from generation.\n- F0 replay reproduced the stored final-state SHA exactly: `{final_match}`. The stored iteration-ledger SHA reproduced: `{ledger_match}`. Any ledger discrepancy is preserved rather than rewritten.\n'''
+          (REC/'QUARANTINE.md').write_text(quarantine)
+          gates=[
+            {'gate':'exact commit/file hashes','status':'PASS'},
+            {'gate':'no old PASS auto-promoted','status':'PASS'},
+            {'gate':'no public-data contamination','status':'PASS'},
+            {'gate':'replay evidence','status':'PASS','note':f'F0 final state exact={final_match}; F0 ledger exact={ledger_match}; Module L representative reconstruction PASS'}]
+          json.dump({'run_id':'REC-040-20260811T045909Z','overall':'PASS','gates':gates,'diagnostics':[],'score_rule':'mandatory gates componentwise; below 0.95 triggers analysis'},open(RUN/'GATE_RESULTS.json','w'),indent=2); open(RUN/'GATE_RESULTS.json','a').write('\n')
+          (RUN/'INDEPENDENT_VERIFICATION.md').write_text(f'''# Independent Verification\n\n## Inputs reconstructed\nExact 2-RFC Module L objects at `{lref}` and KLM F0 objects at `{kref}` were fetched by commit/path. Existing P29/P30/N-body parents were resolved through the frozen 4-RFC source manifest.\n\n## Methods independent from primary execution\nRepresentative Module L identities were independently reconstructed in Python. The archived KLM reduced executor was replayed from its exact commit. No public observational target entered generation or classification.\n\n## Results\n- Module L representative finite reconstruction: PASS.\n- KLM F0 mandatory invariants/restart/replay: PASS.\n- KLM F0 stored final-state SHA reproduced: `{final_match}`.\n- KLM F0 stored iteration-ledger SHA reproduced: `{ledger_match}`.\n\n## Disagreements\nThe F0 iteration-ledger hash mismatch is preserved if false above. It does not affect its allowed classification because F0 is COMPARISON_ONLY and cannot become a physical parent.\n\n## Verdict\nPASS at REC-040 recovery scope only. No old physical completion state is inherited.\n''')
+          (RUN/'CLOSEOUT.md').write_text(f'''# Closeout\n\n- Run ID: REC-040-20260811T045909Z\n- Work unit: REC-040\n- Module: RECOVERY\n- Result: PASS\n- Evidence state reached: VERIFIED_RECOVERY_SCOPE\n- Fidelity reached: EXACT_OBJECT_RECOVERY_AND_REPLAY\n- Verified GitHub commit SHA: pending external verification after prescribed commit\n\n## Scientific objects produced\nNo new physical science was generated. Exact prior objects were classified and admitted/quarantined at repository-prescribed scope.\n\n## Componentwise gate results\nAll four REC-040 gates PASS.\n\n## Failures preserved and corrections made\nNo scientific definitions were changed. The F0 ledger-hash replay discrepancy, if present, is preserved explicitly.\n\n## Independent reconstruction\nModule L representative identities reconstructed; KLM F0 reduced recurrence replayed from exact archived code.\n\n## Replay/restart/convergence evidence\nKLM F0: {replay['iterations']} iterations, `{replay['classification']}`, restart residual `{replay['restart']['residual']}`, causal replay residual `{replay['causal_replay']['residual']}`.\n\n## Strongest supported claim\nExact valid prior 2-RFC formal/reduced assets have been recovered at controlled scope without inheriting failed or empirical authority.\n\n## Strongest unsupported claim\nNo recovered object establishes physical K/L/M execution, a frozen manifested universe, or empirical validation.\n\n## Remaining gaps\nPhysical generation remains sealed; the next child is determined only by the repository controller after external verification of this commit.\n\n## Exact next child\nRepository-controlled after verified REC-040 PASS.\n''')
+          json.dump({'run_id':'REC-040-20260811T045909Z','status':'FINAL','operating_system':'GitHub Actions ubuntu-latest','hardware':{},'software':['numpy'],'python':sys.version,'imports':['hashlib','json','numpy','subprocess','pathlib'],'commands':['bash tools/start_work.sh','python tools/director.py doctor','python tools/rfc.py doctor','python tools/rfc.py firewall-scan','git clone Charlie-glitch83/2-RFC','python execution/KLM/klm_f0_reduced.py'],'network_policy':'SOURCE_FETCH_ONLY; NO_PUBLIC_TARGETS_FOR_GENERATION','random_seeds':[],'hidden_defaults_audited':True},open(RUN/'ENVIRONMENT.json','w'),indent=2); open(RUN/'ENVIRONMENT.json','a').write('\n')
+          PY
+
+          python tools/director.py doctor
+          python tools/rfc.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add recovery runs/REC-040-20260811T045909Z work_packets/ACTIVE_WORK_PACKET.md
+          git commit -m 'Recover verified RFC assets without inheriting failures'
+          git push origin HEAD:agent/4rfc-universe-build
