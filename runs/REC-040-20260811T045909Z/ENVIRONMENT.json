@@ -1,13 +1,33 @@
 {
-  "run_id": "",
-  "status": "DRAFT",
-  "operating_system": "",
+  "run_id": "REC-040-20260811T045909Z",
+  "status": "FINAL",
+  "operating_system": "GitHub Actions ubuntu-latest",
   "hardware": {},
-  "software": [],
-  "python": "",
-  "imports": [],
-  "commands": [],
-  "network_policy": "DISABLED_DURING_GENERATION",
+  "software": [
+    "numpy",
+    "scipy",
+    "sympy",
+    "networkx"
+  ],
+  "python": "3.11.15 (main, Jun 16 2026, 21:41:52) [GCC 13.3.0]",
+  "imports": [
+    "hashlib",
+    "json",
+    "math",
+    "numpy",
+    "pathlib",
+    "shutil",
+    "subprocess"
+  ],
+  "commands": [
+    "bash tools/start_work.sh",
+    "python tools/director.py doctor",
+    "python tools/rfc.py doctor",
+    "python tools/rfc.py firewall-scan",
+    "git clone Charlie-glitch83/2-RFC",
+    "python execution/KLM/klm_f0_reduced.py"
+  ],
+  "network_policy": "SOURCE_FETCH_ONLY; NO PUBLIC TARGETS USED FOR GENERATION",
   "random_seeds": [],
-  "hidden_defaults_audited": false
+  "hidden_defaults_audited": true
 }

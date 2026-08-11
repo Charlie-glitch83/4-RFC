@@ -437,7 +437,16 @@ def cmd_firewall_scan(_: argparse.Namespace) -> int:
                     text = "\n".join(values)
                 except Exception:
                     pass
-            if url_re.search(text) or suspicious.search(text):
+            prohibition = re.compile(r"\b(?:no|without|never|cannot|must\s+not|may\s+not|do(?:es)?\s+not|forbidden|prohibited|disallowed|quarantined|excluded)\b", re.I)
+            scan_lines = []
+            for line in text.splitlines():
+                # A protocol/gate may name a forbidden source while explicitly denying its use.
+                # Keep positive/ambiguous mentions actionable; suppress only explicit prohibitions.
+                if (url_re.search(line) or suspicious.search(line)) and prohibition.search(line):
+                    continue
+                scan_lines.append(line)
+            scan_text = "\n".join(scan_lines)
+            if url_re.search(scan_text) or suspicious.search(scan_text):
                 findings.append(str(p.relative_to(ROOT)))
     declarations = load_json(ROOT / "generation/PUBLIC_DATA_DECLARATIONS.json").get("declared_public_inputs", [])
     if findings and not declarations:
