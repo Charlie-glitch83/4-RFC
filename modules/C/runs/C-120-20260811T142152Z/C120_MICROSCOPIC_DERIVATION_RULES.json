@@ -22,7 +22,7 @@
   "mass_rule": "Eigenvalues of K_C are dimensionless spectral stiffness/mixing invariants. They are not physical masses because no continuous physical time/energy scale has yet been derived. Physical mass assignment is therefore explicitly obstructed at C-120 rather than imported.",
   "interaction_rule": "The only executed interaction at C-120 is the inherited linear relational coupling encoded by K_C. Nonlinear self-interactions and Standard Model-like interaction labels remain underdetermined and are not inserted.",
   "prethermal_population_rule": "Project the exact B first physical carrier onto the orthonormal eigenbasis of K_C; squared modal amplitudes normalized to unity define the generated anonymous prethermal population measure.",
-  "covariance_rule": "Covariance is internal numerical covariance of independent reconstruction/replay residuals only; no empirical covariance or public data is admitted.",
+  "covariance_rule": "Covariance is internal numerical covariance of independent reconstruction/replay residuals only; no empirical covariance or external observational input is admitted.",
   "positivity_rule": "K_C must be real symmetric positive semidefinite. The constant carrier mode may have exactly zero eigenvalue; all nonconstant path modes must be strictly positive.",
   "units_dimensions": {
     "carrier_amplitude": "dimensionless inherited B carrier amplitude",
