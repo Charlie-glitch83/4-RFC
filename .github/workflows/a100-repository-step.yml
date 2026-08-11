@@ -28,7 +28,7 @@ jobs:
           set -euo pipefail
           RUN='C-120-20260811T142152Z'
           RUN_DIR="modules/C/runs/$RUN"
-          VERIFIED_SHA='9aba5d1e1c83506f03176e4bc08a74bafaa9249e'
+          VERIFIED_SHA='f5dccfbdddb3b6bd0366983054528cdf60094681'
           python - <<'PY'
           import json
           from datetime import datetime, timezone
@@ -64,7 +64,7 @@ jobs:
           print(json.dumps({'target': target, 'registered_before': old, 'registered_after': actual, 'changed': old != actual}, indent=2))
           PY
           python tools/rfc.py doctor
-          python tools/rfc.py record-commit "$VERIFIED_SHA" --branch agent/4rfc-universe-build --note 'Verified C-120 closeout commit and exact diff'
+          python tools/rfc.py record-commit "$VERIFIED_SHA" --branch agent/4rfc-universe-build --note 'Verified C-120 final reconciled closeout commit and exact diff'
           python tools/rfc.py advance --task C-120 --result PASS --evidence "$RUN_DIR/CLOSEOUT.md"
           bash tools/start_work.sh
           cat work_packets/ACTIVE_WORK_PACKET.md
