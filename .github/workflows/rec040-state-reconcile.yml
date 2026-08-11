@@ -1,0 +1,72 @@
+name: Reconcile closed REC-040 state
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy scipy sympy networkx
+      - name: Reconcile controller state only
+        shell: bash
+        run: |
+          set -euo pipefail
+          EXPECTED='a3b49678260df6e3b6e002a33312eef32a964b2f'
+          test "$(git rev-parse HEAD)" = "$EXPECTED"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from tools.rfc import sha256_tree
+
+          run_id='REC-040-20260811T045909Z'
+          run_path=Path('runs')/run_id
+          state_path=Path('STATE.json')
+          state=json.loads(state_path.read_text())
+          index=json.loads(Path('memory/RUN_INDEX.json').read_text())
+          registry=json.loads(Path('memory/ARTIFACT_REGISTRY.json').read_text())
+
+          rows=[x for x in index['runs'] if x.get('run_id')==run_id]
+          if len(rows)!=1 or rows[0].get('status')!='PASS':
+              raise SystemExit('REC-040 is not uniquely closed PASS in RUN_INDEX')
+          registered=rows[0].get('tree_sha256')
+          actual=sha256_tree(run_path)
+          if actual!=registered:
+              raise SystemExit(f'closed REC tree drift: {actual} != {registered}')
+          artifacts=[x for x in registry.get('artifacts',[]) if x.get('kind')=='RUN_BUNDLE' and x.get('run_id')==run_id]
+          if len(artifacts)!=1 or artifacts[0].get('sha256')!=registered:
+              raise SystemExit('REC-040 artifact registry does not match RUN_INDEX tree')
+          if state.get('active_work_unit')!='REC-040':
+              raise SystemExit('REC-040 is no longer the singular active work unit')
+          if state.get('current_run')!=run_id:
+              raise SystemExit('STATE.current_run is not the known stale REC-040 pointer')
+
+          # Pure bookkeeping reconciliation: close-run already registered the run bundle.
+          state['current_run']=None
+          state['last_updated_utc']='2026-08-11T11:38:15.948723+00:00'
+          state_path.write_text(json.dumps(state,indent=2,ensure_ascii=False)+'\n')
+          PY
+
+          python tools/rfc.py doctor
+          python tools/director.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add STATE.json
+          git diff --cached --exit-code -- runs recovery theory sources || true
+          test "$(git diff --cached --name-only | tr -d '\r')" = 'STATE.json'
+          git commit -m 'Reconcile closed REC-040 controller state'
+          git push origin HEAD:agent/4rfc-universe-build
