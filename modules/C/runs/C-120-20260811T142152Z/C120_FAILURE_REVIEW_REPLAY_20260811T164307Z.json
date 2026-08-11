@@ -1,0 +1,20 @@
+{
+  "run_id": "C-120-20260811T142152Z",
+  "timestamp_utc": "2026-08-11T16:43:07Z",
+  "stage": "FROZEN_VERIFICATION_MATRIX",
+  "classification": "IMPLEMENTATION_ONLY_REPLAY_COMPARATOR_FAILURE",
+  "failed_gate": "restart_and_replay",
+  "observed_primary_result_sha256": "429afe7a047d76e892a5e1f336857de16a086e3e5a9ede31b2d4dbe8efbdac85",
+  "observed_clean_replay_result_sha256": "429afe7a047d76e892a5e1f336857de16a086e3e5a9ede31b2d4dbe8efbdac85",
+  "review": "All frozen C-120 scientific gates passed. The clean replay solver emitted the identical scientific result SHA-256, but the verifier used in-memory Python object equality as the replay decision rule and returned false. The scientific artifact identity proves the replay itself succeeded; the comparator was the failing implementation detail.",
+  "correction": "Replace replay Python-object equality with exact SHA-256 equality of the primary and clean replay result.json bytes.",
+  "changes_science": false,
+  "changed_sources": false,
+  "changed_parent_hashes": false,
+  "changed_definitions": false,
+  "changed_values": false,
+  "changed_tolerances": false,
+  "changed_gates": false,
+  "changed_claim_scope": false,
+  "required_replay_scope": "full frozen C-120 verification matrix"
+}
