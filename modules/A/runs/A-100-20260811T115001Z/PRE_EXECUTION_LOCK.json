@@ -1,21 +1,128 @@
 {
-  "run_id": "",
-  "status": "DRAFT",
-  "frozen_utc": null,
-  "authority_hashes": [],
+  "run_id": "A-100-20260811T115001Z",
+  "status": "FROZEN_PRE_EXECUTION",
+  "frozen_utc": "2026-08-11T13:24:00Z",
+  "authority_hashes": [
+    "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+    "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215",
+    "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+    "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+    "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6"
+  ],
   "parent_hashes": [],
-  "definition_hashes": [],
-  "candidate_classes": [],
-  "equations_and_laws": [],
-  "dimensions_units_frames_gauges_clocks": [],
-  "methods": [],
-  "tolerances": [],
-  "stopping_rules": [],
-  "expected_invariants": [],
-  "tests": [],
-  "gates": [],
-  "falsifiers": [],
-  "claim_boundary": "",
-  "independent_verifier_design": "",
-  "allowed_implementation_only_corrections": []
+  "definition_hashes": [
+    "0912c5c00717f4c9a010cf96a8206d4d3db74f59e01f6b5e2ebe032a91dc93be",
+    "5f7d4b77bcbf9e379c6ab22a377b5dde64295b742a028556302bfc58562a2b73",
+    "e932278e9fcce8573f9ab95db376f2789d1e3cb7768a34a4e77ac063d2c353c9",
+    "50a4b5542e128152e43d87b912bdbdc8188f4d355b54b421b2c06ee23d4a8a2e",
+    "e59dd764fdc085f002001b05ff7687358eb6ac58ca557a11fd6d19cc0f35a029",
+    "fa42cc61e866d02c53e641e18861caa399d73aec379cff3cce880eff27c2cbad",
+    "3229538154f925bb2e03af574936e3dbadea5f1c2a732ef9c4a011dd2c510bcb"
+  ],
+  "candidate_classes": [
+    "CIF_MODAL_SOURCE_CLASS",
+    "QV_ACTION_WITNESS_CLASS",
+    "RFL_STABILIZED_MEMORY_CLASS",
+    "DIRECTED_NONSELF_LANE",
+    "LOCAL_WITNESS_CERTIFICATE",
+    "ROUTE_CLASS",
+    "GAUGE_EQUIVALENCE_CLASS",
+    "MULTIROUTE_EQUIVALENCE_CLASS",
+    "BRANCH_FAMILY",
+    "EVENT_LIFT_CLASS",
+    "RETURN_MEMORY_CLASS"
+  ],
+  "equations_and_laws": [
+    "First Action: QV(CIF) -> RFL as ordered prephysical dependency",
+    "Recursive kernel: K_f = Sum_j delta^(-j) f_j exp(-alpha j tau), with tau an ordering argument and not physical time",
+    "Kernel boundedness by the geometric envelope Sum_j delta^(-j)",
+    "Normalized recursive-depth weights sum exactly to one",
+    "Directed nonself lane count |L_N| = N(N-1)",
+    "One-body extension lane increment |L_(N+1)|-|L_N| = 2N",
+    "Witnessed route admission: no route/branch/closure admission without locally generated certificate",
+    "No-loss quotienting: only redundant representatives may be removed",
+    "Return-memory recurrence and lawful reopening",
+    "New-solution capacity requires a distinct non-gauge witnessed closure; lane count alone is insufficient",
+    "Dormant direct N-body dynamics has exactly zero backreaction in Module A"
+  ],
+  "dimensions_units_frames_gauges_clocks": [
+    "All Module A objects are prephysical and dimensionless unless explicitly typed otherwise",
+    "No physical clock is admitted; tau/t in the kernel is an ordered prephysical kernel argument only",
+    "No geometry, metric, particle, field, empirical unit, physical constant, or later-module state is admitted",
+    "Gauge acts only on route representatives within the frozen route-class law"
+  ],
+  "methods": [
+    "Exact source-hash admission against sources/SOURCE_MANIFEST.json",
+    "Wolfram symbolic call A-WL-001",
+    "Wolfram symbolic call A-WL-002",
+    "Repository manufactured reference matrix for Module A",
+    "Finite-N directed-lane enumeration for N=2..8",
+    "Route/gauge-equivalence construction and scalar-collapse countermodel",
+    "Triad role ablations",
+    "Dormant-direct-dynamics zero-backreaction test",
+    "Configured triad_kernel execution only after provenance-complete binding",
+    "Restart/replay and independent symbolic reconstruction"
+  ],
+  "tolerances": [
+    "Symbolic identities, lane counts, triad-rank ablations, and dormant backreaction: exact",
+    "Configured triad_kernel numerical tolerance: 1e-12",
+    "No aggregate score may override a failed component gate"
+  ],
+  "stopping_rules": [
+    "Stop on any unresolved __BIND_ token",
+    "Stop if any source hash differs from its admitted manifest",
+    "Stop if physical time, geometry, particles, empirical constants, or later-module objects enter Module A",
+    "Stop if a triadic role can be removed without breaking its frozen obligation",
+    "Stop if new-solution capacity is inferred from lane count without non-gauge witnessed closure",
+    "Stop on any mandatory gate failure"
+  ],
+  "expected_invariants": [
+    "CIF/QV/RFL remain typed and irreducible",
+    "First Action preserves ordered source -> action -> stabilized-memory dependency",
+    "Recursive kernel remains bounded under the frozen assumptions",
+    "Normalized depth weights sum to one",
+    "Directed lane set contains no self lanes and no duplicates",
+    "Lane increment is exactly 2N",
+    "Gauge quotienting preserves independent closure distinctions",
+    "Return-memory is not deleted by promotion/reopening",
+    "Dormant direct dynamics contributes exactly zero backreaction"
+  ],
+  "tests": [
+    "A-WL-001 full symbolic output",
+    "A-WL-002 full symbolic output",
+    "Module A manufactured reference checks",
+    "Finite-N N=2..8 lane enumeration",
+    "CIF ablation",
+    "QV ablation",
+    "RFL ablation",
+    "Scalar-collapse countermodel",
+    "Non-gauge witnessed-closure requirement",
+    "Dormant direct dynamics zero-backreaction",
+    "Restart/replay",
+    "Independent symbolic reconstruction"
+  ],
+  "gates": [
+    "canonical terminology exact",
+    "no physical time, geometry, constants, or later-module objects assumed",
+    "triad ablations fail as predeclared",
+    "scalar collapse countermodel rejected",
+    "lane increment 2N verified",
+    "new-solution claim requires non-gauge witnessed closure",
+    "dormant direct dynamics has zero backreaction",
+    "independent symbolic reconstruction"
+  ],
+  "falsifiers": [
+    "Any triadic role is removable while all frozen obligations still pass",
+    "A weighted scalar packet reproduces the typed triad without loss",
+    "Lane increment differs from 2N for any finite N test",
+    "A purported new solution has no distinct non-gauge witnessed closure",
+    "Dormant direct dynamics produces nonzero backreaction",
+    "Independent reconstruction cannot reproduce the symbolic results"
+  ],
+  "claim_boundary": "Mathematical constitution and relational enhancement only; no physical universe yet.",
+  "independent_verifier_design": "Reconstruct A-WL-001 and A-WL-002 from frozen source laws and enumerate N=2..8 directed nonself lanes without trusting primary solver summaries; separately rerun triad ablations, scalar-collapse rejection, and zero-backreaction checks from the frozen lock.",
+  "allowed_implementation_only_corrections": [
+    "Formatting, serialization, path handling, environment dependency, or equivalent implementation corrections that do not change sources, definitions, candidate classes, equations, thresholds, expected outcomes, gates, falsifiers, or claim scope",
+    "After any allowed correction, rerun the full frozen test matrix"
+  ]
 }
