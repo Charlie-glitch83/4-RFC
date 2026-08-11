@@ -37,7 +37,7 @@ jobs:
           root=Path('.')
           run=root/'modules/E/runs/E-140-20260811T175023Z'
           def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-          expected_h='c26421f00e724547f476a65fc8a2fc4f82dc9334'
+          expected_h='79a8f4d5e06558d1114ccd3af832d92344c5d47a075f1f0b708a19ccfc6a59db'
           hp=root/'modules/D/runs/D-130-20260811T165602Z/H_D_to_E.json'
           assert sha(hp)==expected_h,(sha(hp),expected_h)
           hand=json.loads(hp.read_text())
