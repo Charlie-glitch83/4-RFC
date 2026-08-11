@@ -3379,7 +3379,7 @@
     "template_path": "/home/runner/work/4-RFC/4-RFC/modules/C/runs/C-120-20260811T142152Z/solver_templates/C_spectral_model.template.json",
     "template_sha256": "1c06aa8b68baa8473d5b86df54800f1700ef57dadcdb70c743968a1addda8d8d",
     "binding_sheet_path": "/home/runner/work/4-RFC/4-RFC/modules/C/runs/C-120-20260811T142152Z/binding_sheets/C_spectral_model.bindings.json",
-    "binding_sheet_sha256": "b2a0023c1fb92e9cf793679003d6b505f0b6464055969084cd1496d6633054bc",
+    "binding_sheet_sha256": "bab857a41ab3f81905e8bcb2886390395b29206dce398905aa94d32dc388acea",
     "bindings": [
       {
         "derivation_object": "derivation.matrix",
@@ -3388,7 +3388,7 @@
         "module": "C",
         "origin_kind": "INTERNAL_DERIVATION",
         "origin_path": "modules/C/runs/C-120-20260811T142152Z/C120_MICROSCOPIC_DERIVATION.json",
-        "origin_sha256": "8cdf5ffad1f3f9b57a708a78a403536482c416d72fb85d37c3110a6ad0dc0886",
+        "origin_sha256": "68ea11ab0b984f56f55f923d290a7dff9d0177363f598fa751f1095c210f4c54",
         "path": "model.matrix",
         "units": "dimensionless",
         "value": [
@@ -5081,7 +5081,7 @@
         "module": "C",
         "origin_kind": "INTERNAL_DERIVATION",
         "origin_path": "modules/C/runs/C-120-20260811T142152Z/C120_MICROSCOPIC_DERIVATION.json",
-        "origin_sha256": "8cdf5ffad1f3f9b57a708a78a403536482c416d72fb85d37c3110a6ad0dc0886",
+        "origin_sha256": "68ea11ab0b984f56f55f923d290a7dff9d0177363f598fa751f1095c210f4c54",
         "path": "model.symmetry_generators",
         "units": "dimensionless",
         "value": [

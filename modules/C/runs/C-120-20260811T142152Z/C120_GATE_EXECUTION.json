@@ -42,11 +42,11 @@
     "classification": "INDEPENDENT_C_RECONSTRUCTION",
     "matrix_match": true,
     "minimum_eigenvalue": -1.4399278400441296e-16,
-    "orthogonality_error": 8.911972930876394e-15,
+    "orthogonality_error": 8.9284943509512e-15,
     "pass": true,
-    "population_minimum": 6.097773116760698e-06,
+    "population_minimum": 6.0977731167606955e-06,
     "population_sum": 1.0,
-    "reconstruction_error": 8.410225100687539e-15,
+    "reconstruction_error": 8.415590260486586e-15,
     "reflection_commutator": 0.0,
     "reflection_match": true,
     "symmetry_error": 0.0,
@@ -115,7 +115,7 @@
       "success_match": true,
       "symmetric_match": true
     },
-    "maximum_projector_error": 2.0586090502140006e-16,
+    "maximum_projector_error": 0.0,
     "pass": true,
     "representation_rule": "eigenvector signs are gauge; compare eigenvalues and rank-1 eigenprojectors"
   },
