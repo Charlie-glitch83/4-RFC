@@ -15,6 +15,22 @@
       "text": "Module A establishes the frozen prephysical RFC constitution and exact handoff H_A_to_B at mathematical/relational scope only.",
       "recorded_utc": "2026-08-11T13:59:31.788234+00:00",
       "work_unit": "A-100"
+    },
+    {
+      "claim_id": "B110-FIRST-PHYSICAL-STATE",
+      "evidence": [
+        "modules/B/runs/B-110-20260811T140258Z/FIRST_PHYSICAL_STATE.json",
+        "modules/B/runs/B-110-20260811T140258Z/H_B_to_C.json",
+        "modules/B/runs/B-110-20260811T140258Z/B110_GATE_EXECUTION.json",
+        "modules/B/runs/B-110-20260811T140258Z/independent_reconstruction.json"
+      ],
+      "evidence_state": "FROZEN",
+      "fidelity": "MINIMAL_SPINE",
+      "owner": "B",
+      "supported": true,
+      "text": "Module B executes the frozen Big Implosion on the exact Module A parent and establishes a restartable first physical RFC carrier state on typed pregeometry at MINIMAL_SPINE fidelity.",
+      "recorded_utc": "2026-08-11T14:19:12.142058+00:00",
+      "work_unit": "B-110"
     }
   ]
 }

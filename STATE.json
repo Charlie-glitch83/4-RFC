@@ -7,7 +7,7 @@
   "authorization_mode": "AUTO_SINGLE_CHILD_AFTER_PASS",
   "active_work_unit": "B-110",
   "current_module": "B",
-  "current_run": "B-110-20260811T140258Z",
+  "current_run": null,
   "source_state": "SEED_ADMITTED_INDEPENDENTLY_RECONSTRUCTED",
   "canonical_source_manifest": "sources/SOURCE_MANIFEST.json",
   "frozen_universe_hash": null,
@@ -66,16 +66,70 @@
       ]
     },
     "B": {
-      "evidence_state": "DESIGN",
-      "fidelity": "UNSTARTED",
-      "active_run": "B-110-20260811T140258Z",
+      "evidence_state": "FROZEN",
+      "fidelity": "MINIMAL_SPINE",
+      "active_run": null,
       "frozen_artifacts": [],
       "evidence_history": [
         {
           "state": "DESIGN",
           "timestamp_utc": "2026-08-06T00:48:09.414909+00:00",
           "evidence": "repository bootstrap"
+        },
+        {
+          "state": "FORMALIZED",
+          "fidelity": "MINIMAL_SPINE",
+          "evidence": "modules/B/runs/B-110-20260811T140258Z/PRE_EXECUTION_LOCK.json",
+          "timestamp_utc": "2026-08-11T14:19:11.783770+00:00",
+          "work_unit": "B-110"
+        },
+        {
+          "state": "IMPLEMENTED",
+          "fidelity": "MINIMAL_SPINE",
+          "evidence": "modules/B/runs/B-110-20260811T140258Z/solver_configs/B_big_implosion.json",
+          "timestamp_utc": "2026-08-11T14:19:11.843794+00:00",
+          "work_unit": "B-110"
+        },
+        {
+          "state": "VERIFIED",
+          "fidelity": "MINIMAL_SPINE",
+          "evidence": "modules/B/runs/B-110-20260811T140258Z/GATE_RESULTS.json",
+          "timestamp_utc": "2026-08-11T14:19:11.903760+00:00",
+          "work_unit": "B-110"
+        },
+        {
+          "state": "PHYSICALLY_EXECUTED",
+          "fidelity": "MINIMAL_SPINE",
+          "evidence": "modules/B/runs/B-110-20260811T140258Z/FIRST_PHYSICAL_STATE.json",
+          "timestamp_utc": "2026-08-11T14:19:11.962727+00:00",
+          "work_unit": "B-110"
+        },
+        {
+          "state": "INDEPENDENTLY_REPRODUCED",
+          "fidelity": "MINIMAL_SPINE",
+          "evidence": "modules/B/runs/B-110-20260811T140258Z/INDEPENDENT_VERIFICATION.md",
+          "timestamp_utc": "2026-08-11T14:19:12.022663+00:00",
+          "work_unit": "B-110"
+        },
+        {
+          "state": "FROZEN",
+          "fidelity": "MINIMAL_SPINE",
+          "evidence": "modules/B/runs/B-110-20260811T140258Z/H_B_to_C.json",
+          "timestamp_utc": "2026-08-11T14:19:12.082906+00:00",
+          "work_unit": "B-110"
         }
+      ],
+      "promotion_evidence": [
+        "modules/B/runs/B-110-20260811T140258Z/PRE_EXECUTION_LOCK.json",
+        "modules/B/runs/B-110-20260811T140258Z/solver_configs/B_big_implosion.json",
+        "modules/B/runs/B-110-20260811T140258Z/GATE_RESULTS.json",
+        "modules/B/runs/B-110-20260811T140258Z/FIRST_PHYSICAL_STATE.json",
+        "modules/B/runs/B-110-20260811T140258Z/INDEPENDENT_VERIFICATION.md",
+        "modules/B/runs/B-110-20260811T140258Z/H_B_to_C.json"
+      ],
+      "last_promoted_utc": "2026-08-11T14:19:12.082920+00:00",
+      "completed_runs": [
+        "B-110-20260811T140258Z"
       ]
     },
     "C": {
@@ -301,7 +355,7 @@
     }
   },
   "last_verified_commit": "217c4f15c4f139d93854ff5afdaa0b330c921fde",
-  "last_updated_utc": "2026-08-11T14:02:58.318269+00:00",
+  "last_updated_utc": "2026-08-11T14:19:12.205167+00:00",
   "strongest_supported_claim": "A governed scaffold and source seed have been prepared; no new 4-RFC scientific result has been executed.",
   "strongest_unsupported_claim": "The enhanced RFC universe is complete, physically executed, or empirically validated.",
   "last_verified_branch": "agent/4rfc-universe-build"

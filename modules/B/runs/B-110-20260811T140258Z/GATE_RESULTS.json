@@ -1,7 +1,28 @@
 {
-  "run_id": "",
-  "overall": "BLOCKED",
-  "gates": [],
-  "diagnostics": [],
-  "score_rule": "mandatory gates componentwise; below 0.95 triggers analysis"
+  "claim_boundary": "First physical RFC state at declared MINIMAL_SPINE fidelity; no microscopic or cosmological late-time completion.",
+  "componentwise_gates": {
+    "compression_and_relational_ablations": true,
+    "exact_parent_bytes": true,
+    "independent_reconstruction": true,
+    "multiple_graph_sizes_and_convergence": true,
+    "no_later_physics_smuggled_into_B": true,
+    "no_loss_reopening": true,
+    "no_pre_event_physical_time": true,
+    "restart_and_replay": true,
+    "strict_nontrivial_compression": true,
+    "total_ledger_preservation": true,
+    "uncertainty_covariance": true
+  },
+  "evidence_files": [
+    "B110_GATE_EXECUTION.json",
+    "independent_reconstruction.json",
+    "solver_outputs/big_implosion/result.json",
+    "reference_checks.json",
+    "FIRST_PHYSICAL_STATE.json",
+    "H_B_to_C.json"
+  ],
+  "module": "B",
+  "overall": "PASS",
+  "primary_solver_success": true,
+  "run_id": "B-110-20260811T140258Z"
 }

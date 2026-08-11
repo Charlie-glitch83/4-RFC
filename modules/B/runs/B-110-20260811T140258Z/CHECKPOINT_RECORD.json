@@ -1,7 +1,16 @@
 {
-  "run_id": "",
-  "checkpoints": [],
-  "restart_contract": "",
-  "state_schema": "",
-  "hash_algorithm": "sha256"
+  "checkpoints": [
+    {
+      "checkpoint_id": "B_EVENT_0",
+      "event_order": 0,
+      "parent_reopening_path": "solver_outputs/big_implosion/result.json",
+      "parent_reopening_sha256": "a624f6dca4a26ff8b5b3a8e0fb47a37e4cd2a6905c6f302198e3f6db3c303f6a",
+      "state_path": "FIRST_PHYSICAL_STATE.json",
+      "state_sha256": "f50c7e721c38dd9b63f2910f3a0ace399f1854e85cbdafaa9ce51649d40c073a"
+    }
+  ],
+  "hash_algorithm": "sha256",
+  "restart_contract": "Reload frozen solver config and FIRST_PHYSICAL_STATE; reopening must recover the exact A initial carrier within 1e-11 and clean replay must reproduce the exact primary result SHA-256.",
+  "run_id": "B-110-20260811T140258Z",
+  "state_schema": "FIRST_PHYSICAL_RFC_STATE_MINIMAL_SPINE/v1"
 }
