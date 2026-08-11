@@ -1,4 +1,4 @@
-name: Validate 3-RFC Repository
+name: Validate 4-RFC Repository
 
 on:
   push:

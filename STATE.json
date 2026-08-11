@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "project_id": "3-RFC",
-  "repository_target": "Charlie-glitch83/3-RFC",
+  "project_id": "4-RFC",
+  "repository_target": "Charlie-glitch83/4-RFC",
   "project_status": "BOOTSTRAP_READY",
   "generation_mode": "GENERATION_SEALED",
   "authorization_mode": "AUTO_SINGLE_CHILD_AFTER_PASS",
@@ -264,6 +264,6 @@
   },
   "last_verified_commit": null,
   "last_updated_utc": "2026-08-06T00:48:09.414909+00:00",
-  "strongest_supported_claim": "A governed scaffold and source seed have been prepared; no new 3-RFC scientific result has been executed.",
+  "strongest_supported_claim": "A governed scaffold and source seed have been prepared; no new 4-RFC scientific result has been executed.",
   "strongest_unsupported_claim": "The enhanced RFC universe is complete, physically executed, or empirically validated."
 }

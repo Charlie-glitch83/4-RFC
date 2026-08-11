@@ -11,7 +11,7 @@
   ],
   "properties": {
     "project_id": {
-      "const": "3-RFC"
+      "const": "4-RFC"
     },
     "active_work_unit": {
       "type": "string"

@@ -193,11 +193,11 @@ def cmd_doctor(_: argparse.Namespace) -> int:
     if ref.returncode:
         errors.append("manufactured reference matrix failed:\n" + ref.stdout + ref.stderr)
     if errors:
-        print("3-RFC EXECUTION DIRECTOR: FAIL")
+        print("4-RFC EXECUTION DIRECTOR: FAIL")
         for e in errors:
             print(f"- {e}")
         return 1
-    print("3-RFC EXECUTION DIRECTOR: PASS")
+    print("4-RFC EXECUTION DIRECTOR: PASS")
     print(f"Recipe packs: {len(load(CATALOG)['modules'])}")
     print(f"Wolfram calls: {len(load(CALLS)['calls'])}")
     print(f"Local solver templates: {sum(len(x['bindings']) for x in execution_bindings().values())}")
@@ -229,7 +229,7 @@ def admin_instructions(item: dict[str, Any]) -> list[str]:
     if tid == "BOOT-000":
         return [
             "Run `python tools/director.py doctor` and `python -m unittest discover -s tests -v`.",
-            "Copy this repository scaffold to the root of Charlie-glitch83/3-RFC.",
+            "Copy this repository scaffold to the root of Charlie-glitch83/4-RFC.",
             "Commit with the queue-prescribed message.",
             "Verify the exact GitHub commit SHA, changed-file list, fetched README, and branch diff.",
             "Record the verified SHA with `python tools/rfc.py record-commit <SHA> --branch <BRANCH> --note \"Verified scaffold commit and diff\"`.",
@@ -566,7 +566,7 @@ def cmd_recipe(args: argparse.Namespace) -> int:
 
 
 def main() -> int:
-    p = argparse.ArgumentParser(description="3-RFC execution director")
+    p = argparse.ArgumentParser(description="4-RFC execution director")
     sub = p.add_subparsers(dest="cmd", required=True)
     sp = sub.add_parser("doctor"); sp.set_defaults(func=cmd_doctor)
     sp = sub.add_parser("active"); sp.set_defaults(func=cmd_active)

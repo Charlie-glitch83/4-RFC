@@ -2,7 +2,7 @@
 
 ## Install
 
-1. Confirm `Charlie-glitch83/3-RFC` is the selected repository.
+1. Confirm `Charlie-glitch83/4-RFC` is the selected repository.
 2. Place the scaffold at its root.
 3. Run `bash bootstrap.sh`.
 4. Commit with the queue message.

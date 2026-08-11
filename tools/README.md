@@ -1,4 +1,4 @@
-# 3-RFC execution tools
+# 4-RFC execution tools
 
 ## One-command session start
 
@@ -55,7 +55,7 @@ Mechanical PASS results are guardrails, not scientific validation.
 
 ```text
 python tools/build_bundle.py
-python tools/build_bundle.py --output ../3RFC_Execution_Ready_Universe_Builder_20260805.zip
+python tools/build_bundle.py --output ../4RFC_Execution_Ready_Universe_Builder_20260805.zip
 python tools/rfc.py verify-bundle
 ```
 

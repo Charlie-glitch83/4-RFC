@@ -6,7 +6,7 @@
   "total_bytes": 74,
   "missing_required_paths": [],
   "manifest": {
-    "root": "/mnt/data/3RFC_Execution_Ready_Universe_Builder_20260805/manufactured_cases/freeze_example",
+    "root": "/mnt/data/4RFC_Execution_Ready_Universe_Builder_20260805/manufactured_cases/freeze_example",
     "sha256": "cfcb51d5a522e01f4d31623115d1e3f4b203be19fc3d602a8f2f5a3e543d7c94",
     "files": [
       {

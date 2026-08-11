@@ -1,4 +1,4 @@
-# 3-RFC — Execution-Ready Enhanced Universe Builder
+# 4-RFC — Execution-Ready Enhanced Universe Builder
 
 > **Read this file completely. Then run the commands in §2. Do not create a new plan.**
 

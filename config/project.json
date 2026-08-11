@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "project_id": "3-RFC",
-  "repository_target": "Charlie-glitch83/3-RFC",
+  "project_id": "4-RFC",
+  "repository_target": "Charlie-glitch83/4-RFC",
   "canonical_terms": {
     "CIF": "Cosmic Infinite Field",
     "QV": "Quantum Vacuum",
@@ -11,7 +11,7 @@
   "objective": "Construct and freeze one complete hyper-realistic RFC universe derived from the ordered triad, enhanced by the revised triadic N-body relational machinery, then test it blindly without retuning.",
   "authorization_mode": "AUTO_SINGLE_CHILD_AFTER_PASS",
   "generation_mode_default": "GENERATION_SEALED",
-  "work_branch_default": "agent/3rfc-universe-build",
+  "work_branch_default": "agent/4rfc-universe-build",
   "score_policy": {
     "desired": 1.0,
     "analysis_stop_below": 0.95,

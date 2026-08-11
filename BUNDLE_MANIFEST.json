@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "bundle_id": "3RFC_Execution_Ready_Universe_Builder_20260805",
+  "bundle_id": "4RFC_Execution_Ready_Universe_Builder_20260805",
   "generated_utc": "2026-08-05T00:00:00Z",
   "rule": "Integrity records exclude BUNDLE_MANIFEST.json and CHECKSUMS.sha256 to avoid self-reference.",
   "files": [
@@ -17,7 +17,7 @@
     {
       "path": ".github/workflows/validate.yml",
       "size_bytes": 377,
-      "sha256": "29657210ad16d814d6ea1d90fb3626f070528da059e942a35e7c3b8b87ce11ef"
+      "sha256": "ed67e683455ab748e50f8bd82e14aeaefffc39d66f121dbb71c47e0b86ff072e"
     },
     {
       "path": ".gitignore",
@@ -32,7 +32,7 @@
     {
       "path": "BUNDLE_INFO.json",
       "size_bytes": 1073,
-      "sha256": "332052bbe462add10a4c207cbc24008ac3ad273dbf187c97b3f7c12a81af8e4c"
+      "sha256": "bb4fb697dea37910e138a231e8b76c35eed40f7b5a803e14d8b804e5d18c0dd2"
     },
     {
       "path": "CLAIMS_LEDGER.json",
@@ -42,32 +42,32 @@
     {
       "path": "MODEL_OPERATOR_PROMPT.md",
       "size_bytes": 4697,
-      "sha256": "a972eb4377066379b2d2b40de43a1bf37004341263fc0cdc919020ef11c2209f"
+      "sha256": "885bae061af547c92681161fe4d9f1ce1ace751519dc8c902e54e68ed4aafc39"
     },
     {
       "path": "Makefile",
       "size_bytes": 443,
-      "sha256": "39102633b5bea7c09f5b43370716fba1325c3e89bed4a849cb0a8eeaa50ac747"
+      "sha256": "dea4b19162e4b60f468bbb7d31d2508718d7b5920e6682669976bf42556aa1fb"
     },
     {
       "path": "QUICK_START.txt",
       "size_bytes": 409,
-      "sha256": "32f992d06a6997b2ef1f3b19394b40d568de87e1677d12a643a513a818e1abae"
+      "sha256": "5fae5c647a33b928b28167476d5d398411ca9c01a0424cd9c3c5b01000bcdc74"
     },
     {
       "path": "README.md",
       "size_bytes": 18507,
-      "sha256": "0c0420ae09b4794cd7c80dcf4c9deac3656a133255ed585b055302b33a95038c"
+      "sha256": "3cb021ec054ad43bd83f53b653829f628a4752d2807ea29dc5b95128076637f1"
     },
     {
       "path": "STATE.json",
       "size_bytes": 7193,
-      "sha256": "ae835a6bfcebaed1e3f7d5410a214553028175ef0a25fcd0b8b6ea337dde6660"
+      "sha256": "4f4a02eb8d553e5407fa9577fa4b8f38618f6430f586282751a63aa6c05c91f6"
     },
     {
       "path": "WORK_QUEUE.json",
       "size_bytes": 53418,
-      "sha256": "7c7797aa4f5a269962b668a951165e63a4f222afa05392cda04a3bf3def8b9b6"
+      "sha256": "98c7d4398c95f2030c0b0e5097ee6e9d005251bc4ce8081138969efc093c3315"
     },
     {
       "path": "artifacts/.gitkeep",
@@ -77,7 +77,7 @@
     {
       "path": "audit/PHYSICAL_FRONTIER_SEED.json",
       "size_bytes": 2572,
-      "sha256": "66b9f595130ed18a10f3c2e6ced7870a562c33e5014189740552df8806668c17"
+      "sha256": "09b19ce4c87a723e4bddf018916a4be62ad69a9db36c22a7eb3642d8b8699a1b"
     },
     {
       "path": "bootstrap.sh",
@@ -137,7 +137,7 @@
     {
       "path": "config/project.json",
       "size_bytes": 915,
-      "sha256": "24eefc6244102b3977dd26c9ade8790ed448ff31041fea36de6137298c1af811"
+      "sha256": "6f75125dbcab2bd1821bccf9bbe79f5d39b851cdabf5694d42da784c6f624b72"
     },
     {
       "path": "config/tool_policy.json",
@@ -692,7 +692,7 @@
     {
       "path": "configured_runs/results/O_freeze_packet/result.json",
       "size_bytes": 772,
-      "sha256": "815dbb0d5ab44f3db0ac74469d05c6307a1e1f868be604a0b2cbfeb99669f157"
+      "sha256": "6466253d71acfe3ebfc56d69f11a4c67699de098b9e6eaa5038e44475fe43b52"
     },
     {
       "path": "configured_runs/results/P_gaussian_comparison_synthetic/environment.json",
@@ -952,7 +952,7 @@
     {
       "path": "docs/20_WORK_MODEL_START_PROMPT.md",
       "size_bytes": 1825,
-      "sha256": "e3dc866bbebc986c17940e1e8b0369429cf2b106afa21da4b49c06bad8844728"
+      "sha256": "840d047fff3031c64a3612e2846338a3268e6f78401706e5e79fb35c38222e38"
     },
     {
       "path": "docs/21_SOURCE_SOAK_PROTOCOL.md",
@@ -967,7 +967,7 @@
     {
       "path": "docs/23_GITHUB_EXECUTION_PROTOCOL.md",
       "size_bytes": 939,
-      "sha256": "09bc59afb86ab1de89ae94dd8f9b8950dd21c8b37abc7a9edafc13adcecb7484"
+      "sha256": "02eb1f5bf33d682af4fcd33331aac062b43db6ecf4ff3c8a135000c1c16245a1"
     },
     {
       "path": "docs/24_NEW_PROOF_AND_UNIVERSE_PROTOCOL.md",
@@ -1017,7 +1017,7 @@
     {
       "path": "memory/CURRENT_CONTEXT.md",
       "size_bytes": 1670,
-      "sha256": "6898fbb20a97baae1b90773c8acdae5c07867ef710bbc4c5d114d5ecfa39c0f4"
+      "sha256": "3916a2962262413d39307a600ea57c58e1d349deddb6ad3260a614595b916cee"
     },
     {
       "path": "memory/DECISION_LOG.jsonl",
@@ -1332,7 +1332,7 @@
     {
       "path": "pyproject.toml",
       "size_bytes": 209,
-      "sha256": "b829893170df6c13812a92d4d0284a55af47a6f19632763782c30c289c95724a"
+      "sha256": "fa349a77fd484f0a3f0b714021316e0a43bcbbcfdea4ccffb7cd051463a638c5"
     },
     {
       "path": "recipes/A/MODEL_PROMPT.md",
@@ -1922,7 +1922,7 @@
     {
       "path": "rfc_engine/__init__.py",
       "size_bytes": 279,
-      "sha256": "e45b718c3c2664cac7bd5b236974d399318c3c05f19654729d1927277300aa1e"
+      "sha256": "cb4841b3c296fe5ae39a1d2de0aaf769a01363b5a5eb2a05f3955c750ef14904"
     },
     {
       "path": "rfc_engine/provenance.py",
@@ -2042,17 +2042,17 @@
     {
       "path": "runs/BOOT-000/FROZEN_WORK_UNIT_RECIPE.json",
       "size_bytes": 1881,
-      "sha256": "8531bedba1d7a37595db4deea11a3fb2ad1bbace4cb07fffd58e64d5b64c9898"
+      "sha256": "5a68314b1cc2aef49e467fbb58b31d95a3969e60c55607749ad27c2bfa688651"
     },
     {
       "path": "runs/BOOT-000/RUN_PLAN.md",
       "size_bytes": 201,
-      "sha256": "3b63631ea8b56b0b686028fffcf94f3df303a972fd87e688d4a40f78081fd251"
+      "sha256": "453e37546569aa293a94f8dac2d295c71d3b0d02910eb5a284b8bd3303d58efd"
     },
     {
       "path": "runs/BOOT-000/WORK_ORDER.md",
       "size_bytes": 1634,
-      "sha256": "6c92416e85ce265487afc545caf99227a91f762a476eb8ccd14cbdf8d986f09e"
+      "sha256": "ef6548d701d09fe5e04765ff3c8ac6bea25ad6e4eb391a0ab5b063e427a78947"
     },
     {
       "path": "runs/BOOT-000/run.json",
@@ -2087,7 +2087,7 @@
     {
       "path": "schemas/state.schema.json",
       "size_bytes": 671,
-      "sha256": "db3199c9e9dcb05637938c3ab36b4e10bef5249c823057fcf9b4c865de67fcad"
+      "sha256": "c983b505a7f67f97f166364d382685ff029572c7611934571621e01db7abb708"
     },
     {
       "path": "source_seed/README.md",
@@ -2407,7 +2407,7 @@
     {
       "path": "theory/SCIENTIFIC_CONSTITUTION.md",
       "size_bytes": 3036,
-      "sha256": "ce506bfbeb753e61c52d16ec5b3cb67f138928929d5d061941ca31c408f71ea0"
+      "sha256": "5528d327c338016c93f0a62e842f22f29d59692fcfb6f4de87bd0c95c3870423"
     },
     {
       "path": "theory/TERMINOLOGY_LOCK.json",
@@ -2417,12 +2417,12 @@
     {
       "path": "tools/README.md",
       "size_bytes": 2638,
-      "sha256": "34c57db26367879833fec8acdbc2e695ed1e8752d93004e649004a34a203ac25"
+      "sha256": "a9f1c4a2b11be5291dc24f1ed82eb136b7ad4a1885cf8c65941af3209f452b8f"
     },
     {
       "path": "tools/build_bundle.py",
       "size_bytes": 3827,
-      "sha256": "386b331f802c4c92ae3871328cdb7d3b84739ac3d7345351ecd88da7ad8d6dc7"
+      "sha256": "ab7b2496c822d5e7cd39ecf67b65bcc0ec9e850d88c188097d0e16fbd193d216"
     },
     {
       "path": "tools/check_wolfram_output.py",
@@ -2432,7 +2432,7 @@
     {
       "path": "tools/director.py",
       "size_bytes": 28391,
-      "sha256": "cbba8f1681e163ab0e39940c28b38b85ee5d98fe1af89a794e46867da4dfc6b2"
+      "sha256": "4e63602285be1270cd82d05ac541bfcce2ba4b24d6557eef7a7e73cd28d09f14"
     },
     {
       "path": "tools/finish_local_phase.sh",
@@ -2447,7 +2447,7 @@
     {
       "path": "tools/rfc.py",
       "size_bytes": 45365,
-      "sha256": "3f4b38563cccd5bacce9586eea779f911ebe10ba33e80444d2f2f40f6e449eb8"
+      "sha256": "3e038f7bd3530a313484bf75751aa2460536ea2ec379dea6be5beba53079339a"
     },
     {
       "path": "tools/run_all_configured_examples.py",
@@ -2562,7 +2562,7 @@
     {
       "path": "work_packets/ACTIVE_WORK_PACKET.md",
       "size_bytes": 1716,
-      "sha256": "792c55be0b509b7b02bdbb653d7e979dc3257fa525c305efe0d4cbf0f441b19c"
+      "sha256": "2332de3a12138ab5e6fae367733f48befec12b8905007d676a42ff0f7c7fe8d6"
     },
     {
       "path": "work_units/AUTH-020/WORK_ORDER.md",
@@ -2577,12 +2577,12 @@
     {
       "path": "work_units/BOOT-000/WORK_ORDER.md",
       "size_bytes": 1634,
-      "sha256": "6c92416e85ce265487afc545caf99227a91f762a476eb8ccd14cbdf8d986f09e"
+      "sha256": "ef6548d701d09fe5e04765ff3c8ac6bea25ad6e4eb391a0ab5b063e427a78947"
     },
     {
       "path": "work_units/BOOT-000/recipe.json",
       "size_bytes": 1881,
-      "sha256": "8531bedba1d7a37595db4deea11a3fb2ad1bbace4cb07fffd58e64d5b64c9898"
+      "sha256": "5a68314b1cc2aef49e467fbb58b31d95a3969e60c55607749ad27c2bfa688651"
     },
     {
       "path": "work_units/FINAL-290/WORK_ORDER.md",
