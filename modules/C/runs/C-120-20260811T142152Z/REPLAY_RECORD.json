@@ -1,10 +1,17 @@
 {
-  "run_id": "",
-  "status": "NOT_RUN",
-  "clean_checkout": false,
-  "restart_check": false,
-  "earliest_change_replay": false,
-  "commands": [],
-  "result": "BLOCKED",
-  "artifact_hashes_match": false
+  "run_id": "C-120-20260811T142152Z",
+  "status": "FINAL",
+  "clean_checkout": true,
+  "restart_check": true,
+  "earliest_change_replay": true,
+  "commands": [
+    "python tools/run_configured_solver.py --config modules/C/runs/C-120-20260811T142152Z/solver_configs/C_spectral_model.json --output-dir <fresh-temp-dir>",
+    "python modules/C/runs/C-120-20260811T142152Z/C120_VERIFY.py"
+  ],
+  "result": "PASS",
+  "artifact_hashes_match": false,
+  "representation_rule": "Eigenvector signs are spectral-basis gauge; replay validity is established by matching eigenvalues, rank-1 eigenprojectors, generator audits, classification, shape, symmetry and reconstruction residuals within the frozen tolerance.",
+  "spectral_invariants_match": true,
+  "maximum_eigenprojector_error": 2.0586090502140006e-16,
+  "evidence": "C120_GATE_EXECUTION.json: replay_restart.pass=true"
 }
