@@ -1,0 +1,41 @@
+{
+  "module": "K",
+  "title": "Nonlinear Relational Gravity, Structures, Metric, and Lightcones",
+  "parents": [
+    "J"
+  ],
+  "children": [
+    "L",
+    "KLM",
+    "N"
+  ],
+  "nbody_mode": "DIRECT_MANY_BODY_ACTIVE",
+  "objective": "Evolve the realized fields into nonlinear structure while preserving relativistic/metric, route, event, branch, conservation, lightcone, and lensing truth.",
+  "required_outputs": [
+    "particle/field nonlinear state",
+    "halos and structures",
+    "metric and Weyl products",
+    "lightcones",
+    "ray/Jacobi/lensing products",
+    "merger/event trees",
+    "return interface to L and KLM"
+  ],
+  "gates": [
+    "force/field accuracy",
+    "constraint closure",
+    "mass-energy conservation",
+    "resolution/volume convergence",
+    "restart/replay",
+    "independent critical implementation"
+  ],
+  "forbidden_shortcuts": [
+    "gravity-only toy labeled hyper-realistic",
+    "dropping metric/lightcone truth",
+    "tuning initial phases"
+  ],
+  "claim_boundary": "Nonlinear RFC gravitational universe at stated fidelity.",
+  "evidence_target": "See active work unit and docs/08_EVIDENCE_AND_CLAIM_STATES.md",
+  "return_inputs": [
+    "KLM"
+  ]
+}

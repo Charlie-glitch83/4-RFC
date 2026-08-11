@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "classification": "READ_ONLY_GAUSSIAN_COMPARISON",
+  "chi_square": 1.2285714285714286,
+  "degrees_of_freedom": 3,
+  "residual": [
+    0.10000000000000009,
+    -0.19999999999999996,
+    0.09999999999999998
+  ],
+  "prediction_hash": "c6f6711b30dc6a663bc664eb01cdcb6a47234e7c5a5ad799a8655669379547c6",
+  "prediction_unchanged": true,
+  "covariance_audit": {
+    "shape": [
+      3,
+      3
+    ],
+    "symmetry_error": 0.0,
+    "symmetric": true,
+    "eigenvalues": [
+      0.025,
+      0.038074175964327474,
+      0.09192582403567252
+    ],
+    "minimum_eigenvalue": 0.025,
+    "positive_semidefinite": true,
+    "positive_definite": true,
+    "tolerance": 1e-12
+  }
+}
