@@ -22,66 +22,39 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install numpy networkx scipy sympy
-      - name: Reconcile immutable C-120 run registration and advance exactly one child
+      - name: Refresh sole-authorized D-130 packet and freeze preparation
         shell: bash
         run: |
           set -euo pipefail
-          RUN='C-120-20260811T142152Z'
-          RUN_DIR="modules/C/runs/$RUN"
-          VERIFIED_SHA='f5dccfbdddb3b6bd0366983054528cdf60094681'
-          python - <<'PY'
-          import json
-          from datetime import datetime, timezone
-          from pathlib import Path
-          import tools.rfc as rfc
-
-          target = 'modules/C/runs/C-120-20260811T142152Z'
-          registry_path = Path('memory/ARTIFACT_REGISTRY.json')
-          registry = json.loads(registry_path.read_text(encoding='utf-8'))
-          matches = [x for x in registry.get('artifacts', []) if x.get('path') == target]
-          if len(matches) != 1:
-              raise SystemExit(f'expected exactly one C-120 artifact registry record, found {len(matches)}')
-          rec = matches[0]
-          actual = rfc.sha256_tree(rfc.ROOT / target)
-          old = rec.get('sha256')
-          if old != actual:
-              rec['sha256'] = actual
-              registry_path.write_text(json.dumps(registry, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
-              failure_path = Path('memory/FAILURE_LOG.jsonl')
-              failure = {
-                  'failure_id': 'C120-REGISTRY-TREE-HASH-RECONCILIATION',
-                  'timestamp_utc': datetime.now(timezone.utc).isoformat(),
-                  'work_unit': 'C-120',
-                  'description': 'Closed C-120 run registry tree hash differed from the immutable committed run bytes after finalization transport.',
-                  'classification': 'IMPLEMENTATION_ONLY_REGISTRATION_HASH_DRIFT',
-                  'old_registered_sha256': old,
-                  'recomputed_sha256': actual,
-                  'correction': 'Updated only memory/ARTIFACT_REGISTRY.json using tools.rfc.sha256_tree; no C scientific object, parent, gate, tolerance, claim, or run byte was changed.',
-                  'changes_science': False
-              }
-              with failure_path.open('a', encoding='utf-8') as f:
-                  f.write(json.dumps(failure, ensure_ascii=False) + '\n')
-          print(json.dumps({'target': target, 'registered_before': old, 'registered_after': actual, 'changed': old != actual}, indent=2))
-          PY
-          python tools/rfc.py doctor
-          python tools/rfc.py record-commit "$VERIFIED_SHA" --branch agent/4rfc-universe-build --note 'Verified C-120 final reconciled closeout commit and exact diff'
-          python tools/rfc.py advance --task C-120 --result PASS --evidence "$RUN_DIR/CLOSEOUT.md"
+          RUN='D-130-20260811T165602Z'
+          RUN_DIR="modules/D/runs/$RUN"
           bash tools/start_work.sh
           cat work_packets/ACTIVE_WORK_PACKET.md
+          grep -q 'ACTIVE WORK PACKET — D-130' work_packets/ACTIVE_WORK_PACKET.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('modules/D/runs/D-130-20260811T165602Z/PRE_EXECUTION_LOCK.json')
+          status=json.loads(p.read_text(encoding='utf-8')).get('status')
+          print('D_PRELOCK_STATUS', status)
+          PY
+          if ! grep -q '"status": "FROZEN"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"; then
+            python "$RUN_DIR/D130_PREPARE.py"
+          fi
+          grep -q '"status": "FROZEN"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
           python tools/rfc.py doctor
           python tools/director.py doctor
-          python -m unittest discover -s tests -v
           python tools/rfc.py firewall-scan
-      - name: Commit C-120 transition and prepared child packet
+      - name: Commit frozen D-130 preparation
         shell: bash
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git restore memory/CURRENT_CONTEXT.md || true
-          git add -A
+          git add modules/D/runs/D-130-20260811T165602Z work_packets/ACTIVE_WORK_PACKET.md STATE.json memory/RUN_INDEX.json || true
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Advance from frozen Module C to its authorized child'
+          git commit -m 'D-130: freeze parent-derived transport preparation'
           git fetch origin agent/4rfc-universe-build
           git rebase origin/agent/4rfc-universe-build
           git push origin HEAD:agent/4rfc-universe-build
