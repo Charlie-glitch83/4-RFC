@@ -22,18 +22,18 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install numpy networkx scipy sympy
-      - name: Run exact repository solver commands
+      - name: Run frozen A-100 gates
         shell: bash
         run: |
           set -euo pipefail
           RUN='A-100-20260811T115001Z'
           RUN_DIR="modules/A/runs/$RUN"
-          test -f "$RUN_DIR/solver_templates/A_triad_kernel.template.json"
-          test -f "$RUN_DIR/binding_sheets/A_triad_kernel.bindings.json"
-          python tools/materialize_solver_config.py --template "$RUN_DIR/solver_templates/A_triad_kernel.template.json" --binding-sheet "$RUN_DIR/binding_sheets/A_triad_kernel.bindings.json" --output "$RUN_DIR/solver_configs/A_triad_kernel.json"
-          python tools/run_configured_solver.py --config "$RUN_DIR/solver_configs/A_triad_kernel.json" --output-dir "$RUN_DIR/solver_outputs/triad_kernel"
+          python "$RUN_DIR/A100_VERIFY.py"
+          python tools/rfc.py doctor
           python tools/director.py doctor
-      - name: Commit repository-produced records
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+      - name: Commit repository-produced gate evidence
         shell: bash
         run: |
           set -euo pipefail
@@ -41,5 +41,5 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add modules/A/runs/A-100-20260811T115001Z
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'A-100: execute provenance-bound triad kernel'
+          git commit -m 'A-100: execute frozen countermodels replay and independent audit'
           git push origin HEAD:agent/4rfc-universe-build
