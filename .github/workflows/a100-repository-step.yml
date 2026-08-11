@@ -27,8 +27,8 @@ jobs:
         run: |
           set -euo pipefail
           RUN='A-100-20260811T115001Z'
-          python tools/director.py wolfram-record --run "$RUN" --call A-WL-001 --output "modules/A/runs/$RUN/wolfram_raw/A-WL-001.output.txt"
-          python tools/director.py wolfram-record --run "$RUN" --call A-WL-002 --output "modules/A/runs/$RUN/wolfram_raw/A-WL-002.output.txt"
+          python tools/director.py wolfram-record --run "$RUN" --call A-WL-001 --output "modules/A/runs/$RUN/wolfram_raw/A-WL-001.recorder.txt"
+          python tools/director.py wolfram-record --run "$RUN" --call A-WL-002 --output "modules/A/runs/$RUN/wolfram_raw/A-WL-002.recorder.txt"
           python tools/run_reference_checks.py --module A --output "modules/A/runs/$RUN/reference_checks.json"
           python tools/director.py doctor
       - name: Commit repository-produced records
