@@ -1,4 +1,16 @@
 {
   "schema_version": "1.0",
-  "runs": []
+  "runs": [
+    {
+      "run_id": "SRC-010-20260811T044241Z",
+      "module": "SOURCES",
+      "task_id": "SRC-010",
+      "status": "PASS",
+      "path": "runs/SRC-010-20260811T044241Z",
+      "created_utc": "2026-08-11T04:42:41.250642+00:00",
+      "closed_utc": "2026-08-11T04:42:41.556643+00:00",
+      "tree_sha256": "a8b8317cf5639afdc65dcda6e860b0637973f00b54b3e8a9939ab83a4396f483",
+      "closeout": "runs/SRC-010-20260811T044241Z/CLOSEOUT.md"
+    }
+  ]
 }

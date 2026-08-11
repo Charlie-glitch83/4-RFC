@@ -7,7 +7,7 @@
 - Evidence state reached: `IMPLEMENTED`
 - Fidelity reached: `N/A_REPOSITORY_CONTROL`
 - Frozen artifact hashes: `README.md sha256=3cb021ec054ad43bd83f53b653829f628a4752d2807ea29dc5b95128076637f1`; `BUNDLE_MANIFEST.json sha256=6c790cc2d7226f0389161b631e50a945cda5c882cc39dcd3fbc2688ccd3966b1`
-- Verified GitHub commit SHA: `958005985085ee9c391192e3ad9ea7f010583de3`
+- Verified GitHub commit SHA: `39bcd805ff649a5c143fb09b9a757b467644f817`
 
 ## Scientific objects produced
 

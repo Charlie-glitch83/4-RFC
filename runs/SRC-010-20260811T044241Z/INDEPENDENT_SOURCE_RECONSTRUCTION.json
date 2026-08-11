@@ -1,298 +1,274 @@
 {
   "schema_version": "1.0",
-  "status": "INDEPENDENTLY_RECONSTRUCTED",
-  "sources": [
+  "work_unit": "SRC-010",
+  "result": "PASS",
+  "seed_records": 29,
+  "manifest_records": 29,
+  "frozen_records_verified": 29,
+  "errors": [],
+  "checks": [
     {
-      "label": "Triadic emergence and theorem architecture",
+      "filename": "originals/Presentation 29 revised  raw LaTeX.md",
       "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
       "bytes": 86724,
       "classification": "CANONICAL_AUTHORITY",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/Presentation 29 revised  raw LaTeX.md",
       "frozen_path": "sources/frozen/cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e/Presentation 29 revised  raw LaTeX.md",
-      "admitted_utc": "2026-08-11T04:42:41.338292+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "match": true
     },
     {
-      "label": "P29 metadata and reproducibility context",
+      "filename": "originals/Presentation 29 revised Metadata.md",
       "sha256": "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215",
       "bytes": 10821,
       "classification": "CANONICAL_AUTHORITY",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/Presentation 29 revised Metadata.md",
       "frozen_path": "sources/frozen/82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215/Presentation 29 revised Metadata.md",
-      "admitted_utc": "2026-08-11T04:42:41.339302+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215",
+      "match": true
     },
     {
-      "label": "Revised triadic N-body proof",
+      "filename": "originals/A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf",
       "sha256": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
       "bytes": 356706,
       "classification": "CANONICAL_AUTHORITY",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf",
       "frozen_path": "sources/frozen/0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28/A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf",
-      "admitted_utc": "2026-08-11T04:42:41.340941+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+      "match": true
     },
     {
-      "label": "N-body metadata",
+      "filename": "originals/A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf",
       "sha256": "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
       "bytes": 257569,
       "classification": "CANONICAL_AUTHORITY",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf",
       "frozen_path": "sources/frozen/caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94/A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf",
-      "admitted_utc": "2026-08-11T04:42:41.342278+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+      "match": true
     },
     {
-      "label": "Universe architecture and full ledger",
+      "filename": "originals/Presentation 30 raw LaTex.md",
       "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
       "bytes": 951976,
       "classification": "CANONICAL_AUTHORITY",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/Presentation 30 raw LaTex.md",
       "frozen_path": "sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md",
-      "admitted_utc": "2026-08-11T04:42:41.345558+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+      "match": true
     },
     {
-      "label": "Universe reproducibility metadata candidate",
+      "filename": "originals/Reproducibility Metadata.md",
       "sha256": "65cbeb7259c126ecab705a9f5dca54a6c3e510a7cbe592448b7d7305f3c74e70",
       "bytes": 254488,
       "classification": "ADMITTED_SOURCE",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/Reproducibility Metadata.md",
       "frozen_path": "sources/frozen/65cbeb7259c126ecab705a9f5dca54a6c3e510a7cbe592448b7d7305f3c74e70/Reproducibility Metadata.md",
-      "admitted_utc": "2026-08-11T04:42:41.346981+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "65cbeb7259c126ecab705a9f5dca54a6c3e510a7cbe592448b7d7305f3c74e70",
+      "match": true
     },
     {
-      "label": "Revised W2/BBN closeout metadata candidate",
+      "filename": "originals/Reproducibility Metadata - Final Revised W2 BBN Closeout.md",
       "sha256": "0e54ae0a037fc0e35329c452c25e71d71f716dc6a700982083a207afd9adde8f",
       "bytes": 274842,
       "classification": "ADMITTED_SOURCE",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/Reproducibility Metadata - Final Revised W2 BBN Closeout.md",
       "frozen_path": "sources/frozen/0e54ae0a037fc0e35329c452c25e71d71f716dc6a700982083a207afd9adde8f/Reproducibility Metadata - Final Revised W2 BBN Closeout.md",
-      "admitted_utc": "2026-08-11T04:42:41.348441+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "0e54ae0a037fc0e35329c452c25e71d71f716dc6a700982083a207afd9adde8f",
+      "match": true
     },
     {
-      "label": "Consolidated prior triadic rebuild",
+      "filename": "originals/Presentation 28.pdf",
       "sha256": "52ff9b4a79f0a052d17d5592c32a44d471cdfb209ed803f7f12253c4c0f50599",
       "bytes": 1251331,
       "classification": "HISTORICAL_WARNING",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/Presentation 28.pdf",
       "frozen_path": "sources/frozen/52ff9b4a79f0a052d17d5592c32a44d471cdfb209ed803f7f12253c4c0f50599/Presentation 28.pdf",
-      "admitted_utc": "2026-08-11T04:42:41.352520+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "52ff9b4a79f0a052d17d5592c32a44d471cdfb209ed803f7f12253c4c0f50599",
+      "match": true
     },
     {
-      "label": "Deterministic rebuild and no-retune lineage",
+      "filename": "originals/Presentation27.pdf",
       "sha256": "9a8e0bb8fcbaeb3ab391b5ccb1213b83318685a54953b0d1b1ba9e0eca26a086",
       "bytes": 580810,
       "classification": "HISTORICAL_WARNING",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/Presentation27.pdf",
       "frozen_path": "sources/frozen/9a8e0bb8fcbaeb3ab391b5ccb1213b83318685a54953b0d1b1ba9e0eca26a086/Presentation27.pdf",
-      "admitted_utc": "2026-08-11T04:42:41.354804+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "9a8e0bb8fcbaeb3ab391b5ccb1213b83318685a54953b0d1b1ba9e0eca26a086",
+      "match": true
     },
     {
-      "label": "Mathematical codex",
+      "filename": "originals/Presentation 26.pdf",
       "sha256": "01c15530f437d0dd37937e7789e410f85fb4417a049357eb31f140c345b954f5",
       "bytes": 362939,
       "classification": "HISTORICAL_WARNING",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/Presentation 26.pdf",
       "frozen_path": "sources/frozen/01c15530f437d0dd37937e7789e410f85fb4417a049357eb31f140c345b954f5/Presentation 26.pdf",
-      "admitted_utc": "2026-08-11T04:42:41.356566+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "01c15530f437d0dd37937e7789e410f85fb4417a049357eb31f140c345b954f5",
+      "match": true
     },
     {
-      "label": "One kernel, many modal manifestations",
+      "filename": "originals/Presentation 25.pdf",
       "sha256": "c89cdfa633961934306cc03121c4fe911b0140610f7a1da6be97d220de8b2540",
       "bytes": 479693,
       "classification": "HISTORICAL_WARNING",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/Presentation 25.pdf",
       "frozen_path": "sources/frozen/c89cdfa633961934306cc03121c4fe911b0140610f7a1da6be97d220de8b2540/Presentation 25.pdf",
-      "admitted_utc": "2026-08-11T04:42:41.358453+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "c89cdfa633961934306cc03121c4fe911b0140610f7a1da6be97d220de8b2540",
+      "match": true
     },
     {
-      "label": "Original ontology and explanatory vision",
+      "filename": "originals/Presentation 24.pdf",
       "sha256": "f3c1f848255334fcefc5eae6a8110a7e463e244fa605c1d9e56faa8ecd7aad17",
       "bytes": 642191,
       "classification": "HISTORICAL_WARNING",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/Presentation 24.pdf",
       "frozen_path": "sources/frozen/f3c1f848255334fcefc5eae6a8110a7e463e244fa605c1d9e56faa8ecd7aad17/Presentation 24.pdf",
-      "admitted_utc": "2026-08-11T04:42:41.360712+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "f3c1f848255334fcefc5eae6a8110a7e463e244fa605c1d9e56faa8ecd7aad17",
+      "match": true
     },
     {
-      "label": "Narrative synthesis",
+      "filename": "originals/RFC_Story_Arc.md",
       "sha256": "c8b617f643db47c2a520d018bee82328204430ed39a85d7ab918acc001546a18",
       "bytes": 11196,
       "classification": "INTERPRETIVE_SYNTHESIS",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/RFC_Story_Arc.md",
       "frozen_path": "sources/frozen/c8b617f643db47c2a520d018bee82328204430ed39a85d7ab918acc001546a18/RFC_Story_Arc.md",
-      "admitted_utc": "2026-08-11T04:42:41.361858+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "c8b617f643db47c2a520d018bee82328204430ed39a85d7ab918acc001546a18",
+      "match": true
     },
     {
-      "label": "Nucleosynthesis addendum",
+      "filename": "originals/RFC_Module_X1_Nucleosynthesis_Theorem_Addendum_and_Metadata.md",
       "sha256": "d44cb226d6ebc35fae8d4122f86ce8a80a3a6458b209c328a55ecfbaa44b561c",
       "bytes": 10836,
       "classification": "CANDIDATE_ADDENDUM",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/RFC_Module_X1_Nucleosynthesis_Theorem_Addendum_and_Metadata.md",
       "frozen_path": "sources/frozen/d44cb226d6ebc35fae8d4122f86ce8a80a3a6458b209c328a55ecfbaa44b561c/RFC_Module_X1_Nucleosynthesis_Theorem_Addendum_and_Metadata.md",
-      "admitted_utc": "2026-08-11T04:42:41.363005+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "d44cb226d6ebc35fae8d4122f86ce8a80a3a6458b209c328a55ecfbaa44b561c",
+      "match": true
     },
     {
-      "label": "Collapse/rebirth addendum",
+      "filename": "originals/RFC_Module_Y_Global_Collapse_Rebirth_Trace_Addendum_and_Metadata.md",
       "sha256": "522da698be7c70b17e327d54fe5825321934550c0ee3a8a187fcce9098895d3a",
       "bytes": 8447,
       "classification": "CANDIDATE_ADDENDUM",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/RFC_Module_Y_Global_Collapse_Rebirth_Trace_Addendum_and_Metadata.md",
       "frozen_path": "sources/frozen/522da698be7c70b17e327d54fe5825321934550c0ee3a8a187fcce9098895d3a/RFC_Module_Y_Global_Collapse_Rebirth_Trace_Addendum_and_Metadata.md",
-      "admitted_utc": "2026-08-11T04:42:41.364153+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "522da698be7c70b17e327d54fe5825321934550c0ee3a8a187fcce9098895d3a",
+      "match": true
     },
     {
-      "label": "Triad/kernel source book",
+      "filename": "originals/Triad_and_Triad_Kernel_Markdown_Book.zip",
       "sha256": "23cf3e0f8c2b125f1733e02cdd1a795738849fa1a5f2951669c1f84d9417fdab",
       "bytes": 56567,
       "classification": "INTERPRETIVE_SYNTHESIS",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/Triad_and_Triad_Kernel_Markdown_Book.zip",
       "frozen_path": "sources/frozen/23cf3e0f8c2b125f1733e02cdd1a795738849fa1a5f2951669c1f84d9417fdab/Triad_and_Triad_Kernel_Markdown_Book.zip",
-      "admitted_utc": "2026-08-11T04:42:41.365436+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "23cf3e0f8c2b125f1733e02cdd1a795738849fa1a5f2951669c1f84d9417fdab",
+      "match": true
     },
     {
-      "label": "Source audits and drafting doctrine",
+      "filename": "originals/How to build presentation 28.zip",
       "sha256": "2166865f16a2daefa1f40ddd80a180c05ba154c8dfb467c1381b8006d01589be",
       "bytes": 240976,
       "classification": "INTERPRETIVE_SYNTHESIS",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/How to build presentation 28.zip",
       "frozen_path": "sources/frozen/2166865f16a2daefa1f40ddd80a180c05ba154c8dfb467c1381b8006d01589be/How to build presentation 28.zip",
-      "admitted_utc": "2026-08-11T04:42:41.367172+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "2166865f16a2daefa1f40ddd80a180c05ba154c8dfb467c1381b8006d01589be",
+      "match": true
     },
     {
-      "label": "Historical closeout ledgers",
+      "filename": "originals/1 RFC close out ledgers.zip",
       "sha256": "e372302fdc09e204345e615c059b41bd4f9a8e9d4d8b1d38bd8d2ee28afe0cad",
       "bytes": 67372,
       "classification": "REPLAY_REQUIRED",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/1 RFC close out ledgers.zip",
       "frozen_path": "sources/frozen/e372302fdc09e204345e615c059b41bd4f9a8e9d4d8b1d38bd8d2ee28afe0cad/1 RFC close out ledgers.zip",
-      "admitted_utc": "2026-08-11T04:42:41.368538+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "e372302fdc09e204345e615c059b41bd4f9a8e9d4d8b1d38bd8d2ee28afe0cad",
+      "match": true
     },
     {
-      "label": "Historical simulation logs",
+      "filename": "originals/Simulation Meta data 2.zip",
       "sha256": "9f6f05a297e95ef01813fd6eb9532c8ee41d6feb7f4d7cb723da87ff5858a9da",
       "bytes": 366558,
       "classification": "REPLAY_REQUIRED",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/Simulation Meta data 2.zip",
       "frozen_path": "sources/frozen/9f6f05a297e95ef01813fd6eb9532c8ee41d6feb7f4d7cb723da87ff5858a9da/Simulation Meta data 2.zip",
-      "admitted_utc": "2026-08-11T04:42:41.370629+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "9f6f05a297e95ef01813fd6eb9532c8ee41d6feb7f4d7cb723da87ff5858a9da",
+      "match": true
     },
     {
-      "label": "Non-cosmological triadic manifestation exemplar",
+      "filename": "originals/Triadic_Completed_Shell_Twin_Prime_Preprint_Clean_Raw_LaTeX_20260626.md",
       "sha256": "ac37b05c67b26c882d171b7986a5c1a5536a4ecbdf1152731897f876972bb7fe",
       "bytes": 40865,
       "classification": "COMPARISON_ONLY",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/Triadic_Completed_Shell_Twin_Prime_Preprint_Clean_Raw_LaTeX_20260626.md",
       "frozen_path": "sources/frozen/ac37b05c67b26c882d171b7986a5c1a5536a4ecbdf1152731897f876972bb7fe/Triadic_Completed_Shell_Twin_Prime_Preprint_Clean_Raw_LaTeX_20260626.md",
-      "admitted_utc": "2026-08-11T04:42:41.371919+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "ac37b05c67b26c882d171b7986a5c1a5536a4ecbdf1152731897f876972bb7fe",
+      "match": true
     },
     {
-      "label": "Arithmetic proof closeout exemplar",
+      "filename": "originals/T1_T5_Closeout_Ledger.md",
       "sha256": "21057508fcdb9cbb0fa3a932cc297dc2754b38ed59cab79d460f64ca1f2eb43f",
       "bytes": 12135,
       "classification": "COMPARISON_ONLY",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/T1_T5_Closeout_Ledger.md",
       "frozen_path": "sources/frozen/21057508fcdb9cbb0fa3a932cc297dc2754b38ed59cab79d460f64ca1f2eb43f/T1_T5_Closeout_Ledger.md",
-      "admitted_utc": "2026-08-11T04:42:41.373190+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "21057508fcdb9cbb0fa3a932cc297dc2754b38ed59cab79d460f64ca1f2eb43f",
+      "match": true
     },
     {
-      "label": "Arithmetic source map exemplar",
+      "filename": "originals/TwinPrime_Zip_Source_Map_REVISED_Triad_Fractal_Weights.md",
       "sha256": "5d3cdf28aa14fdd2dbcff8307ec2e391a40623148696e1baa5623037d29ba84e",
       "bytes": 125678,
       "classification": "COMPARISON_ONLY",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/originals/TwinPrime_Zip_Source_Map_REVISED_Triad_Fractal_Weights.md",
       "frozen_path": "sources/frozen/5d3cdf28aa14fdd2dbcff8307ec2e391a40623148696e1baa5623037d29ba84e/TwinPrime_Zip_Source_Map_REVISED_Triad_Fractal_Weights.md",
-      "admitted_utc": "2026-08-11T04:42:41.374707+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "5d3cdf28aa14fdd2dbcff8307ec2e391a40623148696e1baa5623037d29ba84e",
+      "match": true
     },
     {
-      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "filename": "analysis/2RFC_Architecture_Intent_and_Drift_Deep_Soak_20260805.md",
       "sha256": "dd4a84a3ac27c04a6e9b20d41696ef4896a25581e1184cbb7ac25c2f22edfb4b",
       "bytes": 31773,
       "classification": "INTERPRETIVE_SYNTHESIS",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/analysis/2RFC_Architecture_Intent_and_Drift_Deep_Soak_20260805.md",
       "frozen_path": "sources/frozen/dd4a84a3ac27c04a6e9b20d41696ef4896a25581e1184cbb7ac25c2f22edfb4b/2RFC_Architecture_Intent_and_Drift_Deep_Soak_20260805.md",
-      "admitted_utc": "2026-08-11T04:42:41.376045+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "dd4a84a3ac27c04a6e9b20d41696ef4896a25581e1184cbb7ac25c2f22edfb4b",
+      "match": true
     },
     {
-      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "filename": "analysis/2RFC_Canonical_Enhancement_Map_20260805.md",
       "sha256": "12575578458a7f908f4c10dcf69eddb095d436e21c9f4b51ea758e380ceda4d8",
       "bytes": 3376,
       "classification": "INTERPRETIVE_SYNTHESIS",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/analysis/2RFC_Canonical_Enhancement_Map_20260805.md",
       "frozen_path": "sources/frozen/12575578458a7f908f4c10dcf69eddb095d436e21c9f4b51ea758e380ceda4d8/2RFC_Canonical_Enhancement_Map_20260805.md",
-      "admitted_utc": "2026-08-11T04:42:41.377390+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "12575578458a7f908f4c10dcf69eddb095d436e21c9f4b51ea758e380ceda4d8",
+      "match": true
     },
     {
-      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "filename": "analysis/2RFC_Deep_Soak_and_Realization_Blueprint_20260805.md",
       "sha256": "2f3539d6493f87a407765a9f24d6cd61e825a36fe9217d2adfa075c070d27b6e",
       "bytes": 42775,
       "classification": "INTERPRETIVE_SYNTHESIS",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/analysis/2RFC_Deep_Soak_and_Realization_Blueprint_20260805.md",
       "frozen_path": "sources/frozen/2f3539d6493f87a407765a9f24d6cd61e825a36fe9217d2adfa075c070d27b6e/2RFC_Deep_Soak_and_Realization_Blueprint_20260805.md",
-      "admitted_utc": "2026-08-11T04:42:41.378861+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "2f3539d6493f87a407765a9f24d6cd61e825a36fe9217d2adfa075c070d27b6e",
+      "match": true
     },
     {
-      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "filename": "analysis/2RFC_Immediate_Execution_Queue_20260805.md",
       "sha256": "c3b22b3f6973cef75409162c406ac224b2d66aa8bb938a6f035d386384fab226",
       "bytes": 7795,
       "classification": "INTERPRETIVE_SYNTHESIS",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/analysis/2RFC_Immediate_Execution_Queue_20260805.md",
       "frozen_path": "sources/frozen/c3b22b3f6973cef75409162c406ac224b2d66aa8bb938a6f035d386384fab226/2RFC_Immediate_Execution_Queue_20260805.md",
-      "admitted_utc": "2026-08-11T04:42:41.380224+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "c3b22b3f6973cef75409162c406ac224b2d66aa8bb938a6f035d386384fab226",
+      "match": true
     },
     {
-      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "filename": "analysis/2RFC_Integration_Fidelity_Audit_20260805.md",
       "sha256": "af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d",
       "bytes": 18368,
       "classification": "INTERPRETIVE_SYNTHESIS",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/analysis/2RFC_Integration_Fidelity_Audit_20260805.md",
       "frozen_path": "sources/frozen/af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d/2RFC_Integration_Fidelity_Audit_20260805.md",
-      "admitted_utc": "2026-08-11T04:42:41.381592+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d",
+      "match": true
     },
     {
-      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "filename": "analysis/2RFC_Revised_Work_Queue_after_Integration_Audit_20260805.md",
       "sha256": "275ce318acfb84f88e9edb91ca371bcfa8d8dd248172ee9444e4d108fb6472c7",
       "bytes": 5346,
       "classification": "INTERPRETIVE_SYNTHESIS",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/analysis/2RFC_Revised_Work_Queue_after_Integration_Audit_20260805.md",
       "frozen_path": "sources/frozen/275ce318acfb84f88e9edb91ca371bcfa8d8dd248172ee9444e4d108fb6472c7/2RFC_Revised_Work_Queue_after_Integration_Audit_20260805.md",
-      "admitted_utc": "2026-08-11T04:42:41.382980+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "275ce318acfb84f88e9edb91ca371bcfa8d8dd248172ee9444e4d108fb6472c7",
+      "match": true
     },
     {
-      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "filename": "analysis/2RFC_Triad_NBody_Enhancement_Lock_DRAFT_20260805.md",
       "sha256": "c0458d1905da03c21c7a93b1d11c19fa6679c18c5b1a0a95fefacf38e66a8240",
       "bytes": 9512,
       "classification": "INTERPRETIVE_SYNTHESIS",
-      "origin": "/home/runner/work/4-RFC/4-RFC/source_seed/analysis/2RFC_Triad_NBody_Enhancement_Lock_DRAFT_20260805.md",
       "frozen_path": "sources/frozen/c0458d1905da03c21c7a93b1d11c19fa6679c18c5b1a0a95fefacf38e66a8240/2RFC_Triad_NBody_Enhancement_Lock_DRAFT_20260805.md",
-      "admitted_utc": "2026-08-11T04:42:41.384455+00:00",
-      "admitted_by_work_unit": "SRC-010"
+      "frozen_sha256": "c0458d1905da03c21c7a93b1d11c19fa6679c18c5b1a0a95fefacf38e66a8240",
+      "match": true
     }
   ],
-  "manifest_sha256": "4e9f7a8aea50ae50bf8cb27171cd3a9ea9072623124c4623c191677c3e9c107e",
-  "independent_reconstruction": "runs/SRC-010-20260811T044241Z/INDEPENDENT_SOURCE_RECONSTRUCTION.json"
+  "no_summary_used_as_parent": true,
+  "reconstruction_utc": "2026-08-11T04:42:41.499160+00:00"
 }

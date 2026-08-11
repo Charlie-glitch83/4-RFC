@@ -1,14 +1,14 @@
 # Current Context
 
-Generated: 2026-08-06T01:47:46.966316+00:00
+Generated: 2026-08-11T04:42:41.094864+00:00
 
 ## Project truth
 
-- Status: `BOOTSTRAP_READY`
+- Status: `ACTIVE`
 - Generation mode: `GENERATION_SEALED`
-- Active work unit: `BOOT-000` — Install, Verify, and Commit the Repository Scaffold
-- Current module: `REPO`
-- Last verified commit: `None`
+- Active work unit: `SRC-010` — Hash and Admit the Core Source Corpus
+- Current module: `SOURCES`
+- Last verified commit: `39bcd805ff649a5c143fb09b9a757b467644f817`
 
 ## Strongest supported claim
 
@@ -20,20 +20,20 @@ The enhanced RFC universe is complete, physically executed, or empirically valid
 
 ## Immediate objective
 
-Place this scaffold at the root of Charlie-glitch83/4-RFC, run all local checks, commit it, and verify the exact GitHub SHA and diff.
+Admit exact source bytes from source_seed into immutable sources/frozen, classify authority, and create a reproducible source manifest.
 
 ## Required deliverables
 
-- runs/BOOT-000/CLOSEOUT.md
-- verified GitHub commit SHA
-- passing doctor/tests/firewall scan
+- sources/SOURCE_MANIFEST.json
+- memory/SOURCE_REGISTRY.json
+- runs/SRC-010/CLOSEOUT.md
 
 ## Mandatory gates
 
-- README visible in GitHub
-- new commit SHA exists
-- diff contains scaffold
-- doctor and tests pass
+- all core bytes resolvable
+- hashes match
+- authority class explicit
+- no summary used as parent
 
 ## Module states
 
@@ -62,6 +62,12 @@ Place this scaffold at the root of Charlie-glitch83/4-RFC, run all local checks,
 - admitted sources: 0
 - frozen artifacts: 0
 - indexed runs: 0
+
+## Recent decisions
+
+- COMMIT-958005985085: Verified clean 4-RFC scaffold installation; README fetched and root scaffold diff independently inspected.
+- COMMIT-39bcd805ff64: Verified BOOT-000 prescribed work-branch commit and diff.
+- ADVANCE-BOOT-000-20260811T044239Z: Marked BOOT-000 PASS and activated SRC-010
 
 ## Resume commands
 
