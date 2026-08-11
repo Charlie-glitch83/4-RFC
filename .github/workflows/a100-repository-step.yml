@@ -89,7 +89,13 @@ jobs:
               f.write(json.dumps({'classification':'BLOCKED_UNDERDETERMINED','stage':'PRE_EXECUTION_DEFINITION_AND_LOCK','description':'Exact admitted parent/source bytes do not yet establish the executable source-owned reaction graph and rate laws required to freeze E-140.','changes_frozen_science':False,'public_inputs_used':False})+'\n')
           print(json.dumps(blocked,indent=2))
           PY
+          set +e
           python tools/rfc.py advance --task E-140 --result FAIL --evidence "$RUN_DIR/E140_BLOCKED_UNDERDETERMINED.json" --note 'E-140 blocked before pre-execution freeze: admitted parent/source bytes do not specify an executable source-owned reaction graph and rate laws without prohibited target fitting.'
+          rc=$?
+          set -e
+          test "$rc" -ne 0
+          grep -q '"active_work_unit": "E-140"' STATE.json
+          grep -q '"status": "DRAFT"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
           python tools/rfc.py doctor
           python tools/director.py doctor
           python -m unittest discover -s tests -v
