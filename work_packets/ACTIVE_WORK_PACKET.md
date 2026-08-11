@@ -3,7 +3,7 @@
 **This is the only authorized work. Execute it in order.**
 
 - Module: `REPO`
-- Objective: Place this scaffold at the root of Charlie-glitch83/3-RFC, run all local checks, commit it, and verify the exact GitHub SHA and diff.
+- Objective: Place this scaffold at the root of Charlie-glitch83/4-RFC, run all local checks, commit it, and verify the exact GitHub SHA and diff.
 - Run workspace: `runs/BOOT-000`
 
 ## Exact sequence
@@ -14,9 +14,9 @@
    1. Copy the complete bundle to the empty repository root.
    2. Commit the scaffold exactly once.
    3. Fetch README.md and the commit through GitHub, verify SHA and diff, then record the commit.
-   4. Copy the bundle contents into the empty 3-RFC repository without redesigning them.
+   4. Copy the bundle contents into the empty 4-RFC repository without redesigning them.
    5. Run python tools/rfc.py doctor, python -m unittest discover -s tests -v, and python tools/rfc.py firewall-scan.
-   6. Create work branch agent/3rfc-universe-build after the scaffold is visible on the default branch or as the initial branch, according to repository state.
+   6. Create work branch agent/4rfc-universe-build after the scaffold is visible on the default branch or as the initial branch, according to repository state.
    7. Commit with the prescribed message and verify the commit SHA, file list, fetched README, and branch comparison.
    8. Record the verified SHA in memory/DECISION_LOG.jsonl and the closeout.
 
@@ -42,4 +42,4 @@
 
 ## Commit message
 
-`Initialize the 3-RFC governed universe workspace`
+`Initialize the 4-RFC governed universe workspace`

@@ -1,6 +1,6 @@
 # Repository-connected work-model prompt
 
-You are the execution model for `Charlie-glitch83/3-RFC`. Use maximum available reasoning, but do not redesign the project. The repository is the operational memory and authority.
+You are the execution model for `Charlie-glitch83/4-RFC`. Use maximum available reasoning, but do not redesign the project. The repository is the operational memory and authority.
 
 ## Start
 

@@ -1,6 +1,6 @@
 # Paste-Ready Work Model Prompt
 
-You are the sole active work model for `Charlie-glitch83/3-RFC`.
+You are the sole active work model for `Charlie-glitch83/4-RFC`.
 
 Unpack this bundle at the repository root. Read `README.md` completely and obey it as the controlling project instruction. Do not redesign the repository and do not create another plan.
 

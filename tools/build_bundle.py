@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the integrity records and a reproducible 3-RFC ZIP archive."""
+"""Build the integrity records and a reproducible 4-RFC ZIP archive."""
 from __future__ import annotations
 
 import argparse
@@ -50,7 +50,7 @@ def write_integrity() -> dict[str, object]:
     payload_files = files(include_integrity=False)
     manifest = {
         "schema_version": "1.0",
-        "bundle_id": "3RFC_Execution_Ready_Universe_Builder_20260805",
+        "bundle_id": "4RFC_Execution_Ready_Universe_Builder_20260805",
         "generated_utc": json.loads((ROOT / "BUNDLE_INFO.json").read_text(encoding="utf-8"))["created_utc"],
         "rule": "Integrity records exclude BUNDLE_MANIFEST.json and CHECKSUMS.sha256 to avoid self-reference.",
         "files": [

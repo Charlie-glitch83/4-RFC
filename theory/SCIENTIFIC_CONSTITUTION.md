@@ -1,8 +1,8 @@
-# 3-RFC Scientific Constitution
+# 4-RFC Scientific Constitution
 
 ## Governing claim
 
-3-RFC is built to establish that existence in its entirety emerges from the ordered triad
+4-RFC is built to establish that existence in its entirety emerges from the ordered triad
 
 \[
 \mathcal T=(\mathrm{CIF},\mathrm{QV},\mathrm{RFL}),

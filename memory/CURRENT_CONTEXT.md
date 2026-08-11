@@ -12,7 +12,7 @@ Generated: 2026-08-06T01:47:46.966316+00:00
 
 ## Strongest supported claim
 
-A governed scaffold and source seed have been prepared; no new 3-RFC scientific result has been executed.
+A governed scaffold and source seed have been prepared; no new 4-RFC scientific result has been executed.
 
 ## Strongest unsupported claim
 
@@ -20,7 +20,7 @@ The enhanced RFC universe is complete, physically executed, or empirically valid
 
 ## Immediate objective
 
-Place this scaffold at the root of Charlie-glitch83/3-RFC, run all local checks, commit it, and verify the exact GitHub SHA and diff.
+Place this scaffold at the root of Charlie-glitch83/4-RFC, run all local checks, commit it, and verify the exact GitHub SHA and diff.
 
 ## Required deliverables
 

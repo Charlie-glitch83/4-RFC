@@ -19,6 +19,6 @@ manifest:
 	python tools/build_bundle.py
 
 package:
-	python tools/build_bundle.py --output ../3RFC_Execution_Ready_Universe_Builder_20260805.zip
+	python tools/build_bundle.py --output ../4RFC_Execution_Ready_Universe_Builder_20260805.zip
 
 verify: doctor test firewall

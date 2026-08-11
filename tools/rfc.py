@@ -198,11 +198,11 @@ def validate_repository() -> list[str]:
 def cmd_doctor(_: argparse.Namespace) -> int:
     errors = validate_repository()
     if errors:
-        print("3-RFC DOCTOR: FAIL")
+        print("4-RFC DOCTOR: FAIL")
         for e in errors:
             print(f"- {e}")
         return 1
-    print("3-RFC DOCTOR: PASS")
+    print("4-RFC DOCTOR: PASS")
     state = load_json(STATE_PATH)
     print(f"Active work unit: {state['active_work_unit']}")
     print(f"Generation mode: {state['generation_mode']}")
@@ -759,7 +759,7 @@ def cmd_context_pack(args: argparse.Namespace) -> int:
     state = load_json(STATE_PATH)
     item = active_item()
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    out = ROOT / (args.output or f"memory/context_packs/3RFC_CONTEXT_{item['id']}_{stamp}.zip")
+    out = ROOT / (args.output or f"memory/context_packs/4RFC_CONTEXT_{item['id']}_{stamp}.zip")
     out.parent.mkdir(parents=True, exist_ok=True)
     candidates = [
         ROOT / "README.md", ROOT / "AGENTS.md", ROOT / "STATE.json", ROOT / "WORK_QUEUE.json",
@@ -864,7 +864,7 @@ def cmd_admit_seed(_: argparse.Namespace) -> int:
     return 0
 
 def main() -> int:
-    p = argparse.ArgumentParser(description="3-RFC repository control")
+    p = argparse.ArgumentParser(description="4-RFC repository control")
     sub = p.add_subparsers(dest="cmd", required=True)
 
     for name, func in [("doctor", cmd_doctor), ("status", cmd_status), ("next", cmd_next), ("context", cmd_context), ("firewall-scan", cmd_firewall_scan), ("verify-bundle", cmd_verify_bundle), ("admit-seed", cmd_admit_seed)]:
