@@ -7,7 +7,7 @@
   "authorization_mode": "AUTO_SINGLE_CHILD_AFTER_PASS",
   "active_work_unit": "C-120",
   "current_module": "C",
-  "current_run": "C-120-20260811T142152Z",
+  "current_run": null,
   "source_state": "SEED_ADMITTED_INDEPENDENTLY_RECONSTRUCTED",
   "canonical_source_manifest": "sources/SOURCE_MANIFEST.json",
   "frozen_universe_hash": null,
@@ -133,16 +133,70 @@
       ]
     },
     "C": {
-      "evidence_state": "DESIGN",
-      "fidelity": "UNSTARTED",
-      "active_run": "C-120-20260811T142152Z",
+      "evidence_state": "FROZEN",
+      "fidelity": "MINIMAL_SPINE",
+      "active_run": null,
       "frozen_artifacts": [],
       "evidence_history": [
         {
           "state": "DESIGN",
           "timestamp_utc": "2026-08-06T00:48:09.414909+00:00",
           "evidence": "repository bootstrap"
+        },
+        {
+          "state": "FORMALIZED",
+          "fidelity": "MINIMAL_SPINE",
+          "evidence": "modules/C/runs/C-120-20260811T142152Z/PRE_EXECUTION_LOCK.json",
+          "timestamp_utc": "2026-08-11T16:49:31.549524+00:00",
+          "work_unit": "C-120"
+        },
+        {
+          "state": "IMPLEMENTED",
+          "fidelity": "MINIMAL_SPINE",
+          "evidence": "modules/C/runs/C-120-20260811T142152Z/solver_configs/C_spectral_model.json",
+          "timestamp_utc": "2026-08-11T16:49:31.606010+00:00",
+          "work_unit": "C-120"
+        },
+        {
+          "state": "VERIFIED",
+          "fidelity": "MINIMAL_SPINE",
+          "evidence": "modules/C/runs/C-120-20260811T142152Z/GATE_RESULTS.json",
+          "timestamp_utc": "2026-08-11T16:49:31.662535+00:00",
+          "work_unit": "C-120"
+        },
+        {
+          "state": "PHYSICALLY_EXECUTED",
+          "fidelity": "MINIMAL_SPINE",
+          "evidence": "modules/C/runs/C-120-20260811T142152Z/MICROSCOPIC_STATE.json",
+          "timestamp_utc": "2026-08-11T16:49:31.718598+00:00",
+          "work_unit": "C-120"
+        },
+        {
+          "state": "INDEPENDENTLY_REPRODUCED",
+          "fidelity": "MINIMAL_SPINE",
+          "evidence": "modules/C/runs/C-120-20260811T142152Z/INDEPENDENT_VERIFICATION.md",
+          "timestamp_utc": "2026-08-11T16:49:31.775077+00:00",
+          "work_unit": "C-120"
+        },
+        {
+          "state": "FROZEN",
+          "fidelity": "MINIMAL_SPINE",
+          "evidence": "modules/C/runs/C-120-20260811T142152Z/H_C_to_D.json",
+          "timestamp_utc": "2026-08-11T16:49:31.832645+00:00",
+          "work_unit": "C-120"
         }
+      ],
+      "promotion_evidence": [
+        "modules/C/runs/C-120-20260811T142152Z/PRE_EXECUTION_LOCK.json",
+        "modules/C/runs/C-120-20260811T142152Z/solver_configs/C_spectral_model.json",
+        "modules/C/runs/C-120-20260811T142152Z/GATE_RESULTS.json",
+        "modules/C/runs/C-120-20260811T142152Z/MICROSCOPIC_STATE.json",
+        "modules/C/runs/C-120-20260811T142152Z/INDEPENDENT_VERIFICATION.md",
+        "modules/C/runs/C-120-20260811T142152Z/H_C_to_D.json"
+      ],
+      "last_promoted_utc": "2026-08-11T16:49:31.832657+00:00",
+      "completed_runs": [
+        "C-120-20260811T142152Z"
       ]
     },
     "D": {
@@ -355,7 +409,7 @@
     }
   },
   "last_verified_commit": "32a2190520fd3d547fcdac57a31b082788220afc",
-  "last_updated_utc": "2026-08-11T14:21:52.581538+00:00",
+  "last_updated_utc": "2026-08-11T16:49:31.949933+00:00",
   "strongest_supported_claim": "A governed scaffold and source seed have been prepared; no new 4-RFC scientific result has been executed.",
   "strongest_unsupported_claim": "The enhanced RFC universe is complete, physically executed, or empirically validated.",
   "last_verified_branch": "agent/4rfc-universe-build"

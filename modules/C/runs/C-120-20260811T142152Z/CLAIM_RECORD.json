@@ -1,0 +1,14 @@
+{
+  "claim_id": "C120-MICROSCOPIC-HANDOFF",
+  "evidence": [
+    "modules/C/runs/C-120-20260811T142152Z/H_C_to_D.json",
+    "modules/C/runs/C-120-20260811T142152Z/C120_GATE_EXECUTION.json",
+    "modules/C/runs/C-120-20260811T142152Z/independent_reconstruction.json",
+    "modules/C/runs/C-120-20260811T142152Z/MICROSCOPIC_STATE.json"
+  ],
+  "evidence_state": "FROZEN",
+  "fidelity": "MINIMAL_SPINE",
+  "owner": "C",
+  "supported": true,
+  "text": "Module C establishes the frozen parent-derived anonymous RFC microscopic quadratic constitution and exact handoff H_C_to_D at MINIMAL_SPINE scope."
+}

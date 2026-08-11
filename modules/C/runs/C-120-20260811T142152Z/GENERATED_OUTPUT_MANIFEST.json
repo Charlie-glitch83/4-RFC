@@ -1,8 +1,104 @@
 {
-  "run_id": "",
-  "status": "DRAFT",
-  "finalized_utc": null,
-  "outputs": [],
-  "tree_sha256": null,
-  "note": "Finalize only after all generated files stop changing. Do not include this manifest in its own tree hash."
+  "finalized_utc": "2026-08-11T16:49:31.494181+00:00",
+  "note": "Hash covers finalized generated scientific/evidence outputs listed here and excludes this manifest and mutable run-registration metadata.",
+  "outputs": [
+    {
+      "bytes": 100247,
+      "path": "C120_MICROSCOPIC_DERIVATION.json",
+      "sha256": "27280f0d4388d8e8cb3e9c35a0ffd0e8a42d4a419d070e43bc1118e9ae617c58"
+    },
+    {
+      "bytes": 112027,
+      "path": "solver_configs/C_spectral_model.json",
+      "sha256": "9543a388df43d188d12dfb76aa86f80c2e8ffe72d7a65193e4ed98d1fb61858d"
+    },
+    {
+      "bytes": 45780,
+      "path": "solver_outputs/spectral_model/result.json",
+      "sha256": "691dd019d6d89e58595c064dbff1208a29862b4e7df0d94983c321c963ce66e9"
+    },
+    {
+      "bytes": 404,
+      "path": "solver_outputs/spectral_model/manifest.json",
+      "sha256": "fc385884c9ee5972d1a12e33ce7392708923a68aae7a84304b69389168f7fb25"
+    },
+    {
+      "bytes": 462,
+      "path": "reference_checks.json",
+      "sha256": "53ea809b8a03f71f448d1544aaca5992473163cbf1c313d7233b9bd541479070"
+    },
+    {
+      "bytes": 4717,
+      "path": "C120_GATE_EXECUTION.json",
+      "sha256": "d18c460ff4085276b90fe5a3f878639cc85fd66b1fb1264e6cfc0d6a76ab219d"
+    },
+    {
+      "bytes": 458,
+      "path": "independent_reconstruction.json",
+      "sha256": "f6ba08b7377c6efd3977c9545f7f6fabcad5a9fcca7f669c0e034764e01f5737"
+    },
+    {
+      "bytes": 662,
+      "path": "UNCERTAINTY_COVARIANCE.json",
+      "sha256": "05f0776e43cfe154e1bcd935b4e2f8063655f8223e26dc4de19263995a6aa1fa"
+    },
+    {
+      "bytes": 101275,
+      "path": "MICROSCOPIC_STATE.json",
+      "sha256": "fc65192eb644621a8be4a19231200ee678dec91dd2ad587ad92d47acbfef9c5b"
+    },
+    {
+      "bytes": 823,
+      "path": "CHECKPOINT_RECORD.json",
+      "sha256": "637ce0cb3268e534017b2606aa65ed1f5523ba847d68036e47a3d5d0d1e940d4"
+    },
+    {
+      "bytes": 859,
+      "path": "REPLAY_RECORD.json",
+      "sha256": "a1108c348dfd06c5b1ac3b350681830e88539a9c982cdeb3ac2166b4d32b7609"
+    },
+    {
+      "bytes": 27229,
+      "path": "H_C_to_D.json",
+      "sha256": "0f7fcbbe99ffd30ee5afaeb32f83c9fc8bb287d98ceb6850a0b31c551618945b"
+    },
+    {
+      "bytes": 1192,
+      "path": "GATE_RESULTS.json",
+      "sha256": "acdc980d4bde62ab711f74641a0dd180c39fbf511bd527290ecd0e37c5d39023"
+    },
+    {
+      "bytes": 1449,
+      "path": "INDEPENDENT_VERIFICATION.md",
+      "sha256": "8c231598614fe5317af23ec373817fc85e4774fef7111f1f1367d42438b417f6"
+    },
+    {
+      "bytes": 2203,
+      "path": "CLOSEOUT.md",
+      "sha256": "911fbb0305cd6fc21afbb8a4b8aa7dacd7169d1eb27a4f7c7f356db363b72a76"
+    },
+    {
+      "bytes": 628,
+      "path": "wolfram/C-WL-001/record.json",
+      "sha256": "76c830bf62d022a126e27fb08bfc5494f5b60f2bafffda683aea9a6f5d9d6f80"
+    },
+    {
+      "bytes": 537,
+      "path": "wolfram/C-WL-001/gate.json",
+      "sha256": "ff67c6cef0a90f568cf919d9f2d7de3cf737f2e2397da391cd60ebf1c1d894d1"
+    },
+    {
+      "bytes": 621,
+      "path": "wolfram/C-WL-002/record.json",
+      "sha256": "44cd5e79ddec058b3dc643f0e8c482a47f0d6dd7e49f48658657274f0866daeb"
+    },
+    {
+      "bytes": 522,
+      "path": "wolfram/C-WL-002/gate.json",
+      "sha256": "ccaec59a95f005bfea7f8daad8fd98750f858dcc8230d0341c51b558570e9390"
+    }
+  ],
+  "run_id": "C-120-20260811T142152Z",
+  "status": "FINAL",
+  "tree_sha256": "53488b328bfc2ec27fc461a2840232f57cd25fb845c5d37f7fdd6fcabf28ffde"
 }

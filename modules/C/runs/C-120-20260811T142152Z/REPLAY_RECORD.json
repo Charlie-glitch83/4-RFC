@@ -1,19 +1,25 @@
 {
-  "run_id": "C-120-20260811T142152Z",
-  "status": "FINAL",
+  "artifact_hashes_match": true,
+  "checks": {
+    "classification_match": true,
+    "eigenprojectors_match": true,
+    "eigenvalues_match": true,
+    "generator_audits_match": true,
+    "reconstruction_error_match": true,
+    "shape_match": true,
+    "success_match": true,
+    "symmetric_match": true
+  },
   "clean_checkout": true,
-  "restart_check": true,
-  "earliest_change_replay": true,
   "commands": [
     "python tools/run_configured_solver.py --config modules/C/runs/C-120-20260811T142152Z/solver_configs/C_spectral_model.json --output-dir <fresh-temp-dir>",
     "python modules/C/runs/C-120-20260811T142152Z/C120_VERIFY.py"
   ],
+  "earliest_change_replay": true,
+  "primary_solver_success": true,
+  "representation_rule": "eigenvector signs are gauge; compare eigenvalues and rank-1 eigenprojectors",
+  "restart_check": true,
   "result": "PASS",
-  "artifact_hashes_match": true,
-  "raw_json_hashes_match": false,
-  "artifact_hash_basis": "canonical representation-invariant spectral artifact: eigenvalues, rank-1 eigenprojectors, generator audits, classification, shape, symmetry and reconstruction residuals within the frozen tolerance",
-  "representation_rule": "Eigenvector signs are spectral-basis gauge; raw JSON byte identity is not the scientific replay object. Canonical spectral artifacts are identical under the frozen representation rule.",
-  "spectral_invariants_match": true,
-  "maximum_eigenprojector_error": 2.0586090502140006e-16,
-  "evidence": "C120_GATE_EXECUTION.json: replay_restart.pass=true and every replay component is true"
+  "run_id": "C-120-20260811T142152Z",
+  "status": "FINAL"
 }
