@@ -31,8 +31,10 @@ jobs:
           bash tools/start_work.sh
           grep -q 'ACTIVE WORK PACKET — D-130' work_packets/ACTIVE_WORK_PACKET.md
           grep -q '"status": "FROZEN"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
-          python tools/director.py wolfram-record --run "$RUN" --call D-WL-001 --output "$RUN_DIR/wolfram/D-WL-001/output.txt"
-          python tools/director.py wolfram-record --run "$RUN" --call D-WL-002 --output "$RUN_DIR/wolfram/D-WL-002/output.txt"
+          cp "$RUN_DIR/wolfram/D-WL-001/output.txt" /tmp/D-WL-001-output.txt
+          cp "$RUN_DIR/wolfram/D-WL-002/output.txt" /tmp/D-WL-002-output.txt
+          python tools/director.py wolfram-record --run "$RUN" --call D-WL-001 --output /tmp/D-WL-001-output.txt
+          python tools/director.py wolfram-record --run "$RUN" --call D-WL-002 --output /tmp/D-WL-002-output.txt
           python tools/run_reference_checks.py --module D --output "$RUN_DIR/reference_checks.json"
           python tools/materialize_solver_config.py --template "$RUN_DIR/solver_templates/D_transport.template.json" --binding-sheet "$RUN_DIR/binding_sheets/D_transport.bindings.json" --output "$RUN_DIR/solver_configs/D_transport.json"
           python tools/run_configured_solver.py --config "$RUN_DIR/solver_configs/D_transport.json" --output-dir "$RUN_DIR/solver_outputs/transport"
