@@ -1,0 +1,9 @@
+{
+  "solver": "spectral_model",
+  "generation_mode": "GENERATION_SEALED",
+  "config_sha256": "fdf7a1365fd1e7c389920ed2f4f8a559e893ace298c758b3019628c82bef756d",
+  "result_sha256": "429afe7a047d76e892a5e1f336857de16a086e3e5a9ede31b2d4dbe8efbdac85",
+  "environment_sha256": "9ecdab7a398ced1d69ef03a7e7adccddfd6a61ce9bfcfeca26c84e1b080517da",
+  "success": true,
+  "classification": "SPECTRAL_MODEL_AUDIT"
+}
