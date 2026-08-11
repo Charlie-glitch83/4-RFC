@@ -7,6 +7,20 @@ import numpy as np
 from .utils import complex_json, require_finite
 
 
+def _canonicalize_eigenvector_signs(vectors: np.ndarray) -> np.ndarray:
+    """Fix the arbitrary +/- gauge of real eigenvectors for deterministic replay."""
+    out = np.array(vectors, copy=True)
+    if out.ndim != 2:
+        return out
+    for column in range(out.shape[1]):
+        vec = out[:, column]
+        pivot = int(np.argmax(np.abs(vec)))
+        value = vec[pivot]
+        if np.isrealobj(out) and value < 0:
+            out[:, column] *= -1.0
+    return out
+
+
 def run_spectral_model(cfg: dict[str, Any]) -> dict[str, Any]:
     """Audit a frozen real matrix candidate and its declared symmetry generators."""
     matrix = require_finite("matrix", cfg["matrix"])
@@ -17,6 +31,7 @@ def run_spectral_model(cfg: dict[str, Any]) -> dict[str, Any]:
     symmetric = symmetry_error <= tolerance
     if symmetric:
         values, vectors = np.linalg.eigh((matrix + matrix.T) / 2.0)
+        vectors = _canonicalize_eigenvector_signs(vectors)
         reconstruction = vectors @ np.diag(values) @ vectors.T
         orthogonality_error = float(np.linalg.norm(vectors.T @ vectors - np.eye(len(values))))
     else:
