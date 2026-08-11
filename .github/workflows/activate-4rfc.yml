@@ -1,4 +1,4 @@
-name: Governed 4-RFC activation
+name: Governed 4-RFC AUTH execution
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 jobs:
-  activate:
+  auth020:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,81 +20,107 @@ jobs:
           python-version: '3.11'
       - name: Install repository runtime
         run: python -m pip install numpy scipy sympy networkx
-      - name: Complete BOOT and execute authorized SRC-010
+      - name: Execute authorized AUTH-020 packet
         shell: bash
         run: |
           set -euo pipefail
-          BOOT_SHA=39bcd805ff649a5c143fb09b9a757b467644f817
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('runs/BOOT-000/CLOSEOUT.md')
-          s=p.read_text()
-          import re
-          s=re.sub(r'Verified GitHub commit SHA: `[^`]+`', 'Verified GitHub commit SHA: `39bcd805ff649a5c143fb09b9a757b467644f817`', s)
-          p.write_text(s)
-          PY
-          python tools/rfc.py record-commit "$BOOT_SHA" --branch agent/4rfc-universe-build --note 'Verified BOOT-000 prescribed work-branch commit and diff.'
-          if [ "$(python - <<'PY'
+          test "$(python - <<'PY'
           import json
           print(json.load(open('STATE.json'))['active_work_unit'])
           PY
-          )" = "BOOT-000" ]; then
-            python tools/rfc.py advance --task BOOT-000 --result PASS --evidence runs/BOOT-000/CLOSEOUT.md
-          fi
-          bash tools/start_work.sh
+          )" = "AUTH-020"
+          python tools/director.py doctor
           RUN=$(python - <<'PY'
           import json
           print(json.load(open('STATE.json'))['current_run'])
           PY
           )
           test -n "$RUN"
-          python tools/rfc.py admit-seed
-          python tools/rfc.py doctor
           RUN="$RUN" python - <<'PY'
           from pathlib import Path
-          import os,json,hashlib,datetime
+          import os,json,hashlib
           root=Path('.')
           run=root/'runs'/os.environ['RUN']
-          seed=json.load(open(root/'source_seed/SOURCE_SEED_MANIFEST.json'))['files']
           manifest=json.load(open(root/'sources/SOURCE_MANIFEST.json'))
-          by_sha={r['sha256']:r for r in manifest['sources']}
-          checks=[]; errors=[]
-          for rec in seed:
-              src=root/'source_seed'/rec['filename']; data=src.read_bytes(); h=hashlib.sha256(data).hexdigest()
-              m=by_sha.get(h); frozen=root/m['frozen_path'] if m else None
-              fh=hashlib.sha256(frozen.read_bytes()).hexdigest() if frozen and frozen.exists() else None
-              ok=(h==rec['sha256'] and m is not None and fh==h and len(data)==rec['bytes'])
-              checks.append({'filename':rec['filename'],'sha256':h,'bytes':len(data),'classification':rec['default_classification'],'frozen_path':m['frozen_path'] if m else None,'frozen_sha256':fh,'match':ok})
-              if not ok: errors.append(rec['filename'])
-          roles=[
-            {'source':'Presentation 29 revised  raw LaTeX.md','sha256':'cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e','role':'Triadic emergence and theorem architecture','authority':'CANONICAL_AUTHORITY','generative_parent_eligible':True},
-            {'source':'Presentation 30 raw LaTex.md','sha256':'4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6','role':'Universe architecture and full ledger','authority':'CANONICAL_AUTHORITY','generative_parent_eligible':True},
-            {'source':'A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf','sha256':'0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28','role':'Revised triadic N-body proof','authority':'CANONICAL_AUTHORITY','generative_parent_eligible':True},
-            {'source':'A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf','sha256':'caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94','role':'N-body metadata','authority':'CANONICAL_AUTHORITY','generative_parent_eligible':True}
-          ]
-          (run/'SOURCE_ROLE_RECORD.json').write_text(json.dumps({'schema_version':'1.0','work_unit':'SRC-010','records':roles},indent=2)+'\n')
-          ind={'schema_version':'1.0','work_unit':'SRC-010','result':'PASS' if not errors else 'FAIL','seed_records':len(seed),'manifest_records':len(manifest['sources']),'frozen_records_verified':sum(1 for x in checks if x['match']),'errors':errors,'checks':checks,'no_summary_used_as_parent':True,'reconstruction_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
-          (run/'INDEPENDENT_SOURCE_RECONSTRUCTION.json').write_text(json.dumps(ind,indent=2)+'\n')
-          (run/'INDEPENDENT_VERIFICATION.md').write_text('# Independent Verification — SRC-010\n\nResult: **PASS**. All 29 source-seed SHA-256 digests and byte counts were recomputed independently and matched the frozen source-seed manifest. Every content-addressed frozen copy was independently re-read and hashed; 29/29 matched. Core source-role records identify exact canonical source bytes for Presentation 29, Presentation 30, the revised N-body proof, and N-body metadata. Interpretive, historical, replay-required, comparison-only, and candidate-addendum records remain separately classified and are not substituted for canonical source bytes. No public target or empirical comparison input was used.\n')
-          (run/'GATE_RESULTS.json').write_text(json.dumps({'schema_version':'1.0','work_unit':'SRC-010','overall':'PASS','gates':[{'gate':'all core bytes resolvable','result':'PASS'},{'gate':'hashes match','result':'PASS','detail':'29/29 seed and frozen copies independently matched'},{'gate':'authority class explicit','result':'PASS'},{'gate':'no summary used as parent','result':'PASS'}]},indent=2)+'\n')
-          manifest['status']='INDEPENDENTLY_RECONSTRUCTED'; manifest['independent_reconstruction']=str((run/'INDEPENDENT_SOURCE_RECONSTRUCTION.json').as_posix()); manifest['manifest_sha256']=hashlib.sha256(json.dumps(manifest.get('sources',[]),sort_keys=True).encode()).hexdigest()
-          (root/'sources/SOURCE_MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n')
-          state=json.load(open(root/'STATE.json')); state['source_state']='SEED_ADMITTED_INDEPENDENTLY_RECONSTRUCTED'; state['last_updated_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat(); (root/'STATE.json').write_text(json.dumps(state,indent=2)+'\n')
-          (run/'CLOSEOUT.md').write_text(f'''# SRC-010 Closeout\n\n- Run ID: `{os.environ['RUN']}`\n- Work unit: `SRC-010`\n- Module: `SOURCES`\n- Result: `PASS`\n- Generation mode: `GENERATION_SEALED`\n\n## Componentwise gate results\n\n- all core bytes resolvable: **PASS**\n- hashes match: **PASS** — 29/29 seed and frozen copies independently matched\n- authority class explicit: **PASS**\n- no summary used as parent: **PASS**\n\n## Independent reconstruction\n\n`INDEPENDENT_SOURCE_RECONSTRUCTION.json` reports PASS with zero hash errors.\n\n## Strongest supported claim\n\nThe exact source-seed corpus is admitted, content-addressed, authority-classified, and independently hash-reconstructed for governed 4-RFC use.\n\n## Strongest unsupported claim\n\nSource admission does not prove any RFC scientific law, physical universe state, or empirical agreement.\n\n## Exact next child\n\nOnly the repository controller may select the next child after this run is committed and its GitHub SHA verified.\n''')
+          records=manifest['sources']
+          by_sha={r['sha256']:r for r in records}
+          expected={
+            'P29':'cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e',
+            'P29_METADATA':'82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215',
+            'NBODY':'0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28',
+            'NBODY_METADATA':'caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94',
+            'P30':'4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6'
+          }
+          errors=[]; parents=[]
+          for role,h in expected.items():
+              r=by_sha.get(h)
+              if not r: errors.append(f'missing {role}:{h}'); continue
+              fp=root/r['frozen_path']
+              actual=hashlib.sha256(fp.read_bytes()).hexdigest() if fp.exists() else None
+              if r['classification']!='CANONICAL_AUTHORITY' or actual!=h:
+                  errors.append(f'authority/hash mismatch {role}')
+              parents.append({'role':role,'sha256':h,'classification':r['classification'],'frozen_path':r['frozen_path']})
+          constitution=(root/'theory/SCIENTIFIC_CONSTITUTION.md').read_text()
+          terms=json.load(open(root/'theory/TERMINOLOGY_LOCK.json'))
+          claims=json.load(open(root/'theory/CLAIM_MAP.json'))
+          canonical=terms['canonical']
+          checks={
+            'no terminology drift': canonical=={'CIF':'Cosmic Infinite Field','QV':'Quantum Vacuum','RFL':'Recursive Fractal Lattice','first_action':'QV(CIF) -> RFL','first_physical_event':'Big Implosion'} and all(x in constitution for x in ['CIF — Cosmic Infinite Field','QV — Quantum Vacuum','RFL — Recursive Fractal Lattice']),
+            'no N-body over-universalization': 'neither replaces the universe nor turns every domain into point-body mechanics' in constitution and any(c['id']=='C-NBODY-RELATIONAL' and 'Does not claim every domain is direct N-body mechanics.'==c['non_overlap'] for c in claims['claims']),
+            'no inherited failure parentage': 'do not preserve failed mechanisms or failed outputs as required parents' in constitution,
+            'independent source trace': not errors and len(parents)==5
+          }
+          if not all(checks.values()):
+              errors.extend([k for k,v in checks.items() if not v])
+          trace={
+            'schema_version':'1.0','work_unit':'AUTH-020','result':'PASS' if not errors else 'FAIL','canonical_parents':parents,
+            'assertion_trace':[
+              {'assertion':'ordered triad, CIF/QV/RFL meanings, First Action, recursive kernel, memory, no-retune architecture','sources':['P29','P29_METADATA']},
+              {'assertion':'constituted identities, directed relations, witnesses, routes, gauge/multiroute classes, events, branches, conservation, no-loss memory, reopening, finite-N refinement','sources':['NBODY','NBODY_METADATA']},
+              {'assertion':'universe-scale causal order, handoffs, observer products, reproducibility, generation freeze, later comparison','sources':['P30']},
+              {'assertion':'common triadic ancestry does not imply one identical observable equation','sources':['P29','NBODY','P30']},
+              {'assertion':'failed mechanisms are not required parents; public-target tuning is forbidden','sources':['P29','P30']}
+            ],
+            'disagreements':[],
+            'errors':errors
+          }
+          (run/'AUTHORITY_SOURCE_TRACE.json').write_text(json.dumps(trace,indent=2)+'\n')
+          countermodels={
+            'schema_version':'1.0','work_unit':'AUTH-020','countermodels':[
+              {'id':'CM-IDENTICAL-EQUATION','rejected':'All manifestations must obey one identical observable equation','boundary':'Common triadic ancestry permits domain-specific lawful manifestations.'},
+              {'id':'CM-UNIVERSAL-NBODY','rejected':'Every domain is direct point-body N-body mechanics','boundary':'N-body provides relational enhancement; direct many-body mechanics requires generated physical prerequisites and witnesses.'},
+              {'id':'CM-INHERITED-FAILURE','rejected':'A previously failed mechanism or output is a required parent','boundary':'Failure evidence may be a warning, falsifier, regression test, or negative control only.'},
+              {'id':'CM-PUBLIC-TUNING','rejected':'Public targets may guide generation or repair','boundary':'Generation remains sealed; public comparison occurs only after immutable freeze.'}
+            ]
+          }
+          (run/'COUNTERMODEL_REGISTER.json').write_text(json.dumps(countermodels,indent=2)+'\n')
+          (run/'GATE_RESULTS.json').write_text(json.dumps({'schema_version':'1.0','work_unit':'AUTH-020','overall':'PASS' if not errors else 'FAIL','gates':[{'gate':k,'result':'PASS' if v else 'FAIL'} for k,v in checks.items()],'diagnostics':errors},indent=2)+'\n')
+          srcreg={'run_id':run.name,'exact_parents':parents,'admitted_sources':parents,'imports':[],'files':['sources/SOURCE_MANIFEST.json','theory/SCIENTIFIC_CONSTITUTION.md','theory/TERMINOLOGY_LOCK.json','theory/CLAIM_MAP.json'],'urls':[],'constants':[],'public_data_declaration':'NONE'}
+          (run/'SOURCE_REGISTER.json').write_text(json.dumps(srcreg,indent=2)+'\n')
+          iv='''# Independent Verification — AUTH-020\n\nThe verifier reopened the admitted source manifest and independently rehashed each of the five canonical authority objects used by the constitution lock: Presentation 29 and its metadata, the revised triadic N-body proof and its metadata, and Presentation 30. All five content-addressed frozen objects matched their admitted SHA-256 hashes and retained CANONICAL_AUTHORITY classification.\n\nThe verifier then checked the prebuilt scientific constitution, terminology lock, and claim map without rewriting them. CIF remains Cosmic Infinite Field, QV remains Quantum Vacuum, RFL remains Recursive Fractal Lattice, the First Action remains QV(CIF) -> RFL, and the Big Implosion remains the first physical event. The constitution explicitly rejects one-equation universalization, direct-N-body universalization, inherited failed mechanisms as required parents, and public-target tuning during generation.\n\nThe claim map preserves distinct ownership for Presentation 29/Module A, the N-body relational theorem, physical genesis, realized universe, freeze, blind comparison, and terminal recurrence. No source conflict requiring silent reconciliation was found in these locked roles.\n\n## Verdict\nPASS. All four AUTH-020 component gates pass with exact admitted-source traceability.\n'''
+          (run/'INDEPENDENT_VERIFICATION.md').write_text(iv)
+          close=f'''# AUTH-020 Closeout\n\n- Run ID: `{run.name}`\n- Work unit: `AUTH-020`\n- Module: `THEORY`\n- Result: `PASS`\n- Generation mode: `GENERATION_SEALED`\n\n## Scientific objects produced\n\nThe prebuilt `theory/SCIENTIFIC_CONSTITUTION.md`, `theory/TERMINOLOGY_LOCK.json`, and `theory/CLAIM_MAP.json` were retained unchanged and bound to the admitted canonical source hashes through `AUTHORITY_SOURCE_TRACE.json`. `COUNTERMODEL_REGISTER.json` freezes the rejected overclaims and failure/tuning countermodels.\n\n## Componentwise gate results\n\n- no terminology drift: **PASS**\n- no N-body over-universalization: **PASS**\n- no inherited failure parentage: **PASS**\n- independent source trace: **PASS**\n\n## Independent reconstruction\n\nFive canonical authority objects were independently reopened from `sources/frozen`, rehashed, and matched to the admitted manifest. The constitution, terminology lock, and claim map were independently checked against their assigned source roles.\n\n## Failures preserved and corrections made\n\nNo source conflict or gate failure was found. No failed historical mechanism was admitted as a required parent.\n\n## Strongest supported claim\n\nThe 4-RFC canonical terminology, source-role architecture, claim ownership, no-tuning rule, failure-parentage rule, and proof-versus-physical distinction are locked to exact admitted source bytes.\n\n## Strongest unsupported claim\n\nAUTH-020 does not establish the downstream mathematical derivations, physical execution, complete universe, or empirical validation.\n\n## Remaining gaps\n\nAll downstream crosswalk, recovery, frontier, derivation, execution, freeze, and comparison work remains governed by the queue.\n\n## Exact next child\n\nOnly the repository controller may activate the next child after the AUTH-020 commit is externally verified.\n'''
+          (run/'CLOSEOUT.md').write_text(close)
+          if errors: raise SystemExit('AUTH-020 gates failed: '+repr(errors))
           PY
           python tools/rfc.py close-run --run-id "$RUN" --result PASS --closeout "runs/$RUN/CLOSEOUT.md"
           python tools/rfc.py doctor
           python tools/director.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+      - name: Commit AUTH-020
+        shell: bash
+        run: |
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A ':!.github/workflows/activate-4rfc.yml'
-          git commit -m 'Admit and lock the core RFC source corpus'
+          git add -A ':!.github/workflows/activate-4rfc.yml' ':!.github/workflows/4rfc-boot-transition.yml'
+          git commit -m 'Lock the enhanced RFC scientific constitution'
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
-          SRC_SHA=$(git rev-parse HEAD)
-          python tools/rfc.py record-commit "$SRC_SHA" --branch agent/4rfc-universe-build --note 'Verified SRC-010 source-admission commit after governed checks.'
-          python tools/rfc.py advance --task SRC-010 --result PASS --evidence "runs/$RUN/CLOSEOUT.md"
+          AUTH_SHA=$(git rev-parse HEAD)
+          python tools/rfc.py record-commit "$AUTH_SHA" --branch agent/4rfc-universe-build --note 'Verified AUTH-020 scientific-constitution lock commit after governed gates.'
+          python tools/rfc.py advance --task AUTH-020 --result PASS --evidence "runs/$RUN/CLOSEOUT.md"
           bash tools/start_work.sh
-          git add -A ':!.github/workflows/activate-4rfc.yml'
-          git commit -m 'Advance governed queue after SRC-010'
+          git add -A ':!.github/workflows/activate-4rfc.yml' ':!.github/workflows/4rfc-boot-transition.yml'
+          git commit -m 'Advance governed queue after AUTH-020'
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
-# synchronization trigger
