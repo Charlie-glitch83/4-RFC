@@ -1,21 +1,120 @@
 {
-  "run_id": "",
-  "status": "DRAFT",
-  "frozen_utc": null,
-  "authority_hashes": [],
-  "parent_hashes": [],
-  "definition_hashes": [],
-  "candidate_classes": [],
-  "equations_and_laws": [],
-  "dimensions_units_frames_gauges_clocks": [],
-  "methods": [],
-  "tolerances": [],
-  "stopping_rules": [],
-  "expected_invariants": [],
-  "tests": [],
-  "gates": [],
-  "falsifiers": [],
-  "claim_boundary": "",
-  "independent_verifier_design": "",
-  "allowed_implementation_only_corrections": []
+  "allowed_implementation_only_corrections": [
+    "Serialization, path, environment, solver-call, or equivalent implementation corrections only; no parent bytes, G_D law, initial-state derivation, intrinsic clock rule, tolerances, gates, falsifiers, or claim scope may change. Rerun full frozen matrix after correction."
+  ],
+  "authority_hashes": [
+    "4588a02fc5baff38bc83b5390161cf44f1cdd98a1acd137860d9ec36efccd365",
+    "1ad9720aa394d62df35bf6161414522f7a5563e8a8f94f5c8cd0c5e0b466cb16"
+  ],
+  "candidate_classes": [
+    "RFC_CARRIER_DENSITY",
+    "RFC_LOCAL_QUADRATIC_ENERGY_DENSITY",
+    "LINEAR_PARENT_DERIVED_TRANSPORT_SEMIGROUP",
+    "DIMENSIONLESS_RELAXATION_ORDER",
+    "THERMAL_PROXY_FIELD",
+    "PHASE_CROSSING_WITNESS",
+    "ENTROPY_LEDGER"
+  ],
+  "claim_boundary": "Generated RFC linear nonequilibrium thermal/transport history on inherited pregeometry; nonlinear collisions, metric expansion, empirical temperature units, and primordial abundances remain unestablished.",
+  "definition_hashes": [
+    "23392ac24c437688f0c6764b1dc8dd310e081bdfbfdb3ca2d4b6777a9d24c1df",
+    "5d9e9fb1e92cd23947d93cf624def4e8f9c90e6974be2776f9b308babd376b1d",
+    "01615a679b2c96f4eab060ca6a5a0837dea083676cd481dac50dc30150be91e0",
+    "7a37c1c42456ad94691035df415337699cc4a801aeec0411f8e3b49fc9f5b1af"
+  ],
+  "dimensions_units_frames_gauges_clocks": [
+    "All D amplitudes inherit C/B dimensionless normalization; no kelvin, seconds, metric length, or empirical scale is admitted.",
+    "s_D is an intrinsic dimensionless relaxation-order parameter with origin at the B event-order origin and scale derived only from K_C spectrum.",
+    "Pregeometry spread uses inherited path index and is not metric/cosmological expansion."
+  ],
+  "equations_and_laws": [
+    "G_D=-K_C",
+    "dq/ds=G_D q",
+    "de/ds=G_D e",
+    "sum_i q_i=constant",
+    "sum_i e_i=constant",
+    "Theta_i=e_i/q_i",
+    "S=-sum_i p_i log p_i",
+    "phase witness: sign crossing of Theta_i-Theta_bar"
+  ],
+  "expected_invariants": [
+    "G_D has nonnegative off-diagonals and zero row sum",
+    "carrier and local-energy densities remain nonnegative",
+    "total carrier and total quadratic energy are conserved",
+    "entropy is nondecreasing within numerical tolerance",
+    "temperature proxy relaxes without fitted threshold",
+    "phase witnesses are derived crossings only",
+    "nonlinear collision obstruction remains explicit"
+  ],
+  "falsifiers": [
+    "negative distribution beyond tolerance",
+    "carrier or energy drift beyond tolerance",
+    "entropy decrease beyond numerical tolerance",
+    "event witness depends on public/observed target",
+    "independent reconstruction mismatch",
+    "nonlinear/empirical input appears"
+  ],
+  "frozen_utc": "2026-08-11T17:34:34.327350+00:00",
+  "gates": [
+    "positive distributions",
+    "energy/charge conservation",
+    "event ordering",
+    "stiff-solver convergence",
+    "restart and independent reconstruction"
+  ],
+  "independent_verifier_design": "Reconstruct K_C directly from exact C parent, rebuild q and local quadratic e from admitted B ancestor, propagate both with exp(-K_C s) independently of the primary BDF solver, reproduce invariants/entropy/events and compare at frozen sample times.",
+  "methods": [
+    "exact parent SHA-256 verification",
+    "D-WL-001",
+    "D-WL-002",
+    "D manufactured reference matrix",
+    "provenance-bound BDF transport execution",
+    "entropy/temperature/event postprocessing",
+    "stiffness and step convergence",
+    "transport/energy/charge ablations",
+    "restart/replay",
+    "internal numerical covariance",
+    "independent matrix-exponential reconstruction"
+  ],
+  "parent_hashes": [
+    "a194474515a4b7a274c41f7bc127ea4d09301c6af1b7e8d851ceb11c74930c1b",
+    "0f7fcbbe99ffd30ee5afaeb32f83c9fc8bb287d98ceb6850a0b31c551618945b",
+    "fc65192eb644621a8be4a19231200ee678dec91dd2ad587ad92d47acbfef9c5b",
+    "27280f0d4388d8e8cb3e9c35a0ffd0e8a42d4a419d070e43bc1118e9ae617c58",
+    "f50c7e721c38dd9b63f2910f3a0ace399f1854e85cbdafaa9ce51649d40c073a"
+  ],
+  "run_id": "D-130-20260811T165602Z",
+  "status": "FROZEN",
+  "stopping_rules": [
+    "Stop on any unresolved __BIND_ token",
+    "Stop on any parent hash mismatch",
+    "Stop on negative carrier or energy density beyond 1e-12",
+    "Stop on carrier or energy drift above 1e-9",
+    "Stop if event ordering uses observed targets",
+    "Stop if nonlinear collision coefficients, empirical temperature/time scales, metric expansion, or primordial abundances are inserted",
+    "Stop on any mandatory gate failure"
+  ],
+  "tests": [
+    "D-WL-001 complete output",
+    "D-WL-002 complete output",
+    "Module D manufactured reference checks",
+    "primary 80-state BDF execution",
+    "max-step convergence",
+    "carrier/energy invariants",
+    "positivity",
+    "entropy production",
+    "phase-event ordering",
+    "zero-transport ablation",
+    "broken-conservation countermodel",
+    "restart/replay",
+    "internal covariance",
+    "independent matrix-exponential reconstruction"
+  ],
+  "tolerances": [
+    "BDF rtol 1e-9",
+    "BDF atol 1e-12",
+    "linear-invariant tolerance 1e-9",
+    "positivity tolerance 1e-12",
+    "no componentwise gate averaging"
+  ]
 }

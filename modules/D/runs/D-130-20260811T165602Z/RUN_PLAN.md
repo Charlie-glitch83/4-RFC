@@ -1,9 +1,5 @@
-# Run Plan — D-130
+# D-130 Run Plan
 
-PRE-CHEWED MODULE PLAN
+Run: `D-130-20260811T165602Z`
 
-Objective: Evolve the microscopic state through nonequilibrium thermodynamics, transport, phase changes, entropy production, and clock/frame-consistent expansion.
-
-The exact derivation obligations, calls, outputs, gates, and stop conditions are frozen in `FROZEN_RECIPE.json`, `WORK_ORDER.md`, and `REQUIRED_GATES.json`.
-
-Before execution, replace every placeholder in the source register, pre-execution lock, environment, expected outcomes, tolerances, falsifiers, and claim boundary with exact frozen values.
+Execute the sole authorized Module D packet from exact frozen Module C parent bytes. The frozen transport law is `G_D=-K_C`, applied separately to inherited positive carrier density and parent-derived local quadratic-energy density so total carrier and total energy are exact linear invariants. The intrinsic clock is dimensionless relaxation order derived solely from the nonzero spectrum of `K_C`. Nonlinear collisions, metric expansion, empirical time/temperature scales, and primordial abundances are prohibited and remain unresolved.

@@ -1,10 +1,58 @@
 {
-  "run_id": "",
-  "exact_parents": [],
   "admitted_sources": [],
-  "imports": [],
-  "files": [],
-  "urls": [],
-  "constants": [],
-  "public_data_declaration": "NONE"
+  "constants": [
+    {
+      "empirical": false,
+      "name": "transport.rtol",
+      "origin": "frozen D solver template",
+      "value": 1e-09
+    },
+    {
+      "empirical": false,
+      "name": "transport.atol",
+      "origin": "frozen D solver template",
+      "value": 1e-12
+    }
+  ],
+  "exact_parents": [
+    {
+      "kind": "REGISTERED_RUN_BUNDLE",
+      "path": "modules/C/runs/C-120-20260811T142152Z",
+      "sha256": "a194474515a4b7a274c41f7bc127ea4d09301c6af1b7e8d851ceb11c74930c1b"
+    },
+    {
+      "kind": "EXACT_PARENT_HANDOFF",
+      "path": "modules/C/runs/C-120-20260811T142152Z/H_C_to_D.json",
+      "sha256": "0f7fcbbe99ffd30ee5afaeb32f83c9fc8bb287d98ceb6850a0b31c551618945b"
+    },
+    {
+      "kind": "EXACT_PARENT_STATE",
+      "path": "modules/C/runs/C-120-20260811T142152Z/MICROSCOPIC_STATE.json",
+      "sha256": "fc65192eb644621a8be4a19231200ee678dec91dd2ad587ad92d47acbfef9c5b"
+    },
+    {
+      "kind": "EXACT_PARENT_DERIVATION",
+      "path": "modules/C/runs/C-120-20260811T142152Z/C120_MICROSCOPIC_DERIVATION.json",
+      "sha256": "27280f0d4388d8e8cb3e9c35a0ffd0e8a42d4a419d070e43bc1118e9ae617c58"
+    },
+    {
+      "kind": "ANCESTRAL_STATE_EXPLICITLY_REFERENCED_BY_C_HANDOFF",
+      "path": "modules/B/runs/B-110-20260811T140258Z/FIRST_PHYSICAL_STATE.json",
+      "sha256": "f50c7e721c38dd9b63f2910f3a0ace399f1854e85cbdafaa9ce51649d40c073a"
+    }
+  ],
+  "files": [
+    "recipes/D/WORK_ORDER.md",
+    "recipes/D/recipe.json",
+    "configured_runs/templates/D_transport.template.json",
+    "modules/D/runs/D-130-20260811T165602Z/D130_STRUCTURAL_BINDING_RULES.json"
+  ],
+  "imports": [
+    "hashlib",
+    "json",
+    "numpy"
+  ],
+  "public_data_declaration": "NONE",
+  "run_id": "D-130-20260811T165602Z",
+  "urls": []
 }
