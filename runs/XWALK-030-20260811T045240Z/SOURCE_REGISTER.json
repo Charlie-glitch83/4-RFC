@@ -1,10 +1,26 @@
 {
-  "run_id": "",
-  "exact_parents": [],
-  "admitted_sources": [],
-  "imports": [],
-  "files": [],
-  "urls": [],
-  "constants": [],
+  "run_id": "XWALK-030-20260811T045240Z",
+  "exact_parents": [
+    {
+      "path": "theory/SCIENTIFIC_CONSTITUTION.md",
+      "sha256": "5528d327c338016c93f0a62e842f22f29d59692fcfb6f4de87bd0c95c3870423"
+    },
+    {
+      "path": "theory/ENHANCEMENT_CROSSWALK.json",
+      "note": "output crosswalk; source hashes embedded per object"
+    }
+  ],
+  "admitted_source_hashes": [
+    "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+    "12575578458a7f908f4c10dcf69eddb095d436e21c9f4b51ea758e380ceda4d8",
+    "275ce318acfb84f88e9edb91ca371bcfa8d8dd248172ee9444e4d108fb6472c7",
+    "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+    "522da698be7c70b17e327d54fe5825321934550c0ee3a8a187fcce9098895d3a",
+    "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215",
+    "af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d",
+    "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+    "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+    "e372302fdc09e204345e615c059b41bd4f9a8e9d4d8b1d38bd8d2ee28afe0cad"
+  ],
   "public_data_declaration": "NONE"
 }

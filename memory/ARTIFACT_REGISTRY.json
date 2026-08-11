@@ -16,6 +16,14 @@
       "created_utc": "2026-08-11T04:47:18.790307+00:00",
       "work_unit": "AUTH-020",
       "run_id": "AUTH-020-20260811T044245Z"
+    },
+    {
+      "path": "runs/XWALK-030-20260811T045240Z",
+      "sha256": "3be8b9cad37e9429d10646247c5c3e855218ac0d1d57fee5ea384752c926d6e9",
+      "kind": "RUN_BUNDLE",
+      "created_utc": "2026-08-11T04:57:55.801623+00:00",
+      "work_unit": "XWALK-030",
+      "run_id": "XWALK-030-20260811T045240Z"
     }
   ]
 }
