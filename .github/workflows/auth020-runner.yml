@@ -55,7 +55,7 @@ jobs:
             ('First Action','P29',required['Presentation 29 revised  raw LaTeX.md'],'QV(CIF)' in p29 and 'First Action' in p29),
             ('no-retune architecture','P29',required['Presentation 29 revised  raw LaTeX.md'],'No-Retune Triadic Closure Architecture Theorem' in p29 and 'Downstream modules are prohibited from retuning' in p29),
             ('universe freeze and later read-only comparison','P30',required['Presentation 30 raw LaTex.md'],'Internal Output Freeze' in p30 and 'Read-only Public Comparison' in p30),
-            ('finite-N relational enhancement','N-body',required['A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf'],all(x in nt for x in ['directed body-reference lane','local witness','multi-route equivalence','lawful collision branch','finite N'])),
+            ('finite-N relational enhancement','N-body',required['A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf'],all(x in nt for x in ['directed body-reference lane','local witness','multi-route equivalence','lawful collision branch','finite-N'])),
             ('N-body public validation read-only','N-body',required['A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf'],'Public validation data are read-only' in nt)]
           failed=[a[0] for a in assertions if not a[3]]
           if failed: raise SystemExit('source trace failed: '+repr(failed))
