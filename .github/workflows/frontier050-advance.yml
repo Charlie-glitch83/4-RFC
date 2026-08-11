@@ -1,4 +1,4 @@
-name: Advance verified FRONTIER-050
+name: Repair governed A-100 run workspace
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 jobs:
-  advance-frontier:
+  repair-a100-workspace:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,63 +19,73 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install numpy scipy sympy networkx
-      - name: Record verified frontier and activate exactly one child
+      - name: Re-materialize repository-created A-100 workspace
         shell: bash
         run: |
           set -euo pipefail
-          VERIFIED='8a41b506d9553ef019bbb2711ad3e682a32abcde'
-          RUN='FRONTIER-050-20260811T114313Z'
-          test "$(git rev-parse HEAD)" = "$VERIFIED"
+          RUN='A-100-20260811T115001Z'
+          RUN_PATH="modules/A/runs/$RUN"
 
           python - <<'PY'
           import json
           from pathlib import Path
-          from tools.rfc import sha256_tree
+          run_id='A-100-20260811T115001Z'
+          run_path=Path('modules/A/runs')/run_id
           state=json.load(open('STATE.json'))
-          index=json.load(open('memory/RUN_INDEX.json'))['runs']
-          frontier=json.load(open('audit/PHYSICAL_FRONTIER.json'))
-          rows=[x for x in index if x.get('run_id')=='FRONTIER-050-20260811T114313Z']
-          if len(rows)!=1 or rows[0].get('status')!='PASS':
-              raise SystemExit('FRONTIER-050 is not uniquely closed PASS')
-          actual=sha256_tree((Path.cwd()/rows[0]['path']).resolve())
-          if actual!=rows[0].get('tree_sha256'):
-              raise SystemExit('FRONTIER-050 run tree drift')
-          selected=frontier.get('selected_frontier',{})
-          if selected.get('module')!='A' or selected.get('next_work_unit')!='A-100' or selected.get('authorized_count')!=1:
-              raise SystemExit('frontier audit did not select exactly A-100')
-          if state.get('active_work_unit')!='FRONTIER-050' or state.get('current_run') is not None:
-              raise SystemExit('controller not at FRONTIER-050 transition boundary')
+          index=json.load(open('memory/RUN_INDEX.json'))
+          if state.get('active_work_unit')!='A-100' or state.get('current_module')!='A':
+              raise SystemExit('A-100 is not the sole active work unit')
+          if state.get('current_run')!=run_id or state['modules']['A'].get('active_run')!=run_id:
+              raise SystemExit('unexpected A-100 run registration')
+          if run_path.exists():
+              raise SystemExit('A-100 workspace already exists; no repair required')
+          rows=[r for r in index.get('runs',[]) if r.get('run_id')==run_id]
+          if len(rows)!=1 or rows[0].get('status')!='CREATED' or rows[0].get('path')!=str(run_path):
+              raise SystemExit('stale run registration is not the expected CREATED record')
+
+          failure={
+              'failure_id':'A-100-WORKSPACE-STAGING-OMISSION-20260811T115001Z',
+              'run_id':run_id,
+              'gate':'run workspace materialization',
+              'category':'INFRASTRUCTURE_TRANSPORT_STAGING_OMISSION',
+              'description':'FRONTIER-to-A transition created the governed A-100 workspace in the runner but its transport commit staged state/index/work packet without modules/A/runs, leaving a stale CREATED registration with no workspace on the authoritative branch.',
+              'earliest_affected_object':str(run_path),
+              'changes_frozen_science':False,
+              'required_replay_scope':'recreate the same run ID through rfc.py new-run and director.py prepare-active, then rerun repository doctor/tests/firewall',
+              'strongest_claim_remaining':state.get('strongest_supported_claim'),
+          }
+          with open('memory/FAILURE_LOG.jsonl','a') as f:
+              f.write(json.dumps(failure)+'\n')
+
+          # Remove only the stale registration fields so the repository's own run creator
+          # can regenerate the exact governed shell with the same run ID.
+          index['runs']=[r for r in index.get('runs',[]) if r.get('run_id')!=run_id]
+          state['current_run']=None
+          state['modules']['A']['active_run']=None
+          with open('memory/RUN_INDEX.json','w') as f:
+              json.dump(index,f,indent=2); f.write('\n')
+          with open('STATE.json','w') as f:
+              json.dump(state,f,indent=2); f.write('\n')
           PY
+
+          python tools/rfc.py new-run A --run-id "$RUN"
+          python tools/director.py prepare-active --create-run
+
+          test -f "$RUN_PATH/SOURCE_REGISTER.json"
+          test -f "$RUN_PATH/PRE_EXECUTION_LOCK.json"
+          test -f "$RUN_PATH/FROZEN_RECIPE.json"
+          test -f "$RUN_PATH/WORK_ORDER.md"
+          test -f "$RUN_PATH/REQUIRED_GATES.json"
+          test -f "$RUN_PATH/WOLFRAM_SEQUENCE.md"
+          test -f "$RUN_PATH/RUN_LOCAL_PHASE.sh"
 
           python tools/rfc.py doctor
           python tools/director.py doctor
           python -m unittest discover -s tests -v
           python tools/rfc.py firewall-scan
-
-          python tools/rfc.py record-commit "$VERIFIED" --branch agent/4rfc-universe-build --note 'Externally verified FRONTIER-050 exact A-J object audit, selected Module A frontier, closed run, and diff'
-          python tools/rfc.py advance --task FRONTIER-050 --result PASS --evidence runs/$RUN/CLOSEOUT.md
-
-          # The repository creates the sole authorized A run and its frozen packet scaffold.
-          bash tools/start_work.sh
-          python tools/director.py doctor
-          python tools/rfc.py doctor
-          python -m unittest discover -s tests -v
-          python tools/rfc.py firewall-scan
-
-          python - <<'PY'
-          import json
-          state=json.load(open('STATE.json'))
-          queue=json.load(open('WORK_QUEUE.json'))['items']
-          active=[x for x in queue if x.get('status')=='ACTIVE']
-          if len(active)!=1 or active[0]['id']!='A-100' or state.get('active_work_unit')!='A-100':
-              raise SystemExit('singular A-100 activation failed')
-          if state.get('current_module')!='A' or not state.get('current_run'):
-              raise SystemExit('A-100 run was not materialized')
-          print(json.dumps({'active_work_unit':state['active_work_unit'],'current_module':state['current_module'],'current_run':state['current_run'],'last_verified_commit':state['last_verified_commit']},indent=2))
-          PY
 
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add STATE.json WORK_QUEUE.json memory work_packets runs
-          git commit -m 'Advance FRONTIER-050 to Module A'
+          git add STATE.json memory/RUN_INDEX.json memory/FAILURE_LOG.jsonl work_packets/ACTIVE_WORK_PACKET.md "$RUN_PATH"
+          git commit -m 'Re-materialize governed A-100 run workspace'
           git push origin HEAD:agent/4rfc-universe-build
