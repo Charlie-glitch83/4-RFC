@@ -1,9 +1,47 @@
 {
-  "run_id": "",
+  "run_id": "A-100-20260811T115001Z",
   "exact_parents": [],
-  "admitted_sources": [],
+  "admitted_sources": [
+    {
+      "label": "Triadic emergence and theorem architecture",
+      "path": "sources/frozen/cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e/Presentation 29 revised  raw LaTeX.md",
+      "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "classification": "CANONICAL_AUTHORITY"
+    },
+    {
+      "label": "P29 metadata and reproducibility context",
+      "path": "sources/frozen/82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215/Presentation 29 revised Metadata.md",
+      "sha256": "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215",
+      "classification": "CANONICAL_AUTHORITY"
+    },
+    {
+      "label": "Revised triadic N-body proof",
+      "path": "sources/frozen/0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28/A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf",
+      "sha256": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+      "classification": "CANONICAL_AUTHORITY"
+    },
+    {
+      "label": "N-body metadata",
+      "path": "sources/frozen/caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94/A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf",
+      "sha256": "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+      "classification": "CANONICAL_AUTHORITY"
+    },
+    {
+      "label": "Universe architecture and full ledger",
+      "path": "sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md",
+      "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+      "classification": "CANONICAL_AUTHORITY"
+    }
+  ],
   "imports": [],
-  "files": [],
+  "files": [
+    {"path": "recipes/A/WORK_ORDER.md", "sha256": "0912c5c00717f4c9a010cf96a8206d4d3db74f59e01f6b5e2ebe032a91dc93be"},
+    {"path": "recipes/A/recipe.json", "sha256": "5f7d4b77bcbf9e379c6ab22a377b5dde64295b742a028556302bfc58562a2b73"},
+    {"path": "recipes/A/wolfram/A-WL-001.wl", "sha256": "50a4b5542e128152e43d87b912bdbdc8188f4d355b54b421b2c06ee23d4a8a2e"},
+    {"path": "recipes/A/wolfram/A-WL-002.wl", "sha256": "e59dd764fdc085f002001b05ff7687358eb6ac58ca557a11fd6d19cc0f35a029"},
+    {"path": "configured_runs/templates/A_triad_kernel.template.json", "sha256": "fa42cc61e866d02c53e641e18861caa399d73aec379cff3cce880eff27c2cbad"},
+    {"path": "configured_runs/binding_sheets/A_triad_kernel.bindings.json", "sha256": "3229538154f925bb2e03af574936e3dbadea5f1c2a732ef9c4a011dd2c510bcb"}
+  ],
   "urls": [],
   "constants": [],
   "public_data_declaration": "NONE"
