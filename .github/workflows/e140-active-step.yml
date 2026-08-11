@@ -1,0 +1,54 @@
+name: E-140 Active Step
+
+on:
+  push:
+    branches: [agent/4rfc-universe-build]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Execute E-140 source ownership audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN='E-140-20260811T175023Z'
+          RUN_DIR="modules/E/runs/$RUN"
+          bash tools/start_work.sh
+          cat work_packets/ACTIVE_WORK_PACKET.md
+          grep -q 'ACTIVE WORK PACKET — E-140' work_packets/ACTIVE_WORK_PACKET.md
+          python tools/rfc.py doctor
+          python tools/director.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+          python - <<'PY'
+          import hashlib, json, re
+          from pathlib import Path
+          root=Path('.')
+          hp=root/'modules/D/runs/D-130-20260811T165602Z/H_D_to_E.json'
+          print('H_D_TO_E_SHA256', hashlib.sha256(hp.read_bytes()).hexdigest())
+          hand=json.loads(hp.read_text())
+          print('PARENT_OBSTRUCTIONS', json.dumps(hand['preserved_obstructions'],sort_keys=True))
+          manifest=json.loads((root/'sources/SOURCE_MANIFEST.json').read_text())
+          labels=[]
+          for rec in manifest.get('sources',[]):
+            if rec.get('classification') not in {'CANONICAL_AUTHORITY','ADMITTED_SOURCE','CANDIDATE_ADDENDUM'}:
+              continue
+            p=root/rec.get('frozen_path','')
+            if not p.is_file() or p.suffix.lower() not in {'.md','.txt','.json','.tex'}:
+              continue
+            text=p.read_text(encoding='utf-8',errors='ignore')
+            counts={k:len(re.findall(k,text,re.I)) for k in ['reaction','stoichiometr','rate','species','network','Li7','Be7','He3']}
+            if counts['reaction'] or counts['rate'] or counts['Li7'] or counts['Be7']:
+              labels.append({'label':rec.get('label'),'classification':rec.get('classification'),'sha256':rec.get('sha256'),'path':rec.get('frozen_path'),'counts':counts})
+          print('E_SOURCE_CANDIDATES', json.dumps(labels,indent=2))
+          PY
