@@ -10,7 +10,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def token(field: str, value: str) -> re.Pattern[str]:
-    return re.compile(rf'["\\]?{re.escape(field)}["\\]?\s*->\s*{value}\b')
+    # Wolfram evaluator transcripts may contain either raw Association keys
+    # ("field") or string-escaped keys (\"field\") inside Out[n] text.
+    # Treat those serialization forms identically without changing any gate.
+    return re.compile(rf'(?:\\?")?{re.escape(field)}(?:\\?")?\s*->\s*{value}\b')
 
 
 def main() -> int:

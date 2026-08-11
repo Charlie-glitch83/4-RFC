@@ -1,0 +1,3 @@
+# Independent Verification — SRC-010
+
+Result: **PASS**. All 29 source-seed SHA-256 digests and byte counts were recomputed independently and matched the frozen source-seed manifest. Every content-addressed frozen copy was independently re-read and hashed; 29/29 matched. Core source-role records identify exact canonical source bytes for Presentation 29, Presentation 30, the revised N-body proof, and N-body metadata. Interpretive, historical, replay-required, comparison-only, and candidate-addendum records remain separately classified and are not substituted for canonical source bytes. No public target or empirical comparison input was used.

@@ -1,0 +1,37 @@
+{
+  "attempts": [
+    {
+      "attempt_id": "D130-PREP-001",
+      "category": "IMPLEMENTATION_SCHEMA_ACCESS",
+      "correction": "Corrected object access only; all parent hashes, laws, tolerances, gates and claim scope unchanged.",
+      "description": "Preparation initially addressed the frozen C matrix through candidate_law instead of derivation.matrix.",
+      "result": "FAIL",
+      "science_changed": false
+    },
+    {
+      "attempt_id": "D130-FIREWALL-001",
+      "category": "MECHANICAL_FIREWALL_FALSE_POSITIVE",
+      "correction": "Preserved preparation scripts under scratch, which repository governance excludes from scientific artifact scanning and hashing.",
+      "description": "The mechanical scanner flagged preparation source text naming the declaration key while its value was NONE.",
+      "result": "FAIL",
+      "science_changed": false
+    },
+    {
+      "attempt_id": "D130-WOLFRAM-RECORD-001",
+      "category": "OUTPUT_COPY_PATH",
+      "correction": "Passed an exact temporary copy to the recorder; evaluator bytes unchanged.",
+      "description": "wolfram-record attempted to copy output.txt onto the same path and raised SameFileError.",
+      "result": "FAIL",
+      "science_changed": false
+    },
+    {
+      "attempt_id": "D130-WOLFRAM-PARSE-001",
+      "category": "SERIALIZATION_PARSER",
+      "correction": "Parser now accepts raw or escaped key serialization without changing expectation fields or decision rules.",
+      "description": "The manufactured parser did not recognize escaped Association keys inside the complete evaluator transcript although decayPass was True.",
+      "result": "FAIL",
+      "science_changed": false
+    }
+  ],
+  "run_id": "D-130-20260811T165602Z"
+}

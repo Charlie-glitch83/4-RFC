@@ -1,0 +1,17 @@
+{
+  "run_id": "C-120-20260811T142152Z",
+  "timestamp_utc": "2026-08-11T16:37:42Z",
+  "stage": "PRE_EXECUTION_FREEZE",
+  "classification": "IMPLEMENTATION_ONLY_FIREWALL_FALSE_POSITIVE",
+  "failed_command": "python tools/rfc.py firewall-scan",
+  "flagged_path": "modules/C/runs/C-120-20260811T142152Z/C120_MICROSCOPIC_DERIVATION_RULES.json",
+  "review": "The flagged phrase occurred only inside the forbidden-interpretation vocabulary. Review found no external source, measured target, network retrieval, empirical coefficient, or calibration input in the C-120 generation path.",
+  "correction": "Reworded the prohibition-only label from a scanner-triggering literal to 'external empirical calibration'.",
+  "changes_science": false,
+  "changed_sources": false,
+  "changed_parent_hashes": false,
+  "changed_definitions": false,
+  "changed_values": false,
+  "changed_gates": false,
+  "required_replay_scope": "full frozen C-120 pre-execution and execution matrix"
+}

@@ -1,0 +1,55 @@
+{
+  "carrier": {
+    "compression_ratio": 0.8822816421367029,
+    "reopening_error": 1.1124253200924462e-16,
+    "solver_config_sha256": "16a3761a6562944e36506104594f8ee6b3ba2189e70396a2ae22b1afa67e6076",
+    "solver_result_sha256": "a624f6dca4a26ff8b5b3a8e0fb47a37e4cd2a6905c6f302198e3f6db3c303f6a",
+    "total_relative_change": 1.1102230246251568e-16
+  },
+  "claim_boundary": "First physical RFC state at declared MINIMAL_SPINE fidelity; no microscopic or cosmological late-time completion.",
+  "classification": "EXACT_FIRST_PHYSICAL_HANDOFF",
+  "event": {
+    "continuous_time_scale": null,
+    "intrinsic_event_order_origin": 0,
+    "pre_event_physical_time": null,
+    "statement": "Physical event ordering begins at this event; no physical clock exists on the A side.",
+    "type": "BIG_IMPLOSION"
+  },
+  "evidence": {
+    "ablations": "PASS",
+    "independent_reconstruction": "PASS",
+    "manufactured_reference": "PASS",
+    "multiple_graph_sizes": "PASS",
+    "parent_bound_physical_execution": "PASS",
+    "restart_replay": "PASS",
+    "uncertainty_covariance": "PASS",
+    "wolfram_B_WL_001": "PASS_WITH_MANUAL_INTERPRETATION",
+    "wolfram_B_WL_002": "PASS_WITH_MANUAL_INTERPRETATION"
+  },
+  "generation_mode": "GENERATION_SEALED",
+  "module": "B",
+  "object_id": "H_B_to_C",
+  "parent": {
+    "A_parent_state_sha256": "f04f69ae94e9c4ce0105c835f0ba421377cc47df322d180b0b253cdcc8e5257b",
+    "A_run_bundle_sha256": "58a735dc94366ed57d592bc5535918a477976bf93efbe736dfb39325b19154d4",
+    "H_A_to_B_sha256": "198816819e027409812de925efe42878f9898d628b8c7a137e92c2d52bc568a6"
+  },
+  "pregeometry": {
+    "metric_geometry": false,
+    "node_count": 40,
+    "state_path": "FIRST_PHYSICAL_STATE.json",
+    "state_sha256": "f50c7e721c38dd9b63f2910f3a0ace399f1854e85cbdafaa9ce51649d40c073a"
+  },
+  "restart": {
+    "checkpoint_path": "CHECKPOINT_RECORD.json",
+    "checkpoint_sha256": "074566444c4ef4f3f90981a56ebebcf750ebd5fcd424ef2483b88899dd332d07",
+    "clean_replay_result_sha256": "a624f6dca4a26ff8b5b3a8e0fb47a37e4cd2a6905c6f302198e3f6db3c303f6a"
+  },
+  "run_id": "B-110-20260811T140258Z",
+  "sectors": {
+    "named_later_sectors": [],
+    "total_carrier_ledger_only": true
+  },
+  "strongest_supported_claim": "Module B executes the frozen Big Implosion on the exact A parent and produces a restartable first physical RFC carrier state on explicitly typed pregeometry at MINIMAL_SPINE fidelity.",
+  "strongest_unsupported_claim": "Module B does not establish metric geometry, microscopic particles or identified fields, Standard Model content, later cosmological evolution, a completed manifested universe, or empirical validation."
+}

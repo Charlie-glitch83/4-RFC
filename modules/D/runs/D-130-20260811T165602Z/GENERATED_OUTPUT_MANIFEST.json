@@ -1,0 +1,144 @@
+{
+  "finalized_utc": "2026-08-11T17:47:41.756145+00:00",
+  "note": "Hash covers finalized generated scientific/evidence outputs listed here and excludes this manifest, scratch, and mutable run-registration metadata.",
+  "outputs": [
+    {
+      "bytes": 32895,
+      "path": "D130_STRUCTURAL_BINDING_RULES.json",
+      "sha256": "5d9e9fb1e92cd23947d93cf624def4e8f9c90e6974be2776f9b308babd376b1d"
+    },
+    {
+      "bytes": 33428,
+      "path": "solver_configs/D_transport.json",
+      "sha256": "2a6f7e988d28807f357ff604077a7979a1be6d0e91acdaa1ad4dcffccca8ebf9"
+    },
+    {
+      "bytes": 1920567,
+      "path": "solver_outputs/transport/result.json",
+      "sha256": "34f3ecad88c0368fb3f6e693d6ff2fdc7ed5914312ab384cf216228084d0b6ed"
+    },
+    {
+      "bytes": 402,
+      "path": "solver_outputs/transport/manifest.json",
+      "sha256": "cf51b5cf6970df7eef8a55322af844a60fe288f6fb3583fe87cae05383d8ba1b"
+    },
+    {
+      "bytes": 495,
+      "path": "reference_checks.json",
+      "sha256": "a2581b4a09e1b275e838e6d2c4922e699bc581344dbfd73a9da2adf6e684d2ad"
+    },
+    {
+      "bytes": 3980,
+      "path": "D130_GATE_EXECUTION.json",
+      "sha256": "516223157299f62201d4ffa8a26fcab75d3ffd0bcba9a029c377978796623799"
+    },
+    {
+      "bytes": 1070,
+      "path": "GATE_RESULTS.json",
+      "sha256": "6810346d9e058377569604ae4af433d5cc29ec1011ce3b4911572fd86f537897"
+    },
+    {
+      "bytes": 412,
+      "path": "independent_reconstruction.json",
+      "sha256": "f5a156f3f7457b2279e8c8dfe4144ac82bdf903ddc03278a67ea828932d7d519"
+    },
+    {
+      "bytes": 36047,
+      "path": "THERMAL_HISTORY.json",
+      "sha256": "2c7614343aac8a6758353eb9bf4512a9e895c2c71c6673a20b2e08005f619710"
+    },
+    {
+      "bytes": 30020,
+      "path": "THERMAL_TRANSPORT_STATE.json",
+      "sha256": "9c7e594bc0cdcdf4dbcd08c4f4ceed30170e52b5c648cbed1bc121dff0985ab9"
+    },
+    {
+      "bytes": 7216,
+      "path": "PHASE_EVENT_LEDGER.json",
+      "sha256": "09da8ad381bd7d33415e4afa1a16a1bce4f76876b5b8d4c7547ac81312de201b"
+    },
+    {
+      "bytes": 384,
+      "path": "ENTROPY_CONSERVATION_LEDGER.json",
+      "sha256": "cc7df77a22f566765bea4af2fcfb54e9691c230ba5fc479ead0f53c3880e39ed"
+    },
+    {
+      "bytes": 983,
+      "path": "UNCERTAINTY_COVARIANCE.json",
+      "sha256": "8bb7816d7e38758ecb722b583743b5380998ed5e67bc397eb16367e3d6e29e2c"
+    },
+    {
+      "bytes": 381,
+      "path": "REPLAY_RECORD.json",
+      "sha256": "6946a6dfbd42fd44dbaafc62692bb13a9876b39a2f287bd30a0cd4d4f7f461a1"
+    },
+    {
+      "bytes": 829,
+      "path": "CHECKPOINT_RECORD.json",
+      "sha256": "2b48257fe3337e23340c6b62b0a6498d83c6101ec979a89c07a91efaf71c32dc"
+    },
+    {
+      "bytes": 1259,
+      "path": "ENVIRONMENT.json",
+      "sha256": "5c8389f002403429b47496044920669b43c7f3e4818e1e0e7efede3a7952a821"
+    },
+    {
+      "bytes": 5614,
+      "path": "H_D_to_E.json",
+      "sha256": "79a8f4d5e06558d1114ccd3af832d92344c5d47a075f1f0b708a19ccfc6a59db"
+    },
+    {
+      "bytes": 605,
+      "path": "CLAIM_RECORD.json",
+      "sha256": "77341e1db882b1d800bf3713815c71cf4c4dbc8f9c774af8df5c528a275210ba"
+    },
+    {
+      "bytes": 1727,
+      "path": "FAILED_ATTEMPTS.json",
+      "sha256": "f82166f1e08ec33799de1034aa56a73c3d38707fe45237035a32b93baeb70c4d"
+    },
+    {
+      "bytes": 1845,
+      "path": "INDEPENDENT_VERIFICATION.md",
+      "sha256": "8744096e7e704f901f4186fcc07f49d3e6f175c197fa0851346b9f93f8682ff5"
+    },
+    {
+      "bytes": 2516,
+      "path": "CLOSEOUT.md",
+      "sha256": "82e1aa41e30a326b3a04976e9cf4878b4c877ee4a70fc527a4f7218c84173c80"
+    },
+    {
+      "bytes": 710,
+      "path": "wolfram/D-WL-001/output.txt",
+      "sha256": "ae70a693f688ad802c33deddb4f02e7197c9060f58e699cb7eed31182f1192b3"
+    },
+    {
+      "bytes": 624,
+      "path": "wolfram/D-WL-001/record.json",
+      "sha256": "ecf842fda7e97d056e5ba9f8c59d368fd26ae1ebeb2f50da76f976654062dfeb"
+    },
+    {
+      "bytes": 503,
+      "path": "wolfram/D-WL-001/gate.json",
+      "sha256": "5850f5b97cdf601fb594824f50ed5a491a46de66acf9ea416ad257dceca45719"
+    },
+    {
+      "bytes": 288,
+      "path": "wolfram/D-WL-002/output.txt",
+      "sha256": "eaa6ad554033752536256893543b9670f9a25f832675651e47661cb92c839340"
+    },
+    {
+      "bytes": 625,
+      "path": "wolfram/D-WL-002/record.json",
+      "sha256": "fad4c825e5302b3e575f4f90ac00d572a67956244f195ea1be90c44dcb0822c4"
+    },
+    {
+      "bytes": 466,
+      "path": "wolfram/D-WL-002/gate.json",
+      "sha256": "11ed9a441dc4f250aae5acf65f48b91c3fba797bdc014bf47c889c249c68ce37"
+    }
+  ],
+  "run_id": "D-130-20260811T165602Z",
+  "status": "FINAL",
+  "tree_sha256": "c51c6f60d3fbc1789a3fc130d304d303df46d738640e03cbfaee8c411aae629f"
+}

@@ -1,45 +1,51 @@
-# ACTIVE WORK PACKET — BOOT-000
+# ACTIVE WORK PACKET — E-140
 
 **This is the only authorized work. Execute it in order.**
 
-- Module: `REPO`
-- Objective: Place this scaffold at the root of Charlie-glitch83/4-RFC, run all local checks, commit it, and verify the exact GitHub SHA and diff.
-- Run workspace: `runs/BOOT-000`
+- Module: `E`
+- Objective: Execute a source-owned reaction network to generate primordial isotope abundances and their full uncertainty state.
+- Run workspace: `modules/E/runs/E-140-20260811T175023Z`
 
 ## Exact sequence
 
-1. Read `work_units/BOOT-000/WORK_ORDER.md` and `work_units/BOOT-000/recipe.json`.
-2. Execute the frozen sequence below without redesigning it:
+1. Read `recipes/E/WORK_ORDER.md` and `recipes/E/recipe.json`.
+2. Verify all exact parent hashes and fill the run source register.
+3. Freeze the pre-execution lock before primary execution.
+4. Run these Wolfram calls exactly and record their complete outputs:
 
-   1. Copy the complete bundle to the empty repository root.
-   2. Commit the scaffold exactly once.
-   3. Fetch README.md and the commit through GitHub, verify SHA and diff, then record the commit.
-   4. Copy the bundle contents into the empty 4-RFC repository without redesigning them.
-   5. Run python tools/rfc.py doctor, python -m unittest discover -s tests -v, and python tools/rfc.py firewall-scan.
-   6. Create work branch agent/4rfc-universe-build after the scaffold is visible on the default branch or as the initial branch, according to repository state.
-   7. Commit with the prescribed message and verify the commit SHA, file list, fetched README, and branch comparison.
-   8. Record the verified SHA in memory/DECISION_LOG.jsonl and the closeout.
+   - `python tools/director.py wolfram-show --call E-WL-001`
+   - `python tools/director.py wolfram-show --call E-WL-002`
 
-3. Run the exact commands:
+5. Run `python tools/run_reference_checks.py --module E --output modules/E/runs/E-140-20260811T175023Z/reference_checks.json`.
+6. Bind and run the prebuilt local engines listed below. Every `__BIND_` token is a hard stop:
 
-   - `bash bootstrap.sh`
-   - `python tools/director.py doctor`
-   - `python -m unittest discover -s tests -v`
-   - `python tools/rfc.py firewall-scan`
+   - `python tools/director.py solver-copy --module E --solver reaction_network --destination modules/E/runs/E-140-20260811T175023Z`
+   - fill `configured_runs/binding_sheets/E_reaction_network.bindings.json` after it is copied into the run; every value requires an origin SHA-256
+   - `python tools/materialize_solver_config.py --template modules/E/runs/E-140-20260811T175023Z/solver_templates/E_reaction_network.template.json --binding-sheet modules/E/runs/E-140-20260811T175023Z/binding_sheets/E_reaction_network.bindings.json --output modules/E/runs/E-140-20260811T175023Z/solver_configs/E_reaction_network.json`
+   - `python tools/run_configured_solver.py --config modules/E/runs/E-140-20260811T175023Z/solver_configs/E_reaction_network.json --output-dir modules/E/runs/E-140-20260811T175023Z/solver_outputs/reaction_network`
+
+7. Execute any remaining parent-driven domain code named in the recipe. Manufactured checks and generic engines do not replace the physical result.
+8. Run countermodels, ablations, convergence, restart, replay, uncertainty/covariance, and independent reconstruction.
+9. Finalize manifests only after outputs stop changing. State strongest supported and unsupported claims.
+10. Commit and verify the exact GitHub SHA/diff before advancing.
 
 ## Required deliverables
 
-- runs/BOOT-000/CLOSEOUT.md
-- verified GitHub commit SHA
-- passing doctor/tests/firewall scan
+- modules/E/runs/<RUN_ID>/RUN_PLAN.md
+- modules/E/runs/<RUN_ID>/SOURCE_REGISTER.json
+- modules/E/runs/<RUN_ID>/GATE_RESULTS.json
+- modules/E/runs/<RUN_ID>/INDEPENDENT_VERIFICATION.md
+- modules/E/runs/<RUN_ID>/CLOSEOUT.md
+- frozen output packet and artifact registry entries
 
 ## Componentwise gates
 
-- README visible in GitHub
-- new commit SHA exists
-- diff contains scaffold
-- doctor and tests pass
+- baryon/charge/energy accounting
+- network convergence
+- rate-source audit
+- no scalar-channel collapse
+- withheld reaction and independent implementation checks
 
 ## Commit message
 
-`Initialize the 4-RFC governed universe workspace`
+`Close Module E at its verified scientific scope`

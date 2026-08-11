@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0",
+  "work_unit": "REC-040",
+  "source_repository": "Charlie-glitch83/2-RFC",
+  "rules": {
+    "old_pass_labels_are_authority": false,
+    "public_data_generation_allowed": false,
+    "failed_outputs_as_generative_parents": false
+  },
+  "objects": [
+    {
+      "label": "Triadic emergence and theorem architecture",
+      "repository": "4-RFC frozen source store",
+      "commit": null,
+      "path": "sources/frozen/cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e/Presentation 29 revised  raw LaTeX.md",
+      "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "bytes": 86724,
+      "classification": "CANONICAL_PARENT",
+      "scope": "Already admitted and independently reconstructed by SRC-010; REC-040 does not promote or rewrite it."
+    },
+    {
+      "label": "Revised triadic N-body proof",
+      "repository": "4-RFC frozen source store",
+      "commit": null,
+      "path": "sources/frozen/0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28/A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf",
+      "sha256": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+      "bytes": 356706,
+      "classification": "CANONICAL_PARENT",
+      "scope": "Already admitted and independently reconstructed by SRC-010; REC-040 does not promote or rewrite it."
+    },
+    {
+      "label": "N-body metadata",
+      "repository": "4-RFC frozen source store",
+      "commit": null,
+      "path": "sources/frozen/caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94/A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf",
+      "sha256": "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+      "bytes": 257569,
+      "classification": "ADMITTED_SOURCE",
+      "scope": "Already admitted and independently reconstructed by SRC-010; REC-040 does not promote or rewrite it."
+    },
+    {
+      "label": "Universe architecture and full ledger",
+      "repository": "4-RFC frozen source store",
+      "commit": null,
+      "path": "sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md",
+      "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+      "bytes": 951976,
+      "classification": "CANONICAL_PARENT",
+      "scope": "Already admitted and independently reconstructed by SRC-010; REC-040 does not promote or rewrite it."
+    },
+    {
+      "label": "2-RFC repaired Module L science",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "b0f21d023f64ce9c70fd4755dfdbb7357b9f7a10",
+      "path": "science/BARYONIC_STELLAR_UNIVERSE.md",
+      "sha256": "c707ce074bd79b2863b98b0a8a0bb5f91a93b9c3f7909e4041bb9940c81a0bae",
+      "bytes": 28271,
+      "classification": "ADMITTED_SOURCE",
+      "scope": "Formalized first-pass L^(0) law only; physical L execution is not inherited.",
+      "recovered_path": "recovery/objects/c707ce074bd79b2863b98b0a8a0bb5f91a93b9c3f7909e4041bb9940c81a0bae/BARYONIC_STELLAR_UNIVERSE.md"
+    },
+    {
+      "label": "2-RFC repaired Module L proof",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "b0f21d023f64ce9c70fd4755dfdbb7357b9f7a10",
+      "path": "proofs/BARYONIC_STELLAR_UNIVERSE.md",
+      "sha256": "e82fea7382da9efe80d14c9d17b0c25799589b90b5ed482aba5fce3634658b8a",
+      "bytes": 9493,
+      "classification": "ADMITTED_SOURCE",
+      "scope": "Formal theorem/proof object under declared assumptions; physical execution is not inherited.",
+      "recovered_path": "recovery/objects/e82fea7382da9efe80d14c9d17b0c25799589b90b5ed482aba5fce3634658b8a/BARYONIC_STELLAR_UNIVERSE.md"
+    },
+    {
+      "label": "2-RFC Module L representative verification",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "b0f21d023f64ce9c70fd4755dfdbb7357b9f7a10",
+      "path": "modules/L/MODULE_L_WOLFRAM_VERIFICATION.md",
+      "sha256": "94806bd82173e79d2886ece7643c22234a3864a1d2b6461474972e18ec7dd2c5",
+      "bytes": 2738,
+      "classification": "COMPARISON_ONLY",
+      "scope": "Representative algebra/analytic/synthetic checks only; the historical PASS label is not authority.",
+      "recovered_path": "recovery/objects/94806bd82173e79d2886ece7643c22234a3864a1d2b6461474972e18ec7dd2c5/MODULE_L_WOLFRAM_VERIFICATION.md"
+    },
+    {
+      "label": "2-RFC KLM F0 KLM_F0_COMPUTATIONAL_CERTIFICATE.md",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "3dff7f9626759500b708f2fd905df01509ca8c9e",
+      "path": "execution/KLM/KLM_F0_COMPUTATIONAL_CERTIFICATE.md",
+      "sha256": "a214acfe2a5a23f28b22b532a94d6942fd20fa53fe3ebcea29f1699718bc8a1c",
+      "bytes": 3562,
+      "classification": "COMPARISON_ONLY",
+      "scope": "Constructed reduced F0 regression evidence only; never an F1-F4 physical parent and never Module N authority.",
+      "recovered_path": "recovery/objects/a214acfe2a5a23f28b22b532a94d6942fd20fa53fe3ebcea29f1699718bc8a1c/KLM_F0_COMPUTATIONAL_CERTIFICATE.md"
+    },
+    {
+      "label": "2-RFC KLM F0 klm_f0_config.json",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "3dff7f9626759500b708f2fd905df01509ca8c9e",
+      "path": "execution/KLM/klm_f0_config.json",
+      "sha256": "3a237f6ebfc12d96a5a857cff1e16566e9dfe792ba5344c22681ab296ac42daa",
+      "bytes": 1402,
+      "classification": "COMPARISON_ONLY",
+      "scope": "Constructed reduced F0 regression evidence only; never an F1-F4 physical parent and never Module N authority.",
+      "recovered_path": "recovery/objects/3a237f6ebfc12d96a5a857cff1e16566e9dfe792ba5344c22681ab296ac42daa/klm_f0_config.json"
+    },
+    {
+      "label": "2-RFC KLM F0 klm_f0_execution.py",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "3dff7f9626759500b708f2fd905df01509ca8c9e",
+      "path": "execution/KLM/klm_f0_execution.py",
+      "sha256": "4a13e6b9661246d66e16aa4629ed32e0cf0350e3fa511573dd872b5393e60c70",
+      "bytes": 6374,
+      "classification": "COMPARISON_ONLY",
+      "scope": "Constructed reduced F0 regression evidence only; never an F1-F4 physical parent and never Module N authority.",
+      "recovered_path": "recovery/objects/4a13e6b9661246d66e16aa4629ed32e0cf0350e3fa511573dd872b5393e60c70/klm_f0_execution.py"
+    },
+    {
+      "label": "2-RFC KLM F0 klm_f0_reduced.py",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "3dff7f9626759500b708f2fd905df01509ca8c9e",
+      "path": "execution/KLM/klm_f0_reduced.py",
+      "sha256": "dd10abf55d06892f83e7e52bc822e8b9a4294229ca0f80e3ecefd21148160af6",
+      "bytes": 4978,
+      "classification": "COMPARISON_ONLY",
+      "scope": "Constructed reduced F0 regression evidence only; never an F1-F4 physical parent and never Module N authority.",
+      "recovered_path": "recovery/objects/dd10abf55d06892f83e7e52bc822e8b9a4294229ca0f80e3ecefd21148160af6/klm_f0_reduced.py"
+    },
+    {
+      "label": "2-RFC KLM F0 klm_f0_result.json",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "3dff7f9626759500b708f2fd905df01509ca8c9e",
+      "path": "execution/KLM/klm_f0_result.json",
+      "sha256": "485bd096bcedee1310fc59f3964c515957ce118793c078cacc882e0c4e084ffe",
+      "bytes": 4137,
+      "classification": "COMPARISON_ONLY",
+      "scope": "Constructed reduced F0 regression evidence only; never an F1-F4 physical parent and never Module N authority.",
+      "recovered_path": "recovery/objects/485bd096bcedee1310fc59f3964c515957ce118793c078cacc882e0c4e084ffe/klm_f0_result.json"
+    },
+    {
+      "label": "2-RFC KLM F0 KLM_PHYSICAL_INPUT_GAP.md",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "3dff7f9626759500b708f2fd905df01509ca8c9e",
+      "path": "execution/KLM/KLM_PHYSICAL_INPUT_GAP.md",
+      "sha256": "8fef2462a2b6379de521fae1f4b869feda63c6f7f8e9220d30b54694cb52a872",
+      "bytes": 2310,
+      "classification": "COMPARISON_ONLY",
+      "scope": "Constructed reduced F0 regression evidence only; never an F1-F4 physical parent and never Module N authority.",
+      "recovered_path": "recovery/objects/8fef2462a2b6379de521fae1f4b869feda63c6f7f8e9220d30b54694cb52a872/KLM_PHYSICAL_INPUT_GAP.md"
+    },
+    {
+      "label": "Older P29/P30 failed outputs",
+      "repository": "historical lineage",
+      "commit": null,
+      "path": null,
+      "sha256": null,
+      "bytes": null,
+      "classification": "HISTORICAL_WARNING",
+      "scope": "Never a generative parent or target; retained only as failure/regression history."
+    }
+  ],
+  "replay": {
+    "module_L_reconstruction": {
+      "pair_momentum_conservation": true,
+      "radiation_matter_exchange": true,
+      "stoichiometric_conservation": true,
+      "covariance_psd": true,
+      "lane_emden_n1_limit": true
+    },
+    "klm_f0": {
+      "commit": "3dff7f9626759500b708f2fd905df01509ca8c9e",
+      "classification": "COMPARISON_ONLY",
+      "iterations": 17660,
+      "classification_result": "FIXED_POINT_F0",
+      "final_state_sha256": "a8bc1eb5902a063a026bdc216fd0611661b7cb7c9f3f52c647a5acbc98b01053",
+      "stored_final_state_sha256": "a8bc1eb5902a063a026bdc216fd0611661b7cb7c9f3f52c647a5acbc98b01053",
+      "final_state_match": true,
+      "mandatory_invariants_replayed": true,
+      "replayed_ledger_sha256": "f4beefb5eb6d44d983c35e721ad2f6b69ef916151193bc6270ed239e3c499111",
+      "stored_iteration_ledger_sha256": "339884013a8cc4076bdb07c2b226ccafb83cad26ec3f44a25fe4e91b1f0b09bb",
+      "ledger_hash_match": false,
+      "restart_residual": 0.0,
+      "causal_replay_residual": 0.0,
+      "physical_full_volume_claim": false,
+      "module_n_authorized": false
+    }
+  }
+}

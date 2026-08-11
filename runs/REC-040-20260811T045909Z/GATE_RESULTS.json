@@ -1,0 +1,25 @@
+{
+  "run_id": "REC-040-20260811T045909Z",
+  "overall": "PASS",
+  "gates": [
+    {
+      "gate": "exact commit/file hashes",
+      "status": "PASS"
+    },
+    {
+      "gate": "no old PASS auto-promoted",
+      "status": "PASS"
+    },
+    {
+      "gate": "no public-data contamination",
+      "status": "PASS"
+    },
+    {
+      "gate": "replay evidence",
+      "status": "PASS",
+      "note": "Module L independent reconstruction PASS; F0 final-state exact=True; F0 ledger exact=False with mismatch preserved."
+    }
+  ],
+  "diagnostics": [],
+  "score_rule": "mandatory gates componentwise; below 0.95 triggers analysis"
+}

@@ -1,0 +1,36 @@
+{
+  "commands": [
+    "WolframLanguageEvaluator D-WL-001",
+    "WolframLanguageEvaluator D-WL-002",
+    "python tools/run_reference_checks.py --module D",
+    "python tools/materialize_solver_config.py",
+    "python tools/run_configured_solver.py",
+    "python modules/D/runs/D-130-20260811T165602Z/D130_VERIFY.py"
+  ],
+  "hardware": {
+    "machine": "x86_64",
+    "processor": "x86_64"
+  },
+  "hidden_defaults_audit": "D uses only the exact frozen C/B parent objects, the frozen D BDF tolerances, the parent-derived generator G_D=-K_C, and spectral relaxation-order scale. No empirical rate, external temperature/time scale, metric expansion, particle label, abundance target, or post-hoc fit is used.",
+  "hidden_defaults_audited": true,
+  "imports": [
+    "hashlib",
+    "json",
+    "numpy",
+    "scipy.linalg.expm",
+    "rfc_engine.solvers.transport"
+  ],
+  "network_policy": "DISABLED_DURING_GENERATION_EXCEPT_GOVERNED_GITHUB_TRANSPORT",
+  "operating_system": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+  "python": "3.11.15 (main, Jun 16 2026, 21:41:52) [GCC 13.3.0]",
+  "random_seeds": [],
+  "run_id": "D-130-20260811T165602Z",
+  "software": [
+    "Python 3.11.15",
+    "numpy",
+    "scipy",
+    "sympy",
+    "networkx"
+  ],
+  "status": "FINAL"
+}

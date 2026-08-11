@@ -1,0 +1,19 @@
+{
+  "checkpoints": [
+    {
+      "checkpoint_id": "D_FINAL",
+      "state_path": "THERMAL_TRANSPORT_STATE.json",
+      "state_sha256": "9c7e594bc0cdcdf4dbcd08c4f4ceed30170e52b5c648cbed1bc121dff0985ab9"
+    },
+    {
+      "checkpoint_id": "D_CONFIG",
+      "state_path": "solver_configs/D_transport.json",
+      "state_sha256": "2a6f7e988d28807f357ff604077a7979a1be6d0e91acdaa1ad4dcffccca8ebf9"
+    }
+  ],
+  "hash_algorithm": "sha256",
+  "restart_contract": "Reload the frozen D transport config and THERMAL_TRANSPORT_STATE. A split restart at s_D/2 must reproduce the independent matrix-exponential endpoint within 1e-9 and a clean replay must reproduce the exact primary result artifact.",
+  "run_id": "D-130-20260811T165602Z",
+  "state_schema": "RFC_LINEAR_NONEQUILIBRIUM_THERMAL_STATE_MINIMAL_SPINE/v1",
+  "status": "FINAL"
+}

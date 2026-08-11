@@ -1,0 +1,15 @@
+{
+  "artifact_hashes_match": true,
+  "clean_checkout": true,
+  "clean_replay_result_sha256": "a624f6dca4a26ff8b5b3a8e0fb47a37e4cd2a6905c6f302198e3f6db3c303f6a",
+  "commands": [
+    "python tools/run_configured_solver.py --config modules/B/runs/B-110-20260811T140258Z/solver_configs/B_big_implosion.json --output-dir <fresh-temp-dir>",
+    "python modules/B/runs/B-110-20260811T140258Z/B110_VERIFY.py"
+  ],
+  "earliest_change_replay": true,
+  "primary_result_sha256": "a624f6dca4a26ff8b5b3a8e0fb47a37e4cd2a6905c6f302198e3f6db3c303f6a",
+  "restart_check": true,
+  "result": "PASS",
+  "run_id": "B-110-20260811T140258Z",
+  "status": "FINAL"
+}

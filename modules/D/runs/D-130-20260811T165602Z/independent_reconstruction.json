@@ -1,0 +1,12 @@
+{
+  "acceptance_tolerance": 1e-09,
+  "carrier_total": 0.999999999999942,
+  "classification": "INDEPENDENT_D_MATRIX_EXPONENTIAL_RECONSTRUCTION",
+  "energy_total": 0.02949580130352957,
+  "final_max_abs_error": 1.1796119636642288e-14,
+  "generator_minimum_offdiagonal": 0.0,
+  "generator_row_sum_residual": 0.0,
+  "minimum_carrier": 0.007600175813056873,
+  "minimum_energy": 0.0002245401871637236,
+  "pass": true
+}

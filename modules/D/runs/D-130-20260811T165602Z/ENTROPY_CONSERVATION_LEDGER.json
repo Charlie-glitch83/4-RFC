@@ -1,0 +1,12 @@
+{
+  "carrier_drift": 6.661338147750939e-16,
+  "energy_drift": 2.42861286636753e-17,
+  "entropy_nondecreasing": true,
+  "final_entropy": 3.546531515944081,
+  "initial_entropy": 0.9008810516855332,
+  "minimum_entropy_increment": 1.6075147273308943e-06,
+  "minimum_state": 7.153894780532915e-52,
+  "pass": true,
+  "run_id": "D-130-20260811T165602Z",
+  "theta_bar": 0.02949580130353129
+}

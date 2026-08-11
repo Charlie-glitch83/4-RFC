@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "run_id": "C-120-20260811T142152Z",
+  "module": "C",
+  "generation_mode": "GENERATION_SEALED",
+  "parent_handoff": {
+    "path": "modules/B/runs/B-110-20260811T140258Z/H_B_to_C.json",
+    "sha256": "821a932eacc37da4ec9a384789616bc9f8eb76883b4aa1af125c95a88747138f"
+  },
+  "first_physical_state": {
+    "path": "modules/B/runs/B-110-20260811T140258Z/FIRST_PHYSICAL_STATE.json",
+    "sha256": "f50c7e721c38dd9b63f2910f3a0ace399f1854e85cbdafaa9ce51649d40c073a"
+  },
+  "parent_solver_config": {
+    "path": "modules/B/runs/B-110-20260811T140258Z/solver_configs/B_big_implosion.json",
+    "sha256": "16a3761a6562944e36506104594f8ee6b3ba2189e70396a2ae22b1afa67e6076"
+  },
+  "microscopic_operator_rule": "K_C = Q_B^{-1} - I = L_B/(delta_B-1). This exact dimensionless generator is inherited from the physically executed B compression operator; no coefficient is fitted or imported.",
+  "candidate_space_rule": "The 40-dimensional real carrier space of B is the complete C linear microscopic candidate space at this run. Its eigenmodes are anonymous RFC excitation candidates; no familiar particle name is assigned.",
+  "symmetry_rule": "Use the exact path-reflection permutation R(i)=39-i because it is an automorphism of the frozen B ordered path graph. Require [K_C,R]=0.",
+  "charge_rule": "The normalized constant eigenmode of K_C owns the exactly conserved total-carrier ledger. Reflection parity is an internal symmetry label only, not an empirical gauge charge.",
+  "mass_rule": "Eigenvalues of K_C are dimensionless spectral stiffness/mixing invariants. They are not physical masses because no continuous physical time/energy scale has yet been derived. Physical mass assignment is therefore explicitly obstructed at C-120 rather than imported.",
+  "interaction_rule": "The only executed interaction at C-120 is the inherited linear relational coupling encoded by K_C. Nonlinear self-interactions and Standard Model-like interaction labels remain underdetermined and are not inserted.",
+  "prethermal_population_rule": "Project the exact B first physical carrier onto the orthonormal eigenbasis of K_C; squared modal amplitudes normalized to unity define the generated anonymous prethermal population measure.",
+  "covariance_rule": "Covariance is internal numerical covariance of independent reconstruction/replay residuals only; no empirical covariance or external observational input is admitted.",
+  "positivity_rule": "K_C must be real symmetric positive semidefinite. The constant carrier mode may have exactly zero eigenvalue; all nonconstant path modes must be strictly positive.",
+  "units_dimensions": {
+    "carrier_amplitude": "dimensionless inherited B carrier amplitude",
+    "K_C": "dimensionless event-order spectral stiffness",
+    "eigenvalues": "dimensionless spectral invariants",
+    "modal_populations": "dimensionless normalized weights"
+  },
+  "forbidden_interpretations": [
+    "Standard Model particle labels",
+    "measured masses or couplings",
+    "electromagnetic charge assignment",
+    "metric-spacetime dispersion relation",
+    "physical mass in energy units",
+    "external empirical calibration"
+  ]
+}

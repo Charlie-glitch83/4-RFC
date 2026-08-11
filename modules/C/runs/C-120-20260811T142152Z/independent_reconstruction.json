@@ -1,0 +1,15 @@
+{
+  "classification": "INDEPENDENT_C_RECONSTRUCTION",
+  "matrix_match": true,
+  "minimum_eigenvalue": -1.4399278400441296e-16,
+  "orthogonality_error": 8.9284943509512e-15,
+  "pass": true,
+  "population_minimum": 6.0977731167606955e-06,
+  "population_sum": 1.0,
+  "reconstruction_error": 8.415590260486586e-15,
+  "reflection_commutator": 0.0,
+  "reflection_match": true,
+  "symmetry_error": 0.0,
+  "total_carrier_charge": 1.0,
+  "zero_mode_residual": 0.0
+}

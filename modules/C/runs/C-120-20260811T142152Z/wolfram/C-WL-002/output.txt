@@ -1,0 +1,1 @@
+<|"call" -> "C-WL-002", "invarianceSolution" -> "x21 == -x12 && x22 == x11", "candidate" -> "{{x11, x12}, {-x12, x11}}"|>

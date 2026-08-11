@@ -1,0 +1,14 @@
+{
+  "classification": "INDEPENDENT_B_RECONSTRUCTION",
+  "compression_ratio": 0.8822816421367029,
+  "constant_mode_residual": 0.0,
+  "laplacian_match": true,
+  "manifested_match": true,
+  "operator_match": true,
+  "operator_spd": true,
+  "operator_spectrum_le_one": true,
+  "pass": true,
+  "pregeometry_connected": true,
+  "reopened_parent_max_abs": 1.1102230246251565e-16,
+  "total_ledger_change": 1.1102230246251565e-16
+}

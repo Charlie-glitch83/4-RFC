@@ -1,0 +1,21 @@
+{
+  "checkpoints": [
+    {
+      "path": "MICROSCOPIC_STATE.json",
+      "sha256": "fc65192eb644621a8be4a19231200ee678dec91dd2ad587ad92d47acbfef9c5b"
+    },
+    {
+      "path": "solver_configs/C_spectral_model.json",
+      "sha256": "9543a388df43d188d12dfb76aa86f80c2e8ffe72d7a65193e4ed98d1fb61858d"
+    },
+    {
+      "path": "solver_outputs/spectral_model/result.json",
+      "sha256": "691dd019d6d89e58595c064dbff1208a29862b4e7df0d94983c321c963ce66e9"
+    }
+  ],
+  "hash_algorithm": "sha256",
+  "restart_contract": "Restart from MICROSCOPIC_STATE.json plus the exact frozen B parent; reconstruct K_C, spectral basis, conserved zero mode and prethermal populations before Module D transport.",
+  "run_id": "C-120-20260811T142152Z",
+  "state_schema": "RFC_MICROSCOPIC_QUADRATIC_STATE_MINIMAL_SPINE",
+  "status": "FINAL"
+}

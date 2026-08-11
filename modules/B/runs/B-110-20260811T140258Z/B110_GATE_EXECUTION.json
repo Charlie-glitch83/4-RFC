@@ -1,0 +1,181 @@
+{
+  "ablations": {
+    "compression": {
+      "countermodel": "Q=I",
+      "norm_after": 0.7888070350146957,
+      "norm_before": 0.7888070350146957,
+      "strict_compression": false
+    },
+    "compression_ablation_rejected": true,
+    "coupling": {
+      "compression_ratio": 1.0,
+      "countermodel": "L=0",
+      "solver_success": false,
+      "strict_compression": false
+    },
+    "pass": true,
+    "relational_coupling_ablation_rejected": true
+  },
+  "claim_boundary": "First physical RFC state at MINIMAL_SPINE fidelity; no microscopic or cosmological late-time completion.",
+  "classification": "B110_FROZEN_GATE_EXECUTION",
+  "convergence": {
+    "all_prefix_sizes_pass": true,
+    "boundary_first4_differences": [
+      1.080507221267493e-08,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "last_difference_below_tolerance": true,
+    "pass": true
+  },
+  "gates": {
+    "compression_and_relational_ablations": true,
+    "exact_parent_bytes": true,
+    "independent_reconstruction": true,
+    "multiple_graph_sizes_and_convergence": true,
+    "no_later_physics_smuggled_into_B": true,
+    "no_loss_reopening": true,
+    "no_pre_event_physical_time": true,
+    "restart_and_replay": true,
+    "strict_nontrivial_compression": true,
+    "total_ledger_preservation": true,
+    "uncertainty_covariance": true
+  },
+  "independent_reconstruction": {
+    "classification": "INDEPENDENT_B_RECONSTRUCTION",
+    "compression_ratio": 0.8822816421367029,
+    "constant_mode_residual": 0.0,
+    "laplacian_match": true,
+    "manifested_match": true,
+    "operator_match": true,
+    "operator_spd": true,
+    "operator_spectrum_le_one": true,
+    "pass": true,
+    "pregeometry_connected": true,
+    "reopened_parent_max_abs": 1.1102230246251565e-16,
+    "total_ledger_change": 1.1102230246251565e-16
+  },
+  "overall": "PASS",
+  "physical_state": {
+    "carrier_type": "FIRST_PHYSICAL_CARRIER_AMPLITUDE_ON_PREGEOMETRY",
+    "event_order_origin": 0,
+    "event_type": "BIG_IMPLOSION",
+    "metric_geometry_assumed": false,
+    "named_later_sectors_assigned": false,
+    "particles_assumed": false,
+    "pre_event_physical_time": null,
+    "pregeometry_nodes": 40
+  },
+  "prefix_runs": [
+    {
+      "N": 8,
+      "compression_ratio": 0.8578991549900506,
+      "conserved_mode_error": 1.3877787807814457e-17,
+      "pre_event_clock_null": true,
+      "reopening_error": 2.237903701561808e-16,
+      "success": true,
+      "total_relative_change": 1.1102279390459223e-16
+    },
+    {
+      "N": 16,
+      "compression_ratio": 0.8741911813563703,
+      "conserved_mode_error": 6.938893903907228e-18,
+      "pre_event_clock_null": true,
+      "reopening_error": 1.1124012796318095e-16,
+      "success": true,
+      "total_relative_change": 1.1102230246469104e-16
+    },
+    {
+      "N": 24,
+      "compression_ratio": 0.8788187135935904,
+      "conserved_mode_error": 6.938893903907228e-18,
+      "pre_event_clock_null": true,
+      "reopening_error": 1.1124253200922e-16,
+      "success": true,
+      "total_relative_change": 1.1102230246251568e-16
+    },
+    {
+      "N": 32,
+      "compression_ratio": 0.8810065886888734,
+      "conserved_mode_error": 3.469446951953614e-18,
+      "pre_event_clock_null": true,
+      "reopening_error": 1.1124253200924462e-16,
+      "success": true,
+      "total_relative_change": 1.1102230246251568e-16
+    },
+    {
+      "N": 40,
+      "compression_ratio": 0.8822816421367029,
+      "conserved_mode_error": 3.469446951953614e-18,
+      "pre_event_clock_null": true,
+      "reopening_error": 1.1124253200924462e-16,
+      "success": true,
+      "total_relative_change": 1.1102230246251568e-16
+    }
+  ],
+  "primary_summary": {
+    "compression_ratio": 0.8822816421367029,
+    "conserved_mode_error": 3.469446951953614e-18,
+    "reopening_error": 1.1124253200924462e-16,
+    "success": true,
+    "total_relative_change": 1.1102230246251568e-16
+  },
+  "replay_restart": {
+    "full_result_equal": true,
+    "pass": true,
+    "restart_reopened_matches_parent": true
+  },
+  "run_id": "B-110-20260811T140258Z",
+  "uncertainty_covariance": {
+    "classification": "INTERNAL_NUMERICAL_ONLY",
+    "covariance": [
+      [
+        1.444447458290427e-35,
+        1.561915016031426e-34,
+        6.820128858154129e-40
+      ],
+      [
+        1.561915016031426e-34,
+        2.0267441859877454e-33,
+        8.849756390239212e-39
+      ],
+      [
+        6.820128858154129e-40,
+        8.849756390239212e-39,
+        3.8642364811932906e-44
+      ]
+    ],
+    "covariance_psd": true,
+    "max_residual": 2.237903701561808e-16,
+    "pass": true,
+    "public_or_empirical_uncertainty_used": false,
+    "residual_vectors": [
+      [
+        1.3877787807814457e-17,
+        2.237903701561808e-16,
+        1.1102279390459223e-16
+      ],
+      [
+        6.938893903907228e-18,
+        1.1124012796318095e-16,
+        1.1102230246469104e-16
+      ],
+      [
+        6.938893903907228e-18,
+        1.1124253200922e-16,
+        1.1102230246251568e-16
+      ],
+      [
+        3.469446951953614e-18,
+        1.1124253200924462e-16,
+        1.1102230246251568e-16
+      ],
+      [
+        3.469446951953614e-18,
+        1.1124253200924462e-16,
+        1.1102230246251568e-16
+      ]
+    ]
+  }
+}
