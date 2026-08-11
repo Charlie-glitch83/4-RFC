@@ -28,14 +28,18 @@ jobs:
           set -euo pipefail
           RUN='E-140-20260811T175023Z'
           AUDIT="modules/E/runs/$RUN/E140_SOURCE_ADMISSION_AUDIT.json"
+          PRELOCK="modules/E/runs/$RUN/PRE_EXECUTION_LOCK.json"
           bash tools/start_work.sh
           grep -q 'ACTIVE WORK PACKET — E-140' work_packets/ACTIVE_WORK_PACKET.md
-          grep -q 'REQUIRES_EXACT_SOURCE_OWNED_SPECIES_STOICHIOMETRY_AND_RATE_LAWS_BEFORE_FREEZE' "$AUDIT"
-          grep -q '"status": "DRAFT"' "modules/E/runs/$RUN/PRE_EXECUTION_LOCK.json"
-          python tools/rfc.py advance --task E-140 --result FAIL --evidence "$AUDIT" --note 'BLOCKED_UNDERDETERMINED: admitted E-relevant sources do not provide an exact source-owned executable species set, stoichiometric reaction graph, and reaction rate laws. Old W2/X1 abundance proxy outcomes and solver examples are non-generative and were not used. Pre-execution lock remains DRAFT; no E Wolfram call or reaction solver is authorized.'
+          grep -q '"status": "BLOCKED_UNDERDETERMINED"' "$AUDIT"
+          grep -q '"status": "BLOCKED_UNDERDETERMINED"' "$PRELOCK"
+          test ! -e "modules/E/runs/$RUN/solver_configs/E_reaction_network.json"
+          python tools/rfc.py advance --task E-140 --result FAIL --evidence "$AUDIT" --note 'BLOCKED_UNDERDETERMINED: admitted E-relevant sources do not provide an exact source-owned executable species set, stoichiometric reaction graph, and reaction rate laws. Old W2/X1 abundance proxy outcomes and solver examples are non-generative and were not used. Pre-execution lock is blocked and unfrozen; no E Wolfram call or reaction solver is authorized.'
           python tools/rfc.py doctor
           python tools/director.py doctor
           python tools/rfc.py firewall-scan
+          grep -q '"active_work_unit": "E-140"' STATE.json
+          grep -q '"project_status": "FAIL_REQUIRES_ANALYSIS"' STATE.json
       - name: Commit governed stop evidence
         shell: bash
         run: |
