@@ -21,6 +21,14 @@ def save(path: Path, obj) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(obj, indent=2, sort_keys=True, ensure_ascii=False) + '\n', encoding='utf-8')
 
+def canonicalize(vectors: np.ndarray) -> np.ndarray:
+    out = np.array(vectors, copy=True)
+    for column in range(out.shape[1]):
+        pivot = int(np.argmax(np.abs(out[:, column])))
+        if out[pivot, column] < 0:
+            out[:, column] *= -1.0
+    return out
+
 if sha(B_CFG) != EXPECTED_B_CFG_SHA:
     raise SystemExit('exact B solver config hash mismatch')
 if sha(B_STATE) != EXPECTED_B_STATE_SHA:
@@ -48,6 +56,7 @@ if np.linalg.norm(R.T @ K @ R - K) > 1e-12:
     raise SystemExit('derived path-reflection symmetry failed')
 
 evals, evecs = np.linalg.eigh(K)
+evecs = canonicalize(evecs)
 if float(np.min(evals)) < -1e-12:
     raise SystemExit('derived microscopic generator is not positive semidefinite')
 carrier = np.asarray(bstate['carrier_field']['values'], dtype=float)
@@ -73,6 +82,7 @@ law = {
         'reflection_generator': R.tolist(),
         'quadratic_form': 'E_C(x)=1/2 x^T K_C x = [2(delta_B-1)]^-1 Sum_(i,j in B edges) (x_i-x_j)^2',
         'selection_rule': 'Use the unique generator algebraically implied by the frozen B compression operator; no fitted or remembered coefficient is admitted.',
+        'eigenvector_gauge_rule': 'For each real eigenvector, the largest-magnitude component is oriented positive; this fixes only the arbitrary +/- basis gauge for deterministic serialization.'
     },
     'microscopic_interpretation': {
         'basis': 'anonymous RFC spectral excitation modes on B pregeometry',
