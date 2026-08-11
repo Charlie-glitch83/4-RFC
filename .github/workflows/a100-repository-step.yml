@@ -22,22 +22,18 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install numpy networkx scipy sympy
-      - name: Execute frozen B-110 symbolic records reference checks and physical engine
+      - name: Execute frozen B-110 verification matrix
         shell: bash
         run: |
           set -euo pipefail
           RUN='B-110-20260811T140258Z'
           RUN_DIR="modules/B/runs/$RUN"
-          python tools/director.py wolfram-record --run "$RUN" --call B-WL-001 --output "$RUN_DIR/wolfram_raw/B-WL-001.recorder.txt"
-          python tools/director.py wolfram-record --run "$RUN" --call B-WL-002 --output "$RUN_DIR/wolfram_raw/B-WL-002.recorder.txt"
-          python tools/run_reference_checks.py --module B --output "$RUN_DIR/reference_checks.json"
-          test -f "$RUN_DIR/solver_templates/B_big_implosion.template.json"
-          test -f "$RUN_DIR/binding_sheets/B_big_implosion.bindings.json"
-          python tools/materialize_solver_config.py --template "$RUN_DIR/solver_templates/B_big_implosion.template.json" --binding-sheet "$RUN_DIR/binding_sheets/B_big_implosion.bindings.json" --output "$RUN_DIR/solver_configs/B_big_implosion.json"
-          python tools/run_configured_solver.py --config "$RUN_DIR/solver_configs/B_big_implosion.json" --output-dir "$RUN_DIR/solver_outputs/big_implosion"
+          python "$RUN_DIR/B110_VERIFY.py"
           python tools/rfc.py doctor
           python tools/director.py doctor
-      - name: Commit B-110 primary execution evidence
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+      - name: Commit B-110 verification evidence
         shell: bash
         run: |
           set -euo pipefail
@@ -45,7 +41,7 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add -A
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'B-110: execute frozen Big Implosion primary state'
+          git commit -m 'B-110: execute frozen ablations replay and independent audit'
           git fetch origin agent/4rfc-universe-build
           git rebase origin/agent/4rfc-universe-build
           git push origin HEAD:agent/4rfc-universe-build
