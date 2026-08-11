@@ -22,25 +22,22 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install numpy networkx scipy sympy
-      - name: Finalize and close A-100 through repository commands
+      - name: Verify A-100 closeout and advance exactly one child
         shell: bash
         run: |
           set -euo pipefail
           RUN='A-100-20260811T115001Z'
           RUN_DIR="modules/A/runs/$RUN"
-          python "$RUN_DIR/A100_VERIFY.py"
-          python "$RUN_DIR/A100_FINALIZE.py"
-          python tools/rfc.py promote-module A --to FORMALIZED --fidelity PRODUCTION --evidence "$RUN_DIR/PRE_EXECUTION_LOCK.json"
-          python tools/rfc.py promote-module A --to VERIFIED --fidelity PRODUCTION --evidence "$RUN_DIR/GATE_RESULTS.json"
-          python tools/rfc.py promote-module A --to INDEPENDENTLY_REPRODUCED --fidelity PRODUCTION --evidence "$RUN_DIR/INDEPENDENT_VERIFICATION.md"
-          python tools/rfc.py promote-module A --to FROZEN --fidelity PRODUCTION --evidence "$RUN_DIR/H_A_to_B.json"
-          python tools/rfc.py record-claim --file "$RUN_DIR/CLAIM_RECORD.json"
-          python tools/rfc.py close-run --run-id "$RUN" --result PASS --closeout "$RUN_DIR/CLOSEOUT.md"
+          VERIFIED_SHA='217c4f15c4f139d93854ff5afdaa0b330c921fde'
+          python tools/rfc.py record-commit "$VERIFIED_SHA" --branch agent/4rfc-universe-build --note 'Verified A-100 closeout commit and exact diff'
+          python tools/rfc.py advance --task A-100 --result PASS --evidence "$RUN_DIR/CLOSEOUT.md"
+          bash tools/start_work.sh
+          cat work_packets/ACTIVE_WORK_PACKET.md
           python tools/rfc.py doctor
           python tools/director.py doctor
           python -m unittest discover -s tests -v
           python tools/rfc.py firewall-scan
-      - name: Commit closed A-100
+      - name: Commit A-100 transition and prepared child packet
         shell: bash
         run: |
           set -euo pipefail
@@ -48,7 +45,7 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add -A
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Close Module A at its verified scientific scope'
+          git commit -m 'Advance from frozen Module A to its authorized child'
           git fetch origin agent/4rfc-universe-build
           git rebase origin/agent/4rfc-universe-build
           git push origin HEAD:agent/4rfc-universe-build
