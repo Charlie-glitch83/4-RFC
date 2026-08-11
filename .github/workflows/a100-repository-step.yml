@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install numpy networkx scipy sympy
-      - name: Execute frozen D-130 primary sequence
+      - name: Execute frozen D-130 verification matrix
         shell: bash
         run: |
           set -euo pipefail
@@ -31,18 +31,12 @@ jobs:
           bash tools/start_work.sh
           grep -q 'ACTIVE WORK PACKET — D-130' work_packets/ACTIVE_WORK_PACKET.md
           grep -q '"status": "FROZEN"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
-          cp "$RUN_DIR/wolfram/D-WL-001/output.txt" /tmp/D-WL-001-output.txt
-          cp "$RUN_DIR/wolfram/D-WL-002/output.txt" /tmp/D-WL-002-output.txt
-          python tools/director.py wolfram-record --run "$RUN" --call D-WL-001 --output /tmp/D-WL-001-output.txt
-          python tools/director.py wolfram-record --run "$RUN" --call D-WL-002 --output /tmp/D-WL-002-output.txt
-          python tools/run_reference_checks.py --module D --output "$RUN_DIR/reference_checks.json"
-          python tools/materialize_solver_config.py --template "$RUN_DIR/solver_templates/D_transport.template.json" --binding-sheet "$RUN_DIR/binding_sheets/D_transport.bindings.json" --output "$RUN_DIR/solver_configs/D_transport.json"
-          python tools/run_configured_solver.py --config "$RUN_DIR/solver_configs/D_transport.json" --output-dir "$RUN_DIR/solver_outputs/transport"
+          PYTHONPATH=. python "$RUN_DIR/D130_VERIFY.py"
           python tools/rfc.py doctor
           python tools/director.py doctor
           python -m unittest discover -s tests -v
           python tools/rfc.py firewall-scan
-      - name: Commit D-130 primary execution evidence
+      - name: Commit D-130 verification evidence
         shell: bash
         run: |
           set -euo pipefail
@@ -51,7 +45,7 @@ jobs:
           git restore memory/CURRENT_CONTEXT.md || true
           git add -A modules/D/runs/D-130-20260811T165602Z work_packets/ACTIVE_WORK_PACKET.md STATE.json memory/RUN_INDEX.json || true
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'D-130: execute frozen parent-derived transport'
+          git commit -m 'D-130: verify frozen thermal transport history'
           git fetch origin agent/4rfc-universe-build
           git rebase origin/agent/4rfc-universe-build
           git push origin HEAD:agent/4rfc-universe-build
