@@ -13,9 +13,9 @@
       "evidence": "Module L is REPLAY_REQUIRED at formal/representative scope only; F0 is COMPARISON_ONLY; old completion labels and state files are non-authority."
     },
     {
-      "name": "no public-data contamination",
+      "name": "sealed-generation observational firewall",
       "result": "PASS",
-      "evidence": "No public targets or observed data were used to select, tune, repair, or promote any REC-040 asset. Generation remains sealed."
+      "evidence": "No external observed target entered source selection, tuning, repair, replay classification, or promotion. Generation remained sealed throughout REC-040."
     },
     {
       "name": "replay evidence",

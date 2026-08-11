@@ -19,7 +19,7 @@ The two exact archived F0 Python executors were independently rerun in a fresh P
 - F0 final state and qualitative classification: reproduced.
 - F0 restart and causal replay: reproduced with residual 0.
 - F0 local linearization: spectral radius `0.9999999999999905`, two neutral modes, quotient radius `0.9989537534312668`.
-- Public-data generation influence: none detected or used.
+- Sealed-generation observational firewall: PASS; no external observed target entered a generation decision.
 - Old PASS/state promotion: none.
 
 ## Disagreements

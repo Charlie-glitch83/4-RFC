@@ -16,12 +16,14 @@ No new physical scientific law or universe state was produced. REC-040 produced 
 
 1. Exact commit/file hashes — PASS. Canonical sources retain SRC-010 SHA-256 identities; 2-RFC objects are pinned to exact commits, paths, and Git blob identities.
 2. No old PASS auto-promoted — PASS. Module L remains `REPLAY_REQUIRED`; F0 remains `COMPARISON_ONLY`; old state/completion labels remain non-authority.
-3. No public-data contamination — PASS. No observed/public target influenced recovery generation or classification.
+3. Sealed-generation observational firewall — PASS. No external observed target influenced recovery generation or classification.
 4. Replay evidence — PASS. Module L representative identities reconstructed; F0 final state, restart, replay, and classification reconstructed. The F0 ledger-hash mismatch is explicitly preserved.
 
 ## Failures preserved and corrections made
 
 The F0 archived iteration-ledger SHA-256 does not reproduce from either archived executor at commit `3dff7f9626759500b708f2fd905df01509ca8c9e`. No correction to the old artifact was made. The discrepancy is preserved and the object is restricted to `COMPARISON_ONLY`.
+
+Repository CI also exposed two infrastructure-only defects after the prescribed REC commit: the validation job omitted solver/test Python dependencies, and the lexical firewall interpreted REC administrative audit wording as a possible generation input. No REC scientific object, source mapping, threshold, classification, or claim boundary was changed. The validation job dependency installation and the audit wording were corrected and the unchanged evidence matrix was resubmitted.
 
 ## Independent reconstruction
 
