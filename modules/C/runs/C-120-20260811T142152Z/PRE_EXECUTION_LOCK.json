@@ -1,13 +1,73 @@
 {
-  "run_id": "C-120-20260811T142152Z",
-  "status": "FROZEN",
-  "frozen_utc": "2026-08-11T16:36:00Z",
+  "allowed_implementation_only_corrections": [
+    "serialization, path handling, dependency, recorder-wrapper, or equivalent implementation corrections that do not alter parents, K_C definition, symmetry generator, tolerances, gates, falsifiers, or claim boundary; rerun full frozen matrix after correction"
+  ],
   "authority_hashes": [
-    "c83bbcf212b2d7fc37f689013574e5b228f9bac7fb829e56c2c0f60ed84c228d",
-    "821a932eacc37da4ec9a384789616bc9f8eb76883b4aa1af125c95a88747138f",
-    "f50c7e721c38dd9b63f2910f3a0ace399f1854e85cbdafaa9ce51649d40c073a",
-    "16a3761a6562944e36506104594f8ee6b3ba2189e70396a2ae22b1afa67e6076",
-    "a624f6dca4a26ff8b5b3a8e0fb47a37e4cd2a6905c6f302198e3f6db3c303f6a"
+    "ea6f1c13b5ffcf9dcde5d1d08cfbaa84d590b3d9195a55ea91521098e3cbb803",
+    "6451efceef8b53659fb58c4d591648e2e24b1340e43d1a62e364c5d98f0d9ad8",
+    "1c06aa8b68baa8473d5b86df54800f1700ef57dadcdb70c743968a1addda8d8d",
+    "e784413787a7053c01929469da2c434c925b21f9c946e629764ad6a653127d31"
+  ],
+  "candidate_classes": [
+    "ANONYMOUS_RFC_SPECTRAL_MODE",
+    "RFC_TOTAL_CARRIER_CHARGE",
+    "B_PATH_REFLECTION_SYMMETRY",
+    "QUADRATIC_MICROSCOPIC_INTERACTION"
+  ],
+  "claim_boundary": "RFC microscopic spectral constitution at executed parent-derived scope; anonymous fields/excitations and conserved carrier charge only. Empirical identity remains for Module P; higher nonlinear microscopic interactions remain unresolved unless derived in C.",
+  "definition_hashes": [
+    "6544850ac14659da3fc7574b5f7750405d0e87f153b224182f01e987f159d542",
+    "97fa2b8f3b6d34b334d6fc3e84a2e9684bd056b95900bc2697406f0f83f9aacc"
+  ],
+  "dimensions_units_frames_gauges_clocks": [
+    "K_C dimensionless inherited event-generator scale",
+    "carrier amplitudes inherit B dimensionless carrier amplitude",
+    "no metric geometry assumed",
+    "no continuous physical time scale introduced",
+    "event order origin inherited from B as 0"
+  ],
+  "equations_and_laws": [
+    "K_C=L_B/(delta_B-1)=Q_B^{-1}-I",
+    "K_C v_a=lambda_a v_a",
+    "[K_C,R_B]=0",
+    "Q_total=<1,x> conserved",
+    "quadratic candidate action x^T K_C x"
+  ],
+  "expected_invariants": [
+    "K_C symmetric positive semidefinite",
+    "constant mode conserved",
+    "B path reflection commutes with K_C",
+    "spectral reconstruction closes",
+    "all identities remain anonymous RFC microscopic modes",
+    "total carrier charge remains owned by the constant mode"
+  ],
+  "falsifiers": [
+    "K_C is nonsymmetric",
+    "K_C has an eigenvalue below -1e-10",
+    "[K_C,R_B] exceeds 1e-10",
+    "constant mode is not conserved",
+    "spectral reconstruction fails",
+    "a measured/familiar particle identity is required to make the candidate pass"
+  ],
+  "frozen_utc": "2026-08-11T16:39:56.025029+00:00",
+  "gates": [
+    "units and dimensions",
+    "symmetry/constraint closure",
+    "positivity/unitarity or declared alternative",
+    "no Standard Model label without derivation or correspondence theorem",
+    "independent symbolic and numerical checks"
+  ],
+  "independent_verifier_design": "Rebuild L_B directly from the frozen B edge list and delta, reconstruct K_C without trusting C primary outputs, independently diagonalize it, verify PSD/reflection/zero-mode ownership, and compare the primary spectral audit and replay.",
+  "methods": [
+    "exact B parent hash admission",
+    "Wolfram C-WL-001",
+    "Wolfram C-WL-002",
+    "manufactured Module C reference matrix",
+    "parent-derived spectral_model execution",
+    "spectral ablations",
+    "restart/replay",
+    "internal numerical covariance",
+    "independent reconstruction"
   ],
   "parent_hashes": [
     "821a932eacc37da4ec9a384789616bc9f8eb76883b4aa1af125c95a88747138f",
@@ -15,107 +75,31 @@
     "16a3761a6562944e36506104594f8ee6b3ba2189e70396a2ae22b1afa67e6076",
     "a624f6dca4a26ff8b5b3a8e0fb47a37e4cd2a6905c6f302198e3f6db3c303f6a"
   ],
-  "definition_hashes": [
-    "1c06aa8b68baa8473d5b86df54800f1700ef57dadcdb70c743968a1addda8d8d",
-    "22921531c50ae9dc43863351a1ef4b31522dd9aa525153e7054c205a573d778b",
-    "3449a1393d394b5eccd551903e0c0f7bfa74aacbb2e5de4f0c7bc50c887fa677"
-  ],
-  "candidate_classes": [
-    "ANONYMOUS_RFC_SPECTRAL_EXCITATION",
-    "PARENT_DERIVED_QUADRATIC_GENERATOR",
-    "PATH_REFLECTION_SYMMETRY_CLASS",
-    "TOTAL_CARRIER_ZERO_MODE_CHARGE",
-    "PRETHERMAL_SPECTRAL_POPULATION",
-    "LAWFUL_UNDETERMINED_NONLINEAR_INTERACTION_BRANCH"
-  ],
-  "equations_and_laws": [
-    "K_C = Q_B^{-1} - I = L_B/(delta_B-1), derived exactly from the frozen B compression operator",
-    "E_C(x)=1/2 x^T K_C x = [2(delta_B-1)]^-1 Sum_(i,j in B edges)(x_i-x_j)^2",
-    "R^T K_C R = K_C for the exact path-reflection automorphism R(i)=39-i",
-    "K_C is real symmetric positive semidefinite; its eigenvectors define anonymous orthonormal RFC excitation modes",
-    "The constant carrier is the exact zero mode and owns the total-carrier ledger; modes orthogonal to it have zero total-ledger charge",
-    "Prethermal populations are p_r=|v_r^T x_B|^2/Sum_s|v_s^T x_B|^2 from the exact B carrier",
-    "No nonlinear microscopic coupling is admitted unless derived from the frozen parent; absence of such a derivation is preserved as an explicit obstruction"
-  ],
-  "dimensions_units_frames_gauges_clocks": [
-    "The inherited B carrier amplitude and K_C spectrum are dimensionless at C-120; no empirical mass unit or measured scale is inserted",
-    "Physical event ordering begins at B; C-120 introduces no external continuous clock scale",
-    "B pregeometry remains non-metric; C-120 does not assume spacetime geometry",
-    "The path-reflection operator is an internal automorphism of the frozen B carrier graph, not an externally named gauge group"
-  ],
-  "methods": [
-    "Exact parent-hash verification against the frozen B run bundle and B generated-output manifest",
-    "Algebraic reconstruction of K_C from the exact B configured compression operator",
-    "Wolfram symbolic call C-WL-001",
-    "Wolfram symbolic call C-WL-002",
-    "Repository manufactured Module C reference matrix",
-    "Provenance-bound spectral_model execution",
-    "Independent NumPy reconstruction of K_C spectrum, symmetry and B-carrier spectral populations",
-    "Countermodels and ablations for symmetry, positivity, parent dependence and conservation ownership",
-    "Restart/replay, convergence/resolution checks and internal numerical covariance"
-  ],
-  "tolerances": [
-    "Exact parent hashes and no-Standard-Model-label gate: exact",
-    "Primary spectral symmetry/reconstruction/generator invariance tolerance: 1e-10",
-    "Parent-derived algebraic/symmetry/charge residual audit target: 1e-12 where floating arithmetic applies",
-    "No aggregate score may override a failed component gate"
-  ],
+  "run_id": "C-120-20260811T142152Z",
+  "status": "FROZEN",
   "stopping_rules": [
-    "Stop on any unresolved __BIND_ token",
-    "Stop if any frozen B parent hash differs",
-    "Stop if a measured mass, coupling, Standard Model particle label, empirical scale or remembered target enters generation",
-    "Stop if K_C is not symmetric positive semidefinite within the frozen tolerance",
-    "Stop if reflection invariance fails",
-    "Stop if total-carrier conservation ownership is undefined",
-    "Stop on any mandatory component gate failure"
-  ],
-  "expected_invariants": [
-    "Exact B parent bytes remain unchanged",
-    "K_C equals Q_B^{-1}-I and L_B/(delta_B-1) independently",
-    "K_C is symmetric and positive semidefinite",
-    "The path-reflection automorphism commutes with K_C",
-    "The constant carrier is a zero mode",
-    "Spectral eigenvectors are orthonormal and reconstruct K_C",
-    "Prethermal populations are nonnegative and sum to one",
-    "No familiar particle identity is assigned by resemblance"
+    "stop on unresolved __BIND token",
+    "stop on parent hash mismatch",
+    "stop on negative spectrum below tolerance",
+    "stop on symmetry closure failure",
+    "stop if conservation ownership is undefined",
+    "stop if any Standard Model name, measured mass, measured coupling, or empirical constant is inserted"
   ],
   "tests": [
-    "C-WL-001 full symbolic output",
-    "C-WL-002 full symbolic output",
+    "C-WL-001",
+    "C-WL-002",
     "Module C manufactured reference checks",
-    "Configured spectral_model execution",
-    "Independent K_C reconstruction from B",
-    "Symmetry-generator ablation",
-    "Parent-operator ablation",
-    "Negative-spectrum countermodel",
-    "Total-ledger charge ownership test",
-    "Prefix-resolution spectral convergence",
-    "Restart/replay",
-    "Internal numerical covariance"
+    "spectral_model parent-bound execution",
+    "reflection symmetry ablation",
+    "positivity ablation",
+    "charge-owner ablation",
+    "restart/replay",
+    "internal numerical covariance",
+    "independent reconstruction"
   ],
-  "gates": [
-    "units and dimensions",
-    "symmetry and constraint closure",
-    "positivity and orthonormal spectral reconstruction",
-    "no Standard Model label without derivation or correspondence theorem",
-    "defined charge and conservation ownership",
-    "prethermal population positivity and normalization",
-    "independent symbolic and numerical checks",
-    "restart, replay, convergence and internal covariance"
-  ],
-  "falsifiers": [
-    "K_C differs from the generator algebraically implied by the exact B compression operator",
-    "K_C has a materially negative eigenvalue",
-    "The frozen path reflection does not commute with K_C",
-    "The constant carrier is not a zero mode",
-    "Spectral populations become negative or fail normalization",
-    "A familiar particle/mass/coupling assignment requires an imported empirical value",
-    "Independent reconstruction cannot reproduce the primary spectral result"
-  ],
-  "claim_boundary": "RFC microscopic quadratic constitution and anonymous spectral excitation content at MINIMAL_SPINE scope; no Standard Model identity, empirical mass scale, nonlinear interaction completion, thermal history, or empirical validation.",
-  "independent_verifier_design": "Rebuild the frozen B path Laplacian and K_C directly from B_big_implosion.json without trusting C primary summaries; independently diagonalize K_C, test reflection commutation, zero-mode charge ownership, B-carrier spectral populations, positivity, prefix convergence, replay and numerical residual covariance.",
-  "allowed_implementation_only_corrections": [
-    "Formatting, serialization, path handling, environment dependency, provenance vocabulary or equivalent implementation corrections that do not change frozen parents, K_C law, symmetry rule, population rule, tolerances, expected outcomes, gates, falsifiers or claim scope",
-    "After any allowed correction, rerun the full frozen C-120 matrix"
+  "tolerances": [
+    "spectral_model tolerance 1e-10",
+    "parent/symmetry/positivity checks 1e-10 unless exact hash comparison",
+    "no aggregate gate may override a component failure"
   ]
 }
