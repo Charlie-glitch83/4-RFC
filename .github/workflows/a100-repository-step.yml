@@ -31,7 +31,7 @@ jobs:
           bash tools/start_work.sh
           cat work_packets/ACTIVE_WORK_PACKET.md
           grep -q 'ACTIVE WORK PACKET — E-140' work_packets/ACTIVE_WORK_PACKET.md
-          grep -q '"status": "DRAFT"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
+          grep -q '"status": "BLOCKED_UNDERDETERMINED"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
           python - <<'PY'
           import hashlib, json
           from pathlib import Path
@@ -45,12 +45,13 @@ jobs:
           assert parent_sha=='79a8f4d5e06558d1114ccd3af832d92344c5d47a075f1f0b708a19ccfc6a59db'
           audit=json.loads((run/'E140_SOURCE_ADMISSION_AUDIT.json').read_text(encoding='utf-8'))
           assert audit['decision']=='REQUIRES_EXACT_SOURCE_OWNED_SPECIES_STOICHIOMETRY_AND_RATE_LAWS_BEFORE_FREEZE'
+          lock=json.loads((run/'PRE_EXECUTION_LOCK.json').read_text(encoding='utf-8'))
+          assert lock['status']=='BLOCKED_UNDERDETERMINED'
+          assert lock['parent_hashes']==[parent_sha]
           example=root/'configured_runs/examples/E_reaction_network.json'
           frozen_example=root/'configured_runs/results/E_reaction_network/frozen_config.json'
           assert example.read_bytes()==frozen_example.read_bytes()
-          inspected=[]
-          for rec in audit['candidate_text_sources']:
-              inspected.append({'path':rec['path'],'sha256':rec['sha256'],'admission_role':'INSPECTED_NOT_GENERATIVE_FOR_E_RATE_LAW'})
+          inspected=[{'path':rec['path'],'sha256':rec['sha256'],'admission_role':'INSPECTED_NOT_GENERATIVE_FOR_E_RATE_LAW'} for rec in audit['candidate_text_sources']]
           source_register={
             'run_id':'E-140-20260811T175023Z',
             'exact_parents':[{'path':str(hp),'sha256':parent_sha,'kind':'EXACT_FROZEN_D_TO_E_HANDOFF'}],
@@ -71,10 +72,10 @@ jobs:
             'stage':'PRE_EXECUTION_DEFINITION_AND_LOCK',
             'exact_parent':{'path':str(hp),'sha256':parent_sha},
             'source_manifest':{'path':str(mp),'sha256':manifest_sha},
-            'pre_execution_lock_status':'DRAFT_NOT_FROZEN',
+            'pre_execution_lock_status':'BLOCKED_UNDERDETERMINED_NOT_FROZEN',
             'missing_objects':['source-owned species/reaction graph','executable source-owned rate laws and uncertainty'],
             'manufactured_fixture':{'path':str(example),'sha256':sha(example),'decision':'REJECTED_NOT_AN_ADMITTED_PARENT_OR_DERIVATION'},
-            'proxy_closeout_decision':'Prior BBN proxy/observational comparison ledgers are comparison or methodological evidence only and are not generation inputs.',
+            'proxy_closeout_decision':'Prior BBN proxy and observational comparison ledgers are comparison or methodological evidence only and are not generation inputs.',
             'generation_mode':'GENERATION_SEALED',
             'public_inputs_used':False,
             'wolfram_calls_executed':False,
@@ -85,17 +86,17 @@ jobs:
             'required_resolution':'Admit or derive exact source-owned species, stoichiometry, executable rate laws, and uncertainty without observational target fitting before any E pre-execution freeze.'
           }
           (run/'E140_BLOCKED_UNDERDETERMINED.json').write_text(json.dumps(blocked,indent=2,sort_keys=True)+'\n',encoding='utf-8')
-          with (run/'FAILURES.jsonl').open('a',encoding='utf-8') as f:
-              f.write(json.dumps({'classification':'BLOCKED_UNDERDETERMINED','stage':'PRE_EXECUTION_DEFINITION_AND_LOCK','description':'Exact admitted parent/source bytes do not yet establish the executable source-owned reaction graph and rate laws required to freeze E-140.','changes_frozen_science':False,'public_inputs_used':False})+'\n')
+          existing=(run/'FAILURES.jsonl').read_text(encoding='utf-8') if (run/'FAILURES.jsonl').exists() else ''
+          marker='Exact admitted parent/source bytes do not yet establish the executable source-owned reaction graph and rate laws required to freeze E-140.'
+          if marker not in existing:
+              with (run/'FAILURES.jsonl').open('a',encoding='utf-8') as f:
+                  f.write(json.dumps({'classification':'BLOCKED_UNDERDETERMINED','stage':'PRE_EXECUTION_DEFINITION_AND_LOCK','description':marker,'changes_frozen_science':False,'public_inputs_used':False})+'\n')
           print(json.dumps(blocked,indent=2))
           PY
-          set +e
           python tools/rfc.py advance --task E-140 --result FAIL --evidence "$RUN_DIR/E140_BLOCKED_UNDERDETERMINED.json" --note 'E-140 blocked before pre-execution freeze: admitted parent/source bytes do not specify an executable source-owned reaction graph and rate laws without prohibited target fitting.'
-          rc=$?
-          set -e
-          test "$rc" -ne 0
           grep -q '"active_work_unit": "E-140"' STATE.json
-          grep -q '"status": "DRAFT"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
+          grep -q '"project_status": "FAIL_REQUIRES_ANALYSIS"' STATE.json
+          grep -q '"status": "BLOCKED_UNDERDETERMINED"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
           python tools/rfc.py doctor
           python tools/director.py doctor
           python -m unittest discover -s tests -v
