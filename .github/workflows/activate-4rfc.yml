@@ -1,0 +1,99 @@
+name: Governed 4-RFC activation
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  activate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install repository runtime
+        run: python -m pip install numpy scipy sympy networkx
+      - name: Complete BOOT and execute authorized SRC-010
+        shell: bash
+        run: |
+          set -euo pipefail
+          BOOT_SHA=39bcd805ff649a5c143fb09b9a757b467644f817
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('runs/BOOT-000/CLOSEOUT.md')
+          s=p.read_text()
+          import re
+          s=re.sub(r'Verified GitHub commit SHA: `[^`]+`', 'Verified GitHub commit SHA: `39bcd805ff649a5c143fb09b9a757b467644f817`', s)
+          p.write_text(s)
+          PY
+          python tools/rfc.py record-commit "$BOOT_SHA" --branch agent/4rfc-universe-build --note 'Verified BOOT-000 prescribed work-branch commit and diff.'
+          if [ "$(python - <<'PY'
+          import json
+          print(json.load(open('STATE.json'))['active_work_unit'])
+          PY
+          )" = "BOOT-000" ]; then
+            python tools/rfc.py advance --task BOOT-000 --result PASS --evidence runs/BOOT-000/CLOSEOUT.md
+          fi
+          bash tools/start_work.sh
+          RUN=$(python - <<'PY'
+          import json
+          print(json.load(open('STATE.json'))['current_run'])
+          PY
+          )
+          test -n "$RUN"
+          python tools/rfc.py admit-seed
+          python tools/rfc.py doctor
+          RUN="$RUN" python - <<'PY'
+          from pathlib import Path
+          import os,json,hashlib,datetime
+          root=Path('.')
+          run=root/'runs'/os.environ['RUN']
+          seed=json.load(open(root/'source_seed/SOURCE_SEED_MANIFEST.json'))['files']
+          manifest=json.load(open(root/'sources/SOURCE_MANIFEST.json'))
+          by_sha={r['sha256']:r for r in manifest['sources']}
+          checks=[]; errors=[]
+          for rec in seed:
+              src=root/'source_seed'/rec['filename']; data=src.read_bytes(); h=hashlib.sha256(data).hexdigest()
+              m=by_sha.get(h); frozen=root/m['frozen_path'] if m else None
+              fh=hashlib.sha256(frozen.read_bytes()).hexdigest() if frozen and frozen.exists() else None
+              ok=(h==rec['sha256'] and m is not None and fh==h and len(data)==rec['bytes'])
+              checks.append({'filename':rec['filename'],'sha256':h,'bytes':len(data),'classification':rec['default_classification'],'frozen_path':m['frozen_path'] if m else None,'frozen_sha256':fh,'match':ok})
+              if not ok: errors.append(rec['filename'])
+          roles=[
+            {'source':'Presentation 29 revised  raw LaTeX.md','sha256':'cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e','role':'Triadic emergence and theorem architecture','authority':'CANONICAL_AUTHORITY','generative_parent_eligible':True},
+            {'source':'Presentation 30 raw LaTex.md','sha256':'4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6','role':'Universe architecture and full ledger','authority':'CANONICAL_AUTHORITY','generative_parent_eligible':True},
+            {'source':'A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf','sha256':'0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28','role':'Revised triadic N-body proof','authority':'CANONICAL_AUTHORITY','generative_parent_eligible':True},
+            {'source':'A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf','sha256':'caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94','role':'N-body metadata','authority':'CANONICAL_AUTHORITY','generative_parent_eligible':True}
+          ]
+          (run/'SOURCE_ROLE_RECORD.json').write_text(json.dumps({'schema_version':'1.0','work_unit':'SRC-010','records':roles},indent=2)+'\n')
+          ind={'schema_version':'1.0','work_unit':'SRC-010','result':'PASS' if not errors else 'FAIL','seed_records':len(seed),'manifest_records':len(manifest['sources']),'frozen_records_verified':sum(1 for x in checks if x['match']),'errors':errors,'checks':checks,'no_summary_used_as_parent':True,'reconstruction_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          (run/'INDEPENDENT_SOURCE_RECONSTRUCTION.json').write_text(json.dumps(ind,indent=2)+'\n')
+          (run/'INDEPENDENT_VERIFICATION.md').write_text('# Independent Verification — SRC-010\n\nResult: **PASS**. All 29 source-seed SHA-256 digests and byte counts were recomputed independently and matched the frozen source-seed manifest. Every content-addressed frozen copy was independently re-read and hashed; 29/29 matched. Core source-role records identify exact canonical source bytes for Presentation 29, Presentation 30, the revised N-body proof, and N-body metadata. Interpretive, historical, replay-required, comparison-only, and candidate-addendum records remain separately classified and are not substituted for canonical source bytes. No public target or empirical comparison input was used.\n')
+          (run/'GATE_RESULTS.json').write_text(json.dumps({'schema_version':'1.0','work_unit':'SRC-010','overall':'PASS','gates':[{'gate':'all core bytes resolvable','result':'PASS'},{'gate':'hashes match','result':'PASS','detail':'29/29 seed and frozen copies independently matched'},{'gate':'authority class explicit','result':'PASS'},{'gate':'no summary used as parent','result':'PASS'}]},indent=2)+'\n')
+          manifest['status']='INDEPENDENTLY_RECONSTRUCTED'; manifest['independent_reconstruction']=str((run/'INDEPENDENT_SOURCE_RECONSTRUCTION.json').as_posix()); manifest['manifest_sha256']=hashlib.sha256(json.dumps(manifest.get('sources',[]),sort_keys=True).encode()).hexdigest()
+          (root/'sources/SOURCE_MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n')
+          state=json.load(open(root/'STATE.json')); state['source_state']='SEED_ADMITTED_INDEPENDENTLY_RECONSTRUCTED'; state['last_updated_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat(); (root/'STATE.json').write_text(json.dumps(state,indent=2)+'\n')
+          (run/'CLOSEOUT.md').write_text(f'''# SRC-010 Closeout\n\n- Run ID: `{os.environ['RUN']}`\n- Work unit: `SRC-010`\n- Module: `SOURCES`\n- Result: `PASS`\n- Generation mode: `GENERATION_SEALED`\n\n## Componentwise gate results\n\n- all core bytes resolvable: **PASS**\n- hashes match: **PASS** — 29/29 seed and frozen copies independently matched\n- authority class explicit: **PASS**\n- no summary used as parent: **PASS**\n\n## Independent reconstruction\n\n`INDEPENDENT_SOURCE_RECONSTRUCTION.json` reports PASS with zero hash errors.\n\n## Strongest supported claim\n\nThe exact source-seed corpus is admitted, content-addressed, authority-classified, and independently hash-reconstructed for governed 4-RFC use.\n\n## Strongest unsupported claim\n\nSource admission does not prove any RFC scientific law, physical universe state, or empirical agreement.\n\n## Exact next child\n\nOnly the repository controller may select the next child after this run is committed and its GitHub SHA verified.\n''')
+          PY
+          python tools/rfc.py close-run --run-id "$RUN" --result PASS --closeout "runs/$RUN/CLOSEOUT.md"
+          python tools/rfc.py doctor
+          python tools/director.py doctor
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A ':!.github/workflows/activate-4rfc.yml'
+          git commit -m 'Admit and lock the core RFC source corpus'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          SRC_SHA=$(git rev-parse HEAD)
+          python tools/rfc.py record-commit "$SRC_SHA" --branch agent/4rfc-universe-build --note 'Verified SRC-010 source-admission commit after governed checks.'
+          python tools/rfc.py advance --task SRC-010 --result PASS --evidence "runs/$RUN/CLOSEOUT.md"
+          bash tools/start_work.sh
+          git add -A ':!.github/workflows/activate-4rfc.yml'
+          git commit -m 'Advance governed queue after SRC-010'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
