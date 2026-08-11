@@ -1,21 +1,121 @@
 {
-  "run_id": "",
-  "status": "DRAFT",
-  "frozen_utc": null,
-  "authority_hashes": [],
-  "parent_hashes": [],
-  "definition_hashes": [],
-  "candidate_classes": [],
-  "equations_and_laws": [],
-  "dimensions_units_frames_gauges_clocks": [],
-  "methods": [],
-  "tolerances": [],
-  "stopping_rules": [],
-  "expected_invariants": [],
-  "tests": [],
-  "gates": [],
-  "falsifiers": [],
-  "claim_boundary": "",
-  "independent_verifier_design": "",
-  "allowed_implementation_only_corrections": []
+  "run_id": "C-120-20260811T142152Z",
+  "status": "FROZEN",
+  "frozen_utc": "2026-08-11T16:36:00Z",
+  "authority_hashes": [
+    "c83bbcf212b2d7fc37f689013574e5b228f9bac7fb829e56c2c0f60ed84c228d",
+    "821a932eacc37da4ec9a384789616bc9f8eb76883b4aa1af125c95a88747138f",
+    "f50c7e721c38dd9b63f2910f3a0ace399f1854e85cbdafaa9ce51649d40c073a",
+    "16a3761a6562944e36506104594f8ee6b3ba2189e70396a2ae22b1afa67e6076",
+    "a624f6dca4a26ff8b5b3a8e0fb47a37e4cd2a6905c6f302198e3f6db3c303f6a"
+  ],
+  "parent_hashes": [
+    "821a932eacc37da4ec9a384789616bc9f8eb76883b4aa1af125c95a88747138f",
+    "f50c7e721c38dd9b63f2910f3a0ace399f1854e85cbdafaa9ce51649d40c073a",
+    "16a3761a6562944e36506104594f8ee6b3ba2189e70396a2ae22b1afa67e6076",
+    "a624f6dca4a26ff8b5b3a8e0fb47a37e4cd2a6905c6f302198e3f6db3c303f6a"
+  ],
+  "definition_hashes": [
+    "1c06aa8b68baa8473d5b86df54800f1700ef57dadcdb70c743968a1addda8d8d",
+    "22921531c50ae9dc43863351a1ef4b31522dd9aa525153e7054c205a573d778b",
+    "3449a1393d394b5eccd551903e0c0f7bfa74aacbb2e5de4f0c7bc50c887fa677"
+  ],
+  "candidate_classes": [
+    "ANONYMOUS_RFC_SPECTRAL_EXCITATION",
+    "PARENT_DERIVED_QUADRATIC_GENERATOR",
+    "PATH_REFLECTION_SYMMETRY_CLASS",
+    "TOTAL_CARRIER_ZERO_MODE_CHARGE",
+    "PRETHERMAL_SPECTRAL_POPULATION",
+    "LAWFUL_UNDETERMINED_NONLINEAR_INTERACTION_BRANCH"
+  ],
+  "equations_and_laws": [
+    "K_C = Q_B^{-1} - I = L_B/(delta_B-1), derived exactly from the frozen B compression operator",
+    "E_C(x)=1/2 x^T K_C x = [2(delta_B-1)]^-1 Sum_(i,j in B edges)(x_i-x_j)^2",
+    "R^T K_C R = K_C for the exact path-reflection automorphism R(i)=39-i",
+    "K_C is real symmetric positive semidefinite; its eigenvectors define anonymous orthonormal RFC excitation modes",
+    "The constant carrier is the exact zero mode and owns the total-carrier ledger; modes orthogonal to it have zero total-ledger charge",
+    "Prethermal populations are p_r=|v_r^T x_B|^2/Sum_s|v_s^T x_B|^2 from the exact B carrier",
+    "No nonlinear microscopic coupling is admitted unless derived from the frozen parent; absence of such a derivation is preserved as an explicit obstruction"
+  ],
+  "dimensions_units_frames_gauges_clocks": [
+    "The inherited B carrier amplitude and K_C spectrum are dimensionless at C-120; no empirical mass unit or measured scale is inserted",
+    "Physical event ordering begins at B; C-120 introduces no external continuous clock scale",
+    "B pregeometry remains non-metric; C-120 does not assume spacetime geometry",
+    "The path-reflection operator is an internal automorphism of the frozen B carrier graph, not an externally named gauge group"
+  ],
+  "methods": [
+    "Exact parent-hash verification against the frozen B run bundle and B generated-output manifest",
+    "Algebraic reconstruction of K_C from the exact B configured compression operator",
+    "Wolfram symbolic call C-WL-001",
+    "Wolfram symbolic call C-WL-002",
+    "Repository manufactured Module C reference matrix",
+    "Provenance-bound spectral_model execution",
+    "Independent NumPy reconstruction of K_C spectrum, symmetry and B-carrier spectral populations",
+    "Countermodels and ablations for symmetry, positivity, parent dependence and conservation ownership",
+    "Restart/replay, convergence/resolution checks and internal numerical covariance"
+  ],
+  "tolerances": [
+    "Exact parent hashes and no-Standard-Model-label gate: exact",
+    "Primary spectral symmetry/reconstruction/generator invariance tolerance: 1e-10",
+    "Parent-derived algebraic/symmetry/charge residual audit target: 1e-12 where floating arithmetic applies",
+    "No aggregate score may override a failed component gate"
+  ],
+  "stopping_rules": [
+    "Stop on any unresolved __BIND_ token",
+    "Stop if any frozen B parent hash differs",
+    "Stop if a measured mass, coupling, Standard Model particle label, empirical scale or remembered target enters generation",
+    "Stop if K_C is not symmetric positive semidefinite within the frozen tolerance",
+    "Stop if reflection invariance fails",
+    "Stop if total-carrier conservation ownership is undefined",
+    "Stop on any mandatory component gate failure"
+  ],
+  "expected_invariants": [
+    "Exact B parent bytes remain unchanged",
+    "K_C equals Q_B^{-1}-I and L_B/(delta_B-1) independently",
+    "K_C is symmetric and positive semidefinite",
+    "The path-reflection automorphism commutes with K_C",
+    "The constant carrier is a zero mode",
+    "Spectral eigenvectors are orthonormal and reconstruct K_C",
+    "Prethermal populations are nonnegative and sum to one",
+    "No familiar particle identity is assigned by resemblance"
+  ],
+  "tests": [
+    "C-WL-001 full symbolic output",
+    "C-WL-002 full symbolic output",
+    "Module C manufactured reference checks",
+    "Configured spectral_model execution",
+    "Independent K_C reconstruction from B",
+    "Symmetry-generator ablation",
+    "Parent-operator ablation",
+    "Negative-spectrum countermodel",
+    "Total-ledger charge ownership test",
+    "Prefix-resolution spectral convergence",
+    "Restart/replay",
+    "Internal numerical covariance"
+  ],
+  "gates": [
+    "units and dimensions",
+    "symmetry and constraint closure",
+    "positivity and orthonormal spectral reconstruction",
+    "no Standard Model label without derivation or correspondence theorem",
+    "defined charge and conservation ownership",
+    "prethermal population positivity and normalization",
+    "independent symbolic and numerical checks",
+    "restart, replay, convergence and internal covariance"
+  ],
+  "falsifiers": [
+    "K_C differs from the generator algebraically implied by the exact B compression operator",
+    "K_C has a materially negative eigenvalue",
+    "The frozen path reflection does not commute with K_C",
+    "The constant carrier is not a zero mode",
+    "Spectral populations become negative or fail normalization",
+    "A familiar particle/mass/coupling assignment requires an imported empirical value",
+    "Independent reconstruction cannot reproduce the primary spectral result"
+  ],
+  "claim_boundary": "RFC microscopic quadratic constitution and anonymous spectral excitation content at MINIMAL_SPINE scope; no Standard Model identity, empirical mass scale, nonlinear interaction completion, thermal history, or empirical validation.",
+  "independent_verifier_design": "Rebuild the frozen B path Laplacian and K_C directly from B_big_implosion.json without trusting C primary summaries; independently diagonalize K_C, test reflection commutation, zero-mode charge ownership, B-carrier spectral populations, positivity, prefix convergence, replay and numerical residual covariance.",
+  "allowed_implementation_only_corrections": [
+    "Formatting, serialization, path handling, environment dependency, provenance vocabulary or equivalent implementation corrections that do not change frozen parents, K_C law, symmetry rule, population rule, tolerances, expected outcomes, gates, falsifiers or claim scope",
+    "After any allowed correction, rerun the full frozen C-120 matrix"
+  ]
 }
