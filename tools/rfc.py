@@ -420,6 +420,23 @@ def cmd_firewall_scan(_: argparse.Namespace) -> int:
                 text = p.read_text(encoding="utf-8", errors="ignore")
             except Exception:
                 continue
+            if p.suffix.lower() == ".json":
+                try:
+                    obj = json.loads(text)
+                    values = []
+                    def collect_strings(value):
+                        if isinstance(value, str):
+                            values.append(value)
+                        elif isinstance(value, dict):
+                            for nested in value.values():
+                                collect_strings(nested)
+                        elif isinstance(value, list):
+                            for nested in value:
+                                collect_strings(nested)
+                    collect_strings(obj)
+                    text = "\n".join(values)
+                except Exception:
+                    pass
             if url_re.search(text) or suspicious.search(text):
                 findings.append(str(p.relative_to(ROOT)))
     declarations = load_json(ROOT / "generation/PUBLIC_DATA_DECLARATIONS.json").get("declared_public_inputs", [])
