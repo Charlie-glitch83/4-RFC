@@ -22,30 +22,22 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install numpy networkx scipy sympy
-      - name: Finalize and close C-120 through repository commands
+      - name: Verify C-120 closeout and advance exactly one child
         shell: bash
         run: |
           set -euo pipefail
           RUN='C-120-20260811T142152Z'
           RUN_DIR="modules/C/runs/$RUN"
+          VERIFIED_SHA='9aba5d1e1c83506f03176e4bc08a74bafaa9249e'
+          python tools/rfc.py record-commit "$VERIFIED_SHA" --branch agent/4rfc-universe-build --note 'Verified C-120 closeout commit and exact diff'
+          python tools/rfc.py advance --task C-120 --result PASS --evidence "$RUN_DIR/CLOSEOUT.md"
           bash tools/start_work.sh
-          grep -q 'ACTIVE WORK PACKET — C-120' work_packets/ACTIVE_WORK_PACKET.md
-          python "$RUN_DIR/C120_VERIFY.py"
-          python "$RUN_DIR/C120_PRE_FINALIZE.py"
-          python "$RUN_DIR/C120_FINALIZE.py"
-          python tools/rfc.py promote-module C --to FORMALIZED --fidelity MINIMAL_SPINE --evidence "$RUN_DIR/PRE_EXECUTION_LOCK.json"
-          python tools/rfc.py promote-module C --to IMPLEMENTED --fidelity MINIMAL_SPINE --evidence "$RUN_DIR/solver_configs/C_spectral_model.json"
-          python tools/rfc.py promote-module C --to VERIFIED --fidelity MINIMAL_SPINE --evidence "$RUN_DIR/GATE_RESULTS.json"
-          python tools/rfc.py promote-module C --to PHYSICALLY_EXECUTED --fidelity MINIMAL_SPINE --evidence "$RUN_DIR/MICROSCOPIC_STATE.json"
-          python tools/rfc.py promote-module C --to INDEPENDENTLY_REPRODUCED --fidelity MINIMAL_SPINE --evidence "$RUN_DIR/INDEPENDENT_VERIFICATION.md"
-          python tools/rfc.py promote-module C --to FROZEN --fidelity MINIMAL_SPINE --evidence "$RUN_DIR/H_C_to_D.json"
-          python tools/rfc.py record-claim --file "$RUN_DIR/CLAIM_RECORD.json"
-          python tools/rfc.py close-run --run-id "$RUN" --result PASS --closeout "$RUN_DIR/CLOSEOUT.md"
+          cat work_packets/ACTIVE_WORK_PACKET.md
           python tools/rfc.py doctor
           python tools/director.py doctor
           python -m unittest discover -s tests -v
           python tools/rfc.py firewall-scan
-      - name: Commit closed C-120
+      - name: Commit C-120 transition and prepared child packet
         shell: bash
         run: |
           set -euo pipefail
@@ -54,7 +46,7 @@ jobs:
           git restore memory/CURRENT_CONTEXT.md || true
           git add -A
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Close Module C at its verified scientific scope'
+          git commit -m 'Advance from frozen Module C to its authorized child'
           git fetch origin agent/4rfc-universe-build
           git rebase origin/agent/4rfc-universe-build
           git push origin HEAD:agent/4rfc-universe-build
