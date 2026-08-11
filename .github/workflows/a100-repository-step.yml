@@ -42,6 +42,11 @@ jobs:
             python "$RUN_DIR/D130_PREPARE_FIREWALL_CORRECTED.py"
           fi
           grep -q '"status": "FROZEN"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
+          mkdir -p "$RUN_DIR/scratch/preparation"
+          for f in "$RUN_DIR"/D130_PREPARE*.py; do
+            [ -e "$f" ] || continue
+            mv "$f" "$RUN_DIR/scratch/preparation/"
+          done
           python tools/rfc.py doctor
           python tools/director.py doctor
           python tools/rfc.py firewall-scan
@@ -52,7 +57,7 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git restore memory/CURRENT_CONTEXT.md || true
-          git add modules/D/runs/D-130-20260811T165602Z work_packets/ACTIVE_WORK_PACKET.md STATE.json memory/RUN_INDEX.json || true
+          git add -A modules/D/runs/D-130-20260811T165602Z work_packets/ACTIVE_WORK_PACKET.md STATE.json memory/RUN_INDEX.json || true
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'D-130: freeze parent-derived transport preparation'
           git fetch origin agent/4rfc-universe-build
