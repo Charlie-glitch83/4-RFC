@@ -39,7 +39,7 @@ jobs:
           print('D_PRELOCK_STATUS', status)
           PY
           if ! grep -q '"status": "FROZEN"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"; then
-            python "$RUN_DIR/D130_PREPARE.py"
+            python "$RUN_DIR/D130_PREPARE_CORRECTED.py"
           fi
           grep -q '"status": "FROZEN"' "$RUN_DIR/PRE_EXECUTION_LOCK.json"
           python tools/rfc.py doctor
