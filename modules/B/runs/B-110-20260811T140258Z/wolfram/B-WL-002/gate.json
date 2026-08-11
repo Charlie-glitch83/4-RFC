@@ -1,0 +1,13 @@
+{
+  "call_id": "B-WL-002",
+  "classification": "WOLFRAM_MANUFACTURED_GATE",
+  "status": "PASS_WITH_MANUAL_INTERPRETATION",
+  "failures": [],
+  "manual_review_fields": [
+    "meanBefore",
+    "meanAfter",
+    "reopeningResidual"
+  ],
+  "decision_rule": "Require conserved mean, strict nontrivial compression, and reopening residual within the frozen tolerance.",
+  "warning": "A manufactured symbolic gate never promotes a module to PHYSICALLY_EXECUTED. Parent-bound substitutions and module gates remain mandatory."
+}
