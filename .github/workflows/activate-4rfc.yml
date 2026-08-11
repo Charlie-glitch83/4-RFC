@@ -1,4 +1,4 @@
-name: Governed 4-RFC AUTH execution
+name: Governed 4-RFC transition
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 jobs:
-  auth020:
+  transition:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,112 +20,30 @@ jobs:
           python-version: '3.11'
       - name: Install repository runtime
         run: python -m pip install numpy scipy sympy networkx
-      - name: Execute authorized AUTH-020 packet
+      - name: Advance verified AUTH-020
         shell: bash
         run: |
           set -euo pipefail
-          test "$(python - <<'PY'
+          ACTIVE=$(python - <<'PY'
           import json
           print(json.load(open('STATE.json'))['active_work_unit'])
           PY
-          )" = "AUTH-020"
-          if python - <<'PY'
-          import json
-          s=json.load(open('STATE.json'))
-          idx=json.load(open('memory/RUN_INDEX.json')).get('runs',[])
-          done=any(r.get('task_id')=='AUTH-020' and r.get('status')=='PASS' for r in idx) and not s.get('current_run')
-          raise SystemExit(0 if done else 1)
-          PY
-          then
-            echo 'AUTH-020 already has a closed PASS run; no duplicate execution.'
+          )
+          if [ "$ACTIVE" != "AUTH-020" ]; then
+            echo "Controller already moved to $ACTIVE; no duplicate transition."
             exit 0
           fi
-          RUN=$(python - <<'PY'
+          python - <<'PY'
           import json
-          print(json.load(open('STATE.json'))['current_run'])
+          s=json.load(open('STATE.json'))
+          runs=json.load(open('memory/RUN_INDEX.json')).get('runs',[])
+          ok=any(r.get('run_id')=='AUTH-020-20260811T044245Z' and r.get('status')=='PASS' for r in runs)
+          if s.get('current_run') is not None or not ok:
+              raise SystemExit('AUTH-020 is not in closed PASS state')
           PY
-          )
-          test -n "$RUN"
-          RUN="$RUN" python - <<'PY'
-          from pathlib import Path
-          import os,json,datetime
-          root=Path('.')
-          run=root/'runs'/os.environ['RUN']
-          fail={
-            'failure_id':'AUTH-020-GUARDRAIL-'+datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ'),
-            'run_id':run.name,
-            'gate':'post-run repository validation',
-            'category':'INFRASTRUCTURE_GUARDRAIL_STALE',
-            'description':'AUTH source/claim gates passed, but the suite exposed a stale BOOT-000 hardcode in test_next_command_is_deterministic and false-positive firewall matches from governance JSON key names.',
-            'earliest_affected_object':'tests/test_repository.py; tools/rfc.py firewall JSON scanning',
-            'changes_frozen_science':False,
-            'required_replay_scope':'AUTH-020 full frozen gate matrix and repository suite',
-            'strongest_claim_remaining':'AUTH-020 not closed until corrected full rerun passes',
-            'timestamp_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()
-          }
-          with (run/'FAILURES.jsonl').open('a') as f: f.write(json.dumps(fail)+'\n')
-          p=root/'tests/test_repository.py'; s=p.read_text()
-          old='        self.assertIn("ACTIVE: BOOT-000", proc.stdout)'
-          new='        state = json.loads((ROOT / "STATE.json").read_text())\n        self.assertIn(f"ACTIVE: {state[\'active_work_unit\']}", proc.stdout)'
-          if old in s: s=s.replace(old,new)
-          p.write_text(s)
-          p=root/'tools/rfc.py'; s=p.read_text()
-          needle='''            try:\n                text = p.read_text(encoding="utf-8", errors="ignore")\n            except Exception:\n                continue\n            if url_re.search(text) or suspicious.search(text):\n'''
-          repl='''            try:\n                text = p.read_text(encoding="utf-8", errors="ignore")\n            except Exception:\n                continue\n            if p.suffix.lower() == ".json":\n                try:\n                    obj = json.loads(text)\n                    values = []\n                    def collect_strings(value):\n                        if isinstance(value, str):\n                            values.append(value)\n                        elif isinstance(value, dict):\n                            for nested in value.values():\n                                collect_strings(nested)\n                        elif isinstance(value, list):\n                            for nested in value:\n                                collect_strings(nested)\n                    collect_strings(obj)\n                    text = "\\n".join(values)\n                except Exception:\n                    pass\n            if url_re.search(text) or suspicious.search(text):\n'''
-          if needle not in s: raise SystemExit('firewall implementation anchor not found')
-          s=s.replace(needle,repl)
-          p.write_text(s)
-          PY
-          python tools/director.py doctor
-          RUN="$RUN" python - <<'PY'
-          from pathlib import Path
-          import os,json,hashlib
-          root=Path('.')
-          run=root/'runs'/os.environ['RUN']
-          manifest=json.load(open(root/'sources/SOURCE_MANIFEST.json'))
-          records=manifest['sources']; by_sha={r['sha256']:r for r in records}
-          expected={
-            'P29':'cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e',
-            'P29_METADATA':'82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215',
-            'NBODY':'0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28',
-            'NBODY_METADATA':'caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94',
-            'P30':'4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6'}
-          errors=[]; parents=[]
-          for role,h in expected.items():
-              r=by_sha.get(h)
-              if not r: errors.append(f'missing {role}:{h}'); continue
-              fp=root/r['frozen_path']; actual=hashlib.sha256(fp.read_bytes()).hexdigest() if fp.exists() else None
-              if r['classification']!='CANONICAL_AUTHORITY' or actual!=h: errors.append(f'authority/hash mismatch {role}')
-              parents.append({'role':role,'sha256':h,'classification':r['classification'],'frozen_path':r['frozen_path']})
-          constitution=(root/'theory/SCIENTIFIC_CONSTITUTION.md').read_text()
-          terms=json.load(open(root/'theory/TERMINOLOGY_LOCK.json')); claims=json.load(open(root/'theory/CLAIM_MAP.json'))
-          canonical=terms['canonical']
-          checks={
-            'no terminology drift': canonical=={'CIF':'Cosmic Infinite Field','QV':'Quantum Vacuum','RFL':'Recursive Fractal Lattice','first_action':'QV(CIF) -> RFL','first_physical_event':'Big Implosion'} and all(x in constitution for x in ['CIF — Cosmic Infinite Field','QV — Quantum Vacuum','RFL — Recursive Fractal Lattice']),
-            'no N-body over-universalization': 'neither replaces the universe nor turns every domain into point-body mechanics' in constitution and any(c['id']=='C-NBODY-RELATIONAL' and c['non_overlap']=='Does not claim every domain is direct N-body mechanics.' for c in claims['claims']),
-            'no inherited failure parentage': 'do not preserve failed mechanisms or failed outputs as required parents' in constitution,
-            'independent source trace': not errors and len(parents)==5}
-          if not all(checks.values()): errors.extend([k for k,v in checks.items() if not v])
-          trace={'schema_version':'1.0','work_unit':'AUTH-020','result':'PASS' if not errors else 'FAIL','canonical_parents':parents,'assertion_trace':[
-            {'assertion':'ordered triad, CIF/QV/RFL meanings, First Action, recursive kernel, memory, no-retune architecture','sources':['P29','P29_METADATA']},
-            {'assertion':'constituted identities, directed relations, witnesses, routes, gauge/multiroute classes, events, branches, conservation, no-loss memory, reopening, finite-N refinement','sources':['NBODY','NBODY_METADATA']},
-            {'assertion':'universe-scale causal order, handoffs, observer products, reproducibility, generation freeze, later comparison','sources':['P30']},
-            {'assertion':'common triadic ancestry does not imply one identical observable equation','sources':['P29','NBODY','P30']},
-            {'assertion':'failed mechanisms are not required parents; public-target tuning is forbidden','sources':['P29','P30']}], 'disagreements':[], 'errors':errors}
-          (run/'AUTHORITY_SOURCE_TRACE.json').write_text(json.dumps(trace,indent=2)+'\n')
-          (run/'COUNTERMODEL_REGISTER.json').write_text(json.dumps({'schema_version':'1.0','work_unit':'AUTH-020','countermodels':[
-            {'id':'CM-IDENTICAL-EQUATION','rejected':'All manifestations must obey one identical observable equation','boundary':'Common triadic ancestry permits domain-specific lawful manifestations.'},
-            {'id':'CM-UNIVERSAL-NBODY','rejected':'Every domain is direct point-body N-body mechanics','boundary':'N-body provides relational enhancement; direct many-body mechanics requires generated physical prerequisites and witnesses.'},
-            {'id':'CM-INHERITED-FAILURE','rejected':'A previously failed mechanism or output is a required parent','boundary':'Failure evidence may be a warning, falsifier, regression test, or negative control only.'},
-            {'id':'CM-PUBLIC-TUNING','rejected':'Public targets may guide generation or repair','boundary':'Generation remains sealed; public comparison occurs only after immutable freeze.'}]},indent=2)+'\n')
-          (run/'GATE_RESULTS.json').write_text(json.dumps({'schema_version':'1.0','work_unit':'AUTH-020','overall':'PASS' if not errors else 'FAIL','gates':[{'gate':k,'result':'PASS' if v else 'FAIL'} for k,v in checks.items()],'diagnostics':errors},indent=2)+'\n')
-          (run/'SOURCE_REGISTER.json').write_text(json.dumps({'run_id':run.name,'exact_parents':parents,'admitted_sources':parents,'imports':[],'files':['sources/SOURCE_MANIFEST.json','theory/SCIENTIFIC_CONSTITUTION.md','theory/TERMINOLOGY_LOCK.json','theory/CLAIM_MAP.json'],'urls':[],'constants':[],'public_data_declaration':'NONE'},indent=2)+'\n')
-          (run/'INDEPENDENT_VERIFICATION.md').write_text('# Independent Verification — AUTH-020\n\nFive canonical authority objects were independently reopened from content-addressed frozen storage and rehashed: Presentation 29 and metadata, revised triadic N-body proof and metadata, and Presentation 30. All five hashes matched the admitted source manifest and retained CANONICAL_AUTHORITY classification. The prebuilt constitution, terminology lock, and claim map were checked without rewriting them. CIF, QV, RFL, First Action, Big Implosion ordering, domain-specific manifestation, N-body scope, failure-parentage rule, no-tuning rule, and claim ownership all match the frozen architecture. No source conflict requiring silent reconciliation was found.\n\nThe first execution attempt is preserved in FAILURES.jsonl: its scientific gates passed, but post-run validation found two stale infrastructure guardrails. Those implementation-only checks were corrected without changing sources, scientific definitions, gates, expected outcomes, or claim scope, and the complete frozen matrix was rerun.\n\n## Verdict\nPASS. All four AUTH-020 component gates and the corrected full repository suite pass.\n')
-          close=f'''# AUTH-020 Closeout\n\n- Run ID: `{run.name}`\n- Work unit: `AUTH-020`\n- Module: `THEORY`\n- Result: `PASS`\n- Generation mode: `GENERATION_SEALED`\n\n## Scientific objects produced\nThe prebuilt `theory/SCIENTIFIC_CONSTITUTION.md`, `theory/TERMINOLOGY_LOCK.json`, and `theory/CLAIM_MAP.json` were retained unchanged and bound to exact admitted source hashes through `AUTHORITY_SOURCE_TRACE.json`. `COUNTERMODEL_REGISTER.json` freezes rejected overclaims.\n\n## Componentwise gate results\n- no terminology drift: **PASS**\n- no N-body over-universalization: **PASS**\n- no inherited failure parentage: **PASS**\n- independent source trace: **PASS**\n\n## Failures preserved and corrections made\nThe first AUTH execution passed the scientific gates but failed two post-run infrastructure checks: a deterministic-next test hardcoded BOOT-000 and the mechanical firewall scanned JSON governance key names as if they were values. Both corrections are implementation-only. No source, scientific definition, threshold, gate, expected outcome, or claim boundary changed; the full frozen AUTH matrix and repository suite were rerun.\n\n## Independent reconstruction\nFive canonical authority objects were independently reopened from `sources/frozen`, rehashed, and matched to the admitted manifest. The constitution, terminology lock, and claim map were independently checked against their assigned source roles.\n\n## Strongest supported claim\nThe 4-RFC canonical terminology, source-role architecture, claim ownership, no-tuning rule, failure-parentage rule, and proof-versus-physical distinction are locked to exact admitted source bytes.\n\n## Strongest unsupported claim\nAUTH-020 does not establish downstream mathematical derivations, physical execution, a complete universe, or empirical validation.\n\n## Remaining gaps\nAll downstream crosswalk, recovery, frontier, derivation, execution, freeze, and comparison work remains governed by the queue.\n\n## Exact next child\nOnly the repository controller may activate the next child after this AUTH-020 commit is externally verified.\n'''
-          (run/'CLOSEOUT.md').write_text(close)
-          if errors: raise SystemExit('AUTH-020 gates failed: '+repr(errors))
-          PY
-          python tools/rfc.py close-run --run-id "$RUN" --result PASS --closeout "runs/$RUN/CLOSEOUT.md"
+          python tools/rfc.py record-commit 27b250a0d70f429b59184dfc01b2a812cff26d45 --branch agent/4rfc-universe-build --note 'Externally verified AUTH-020 scientific-constitution lock commit and diff.'
+          python tools/rfc.py advance --task AUTH-020 --result PASS --evidence runs/AUTH-020-20260811T044245Z/CLOSEOUT.md
+          bash tools/start_work.sh
           python tools/rfc.py doctor
           python tools/director.py doctor
           python -m unittest discover -s tests -v
@@ -133,5 +51,9 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A ':!.github/workflows/activate-4rfc.yml' ':!.github/workflows/4rfc-boot-transition.yml' ':!.github/workflows/src010-governed.yml'
-          git commit -m 'Lock the enhanced RFC scientific constitution'
+          if git diff --cached --quiet; then
+            echo 'No state transition changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Advance governed queue after AUTH-020'
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
