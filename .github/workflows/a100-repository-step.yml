@@ -28,7 +28,7 @@ jobs:
           set -euo pipefail
           RUN='C-120-20260811T142152Z'
           RUN_DIR="modules/C/runs/$RUN"
-          VERIFIED_SHA='9aba5d1e1c83506f03176e4bc08a74bafaa9249e'
+          VERIFIED_SHA='f5dccfbdddb3b6bd0366983054528cdf60094681'
           python - <<'PY'
           import json
           from datetime import datetime, timezone
