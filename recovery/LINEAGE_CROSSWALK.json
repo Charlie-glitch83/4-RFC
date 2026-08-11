@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "work_unit": "REC-040",
+  "generated_from": "recovery/CANDIDATE_ASSET_DISPOSITION.json",
+  "authority_rule": "Only exact admitted source bytes and independently replayed prior objects may be retained. Prior PASS labels and repository state are never generative authority.",
+  "lineage": [
+    {
+      "object": "Presentation 29 revised raw LaTeX",
+      "disposition": "CANONICAL_PARENT",
+      "source_sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "basis": "Already admitted and independently reconstructed by SRC-010."
+    },
+    {
+      "object": "Presentation 30 raw LaTeX",
+      "disposition": "CANONICAL_PARENT",
+      "source_sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+      "basis": "Canonical architecture source only; old numerical packets remain quarantined."
+    },
+    {
+      "object": "Revised triadic N-body proof",
+      "disposition": "CANONICAL_PARENT",
+      "source_sha256": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+      "basis": "Already admitted exact proof bytes; domain remains relational kernel enhancement rather than universal point-body replacement."
+    },
+    {
+      "object": "Revised triadic N-body metadata",
+      "disposition": "ADMITTED_SOURCE",
+      "source_sha256": "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+      "basis": "Canonical metadata for the revised N-body proof."
+    },
+    {
+      "object": "2-RFC repaired Module L first pass",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "b0f21d023f64ce9c70fd4755dfdbb7357b9f7a10",
+      "disposition": "REPLAY_REQUIRED",
+      "verified_scope": "FORMALIZED plus representative finite verification of L^(0) laws, ledgers, interfaces, covariance and replay locality only",
+      "physical_parent_status": "NOT_ADMITTED",
+      "reason": "Exact files are fetchable and representative identities reconstruct, but no exact executed 4-RFC K parent exists. Old COMPLETE_AND_FROZEN labels are not inherited."
+    },
+    {
+      "object": "2-RFC reduced K-L-M F0 recurrence",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "3dff7f9626759500b708f2fd905df01509ca8c9e",
+      "disposition": "COMPARISON_ONLY",
+      "verified_scope": "constructed dimensionless reduced recurrence / manufactured regression",
+      "reason": "Final state, iteration count, invariants, restart and local replay reproduce, but archived iteration-ledger SHA does not reproduce from the exact archived executors; F1-F4 physical packets are absent."
+    },
+    {
+      "object": "Older P29/P30 failed numerical outputs and prior state/PASS labels",
+      "disposition": "HISTORICAL_WARNING",
+      "generative_parent": false,
+      "reason": "REC-040 forbids automatic inheritance of failed outputs, PASS labels, state files, numerical targets, and public-data-contaminated artifacts."
+    }
+  ]
+}

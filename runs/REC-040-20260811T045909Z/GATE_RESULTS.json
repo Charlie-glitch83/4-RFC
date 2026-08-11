@@ -1,7 +1,31 @@
 {
-  "run_id": "",
-  "overall": "BLOCKED",
-  "gates": [],
-  "diagnostics": [],
-  "score_rule": "mandatory gates componentwise; below 0.95 triggers analysis"
+  "run_id": "REC-040-20260811T045909Z",
+  "overall": "PASS",
+  "gates": [
+    {
+      "name": "exact commit/file hashes",
+      "result": "PASS",
+      "evidence": "Canonical source SHA-256 records were reused from the independently reconstructed source manifest. 2-RFC candidates were fetched at exact commits and exact paths with Git blob object IDs recorded in recovery/ADMITTED_ASSET_MANIFEST.json."
+    },
+    {
+      "name": "no old PASS auto-promoted",
+      "result": "PASS",
+      "evidence": "Module L is REPLAY_REQUIRED at formal/representative scope only; F0 is COMPARISON_ONLY; old completion labels and state files are non-authority."
+    },
+    {
+      "name": "no public-data contamination",
+      "result": "PASS",
+      "evidence": "No public targets or observed data were used to select, tune, repair, or promote any REC-040 asset. Generation remains sealed."
+    },
+    {
+      "name": "replay evidence",
+      "result": "PASS",
+      "evidence": "Module L representative conservation/transfer/covariance/analytic-limit identities independently reconstructed. F0 exact archived executors replayed: 17660 iterations, exact final-state SHA-256 match, restart residual 0, causal replay residual 0. Archived ledger hash mismatch was preserved and causes COMPARISON_ONLY disposition rather than promotion."
+    }
+  ],
+  "diagnostics": [
+    "F0 stored iteration-ledger SHA-256 339884013a8cc4076bdb07c2b226ccafb83cad26ec3f44a25fe4e91b1f0b09bb did not reproduce from archived klm_f0_execution.py (b43da955f4d6a5e4ad06ce59a63a9ac63fa648e1c07e44036df2c41b415c7079) or klm_f0_reduced.py (f4beefb5eb6d44d983c35e721ad2f6b69ef916151193bc6270ed239e3c499111).",
+    "This discrepancy is preserved; it does not fail REC-040 because F0 is not admitted as authority or physical parent."
+  ],
+  "score_rule": "mandatory gates componentwise; no aggregate override"
 }

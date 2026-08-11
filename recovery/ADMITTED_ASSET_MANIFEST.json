@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "work_unit": "REC-040",
+  "assets": [
+    {
+      "name": "Presentation 29 revised raw LaTeX",
+      "classification": "CANONICAL_PARENT",
+      "hash_type": "sha256",
+      "hash": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "origin": "sources/SOURCE_MANIFEST.json"
+    },
+    {
+      "name": "Presentation 30 raw LaTeX",
+      "classification": "CANONICAL_PARENT",
+      "hash_type": "sha256",
+      "hash": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+      "origin": "sources/SOURCE_MANIFEST.json"
+    },
+    {
+      "name": "Revised triadic N-body proof",
+      "classification": "CANONICAL_PARENT",
+      "hash_type": "sha256",
+      "hash": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+      "origin": "sources/SOURCE_MANIFEST.json"
+    },
+    {
+      "name": "Revised triadic N-body metadata",
+      "classification": "ADMITTED_SOURCE",
+      "hash_type": "sha256",
+      "hash": "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+      "origin": "sources/SOURCE_MANIFEST.json"
+    },
+    {
+      "name": "2-RFC Module L science law",
+      "classification": "REPLAY_REQUIRED",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "b0f21d023f64ce9c70fd4755dfdbb7357b9f7a10",
+      "path": "science/BARYONIC_STELLAR_UNIVERSE.md",
+      "hash_type": "git_blob_sha1",
+      "hash": "d1286cb1ce8a5288333e23198b7e342c7d82a14c",
+      "scope": "formal first-pass law; not physical execution"
+    },
+    {
+      "name": "2-RFC Module L theorem proof",
+      "classification": "REPLAY_REQUIRED",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "b0f21d023f64ce9c70fd4755dfdbb7357b9f7a10",
+      "path": "proofs/BARYONIC_STELLAR_UNIVERSE.md",
+      "hash_type": "git_blob_sha1",
+      "hash": "908b642b35bee0aa5124c4870ac51b2c8b1714a4",
+      "scope": "formal theorem package; representative verification only"
+    },
+    {
+      "name": "2-RFC Module L verification record",
+      "classification": "REPLAY_REQUIRED",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "b0f21d023f64ce9c70fd4755dfdbb7357b9f7a10",
+      "path": "modules/L/MODULE_L_WOLFRAM_VERIFICATION.md",
+      "hash_type": "git_blob_sha1",
+      "hash": "a169e18f33435e6600a1758f2581735dbdd1a034",
+      "scope": "representative exact/synthetic checks, not full physical Module L execution"
+    },
+    {
+      "name": "2-RFC KLM F0 certificate",
+      "classification": "COMPARISON_ONLY",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "3dff7f9626759500b708f2fd905df01509ca8c9e",
+      "path": "execution/KLM/KLM_F0_COMPUTATIONAL_CERTIFICATE.md",
+      "hash_type": "git_blob_sha1",
+      "hash": "ee2dce3eb1965098c2eaa5cdea211fd887ce37c6"
+    },
+    {
+      "name": "2-RFC KLM F0 executor",
+      "classification": "COMPARISON_ONLY",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "3dff7f9626759500b708f2fd905df01509ca8c9e",
+      "path": "execution/KLM/klm_f0_execution.py",
+      "hash_type": "git_blob_sha1",
+      "hash": "315ec7de79c4dd3205cec52f9420e734612dbbc0"
+    },
+    {
+      "name": "2-RFC KLM F0 reduced independent executor",
+      "classification": "COMPARISON_ONLY",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "3dff7f9626759500b708f2fd905df01509ca8c9e",
+      "path": "execution/KLM/klm_f0_reduced.py",
+      "hash_type": "git_blob_sha1",
+      "hash": "fcaf003d0caef17b5d73c2f45915560e944eb2a4"
+    },
+    {
+      "name": "2-RFC KLM F0 result",
+      "classification": "COMPARISON_ONLY",
+      "repository": "Charlie-glitch83/2-RFC",
+      "commit": "3dff7f9626759500b708f2fd905df01509ca8c9e",
+      "path": "execution/KLM/klm_f0_result.json",
+      "hash_type": "git_blob_sha1",
+      "hash": "5e56bf821c628bc611282637b0a00edc070e6ccd",
+      "replay": {
+        "iterations": 17660,
+        "final_state_sha256": "a8bc1eb5902a063a026bdc216fd0611661b7cb7c9f3f52c647a5acbc98b01053",
+        "stored_iteration_ledger_sha256": "339884013a8cc4076bdb07c2b226ccafb83cad26ec3f44a25fe4e91b1f0b09bb",
+        "replayed_execution_ledger_sha256": "b43da955f4d6a5e4ad06ce59a63a9ac63fa648e1c07e44036df2c41b415c7079",
+        "replayed_reduced_ledger_sha256": "f4beefb5eb6d44d983c35e721ad2f6b69ef916151193bc6270ed239e3c499111",
+        "ledger_hash_match": false,
+        "final_state_match": true,
+        "restart_residual": 0.0,
+        "causal_replay_residual": 0.0,
+        "physical_parent_admitted": false
+      }
+    }
+  ],
+  "public_data_used_for_generation": false,
+  "old_pass_labels_promoted": false
+}
