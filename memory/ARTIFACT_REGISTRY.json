@@ -27,9 +27,9 @@
     },
     {
       "path": "runs/REC-040-20260811T045909Z",
-      "sha256": "92ba5bd8eb525d3f6ad17d51d4f93bfa06198ec604264ba952e83d5b4957afe2",
+      "sha256": "51ddd5b6788cd768fbb38c1598ac4ef4aa8daecb896ae78d387098a2802a133d",
       "kind": "RUN_BUNDLE",
-      "created_utc": "2026-08-11T11:38:15.950063+00:00",
+      "created_utc": "2026-08-11T11:40:42.608422+00:00",
       "work_unit": "REC-040",
       "run_id": "REC-040-20260811T045909Z"
     }

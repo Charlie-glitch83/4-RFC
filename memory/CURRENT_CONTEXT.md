@@ -1,6 +1,6 @@
 # Current Context
 
-Generated: 2026-08-11T11:38:06.941734+00:00
+Generated: 2026-08-11T11:40:39.611645+00:00
 
 ## Project truth
 
@@ -61,7 +61,7 @@ Inspect old repository branches and libraries, admit only exact valid scientific
 ## Memory counts
 
 - admitted sources: 29
-- frozen artifacts: 3
+- frozen artifacts: 4
 - indexed runs: 4
 
 ## Recent runs
@@ -69,7 +69,7 @@ Inspect old repository branches and libraries, admit only exact valid scientific
 - SRC-010-20260811T044241Z: PASS (SOURCES)
 - AUTH-020-20260811T044245Z: PASS (THEORY)
 - XWALK-030-20260811T045240Z: PASS (THEORY)
-- REC-040-20260811T045909Z: CREATED (RECOVERY)
+- REC-040-20260811T045909Z: PASS (RECOVERY)
 
 ## Recent decisions
 
@@ -81,6 +81,10 @@ Inspect old repository branches and libraries, admit only exact valid scientific
 - ADVANCE-AUTH-020-20260811T045239Z: Marked AUTH-020 PASS and activated XWALK-030
 - COMMIT-143cb9e8ae72: Externally verified XWALK-030 enhancement-crosswalk commit and diff.
 - ADVANCE-XWALK-030-20260811T045908Z: Marked XWALK-030 PASS and activated REC-040
+
+## Recent failures
+
+- REC-040-FIREWALL-PROHIBITION-FALSE-POSITIVE-20260811T113215Z: First REC-040 attempt was stopped because the firewall scanner treated the required negative gate label no public-data contamination as evidence of public-data use.
 
 ## Resume commands
 
