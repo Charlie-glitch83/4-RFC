@@ -1,14 +1,14 @@
 # Current Context
 
-Generated: 2026-08-11T04:42:45.311193+00:00
+Generated: 2026-08-11T04:52:40.093303+00:00
 
 ## Project truth
 
 - Status: `ACTIVE`
 - Generation mode: `GENERATION_SEALED`
-- Active work unit: `AUTH-020` — Lock Canonical Authority, Terminology, and Claims
+- Active work unit: `XWALK-030` — P29/P30/N-body Preservation and Enhancement Crosswalk
 - Current module: `THEORY`
-- Last verified commit: `52f5ac9fd0c23eaf89c0890cc6818ee9482e49e6`
+- Last verified commit: `27b250a0d70f429b59184dfc01b2a812cff26d45`
 
 ## Strongest supported claim
 
@@ -20,21 +20,20 @@ The enhanced RFC universe is complete, physically executed, or empirically valid
 
 ## Immediate objective
 
-Produce the concise scientific constitution from admitted sources and lock claim ownership, failure policy, no-tuning firewall, and proof-versus-physical order.
+Map every material parent object to preserve, strengthen, rederive, execute, reserve, quarantine, or supersede.
 
 ## Required deliverables
 
-- theory/SCIENTIFIC_CONSTITUTION.md
-- theory/TERMINOLOGY_LOCK.json
-- theory/CLAIM_MAP.json
-- runs/AUTH-020/CLOSEOUT.md
+- theory/ENHANCEMENT_CROSSWALK.json
+- theory/ENHANCEMENT_CROSSWALK.md
+- runs/XWALK-030/CLOSEOUT.md
 
 ## Mandatory gates
 
-- no terminology drift
-- no N-body over-universalization
-- no inherited failure parentage
-- independent source trace
+- all major objects classified
+- claim overlap removed
+- source hashes present
+- independent review
 
 ## Module states
 
@@ -61,12 +60,13 @@ Produce the concise scientific constitution from admitted sources and lock claim
 ## Memory counts
 
 - admitted sources: 29
-- frozen artifacts: 1
-- indexed runs: 1
+- frozen artifacts: 2
+- indexed runs: 2
 
 ## Recent runs
 
 - SRC-010-20260811T044241Z: PASS (SOURCES)
+- AUTH-020-20260811T044245Z: PASS (THEORY)
 
 ## Recent decisions
 
@@ -75,6 +75,8 @@ Produce the concise scientific constitution from admitted sources and lock claim
 - ADVANCE-BOOT-000-20260811T044239Z: Marked BOOT-000 PASS and activated SRC-010
 - COMMIT-52f5ac9fd0c2: Verified SRC-010 source-admission commit after governed checks.
 - ADVANCE-SRC-010-20260811T044244Z: Marked SRC-010 PASS and activated AUTH-020
+- COMMIT-27b250a0d70f: Externally verified AUTH-020 scientific-constitution lock commit and diff; final run-bundle hash reconciled after required external verification record.
+- ADVANCE-AUTH-020-20260811T045239Z: Marked AUTH-020 PASS and activated XWALK-030
 
 ## Resume commands
 
