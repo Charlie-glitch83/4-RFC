@@ -1,0 +1,81 @@
+name: Advance verified FRONTIER-050
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  advance-frontier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy scipy sympy networkx
+      - name: Record verified frontier and activate exactly one child
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERIFIED='8a41b506d9553ef019bbb2711ad3e682a32abcde'
+          RUN='FRONTIER-050-20260811T114313Z'
+          test "$(git rev-parse HEAD)" = "$VERIFIED"
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from tools.rfc import sha256_tree
+          state=json.load(open('STATE.json'))
+          index=json.load(open('memory/RUN_INDEX.json'))['runs']
+          frontier=json.load(open('audit/PHYSICAL_FRONTIER.json'))
+          rows=[x for x in index if x.get('run_id')=='FRONTIER-050-20260811T114313Z']
+          if len(rows)!=1 or rows[0].get('status')!='PASS':
+              raise SystemExit('FRONTIER-050 is not uniquely closed PASS')
+          actual=sha256_tree(Path(rows[0]['path']))
+          if actual!=rows[0].get('tree_sha256'):
+              raise SystemExit('FRONTIER-050 run tree drift')
+          selected=frontier.get('selected_frontier',{})
+          if selected.get('module')!='A' or selected.get('next_work_unit')!='A-100' or selected.get('authorized_count')!=1:
+              raise SystemExit('frontier audit did not select exactly A-100')
+          if state.get('active_work_unit')!='FRONTIER-050' or state.get('current_run') is not None:
+              raise SystemExit('controller not at FRONTIER-050 transition boundary')
+          PY
+
+          python tools/rfc.py doctor
+          python tools/director.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+
+          python tools/rfc.py record-commit "$VERIFIED" --branch agent/4rfc-universe-build --note 'Externally verified FRONTIER-050 exact A-J object audit, selected Module A frontier, closed run, and diff'
+          python tools/rfc.py advance --task FRONTIER-050 --result PASS --evidence runs/$RUN/CLOSEOUT.md
+
+          # The repository creates the sole authorized A run and its frozen packet scaffold.
+          bash tools/start_work.sh
+          python tools/director.py doctor
+          python tools/rfc.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+
+          python - <<'PY'
+          import json
+          state=json.load(open('STATE.json'))
+          queue=json.load(open('WORK_QUEUE.json'))['items']
+          active=[x for x in queue if x.get('status')=='ACTIVE']
+          if len(active)!=1 or active[0]['id']!='A-100' or state.get('active_work_unit')!='A-100':
+              raise SystemExit('singular A-100 activation failed')
+          if state.get('current_module')!='A' or not state.get('current_run'):
+              raise SystemExit('A-100 run was not materialized')
+          print(json.dumps({'active_work_unit':state['active_work_unit'],'current_module':state['current_module'],'current_run':state['current_run'],'last_verified_commit':state['last_verified_commit']},indent=2))
+          PY
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add STATE.json WORK_QUEUE.json memory work_packets runs
+          git commit -m 'Advance FRONTIER-050 to Module A'
+          git push origin HEAD:agent/4rfc-universe-build
