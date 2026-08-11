@@ -21,6 +21,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - run: python -m pip install numpy networkx scipy sympy
       - name: Governed E-140 source and prelock audit
         shell: bash
         run: |
@@ -52,8 +53,7 @@ jobs:
             if p.suffix.lower() not in {'.md','.txt','.json','.tex'} or not p.exists():
               continue
             text=p.read_text(encoding='utf-8',errors='ignore')
-            lines=text.splitlines()
-            for i,line in enumerate(lines,1):
+            for i,line in enumerate(text.splitlines(),1):
               if any(rx.search(line) for rx in patterns):
                 hits.append({'source_label':rec['label'],'classification':rec['classification'],'path':rec['frozen_path'],'sha256':rec['sha256'],'line':i,'text':line[:500]})
           audit={
@@ -68,8 +68,7 @@ jobs:
           }
           (run/'E140_SOURCE_OWNERSHIP_AUDIT.json').write_text(json.dumps(audit,indent=2,sort_keys=True)+'\n')
           print(json.dumps({'exact_parent_sha256':expected_h,'admitted_text_hit_count':len(hits),'audit_path':str(run/'E140_SOURCE_OWNERSHIP_AUDIT.json')},indent=2))
-          for h in hits[:120]:
-            print(f"SOURCE_HIT {h['classification']} {h['path']}:{h['line']}: {h['text']}")
+          for h in hits[:120]: print(f"SOURCE_HIT {h['classification']} {h['path']}:{h['line']}: {h['text']}")
           PY
           python tools/rfc.py doctor
           python tools/director.py doctor
