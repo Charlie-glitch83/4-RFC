@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   repository-step:
-    if: github.event.pull_request.head.ref == 'agent/4rfc-universe-build'
+    if: github.event.pull_request.head.ref == 'agent/e140-source-audit-runner'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
