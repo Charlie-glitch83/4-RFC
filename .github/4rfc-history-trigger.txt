@@ -1,1 +1,2 @@
 Trigger clean 4-RFC history establishment.
+Retry after self-clean validation.
