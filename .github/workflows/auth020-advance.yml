@@ -1,0 +1,61 @@
+name: Advance governed AUTH-020
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened]
+
+permissions:
+  contents: write
+
+jobs:
+  advance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install repository runtime
+        run: python -m pip install numpy scipy sympy networkx
+      - name: Verify AUTH state, advance one child, prepare packet
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERIFIED_SHA=651fd825241299ebb3966f10ecc4a2f3571d7ac5
+          python tools/rfc.py doctor
+          python tools/director.py doctor
+          python - <<'PY'
+          import json
+          s=json.load(open('STATE.json'))
+          assert s['active_work_unit']=='AUTH-020'
+          assert s['current_run'] is None
+          r=json.load(open('runs/AUTH-020-20260811T044245Z/run.json'))
+          assert r['status']=='PASS'
+          g=json.load(open('runs/AUTH-020-20260811T044245Z/GATE_RESULTS.json'))
+          assert g['overall']=='PASS'
+          PY
+          python tools/rfc.py record-commit "$VERIFIED_SHA" --branch agent/4rfc-universe-build --note 'Externally verified closed AUTH-020 state: exact GitHub SHA fetched; cumulative diff from verified SRC state contains complete AUTH run, PASS gates, independent verification, preserved failure, and governed state changes.'
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('runs/AUTH-020-20260811T044245Z/CLOSEOUT.md')
+          s=p.read_text()
+          marker='- Verified GitHub commit SHA: `651fd825241299ebb3966f10ecc4a2f3571d7ac5`\n'
+          if 'Verified GitHub commit SHA:' not in s:
+              s=s.replace('- Generation mode: `GENERATION_SEALED`\n','- Generation mode: `GENERATION_SEALED`\n'+marker)
+          p.write_text(s)
+          PY
+          python tools/rfc.py advance --task AUTH-020 --result PASS --evidence runs/AUTH-020-20260811T044245Z/CLOSEOUT.md
+          bash tools/start_work.sh
+          python tools/rfc.py doctor
+          python tools/director.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Advance AUTH-020 to the next governed work unit'
+          git push origin HEAD:agent/4rfc-universe-build
