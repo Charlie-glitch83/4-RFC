@@ -1,0 +1,66 @@
+name: E-140 Source Audit
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    if: github.event.pull_request.head.ref == 'agent/4rfc-universe-build'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Refresh and audit E-140 admissible source content
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash tools/start_work.sh
+          cat work_packets/ACTIVE_WORK_PACKET.md
+          grep -q 'ACTIVE WORK PACKET — E-140' work_packets/ACTIVE_WORK_PACKET.md
+          python - <<'PY'
+          from pathlib import Path
+          import json, re
+          roots=[Path('sources/frozen'),Path('modules/D/runs/D-130-20260811T165602Z')]
+          pats=[
+            r'(?i)reaction',r'(?i)stoich',r'(?i)rate law',r'(?i)reaction rate',r'(?i)network',
+            r'(?i)li7',r'(?i)be7',r'(?i)he3',r'(?i)he4',r'(?i)deuter',r'(?i)baryon',
+            r'(?i)n\s*\+\s*p',r'(?i)p\s*\+\s*n',r'(?i)lambda',r'(?i)cross section'
+          ]
+          rx=[re.compile(p) for p in pats]
+          hits=[]
+          for root in roots:
+            if not root.exists(): continue
+            for p in root.rglob('*'):
+              if not p.is_file() or p.suffix.lower() not in {'.md','.txt','.json','.jsonl','.py','.toml','.yaml','.yml'}: continue
+              try: text=p.read_text(encoding='utf-8',errors='ignore')
+              except Exception: continue
+              lines=text.splitlines()
+              matched=[]
+              for i,line in enumerate(lines,1):
+                if any(r.search(line) for r in rx):
+                  matched.append((i,line[:500]))
+              if matched:
+                hits.append((str(p),matched[:80]))
+          print('=== E140 SOURCE AUDIT ===')
+          for path, rows in hits:
+            print('\nFILE',path)
+            for i,line in rows:
+              print(f'{i}: {line}')
+          print('\nFILES_WITH_HITS',len(hits))
+          PY
+          echo '=== TEMPLATE ==='
+          cat configured_runs/templates/E_reaction_network.template.json
+          echo '=== SOURCE REGISTER ==='
+          cat modules/E/runs/E-140-20260811T175023Z/SOURCE_REGISTER.json
+          echo '=== PRELOCK ==='
+          cat modules/E/runs/E-140-20260811T175023Z/PRE_EXECUTION_LOCK.json
