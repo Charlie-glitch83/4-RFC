@@ -1,6 +1,6 @@
 {
   "run_id": "A-100-20260811T115001Z",
-  "status": "FROZEN_PRE_EXECUTION",
+  "status": "FROZEN",
   "frozen_utc": "2026-08-11T13:24:00Z",
   "authority_hashes": [
     "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
