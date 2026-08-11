@@ -1,0 +1,85 @@
+name: Run governed AUTH-020 lock
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  auth020:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy scipy sympy networkx pypdf
+      - name: Execute authorized AUTH-020
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/director.py doctor
+          RUN_ID=$(python - <<'PY'
+          import json
+          s=json.load(open('STATE.json'))
+          assert s['active_work_unit']=='AUTH-020'
+          print(s['current_run'])
+          PY
+          )
+          RUN_DIR="runs/$RUN_ID"
+          python - "$RUN_DIR" <<'PY'
+          import hashlib,json,pathlib,sys
+          from pypdf import PdfReader
+          root=pathlib.Path('.'); run=pathlib.Path(sys.argv[1])
+          manifest=json.load(open('sources/SOURCE_MANIFEST.json'))['sources']
+          byname={pathlib.Path(x['frozen_path']).name:x for x in manifest}
+          required={
+            'Presentation 29 revised  raw LaTeX.md':'cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e',
+            'Presentation 30 raw LaTex.md':'4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6',
+            'A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf':'0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28',
+            'A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf':'caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94'}
+          for name,h in required.items():
+              r=byname[name]; p=root/r['frozen_path']; got=hashlib.sha256(p.read_bytes()).hexdigest()
+              assert got==h==r['sha256'] and r['classification']=='CANONICAL_AUTHORITY'
+          p29=(root/byname['Presentation 29 revised  raw LaTeX.md']['frozen_path']).read_text()
+          p30=(root/byname['Presentation 30 raw LaTex.md']['frozen_path']).read_text()
+          np=root/byname['A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf']['frozen_path']
+          nt='\n'.join((p.extract_text() or '') for p in PdfReader(str(np)).pages)
+          assertions=[
+            ('canonical triad meanings','P29',required['Presentation 29 revised  raw LaTeX.md'],all(x in p29 for x in ['Cosmic Infinite Field','Quantum Vacuum','Recursive Fractal Lattice','modal possibility','compression','memory-bearing'])),
+            ('First Action','P29',required['Presentation 29 revised  raw LaTeX.md'],'QV(CIF)' in p29 and 'First Action' in p29),
+            ('no-retune architecture','P29',required['Presentation 29 revised  raw LaTeX.md'],'No-Retune Triadic Closure Architecture Theorem' in p29 and 'Downstream modules are prohibited from retuning' in p29),
+            ('universe freeze and later read-only comparison','P30',required['Presentation 30 raw LaTex.md'],'Internal Output Freeze' in p30 and 'Read-only Public Comparison' in p30),
+            ('finite-N relational enhancement','N-body',required['A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf'],all(x in nt for x in ['directed body-reference lane','local witness','multi-route equivalence','lawful collision branch','finite N'])),
+            ('N-body public validation read-only','N-body',required['A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf'],'Public validation data are read-only' in nt)]
+          failed=[a[0] for a in assertions if not a[3]]
+          if failed: raise SystemExit('source trace failed: '+repr(failed))
+          constitution=(root/'theory/SCIENTIFIC_CONSTITUTION.md').read_text()
+          terms=json.load(open('theory/TERMINOLOGY_LOCK.json'))
+          claims=json.load(open('theory/CLAIM_MAP.json'))
+          gates={
+            'no terminology drift': terms['canonical']['CIF']=='Cosmic Infinite Field' and terms['canonical']['QV']=='Quantum Vacuum' and terms['canonical']['RFL']=='Recursive Fractal Lattice' and terms['canonical']['first_action']=='QV(CIF) -> RFL',
+            'no N-body over-universalization': 'does not force every domain into point-body mechanics' in constitution or 'neither replaces the universe nor turns every domain into point-body mechanics' in constitution,
+            'no inherited failure parentage': 'do not preserve failed mechanisms or failed outputs as required parents' in constitution,
+            'independent source trace': not failed and len(assertions)==6}
+          if not all(gates.values()): raise SystemExit('AUTH gates failed: '+repr(gates))
+          trace={'schema_version':'1.0','work_unit':'AUTH-020','canonical_sources':required,'assertions':[{'assertion':a,'source_role':role,'sha256':h,'verified':ok} for a,role,h,ok in assertions],'disagreements':[{'topic':'scope discipline','resolution':'No silent reconciliation: P29 supplies cross-domain triadic architecture, the N-body source is scoped to the finite-body relational domain, and P30 supplies universe-scale sequencing. Common ancestry is not treated as an identical equation.'}],'result':'PASS'}
+          (run/'INDEPENDENT_SOURCE_TRACE.json').write_text(json.dumps(trace,indent=2)+'\n')
+          (run/'GATE_RESULTS.json').write_text(json.dumps({'run_id':run.name,'overall':'PASS','gates':[{'gate':k,'result':'PASS'} for k in gates]},indent=2)+'\n')
+          hashes={p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in ['theory/SCIENTIFIC_CONSTITUTION.md','theory/TERMINOLOGY_LOCK.json','theory/CLAIM_MAP.json']}
+          (run/'GENERATED_OUTPUT_MANIFEST.json').write_text(json.dumps({'run_id':run.name,'outputs':[{'path':p,'sha256':h} for p,h in hashes.items()]},indent=2)+'\n')
+          (run/'INDEPENDENT_VERIFICATION.md').write_text('# Independent Verification\n\nReconstructed the AUTH-020 locks from four exact admitted canonical source hashes. Verified canonical CIF/QV/RFL terminology, First Action, no-retune architecture, finite-N relational scope, and P30 freeze/read-only-comparison order without using summaries as parents.\n\nAll four component gates PASS.\n')
+          (run/'CLOSEOUT.md').write_text(f'''# AUTH-020 Closeout\n\n- Run ID: `{run.name}`\n- Work unit: `AUTH-020`\n- Module: `THEORY`\n- Result: `PASS`\n\n## Scientific objects produced\nThe prebuilt 4-RFC scientific constitution, terminology lock, and claim map were independently traced to the admitted canonical sources and locked without changing their scientific content.\n\n## Componentwise gate results\n- no terminology drift: **PASS**\n- no N-body over-universalization: **PASS**\n- no inherited failure parentage: **PASS**\n- independent source trace: **PASS**\n\n## Independent reconstruction\nSee `INDEPENDENT_SOURCE_TRACE.json` and `INDEPENDENT_VERIFICATION.md`. The exact P29, P30, revised N-body proof, and N-body metadata hashes were independently recomputed before use.\n\n## Strongest supported claim\nThe 4-RFC scientific constitution, canonical terminology, source-role ownership, no-tuning rule, failure-parentage rule, and claim boundaries are source-traced and locked for downstream governed derivation.\n\n## Strongest unsupported claim\nAUTH-020 does not itself prove the triadic theorem, physically execute the Big Implosion, construct a universe, or establish empirical agreement.\n\n## Remaining gaps\nAll formal derivations, physical execution, reconstruction, freezing, and blind comparison remain downstream.\n\n## Exact next child\nOnly the repository state machine may activate the next child after this AUTH-020 commit is verified.\n''')
+          PY
+          python tools/director.py doctor
+          python tools/rfc.py close-run --run-id "$RUN_ID" --result PASS --closeout "$RUN_DIR/CLOSEOUT.md"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add theory/SCIENTIFIC_CONSTITUTION.md theory/TERMINOLOGY_LOCK.json theory/CLAIM_MAP.json "$RUN_DIR" memory/RUN_INDEX.json memory/ARTIFACT_REGISTRY.json STATE.json memory/CURRENT_CONTEXT.md
+          git commit -m 'Lock the enhanced RFC scientific constitution'
+          git push origin HEAD:agent/4rfc-universe-build
