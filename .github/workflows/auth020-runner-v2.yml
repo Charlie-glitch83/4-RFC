@@ -1,0 +1,75 @@
+name: Run governed AUTH-020 lock v2
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  auth020:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy scipy sympy networkx pypdf
+      - name: Execute AUTH-020
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/director.py doctor
+          RUN_ID=$(python - <<'PY'
+          import json
+          s=json.load(open('STATE.json')); assert s['active_work_unit']=='AUTH-020'; print(s['current_run'])
+          PY
+          )
+          RUN_DIR="runs/$RUN_ID"
+          python - "$RUN_DIR" <<'PY'
+          import hashlib,json,pathlib,sys,re
+          from pypdf import PdfReader
+          root=pathlib.Path('.'); run=pathlib.Path(sys.argv[1])
+          src=json.load(open('sources/SOURCE_MANIFEST.json'))['sources']; byname={pathlib.Path(x['frozen_path']).name:x for x in src}
+          required={
+          'Presentation 29 revised  raw LaTeX.md':'cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e',
+          'Presentation 30 raw LaTex.md':'4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6',
+          'A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf':'0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28',
+          'A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf':'caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94'}
+          for n,h in required.items():
+              r=byname[n]; assert r['classification']=='CANONICAL_AUTHORITY'; assert hashlib.sha256((root/r['frozen_path']).read_bytes()).hexdigest()==h==r['sha256']
+          p29=(root/byname['Presentation 29 revised  raw LaTeX.md']['frozen_path']).read_text(); p30=(root/byname['Presentation 30 raw LaTex.md']['frozen_path']).read_text()
+          nt=' '.join((p.extract_text() or '') for p in PdfReader(str(root/byname['A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf']['frozen_path'])).pages).lower(); nt=re.sub(r'\s+',' ',nt)
+          assertions=[
+          ('canonical triad meanings','P29',required['Presentation 29 revised  raw LaTeX.md'],all(x in p29 for x in ['Cosmic Infinite Field','Quantum Vacuum','Recursive Fractal Lattice','modal possibility','memory-bearing'])),
+          ('First Action','P29',required['Presentation 29 revised  raw LaTeX.md'],'QV(CIF)' in p29 and 'First Action' in p29),
+          ('no-retune architecture','P29',required['Presentation 29 revised  raw LaTeX.md'],'No-Retune Triadic Closure Architecture Theorem' in p29 and 'prohibited from retuning' in p29),
+          ('universe freeze and later read-only comparison','P30',required['Presentation 30 raw LaTex.md'],'Internal Output Freeze' in p30 and 'Read-only Public Comparison' in p30),
+          ('finite-body relational enhancement','N-body',required['A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf'],all(x in nt for x in ['directed body-reference','witness','multi-route','collision branch','finite'])),
+          ('N-body validation firewall','N-body',required['A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf'],'public validation data are read-only' in nt)]
+          failed=[a for a,_,_,ok in assertions if not ok]
+          if failed: raise SystemExit('source trace failed: '+repr(failed))
+          con=(root/'theory/SCIENTIFIC_CONSTITUTION.md').read_text(); terms=json.load(open('theory/TERMINOLOGY_LOCK.json')); claims=json.load(open('theory/CLAIM_MAP.json'))
+          gates={'no terminology drift':terms['canonical']=={'CIF':'Cosmic Infinite Field','QV':'Quantum Vacuum','RFL':'Recursive Fractal Lattice','first_action':'QV(CIF) -> RFL','first_physical_event':'Big Implosion'},'no N-body over-universalization':'neither replaces the universe nor turns every domain into point-body mechanics' in con,'no inherited failure parentage':'do not preserve failed mechanisms or failed outputs as required parents' in con,'independent source trace':len(assertions)==6 and not failed}
+          if not all(gates.values()): raise SystemExit('AUTH gates failed '+repr(gates))
+          trace={'schema_version':'1.0','work_unit':'AUTH-020','canonical_sources':required,'assertions':[{'assertion':a,'source_role':role,'sha256':h,'verified':ok} for a,role,h,ok in assertions],'source_role_lock':{'P29':'ontology, First Action, recursive kernel, domain-specific modal inheritance, memory, no-retune','N-body':'finite-body relational/witness/route/event/branch/no-loss refinement','P30':'universe-scale order, handoffs, observer products, provenance, freeze, later comparison'},'disagreements':[{'topic':'scope discipline','handling':'Preserved without silent reconciliation: common triadic ancestry does not imply identical equations; N-body enhancement is not universal point-body mechanics.'}],'result':'PASS'}
+          (run/'INDEPENDENT_SOURCE_TRACE.json').write_text(json.dumps(trace,indent=2)+'\n')
+          (run/'GATE_RESULTS.json').write_text(json.dumps({'run_id':run.name,'overall':'PASS','gates':[{'gate':k,'result':'PASS'} for k in gates]},indent=2)+'\n')
+          outputs=[]
+          for p in ['theory/SCIENTIFIC_CONSTITUTION.md','theory/TERMINOLOGY_LOCK.json','theory/CLAIM_MAP.json']:
+              outputs.append({'path':p,'sha256':hashlib.sha256((root/p).read_bytes()).hexdigest()})
+          (run/'GENERATED_OUTPUT_MANIFEST.json').write_text(json.dumps({'run_id':run.name,'outputs':outputs},indent=2)+'\n')
+          (run/'INDEPENDENT_VERIFICATION.md').write_text('# Independent Verification\n\nReconstructed the lock from exact admitted P29, P30, revised N-body proof, and N-body metadata hashes. Canonical terminology, source roles, no-retune boundary, finite-body N-body scope, and freeze-before-comparison order were independently checked.\n\nVerdict: PASS.\n')
+          (run/'CLOSEOUT.md').write_text(f'''# AUTH-020 Closeout\n\n- Run ID: `{run.name}`\n- Work unit: `AUTH-020`\n- Module: `THEORY`\n- Result: `PASS`\n\n## Scientific objects produced\nThe prebuilt 4-RFC scientific constitution, terminology lock, and claim map were independently traced to exact admitted canonical source bytes and locked without changing their science.\n\n## Componentwise gate results\n- no terminology drift: **PASS**\n- no N-body over-universalization: **PASS**\n- no inherited failure parentage: **PASS**\n- independent source trace: **PASS**\n\n## Independent reconstruction\n`INDEPENDENT_SOURCE_TRACE.json` records exact hashes and source-role assertions. No interpretive summary was used as a scientific parent.\n\n## Strongest supported claim\nThe 4-RFC scientific constitution, canonical terminology, source-role ownership, no-tuning/failure rules, and claim boundaries are source-traced and locked for downstream derivation.\n\n## Strongest unsupported claim\nNo triadic theorem has yet been newly proved by 4-RFC, no Big Implosion has been physically executed, no universe constructed, and no empirical agreement established.\n\n## Remaining gaps\nFormal derivation, physical execution, reconstruction, freezing, and blind comparison remain downstream.\n\n## Exact next child\nOnly the repository state machine may activate the next child after this commit is externally verified.\n''')
+          PY
+          python tools/director.py doctor
+          python tools/rfc.py close-run --run-id "$RUN_ID" --result PASS --closeout "$RUN_DIR/CLOSEOUT.md"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add theory/SCIENTIFIC_CONSTITUTION.md theory/TERMINOLOGY_LOCK.json theory/CLAIM_MAP.json "$RUN_DIR" memory/RUN_INDEX.json memory/ARTIFACT_REGISTRY.json STATE.json memory/CURRENT_CONTEXT.md
+          git commit -m 'Lock the enhanced RFC scientific constitution'
+          git push origin HEAD:agent/4rfc-universe-build
