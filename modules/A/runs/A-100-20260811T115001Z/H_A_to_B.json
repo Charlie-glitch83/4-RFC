@@ -1,67 +1,73 @@
 {
-  "schema_version": "1.0",
-  "handoff_id": "H_A_to_B",
-  "source_run": "A-100-20260811T115001Z",
-  "source_module": "A",
-  "target_module": "B",
-  "classification": "EXACT_PREPHYSICAL_PARENT_HANDOFF",
+  "claim_boundary": "Mathematical constitution and relational enhancement only; no physical universe yet.",
+  "classification": "EXACT_PREPHYSICAL_HANDOFF",
+  "evidence": {
+    "configured_execution": "PASS",
+    "countermodels_ablations": "PASS",
+    "independent_reconstruction": "PASS",
+    "manufactured_reference": "PASS",
+    "restart_replay": "PASS",
+    "uncertainty_covariance": "PASS",
+    "wolfram_A_WL_001": "PASS_WITH_MANUAL_INTERPRETATION",
+    "wolfram_A_WL_002": "PASS_WITH_MANUAL_INTERPRETATION"
+  },
+  "first_action": {
+    "interpretation": "ordered prephysical dependency operator",
+    "operator": "QV(CIF) -> RFL",
+    "physical_clock": false
+  },
   "generation_mode": "GENERATION_SEALED",
-  "authority_hashes": [
+  "module": "A",
+  "object_id": "H_A_to_B",
+  "prohibitions": {
+    "empirical_constants": true,
+    "geometry": true,
+    "later_module_objects": true,
+    "particles_or_fields": true,
+    "physical_time": true
+  },
+  "recursive_kernel": {
+    "alpha": 0.02568312917993952,
+    "config_sha256": "13226dea2b62589245ab61ce7f944340b6821aa6524debc726a8ab8a61efc6a4",
+    "delta": 4.6692,
+    "depth": 40,
+    "kernel_state": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "normalization_error": 1.1102230246251565e-16,
+    "result_sha256": "f04f69ae94e9c4ce0105c835f0ba421377cc47df322d180b0b253cdcc8e5257b"
+  },
+  "relational_completion": {
+    "direct_dynamics_mode": "DORMANT_ZERO_BACKREACTION",
+    "directed_lane_law": "N(N-1)",
+    "finite_N_verified": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "no_loss_memory": "lawful promotion and reopening preserve independent closure distinctions",
+    "one_body_extension_increment": "2N",
+    "witness_requirement": "new-solution status requires a valid witness and a closure distinct modulo frozen gauge/multiroute equivalence; lane count alone is insufficient"
+  },
+  "run_id": "A-100-20260811T115001Z",
+  "source_authority_hashes": [
     "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
     "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215",
     "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
     "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
     "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6"
   ],
-  "parent_objects": {
-    "typed_roles": ["CIF","QV","RFL"],
-    "first_action": "CIF --QV witness/action--> RFL",
-    "recursive_kernel": {
-      "delta": 4.6692,
-      "alpha": 0.02568312917993952,
-      "canonical_depth": 40,
-      "ordering_argument_is_physical_time": false
-    },
-    "relational_laws": {
-      "directed_lane_count": "N(N-1)",
-      "extension_increment": "2N",
-      "witness_required": true,
-      "gauge_equivalent_routes_are_redundant_representatives": true,
-      "distinct_new_solution_requires_non_gauge_witnessed_closure": true,
-      "no_loss_memory": true,
-      "lawful_reopening": true,
-      "branch_event_ancestry_required": true
-    },
-    "direct_dynamics": {"mode":"DORMANT","backreaction":[0.0,0.0,0.0]}
-  },
-  "exact_run_artifacts": [
-    "modules/A/runs/A-100-20260811T115001Z/SOURCE_REGISTER.json",
-    "modules/A/runs/A-100-20260811T115001Z/PRE_EXECUTION_LOCK.json",
-    "modules/A/runs/A-100-20260811T115001Z/DERIVATION_BINDINGS.json",
-    "modules/A/runs/A-100-20260811T115001Z/solver_configs/A_triad_kernel.json",
-    "modules/A/runs/A-100-20260811T115001Z/solver_outputs/triad_kernel/result.json",
-    "modules/A/runs/A-100-20260811T115001Z/A100_GATE_EXECUTION.json",
-    "modules/A/runs/A-100-20260811T115001Z/independent_reconstruction.json",
-    "modules/A/runs/A-100-20260811T115001Z/A_SCIENTIFIC_OBJECTS.json"
-  ],
-  "verified_properties": {
-    "typed_triad_irreducible": true,
-    "recursive_kernel_bounded_and_normalized": true,
-    "finite_N_2_through_8_lane_law": true,
-    "scalar_collapse_rejected": true,
-    "witnessed_non_gauge_closure_rule": true,
-    "restart_replay": true,
-    "independent_reconstruction": true,
-    "dormant_zero_backreaction": true
-  },
-  "strict_prohibitions_for_target": [
-    "Do not interpret the Module A ordering argument as pre-existing physical time.",
-    "Do not import geometry, metric, particles, fields, empirical constants, or later-module states into this parent.",
-    "Do not replace exact parent bytes with remembered or historical outputs.",
-    "Do not infer physical execution from mathematical or manufactured PASS records.",
-    "Do not infer a new solution from lane count without a distinct non-gauge witnessed closure."
-  ],
-  "target_authorization_boundary": "Module B may attempt the sole first physical event only from this exact frozen prephysical parent after its own pre-execution lock and gates are satisfied.",
-  "strongest_supported_claim": "This handoff is a verified prephysical mathematical parent for Module B.",
-  "strongest_unsupported_claim": "This handoff is not a physical state and contains no physical time, geometry, particles, fields, or executed Big Implosion."
+  "strongest_supported_claim": "The Module A prephysical mathematical constitution, recursive kernel, typed relational carrier, witnessed closure grammar, memory/reopening law, and exact handoff to B satisfy all frozen A gates.",
+  "strongest_unsupported_claim": "No physical state, physical time, geometry, particles, fields, Big Implosion execution, manifested universe, or empirical validation is established by Module A.",
+  "typed_roles": {
+    "CIF": "modal source/candidate classes",
+    "QV": "First Action and admission witnesses",
+    "RFL": "recursive kernel, memory, relational carrier"
+  }
 }

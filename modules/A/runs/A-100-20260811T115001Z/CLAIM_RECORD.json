@@ -1,0 +1,13 @@
+{
+  "claim_id": "A100-PREPHYSICAL-HANDOFF",
+  "evidence": [
+    "modules/A/runs/A-100-20260811T115001Z/H_A_to_B.json",
+    "modules/A/runs/A-100-20260811T115001Z/A100_GATE_EXECUTION.json",
+    "modules/A/runs/A-100-20260811T115001Z/independent_reconstruction.json"
+  ],
+  "evidence_state": "FROZEN",
+  "fidelity": "PRODUCTION",
+  "owner": "A",
+  "supported": true,
+  "text": "Module A establishes the frozen prephysical RFC constitution and exact handoff H_A_to_B at mathematical/relational scope only."
+}

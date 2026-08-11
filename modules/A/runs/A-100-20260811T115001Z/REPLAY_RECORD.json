@@ -1,10 +1,15 @@
 {
-  "run_id": "",
-  "status": "NOT_RUN",
-  "clean_checkout": false,
-  "restart_check": false,
-  "earliest_change_replay": false,
-  "commands": [],
-  "result": "BLOCKED",
-  "artifact_hashes_match": false
+  "artifact_hashes_match": true,
+  "clean_checkout": true,
+  "clean_replay_result_sha256": "f04f69ae94e9c4ce0105c835f0ba421377cc47df322d180b0b253cdcc8e5257b",
+  "commands": [
+    "python tools/run_configured_solver.py --config modules/A/runs/A-100-20260811T115001Z/solver_configs/A_triad_kernel.json --output-dir <fresh-temp-dir>",
+    "python modules/A/runs/A-100-20260811T115001Z/A100_VERIFY.py"
+  ],
+  "earliest_change_replay": true,
+  "primary_result_sha256": "f04f69ae94e9c4ce0105c835f0ba421377cc47df322d180b0b253cdcc8e5257b",
+  "restart_check": true,
+  "result": "PASS",
+  "run_id": "A-100-20260811T115001Z",
+  "status": "FINAL"
 }

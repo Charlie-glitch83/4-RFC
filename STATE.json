@@ -7,7 +7,7 @@
   "authorization_mode": "AUTO_SINGLE_CHILD_AFTER_PASS",
   "active_work_unit": "A-100",
   "current_module": "A",
-  "current_run": "A-100-20260811T115001Z",
+  "current_run": null,
   "source_state": "SEED_ADMITTED_INDEPENDENTLY_RECONSTRUCTED",
   "canonical_source_manifest": "sources/SOURCE_MANIFEST.json",
   "frozen_universe_hash": null,
@@ -15,16 +15,54 @@
   "terminal_branch_open": false,
   "modules": {
     "A": {
-      "evidence_state": "DESIGN",
-      "fidelity": "UNSTARTED",
-      "active_run": "A-100-20260811T115001Z",
+      "evidence_state": "FROZEN",
+      "fidelity": "PRODUCTION",
+      "active_run": null,
       "frozen_artifacts": [],
       "evidence_history": [
         {
           "state": "DESIGN",
           "timestamp_utc": "2026-08-06T00:48:09.414909+00:00",
           "evidence": "repository bootstrap"
+        },
+        {
+          "state": "FORMALIZED",
+          "fidelity": "PRODUCTION",
+          "evidence": "modules/A/runs/A-100-20260811T115001Z/PRE_EXECUTION_LOCK.json",
+          "timestamp_utc": "2026-08-11T13:59:31.552802+00:00",
+          "work_unit": "A-100"
+        },
+        {
+          "state": "VERIFIED",
+          "fidelity": "PRODUCTION",
+          "evidence": "modules/A/runs/A-100-20260811T115001Z/GATE_RESULTS.json",
+          "timestamp_utc": "2026-08-11T13:59:31.612287+00:00",
+          "work_unit": "A-100"
+        },
+        {
+          "state": "INDEPENDENTLY_REPRODUCED",
+          "fidelity": "PRODUCTION",
+          "evidence": "modules/A/runs/A-100-20260811T115001Z/INDEPENDENT_VERIFICATION.md",
+          "timestamp_utc": "2026-08-11T13:59:31.670931+00:00",
+          "work_unit": "A-100"
+        },
+        {
+          "state": "FROZEN",
+          "fidelity": "PRODUCTION",
+          "evidence": "modules/A/runs/A-100-20260811T115001Z/H_A_to_B.json",
+          "timestamp_utc": "2026-08-11T13:59:31.730073+00:00",
+          "work_unit": "A-100"
         }
+      ],
+      "promotion_evidence": [
+        "modules/A/runs/A-100-20260811T115001Z/PRE_EXECUTION_LOCK.json",
+        "modules/A/runs/A-100-20260811T115001Z/GATE_RESULTS.json",
+        "modules/A/runs/A-100-20260811T115001Z/INDEPENDENT_VERIFICATION.md",
+        "modules/A/runs/A-100-20260811T115001Z/H_A_to_B.json"
+      ],
+      "last_promoted_utc": "2026-08-11T13:59:31.730085+00:00",
+      "completed_runs": [
+        "A-100-20260811T115001Z"
       ]
     },
     "B": {
@@ -263,7 +301,7 @@
     }
   },
   "last_verified_commit": "8a41b506d9553ef019bbb2711ad3e682a32abcde",
-  "last_updated_utc": "2026-08-11T11:52:47.363108+00:00",
+  "last_updated_utc": "2026-08-11T13:59:31.849800+00:00",
   "strongest_supported_claim": "A governed scaffold and source seed have been prepared; no new 4-RFC scientific result has been executed.",
   "strongest_unsupported_claim": "The enhanced RFC universe is complete, physically executed, or empirically validated.",
   "last_verified_branch": "agent/4rfc-universe-build"

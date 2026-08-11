@@ -1,7 +1,27 @@
 {
-  "run_id": "",
-  "overall": "BLOCKED",
-  "gates": [],
-  "diagnostics": [],
-  "score_rule": "mandatory gates componentwise; below 0.95 triggers analysis"
+  "claim_boundary": "Mathematical constitution and relational enhancement only; no physical universe yet.",
+  "componentwise_gates": {
+    "canonical_terminology_exact": true,
+    "convergence": true,
+    "dormant_direct_dynamics_zero_backreaction": true,
+    "independent_symbolic_reconstruction": true,
+    "lane_increment_2N_verified": true,
+    "new_solution_claim_requires_non_gauge_witnessed_closure": true,
+    "no_physical_time_geometry_constants_or_later_objects": true,
+    "restart_replay": true,
+    "scalar_collapse_countermodel_rejected": true,
+    "triad_ablations_fail_as_predeclared": true,
+    "uncertainty_covariance": true
+  },
+  "evidence_files": [
+    "A100_GATE_EXECUTION.json",
+    "independent_reconstruction.json",
+    "solver_outputs/triad_kernel/result.json",
+    "reference_checks.json",
+    "H_A_to_B.json"
+  ],
+  "module": "A",
+  "overall": "PASS",
+  "primary_solver_success": true,
+  "run_id": "A-100-20260811T115001Z"
 }

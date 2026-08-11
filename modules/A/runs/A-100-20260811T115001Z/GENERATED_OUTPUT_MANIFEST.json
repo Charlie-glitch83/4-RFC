@@ -1,8 +1,74 @@
 {
-  "run_id": "",
-  "status": "DRAFT",
-  "finalized_utc": null,
-  "outputs": [],
-  "tree_sha256": null,
-  "note": "Finalize only after all generated files stop changing. Do not include this manifest in its own tree hash."
+  "finalized_utc": "2026-08-11T13:59:31.490174+00:00",
+  "note": "Hash covers finalized generated scientific/evidence outputs listed here and excludes this manifest and mutable run-registration metadata.",
+  "outputs": [
+    {
+      "bytes": 9069,
+      "path": "solver_configs/A_triad_kernel.json",
+      "sha256": "13226dea2b62589245ab61ce7f944340b6821aa6524debc726a8ab8a61efc6a4"
+    },
+    {
+      "bytes": 2965,
+      "path": "solver_outputs/triad_kernel/result.json",
+      "sha256": "f04f69ae94e9c4ce0105c835f0ba421377cc47df322d180b0b253cdcc8e5257b"
+    },
+    {
+      "bytes": 411,
+      "path": "solver_outputs/triad_kernel/manifest.json",
+      "sha256": "deb3bfada03bf3fd5e6783f66b9f38e6d8966c9b374ff72d918157ec3cb0dd39"
+    },
+    {
+      "bytes": 552,
+      "path": "reference_checks.json",
+      "sha256": "0447eeab8be646cd785595bda6ae8e23d60ec75fc2edf8298617bfc0c1659810"
+    },
+    {
+      "bytes": 7215,
+      "path": "A100_GATE_EXECUTION.json",
+      "sha256": "67807ce08134fbfaf2e3675f03b2416f2505cfc5e58c22e6cb29704db6106619"
+    },
+    {
+      "bytes": 2782,
+      "path": "independent_reconstruction.json",
+      "sha256": "12bfd47aee89532f7f17894970d110ff977061b927e79f416781998344518d41"
+    },
+    {
+      "bytes": 2895,
+      "path": "H_A_to_B.json",
+      "sha256": "198816819e027409812de925efe42878f9898d628b8c7a137e92c2d52bc568a6"
+    },
+    {
+      "bytes": 955,
+      "path": "GATE_RESULTS.json",
+      "sha256": "0136fafbf2bf9ef20d527516d9a3ac04617daa56c1dbb29eed881f59eb18d57d"
+    },
+    {
+      "bytes": 1240,
+      "path": "INDEPENDENT_VERIFICATION.md",
+      "sha256": "c458197088d6583db4d78822a304ae8ad95bac3ea77617f9b215b579dc6cd163"
+    },
+    {
+      "bytes": 628,
+      "path": "wolfram/A-WL-001/record.json",
+      "sha256": "9da28c7e59047aca2c943d3e5b4b01cd13e718c64c77e8a970edc3b4e76e9937"
+    },
+    {
+      "bytes": 456,
+      "path": "wolfram/A-WL-001/gate.json",
+      "sha256": "b864078d4bd5dbb106c81245998ef98adcf500b4d4c1812419b8e17fc5eb0a9c"
+    },
+    {
+      "bytes": 634,
+      "path": "wolfram/A-WL-002/record.json",
+      "sha256": "cc544a45ca8f4171384c53463d857a2bad5248f8fb1f2718471d7ed44cfb5d2d"
+    },
+    {
+      "bytes": 456,
+      "path": "wolfram/A-WL-002/gate.json",
+      "sha256": "9fc3d438caf9261fad4e7c9f46ea95d980847c5d0e7b1ef4400890ab56ba8ab9"
+    }
+  ],
+  "run_id": "A-100-20260811T115001Z",
+  "status": "FINAL",
+  "tree_sha256": "f92aad0dbc194783f579dcb2e2d2b59659a07d6f8c5d97e0a15beca53450285f"
 }
