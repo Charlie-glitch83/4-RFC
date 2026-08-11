@@ -1,0 +1,494 @@
+{
+  "schema_version": "1.0",
+  "classification": "PROVENANCE_BOUND_EXECUTION_CONFIG",
+  "binding_rule": "Replace every __BIND token only from exact admitted sources, exact parent outputs, or preregistered Module P sources; record hashes before execution.",
+  "generation_mode": "GENERATION_SEALED",
+  "solver": "triad_kernel",
+  "model": {
+    "delta": 4.6692,
+    "alpha": 0.02568312917993952,
+    "time": 0.0,
+    "depth": 40,
+    "constituents": [
+      "CIF",
+      "QV",
+      "RFL"
+    ],
+    "basis_matrix": [
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0,
+        1.0
+      ]
+    ],
+    "tolerance": 1e-12
+  },
+  "binding_manifest": {
+    "template_path": "/home/runner/work/4-RFC/4-RFC/modules/A/runs/A-100-20260811T115001Z/solver_templates/A_triad_kernel.template.json",
+    "template_sha256": "fa42cc61e866d02c53e641e18861caa399d73aec379cff3cce880eff27c2cbad",
+    "binding_sheet_path": "/home/runner/work/4-RFC/4-RFC/modules/A/runs/A-100-20260811T115001Z/binding_sheets/A_triad_kernel.bindings.json",
+    "binding_sheet_sha256": "5311d40e5223411b7b227a2dafbbd797f41665ad72a48b8481edd375a7bc42eb",
+    "bindings": [
+      {
+        "path": "model.delta",
+        "value": 4.6692,
+        "origin_kind": "INTERNAL_DERIVATION",
+        "origin_path": "modules/A/runs/A-100-20260811T115001Z/DERIVATION_BINDINGS.json",
+        "origin_sha256": "45bfcef6ed3ed6b177a81e93fee2fe88191dd6a465d934198afb459b4a2afca8",
+        "module": "A",
+        "derivation_object": "model.delta",
+        "units": "dimensionless",
+        "dimensions": "1",
+        "justification": "Frozen P29 recursive bifurcation scale delta=4.6692."
+      },
+      {
+        "path": "model.alpha",
+        "value": 0.02568312917993952,
+        "origin_kind": "INTERNAL_DERIVATION",
+        "origin_path": "modules/A/runs/A-100-20260811T115001Z/DERIVATION_BINDINGS.json",
+        "origin_sha256": "45bfcef6ed3ed6b177a81e93fee2fe88191dd6a465d934198afb459b4a2afca8",
+        "module": "A",
+        "derivation_object": "model.alpha",
+        "units": "dimensionless",
+        "dimensions": "1",
+        "justification": "Frozen relation alpha=Log[delta]/60 from the P29 packet."
+      },
+      {
+        "path": "model.depth",
+        "value": 40,
+        "origin_kind": "INTERNAL_DERIVATION",
+        "origin_path": "modules/A/runs/A-100-20260811T115001Z/DERIVATION_BINDINGS.json",
+        "origin_sha256": "45bfcef6ed3ed6b177a81e93fee2fe88191dd6a465d934198afb459b4a2afca8",
+        "module": "A",
+        "derivation_object": "model.depth",
+        "units": "depth-index",
+        "dimensions": "1",
+        "justification": "Frozen full canonical recursive depth nFullCanonical=40."
+      },
+      {
+        "path": "model.constituents",
+        "value": [
+          "CIF",
+          "QV",
+          "RFL"
+        ],
+        "origin_kind": "INTERNAL_DERIVATION",
+        "origin_path": "modules/A/runs/A-100-20260811T115001Z/DERIVATION_BINDINGS.json",
+        "origin_sha256": "45bfcef6ed3ed6b177a81e93fee2fe88191dd6a465d934198afb459b4a2afca8",
+        "module": "A",
+        "derivation_object": "model.constituents",
+        "units": "typed-labels",
+        "dimensions": "categorical",
+        "justification": "Exact irreducible triadic source roles, kept distinct as typed constituents."
+      },
+      {
+        "path": "model.basis_matrix",
+        "value": [
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "origin_kind": "INTERNAL_DERIVATION",
+        "origin_path": "modules/A/runs/A-100-20260811T115001Z/DERIVATION_BINDINGS.json",
+        "origin_sha256": "45bfcef6ed3ed6b177a81e93fee2fe88191dd6a465d934198afb459b4a2afca8",
+        "module": "A",
+        "derivation_object": "model.basis_matrix",
+        "units": "typed-role-incidence",
+        "dimensions": "40x3",
+        "justification": "Each frozen recursive depth retains all three irreducible typed roles. Columns remain CIF/QV/RFL and are not scalarized or interpreted as a physical domain basis."
+      }
+    ]
+  }
+}
