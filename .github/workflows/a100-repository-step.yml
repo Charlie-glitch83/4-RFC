@@ -31,6 +31,7 @@ jobs:
           bash tools/start_work.sh
           grep -q 'ACTIVE WORK PACKET — C-120' work_packets/ACTIVE_WORK_PACKET.md
           python "$RUN_DIR/C120_VERIFY.py"
+          python "$RUN_DIR/C120_PRE_FINALIZE.py"
           python "$RUN_DIR/C120_FINALIZE.py"
           python tools/rfc.py promote-module C --to FORMALIZED --fidelity MINIMAL_SPINE --evidence "$RUN_DIR/PRE_EXECUTION_LOCK.json"
           python tools/rfc.py promote-module C --to IMPLEMENTED --fidelity MINIMAL_SPINE --evidence "$RUN_DIR/solver_configs/C_spectral_model.json"
