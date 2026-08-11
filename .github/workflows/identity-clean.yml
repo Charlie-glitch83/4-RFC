@@ -15,6 +15,11 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install repository runtime
+        run: python -m pip install numpy scipy sympy networkx
 
       - name: Rebind identity
         shell: bash
