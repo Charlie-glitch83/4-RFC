@@ -33,7 +33,7 @@
       "id": "SRC-010",
       "title": "Hash and Admit the Core Source Corpus",
       "module": "SOURCES",
-      "status": "ACTIVE",
+      "status": "PASS",
       "depends_on": [
         "BOOT-000"
       ],
@@ -61,7 +61,7 @@
       "id": "AUTH-020",
       "title": "Lock Canonical Authority, Terminology, and Claims",
       "module": "THEORY",
-      "status": "BLOCKED",
+      "status": "ACTIVE",
       "depends_on": [
         "SRC-010"
       ],

@@ -1,14 +1,14 @@
 # Current Context
 
-Generated: 2026-08-11T04:42:41.094864+00:00
+Generated: 2026-08-11T04:42:45.311193+00:00
 
 ## Project truth
 
 - Status: `ACTIVE`
 - Generation mode: `GENERATION_SEALED`
-- Active work unit: `SRC-010` — Hash and Admit the Core Source Corpus
-- Current module: `SOURCES`
-- Last verified commit: `39bcd805ff649a5c143fb09b9a757b467644f817`
+- Active work unit: `AUTH-020` — Lock Canonical Authority, Terminology, and Claims
+- Current module: `THEORY`
+- Last verified commit: `52f5ac9fd0c23eaf89c0890cc6818ee9482e49e6`
 
 ## Strongest supported claim
 
@@ -20,20 +20,21 @@ The enhanced RFC universe is complete, physically executed, or empirically valid
 
 ## Immediate objective
 
-Admit exact source bytes from source_seed into immutable sources/frozen, classify authority, and create a reproducible source manifest.
+Produce the concise scientific constitution from admitted sources and lock claim ownership, failure policy, no-tuning firewall, and proof-versus-physical order.
 
 ## Required deliverables
 
-- sources/SOURCE_MANIFEST.json
-- memory/SOURCE_REGISTRY.json
-- runs/SRC-010/CLOSEOUT.md
+- theory/SCIENTIFIC_CONSTITUTION.md
+- theory/TERMINOLOGY_LOCK.json
+- theory/CLAIM_MAP.json
+- runs/AUTH-020/CLOSEOUT.md
 
 ## Mandatory gates
 
-- all core bytes resolvable
-- hashes match
-- authority class explicit
-- no summary used as parent
+- no terminology drift
+- no N-body over-universalization
+- no inherited failure parentage
+- independent source trace
 
 ## Module states
 
@@ -59,15 +60,21 @@ Admit exact source bytes from source_seed into immutable sources/frozen, classif
 
 ## Memory counts
 
-- admitted sources: 0
-- frozen artifacts: 0
-- indexed runs: 0
+- admitted sources: 29
+- frozen artifacts: 1
+- indexed runs: 1
+
+## Recent runs
+
+- SRC-010-20260811T044241Z: PASS (SOURCES)
 
 ## Recent decisions
 
 - COMMIT-958005985085: Verified clean 4-RFC scaffold installation; README fetched and root scaffold diff independently inspected.
 - COMMIT-39bcd805ff64: Verified BOOT-000 prescribed work-branch commit and diff.
 - ADVANCE-BOOT-000-20260811T044239Z: Marked BOOT-000 PASS and activated SRC-010
+- COMMIT-52f5ac9fd0c2: Verified SRC-010 source-admission commit after governed checks.
+- ADVANCE-SRC-010-20260811T044244Z: Marked SRC-010 PASS and activated AUTH-020
 
 ## Resume commands
 
