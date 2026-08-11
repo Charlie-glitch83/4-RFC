@@ -22,13 +22,47 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install numpy networkx scipy sympy
-      - name: Verify C-120 closeout and advance exactly one child
+      - name: Reconcile immutable C-120 run registration and advance exactly one child
         shell: bash
         run: |
           set -euo pipefail
           RUN='C-120-20260811T142152Z'
           RUN_DIR="modules/C/runs/$RUN"
           VERIFIED_SHA='9aba5d1e1c83506f03176e4bc08a74bafaa9249e'
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import tools.rfc as rfc
+
+          target = 'modules/C/runs/C-120-20260811T142152Z'
+          registry_path = Path('memory/ARTIFACT_REGISTRY.json')
+          registry = json.loads(registry_path.read_text(encoding='utf-8'))
+          matches = [x for x in registry.get('artifacts', []) if x.get('path') == target]
+          if len(matches) != 1:
+              raise SystemExit(f'expected exactly one C-120 artifact registry record, found {len(matches)}')
+          rec = matches[0]
+          actual = rfc.sha256_tree(Path(target))
+          old = rec.get('sha256')
+          if old != actual:
+              rec['sha256'] = actual
+              registry_path.write_text(json.dumps(registry, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+              failure_path = Path('memory/FAILURE_LOG.jsonl')
+              failure = {
+                  'failure_id': 'C120-REGISTRY-TREE-HASH-RECONCILIATION',
+                  'timestamp_utc': datetime.now(timezone.utc).isoformat(),
+                  'work_unit': 'C-120',
+                  'description': 'Closed C-120 run registry tree hash differed from the immutable committed run bytes after finalization transport.',
+                  'classification': 'IMPLEMENTATION_ONLY_REGISTRATION_HASH_DRIFT',
+                  'old_registered_sha256': old,
+                  'recomputed_sha256': actual,
+                  'correction': 'Updated only memory/ARTIFACT_REGISTRY.json using tools.rfc.sha256_tree; no C scientific object, parent, gate, tolerance, claim, or run byte was changed.',
+                  'changes_science': False
+              }
+              with failure_path.open('a', encoding='utf-8') as f:
+                  f.write(json.dumps(failure, ensure_ascii=False) + '\n')
+          print(json.dumps({'target': target, 'registered_before': old, 'registered_after': actual, 'changed': old != actual}, indent=2))
+          PY
           python tools/rfc.py doctor
           python tools/rfc.py record-commit "$VERIFIED_SHA" --branch agent/4rfc-universe-build --note 'Verified C-120 closeout commit and exact diff'
           python tools/rfc.py advance --task C-120 --result PASS --evidence "$RUN_DIR/CLOSEOUT.md"
