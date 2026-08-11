@@ -22,14 +22,13 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install numpy networkx scipy sympy
-      - name: Run authoritative E-140 source and prelock audit
+      - name: Run authoritative E-140 source-law audit
         shell: bash
         run: |
           set -euo pipefail
           RUN='E-140-20260811T175023Z'
           RUN_DIR="modules/E/runs/$RUN"
           bash tools/start_work.sh
-          cat work_packets/ACTIVE_WORK_PACKET.md
           grep -q 'ACTIVE WORK PACKET — E-140' work_packets/ACTIVE_WORK_PACKET.md
           python tools/rfc.py doctor
           python tools/director.py doctor
@@ -40,37 +39,57 @@ jobs:
           root=Path('.')
           run=root/'modules/E/runs/E-140-20260811T175023Z'
           def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-          handoff=root/'modules/D/runs/D-130-20260811T165602Z/H_D_to_E.json'
-          manifest=root/'sources/SOURCE_MANIFEST.json'
-          candidates=[]
-          for p in (root/'sources/frozen').glob('*/*'):
-              if p.is_file() and p.suffix.lower() in {'.md','.txt','.json'}:
-                  text=p.read_text(encoding='utf-8',errors='ignore')
-                  if re.search(r'(?i)reaction|stoich|nucleosynth|BBN|rate law|cross section|species', text):
-                      candidates.append({'path':str(p),'sha256':sha(p),'bytes':p.stat().st_size})
+          manifest=json.loads((root/'sources/SOURCE_MANIFEST.json').read_text())
+          allowed={'CANONICAL_AUTHORITY','ADMITTED_SOURCE','CANDIDATE_ADDENDUM'}
+          rx_reaction=re.compile(r'(?i)(?:[A-Za-z0-9_{}^\\-]+\s*\+\s*[A-Za-z0-9_{}^\\-]+\s*(?:->|→|\\to|\\rightarrow|<->|↔)|(?:->|→|\\to|\\rightarrow|<->|↔)\s*[A-Za-z0-9_{}^\\-]+\s*\+\s*[A-Za-z0-9_{}^\\-]+)')
+          rx_rate=re.compile(r'(?i)(?:rate\s*(?:=|:)|rate law|reaction rate|cross section|lambda[_A-Za-z0-9{}^\\-]*\s*=|Γ[_A-Za-z0-9{}^\\-]*\s*=|k[_A-Za-z0-9{}^\\-]*\s*=)')
+          rx_species=re.compile(r'(?i)\b(?:n|p|D|H2|H3|He3|He4|Li7|Be7|Tritium|Deuterium)\b')
+          records=[]
+          for rec in manifest['sources']:
+              if rec.get('classification') not in allowed: continue
+              p=root/rec['frozen_path']
+              if not p.exists() or p.suffix.lower() not in {'.md','.txt','.json','.tex'}: continue
+              lines=p.read_text(encoding='utf-8',errors='ignore').splitlines()
+              reaction=[]; rates=[]; species=[]
+              for i,line in enumerate(lines,1):
+                  if rx_reaction.search(line): reaction.append({'line':i,'text':line[:700]})
+                  if rx_rate.search(line): rates.append({'line':i,'text':line[:700]})
+                  if rx_species.search(line) and re.search(r'(?i)BBN|nucleosynth|reaction|abundance|Li7|Be7|He4|He3|D/H',line): species.append({'line':i,'text':line[:700]})
+              if reaction or rates or species:
+                  records.append({'label':rec['label'],'classification':rec['classification'],'path':rec['frozen_path'],'sha256':rec['sha256'],'reaction_equation_hits':reaction[:80],'rate_law_hits':rates[:80],'species_context_hits':species[:80]})
+          reaction_count=sum(len(x['reaction_equation_hits']) for x in records)
+          rate_count=sum(len(x['rate_law_hits']) for x in records)
+          source_complete=(reaction_count>0 and rate_count>0)
           report={
-            'run_id':'E-140-20260811T175023Z',
-            'classification':'E_SOURCE_ADMISSION_PRELOCK_AUDIT',
-            'active_packet_verified':True,
-            'exact_parent':{'path':str(handoff),'sha256':sha(handoff)},
-            'source_manifest_sha256':sha(manifest),
-            'candidate_text_sources':candidates,
-            'public_data_used':False,
-            'decision':'REQUIRES_EXACT_SOURCE_OWNED_SPECIES_STOICHIOMETRY_AND_RATE_LAWS_BEFORE_FREEZE'
+              'run_id':'E-140-20260811T175023Z',
+              'classification':'E_EXECUTABLE_SOURCE_LAW_AUDIT',
+              'generation_mode':'GENERATION_SEALED',
+              'admission_classes_examined':sorted(allowed),
+              'records':records,
+              'reaction_equation_hit_count':reaction_count,
+              'rate_law_hit_count':rate_count,
+              'executable_source_law_candidate_present':source_complete,
+              'decision':'CANDIDATE_EXECUTABLE_SOURCE_LAW_FOUND_REQUIRES_MANUAL_EXACT_OBJECT_REVIEW' if source_complete else 'BLOCKED_UNDERDETERMINED_NO_SOURCE_OWNED_REACTION_GRAPH_AND_RATE_LAW_PAIR',
+              'forbidden_generation_inputs':['public abundance targets','solar abundance targets','fitted abundance corrections','old PASS labels as authority']
           }
-          (run/'E140_SOURCE_ADMISSION_AUDIT.json').write_text(json.dumps(report,indent=2,sort_keys=True)+'\n',encoding='utf-8')
-          print(json.dumps(report,indent=2))
+          out=run/'E140_EXECUTABLE_SOURCE_LAW_AUDIT.json'
+          out.write_text(json.dumps(report,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          print(json.dumps({'decision':report['decision'],'reaction_equation_hit_count':reaction_count,'rate_law_hit_count':rate_count,'records':len(records)},indent=2))
+          for rec in records:
+              print('SOURCE',rec['classification'],rec['path'])
+              for h in rec['reaction_equation_hits'][:25]: print('REACTION',h['line'],h['text'])
+              for h in rec['rate_law_hits'][:25]: print('RATE',h['line'],h['text'])
           PY
-      - name: Commit E-140 source audit only
+      - name: Commit E-140 executable-source audit only
         shell: bash
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git restore memory/CURRENT_CONTEXT.md || true
-          git add modules/E/runs/E-140-20260811T175023Z/E140_SOURCE_ADMISSION_AUDIT.json work_packets/ACTIVE_WORK_PACKET.md || true
+          git add modules/E/runs/E-140-20260811T175023Z/E140_EXECUTABLE_SOURCE_LAW_AUDIT.json || true
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'E-140: audit exact source-owned reaction inputs'
+          git commit -m 'E-140: test admitted sources for executable reaction law'
           git fetch origin agent/4rfc-universe-build
           git rebase origin/agent/4rfc-universe-build
           git push origin HEAD:agent/4rfc-universe-build
