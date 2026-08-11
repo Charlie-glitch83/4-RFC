@@ -28,7 +28,8 @@ jobs:
           set -euo pipefail
           RUN='A-100-20260811T115001Z'
           RUN_DIR="modules/A/runs/$RUN"
-          python tools/director.py solver-copy --module A --solver triad_kernel --destination "$RUN_DIR"
+          test -f "$RUN_DIR/solver_templates/A_triad_kernel.template.json"
+          test -f "$RUN_DIR/binding_sheets/A_triad_kernel.bindings.json"
           python tools/materialize_solver_config.py --template "$RUN_DIR/solver_templates/A_triad_kernel.template.json" --binding-sheet "$RUN_DIR/binding_sheets/A_triad_kernel.bindings.json" --output "$RUN_DIR/solver_configs/A_triad_kernel.json"
           python tools/run_configured_solver.py --config "$RUN_DIR/solver_configs/A_triad_kernel.json" --output-dir "$RUN_DIR/solver_outputs/triad_kernel"
           python tools/director.py doctor
