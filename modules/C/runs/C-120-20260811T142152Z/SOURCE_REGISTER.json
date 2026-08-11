@@ -1,9 +1,46 @@
 {
-  "run_id": "",
-  "exact_parents": [],
+  "run_id": "C-120-20260811T142152Z",
+  "exact_parents": [
+    {
+      "path": "modules/B/runs/B-110-20260811T140258Z",
+      "sha256": "c83bbcf212b2d7fc37f689013574e5b228f9bac7fb829e56c2c0f60ed84c228d",
+      "kind": "RUN_BUNDLE"
+    },
+    {
+      "path": "modules/B/runs/B-110-20260811T140258Z/H_B_to_C.json",
+      "sha256": "821a932eacc37da4ec9a384789616bc9f8eb76883b4aa1af125c95a88747138f",
+      "kind": "FROZEN_HANDOFF"
+    },
+    {
+      "path": "modules/B/runs/B-110-20260811T140258Z/FIRST_PHYSICAL_STATE.json",
+      "sha256": "f50c7e721c38dd9b63f2910f3a0ace399f1854e85cbdafaa9ce51649d40c073a",
+      "kind": "FIRST_PHYSICAL_STATE"
+    },
+    {
+      "path": "modules/B/runs/B-110-20260811T140258Z/solver_configs/B_big_implosion.json",
+      "sha256": "16a3761a6562944e36506104594f8ee6b3ba2189e70396a2ae22b1afa67e6076",
+      "kind": "EXACT_PARENT_CONFIG"
+    },
+    {
+      "path": "modules/B/runs/B-110-20260811T140258Z/solver_outputs/big_implosion/result.json",
+      "sha256": "a624f6dca4a26ff8b5b3a8e0fb47a37e4cd2a6905c6f302198e3f6db3c303f6a",
+      "kind": "EXACT_PARENT_RESULT"
+    }
+  ],
   "admitted_sources": [],
-  "imports": [],
-  "files": [],
+  "imports": ["hashlib", "json", "numpy", "pathlib"],
+  "files": [
+    "recipes/C/WORK_ORDER.md",
+    "recipes/C/recipe.json",
+    "recipes/C/wolfram/C-WL-001.wl",
+    "recipes/C/wolfram/C-WL-002.wl",
+    "configured_runs/templates/C_spectral_model.template.json",
+    "modules/C/runs/C-120-20260811T142152Z/C120_PREPARE_BINDINGS.py",
+    "modules/B/runs/B-110-20260811T140258Z/H_B_to_C.json",
+    "modules/B/runs/B-110-20260811T140258Z/FIRST_PHYSICAL_STATE.json",
+    "modules/B/runs/B-110-20260811T140258Z/solver_configs/B_big_implosion.json",
+    "modules/B/runs/B-110-20260811T140258Z/solver_outputs/big_implosion/result.json"
+  ],
   "urls": [],
   "constants": [],
   "public_data_declaration": "NONE"
