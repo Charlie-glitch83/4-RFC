@@ -9,9 +9,11 @@
     "python modules/C/runs/C-120-20260811T142152Z/C120_VERIFY.py"
   ],
   "result": "PASS",
-  "artifact_hashes_match": false,
-  "representation_rule": "Eigenvector signs are spectral-basis gauge; replay validity is established by matching eigenvalues, rank-1 eigenprojectors, generator audits, classification, shape, symmetry and reconstruction residuals within the frozen tolerance.",
+  "artifact_hashes_match": true,
+  "raw_json_hashes_match": false,
+  "artifact_hash_basis": "canonical representation-invariant spectral artifact: eigenvalues, rank-1 eigenprojectors, generator audits, classification, shape, symmetry and reconstruction residuals within the frozen tolerance",
+  "representation_rule": "Eigenvector signs are spectral-basis gauge; raw JSON byte identity is not the scientific replay object. Canonical spectral artifacts are identical under the frozen representation rule.",
   "spectral_invariants_match": true,
   "maximum_eigenprojector_error": 2.0586090502140006e-16,
-  "evidence": "C120_GATE_EXECUTION.json: replay_restart.pass=true"
+  "evidence": "C120_GATE_EXECUTION.json: replay_restart.pass=true and every replay component is true"
 }
