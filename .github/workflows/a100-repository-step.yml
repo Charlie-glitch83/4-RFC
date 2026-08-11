@@ -46,9 +46,9 @@ jobs:
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git fetch origin agent/4rfc-universe-build
-          git rebase origin/agent/4rfc-universe-build
           git add -A
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'Close Module A at its verified scientific scope'
+          git fetch origin agent/4rfc-universe-build
+          git rebase origin/agent/4rfc-universe-build
           git push origin HEAD:agent/4rfc-universe-build
