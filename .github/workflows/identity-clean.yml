@@ -1,0 +1,109 @@
+name: 4-RFC identity clean
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Rebind identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          root = Path('.')
+          old_repo = 'Charlie-glitch83/' + '3-RFC'
+          old_branch = 'agent/' + '3rfc-universe-build'
+          old_bundle = '3RFC' + '_Execution_Ready_Universe_Builder_20260805'
+          replacements = [
+              (old_repo, 'Charlie-glitch83/4-RFC'),
+              (old_branch, 'agent/4rfc-universe-build'),
+              (old_bundle, '4RFC_Execution_Ready_Universe_Builder_20260805'),
+              ('3-RFC', '4-RFC'),
+              ('3RFC', '4RFC'),
+              ('3rfc', '4rfc'),
+          ]
+          for name in [old_bundle + '.zip', old_bundle + '.zip.sha256']:
+              p = root / name
+              if p.exists(): p.unlink()
+          for p in sorted(root.rglob('*')):
+              if not p.is_file() or '.git' in p.parts or p.name == 'identity-clean.yml':
+                  continue
+              if p.suffix.lower() in {'.zip','.pdf','.docx'}:
+                  continue
+              try: text = p.read_text(encoding='utf-8')
+              except UnicodeDecodeError: continue
+              new = text
+              for a,b in replacements: new = new.replace(a,b)
+              if new != text: p.write_text(new, encoding='utf-8')
+          PY
+          rm -f .github/workflows/4rfc-clean-root.yml
+          python tools/build_bundle.py
+
+      - name: Validate machinery
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/rfc.py verify-bundle
+          python tools/rfc.py doctor
+          python tools/director.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+
+      - name: Prove old repository identity absent
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile, BadZipFile
+          import io
+          forbidden = ['3-RFC','3RFC_Execution_Ready_Universe_Builder_20260805','Charlie-glitch83/3-RFC','agent/3rfc-universe-build','3rfc-universe-build']
+          hits=[]
+          root=Path('.')
+          for p in root.rglob('*'):
+              if not p.is_file() or '.git' in p.parts or p.name == 'identity-clean.yml': continue
+              rel=p.as_posix()
+              if any(x.lower() in rel.lower() for x in forbidden): hits.append('path:'+rel)
+              if p.suffix.lower() in {'.zip','.pdf','.docx'}: continue
+              try: s=p.read_text(encoding='utf-8')
+              except UnicodeDecodeError: continue
+              if any(x in s for x in forbidden): hits.append('text:'+rel)
+          def scan(data,label,depth=0):
+              if depth>8:return
+              try:z=ZipFile(io.BytesIO(data))
+              except BadZipFile:return
+              for zi in z.infolist():
+                  if any(x.lower() in zi.filename.lower() for x in forbidden):hits.append('zip-path:'+label+'!'+zi.filename)
+                  if zi.is_dir():continue
+                  d=z.read(zi)
+                  low=d.lower()
+                  if any(x.encode().lower() in low for x in forbidden):hits.append('zip-data:'+label+'!'+zi.filename)
+                  if d[:4]==b'PK\x03\x04':scan(d,label+'!'+zi.filename,depth+1)
+          for p in root.rglob('*.zip'):
+              if '.git' not in p.parts:scan(p.read_bytes(),p.as_posix())
+          if hits: raise SystemExit('\n'.join(hits))
+          print('identity scan: PASS')
+          PY
+
+      - name: Commit clean tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/identity-clean.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Initialize the 4-RFC governed universe workspace'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
