@@ -1,0 +1,242 @@
+{
+  "clock": "s_D dimensionless relaxation order",
+  "events": [
+    {
+      "event_order": 1.2314208780065343,
+      "node": 3,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 2.855571209936,
+      "node": 4,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 4.703747663000323,
+      "node": 5,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 5.144162360864636,
+      "node": 1,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 6.642336376188147,
+      "node": 6,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 8.786043796065886,
+      "node": 7,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 10.812478350776923,
+      "node": 8,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 12.97056158061928,
+      "node": 9,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 13.66954169334186,
+      "node": 2,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 15.164537584790045,
+      "node": 10,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 17.648393852069745,
+      "node": 11,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 19.7839486766101,
+      "node": 12,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 22.119779628852655,
+      "node": 13,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 24.308906063405274,
+      "node": 14,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 26.676396298979334,
+      "node": 15,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 28.80991855830021,
+      "node": 16,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 31.082320951278923,
+      "node": 17,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 33.502042170123055,
+      "node": 18,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 36.07798337218308,
+      "node": 19,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 38.236121279729396,
+      "node": 20,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 40.56973812978615,
+      "node": 21,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 42.99821489810592,
+      "node": 22,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 44.890717413043006,
+      "node": 23,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 47.56788946104489,
+      "node": 24,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 49.61422733740108,
+      "node": 25,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 52.56442884135448,
+      "node": 26,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 54.8370122341624,
+      "node": 27,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 57.22946015665608,
+      "node": 28,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 59.68669652395709,
+      "node": 29,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 61.411238695234196,
+      "node": 30,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 63.99805195214986,
+      "node": 31,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 65.83548404711826,
+      "node": 32,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 68.59163218957084,
+      "node": 33,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 71.34778033202346,
+      "node": 34,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 73.18521242699188,
+      "node": 35,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 75.94136056944451,
+      "node": 36,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 77.77879266441293,
+      "node": 37,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 80.53494080686556,
+      "node": 38,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    },
+    {
+      "event_order": 83.2910889493182,
+      "node": 39,
+      "threshold_origin": "parent-derived conserved mean",
+      "witness": "Theta_i-Theta_bar sign crossing"
+    }
+  ],
+  "external_target_used": false,
+  "ordered": true,
+  "run_id": "D-130-20260811T165602Z"
+}

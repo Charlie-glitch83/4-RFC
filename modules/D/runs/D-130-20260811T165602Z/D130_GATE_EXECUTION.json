@@ -1,0 +1,146 @@
+{
+  "ablations": {
+    "broken_conservation": {
+      "rejected": true,
+      "row_sum_residual": 0.010000000000000009
+    },
+    "pass": true,
+    "zero_transport": {
+      "countermodel_effect": 0.0,
+      "parent_transport_effect": 0.6729242930080105,
+      "rejected": true
+    }
+  },
+  "claim_boundary": "Generated RFC linear nonequilibrium thermal/transport history on inherited pregeometry; nonlinear collisions, metric expansion, empirical temperature units, and primordial abundances remain unestablished.",
+  "classification": "D130_FROZEN_GATE_EXECUTION",
+  "convergence": [
+    {
+      "independent_final_max_abs_error": 1.1796119636642288e-14,
+      "max_step": 0.9187160474842071,
+      "max_step_factor": 1.0,
+      "minimum_state": 7.153894780532915e-52,
+      "pass": true,
+      "success": true
+    },
+    {
+      "independent_final_max_abs_error": 2.5951463200613034e-15,
+      "max_step": 0.45935802374210355,
+      "max_step_factor": 0.5,
+      "minimum_state": 7.153894780532915e-52,
+      "pass": true,
+      "success": true
+    },
+    {
+      "independent_final_max_abs_error": 2.8102520310824275e-15,
+      "max_step": 0.22967901187105177,
+      "max_step_factor": 0.25,
+      "minimum_state": 7.153894780532915e-52,
+      "pass": true,
+      "success": true
+    }
+  ],
+  "entropy_conservation": {
+    "carrier_drift": 6.661338147750939e-16,
+    "energy_drift": 2.42861286636753e-17,
+    "entropy_nondecreasing": true,
+    "final_entropy": 3.546531515944081,
+    "initial_entropy": 0.9008810516855332,
+    "minimum_entropy_increment": 1.6075147273308943e-06,
+    "minimum_state": 7.153894780532915e-52,
+    "pass": true,
+    "run_id": "D-130-20260811T165602Z",
+    "theta_bar": 0.02949580130353129
+  },
+  "gates": {
+    "countermodels_and_ablations": true,
+    "energy_charge_conservation": true,
+    "entropy_production": true,
+    "event_ordering": true,
+    "manufactured_reference": true,
+    "nonlinear_collision_obstruction_preserved": true,
+    "positive_distributions": true,
+    "restart_and_independent_reconstruction": true,
+    "stiff_solver_convergence": true,
+    "uncertainty_covariance": true,
+    "wolfram_symbolic_checks": true
+  },
+  "independent_reconstruction": {
+    "acceptance_tolerance": 1e-09,
+    "carrier_total": 0.999999999999942,
+    "classification": "INDEPENDENT_D_MATRIX_EXPONENTIAL_RECONSTRUCTION",
+    "energy_total": 0.02949580130352957,
+    "final_max_abs_error": 1.1796119636642288e-14,
+    "generator_minimum_offdiagonal": 0.0,
+    "generator_row_sum_residual": 0.0,
+    "minimum_carrier": 0.007600175813056873,
+    "minimum_energy": 0.0002245401871637236,
+    "pass": true
+  },
+  "overall": "PASS",
+  "phase_events": 39,
+  "restart": {
+    "final_max_abs_error": 2.924398223580482e-11,
+    "half_interval": 297.5670801143233,
+    "pass": true
+  },
+  "run_id": "D-130-20260811T165602Z",
+  "uncertainty_covariance": {
+    "classification": "INTERNAL_NUMERICAL_ONLY",
+    "covariance": [
+      [
+        2.137188107068344e-22,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "covariance_psd": true,
+    "external_empirical_uncertainty_used": false,
+    "minimum_covariance_eigenvalue": 0.0,
+    "pass": true,
+    "residual_vectors": [
+      [
+        1.1796119636642288e-14,
+        7.153894780532915e-52,
+        6.661338147750939e-16,
+        2.42861286636753e-17
+      ],
+      [
+        2.5951463200613034e-15,
+        7.153894780532915e-52,
+        6.661338147750939e-16,
+        2.42861286636753e-17
+      ],
+      [
+        2.8102520310824275e-15,
+        7.153894780532915e-52,
+        6.661338147750939e-16,
+        2.42861286636753e-17
+      ],
+      [
+        2.924398223580482e-11,
+        7.153894780532915e-52,
+        6.661338147750939e-16,
+        2.42861286636753e-17
+      ]
+    ]
+  }
+}
