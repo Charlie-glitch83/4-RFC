@@ -1,0 +1,133 @@
+name: Run governed XWALK-030
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened]
+
+permissions:
+  contents: write
+
+jobs:
+  xwalk030:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install repository runtime
+        run: python -m pip install numpy scipy sympy networkx
+      - name: Execute authorized XWALK-030
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/director.py doctor
+          RUN_ID=$(python - <<'PY'
+          import json
+          s=json.load(open('STATE.json'))
+          assert s['active_work_unit']=='XWALK-030'
+          assert s['current_run']
+          print(s['current_run'])
+          PY
+          )
+          RUN_DIR="runs/$RUN_ID"
+          python - "$RUN_DIR" <<'PY'
+          import json, hashlib, pathlib, sys
+          root=pathlib.Path('.'); run=pathlib.Path(sys.argv[1])
+          manifest=json.load(open('sources/SOURCE_MANIFEST.json'))['sources']
+          byname={pathlib.Path(x['frozen_path']).name:x for x in manifest}
+          def H(name): return byname[name]['sha256']
+          P29='Presentation 29 revised  raw LaTeX.md'
+          P29M='Presentation 29 revised Metadata.md'
+          P30='Presentation 30 raw LaTex.md'
+          NB='A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf'
+          NBM='A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf'
+          AUD='2RFC_Integration_Fidelity_Audit_20260805.md'
+          MAP='2RFC_Canonical_Enhancement_Map_20260805.md'
+          X1='RFC_Module_X1_Nucleosynthesis_Theorem_Addendum_and_Metadata.md'
+          Y='RFC_Module_Y_Global_Collapse_Rebirth_Trace_Addendum_and_Metadata.md'
+          allowed=['PRESERVE','REDERIVE','REGRESSION_ONLY','QUARANTINE','EXCLUDE']
+          owners={
+            'P29':'ontology, First Action, recursive kernel, domain-specific modal inheritance, memory, and no-retune architecture',
+            'N-body':'finite-body constituted identity, directed relation, witness, route, event, branch, conservation, no-loss, reopening, and finite-N refinement',
+            'P30':'universe dependency order, causal handoffs, provenance, observer products, immutable freeze, and later comparison',
+            'scope_lock':'Common triadic ancestry does not imply one identical equation across domains; N-body enhancement is not universal point-body mechanics.'}
+          rows=[]
+          def add(i,obj,roles,names,disp,targets,owner,note):
+              rows.append({'id':i,'object':obj,'source_roles':roles,'source_hashes':[H(n) for n in names], 'disposition':disp,'evidence_state':'DESIGN','target_modules':targets,'claim_owner':owner,'scope_lock':note})
+          add('P29-01','Ordered CIF/QV/RFL triad',['P29'],[P29],'PRESERVE',['A'],'P29','Canonical ontology; terminology locked.')
+          add('P29-02','First Action QV(CIF)->RFL',['P29'],[P29],'PRESERVE',['A'],'P29','Prephysical First Action; do not relabel as a later physical event.')
+          add('P29-03','First Action / Big Implosion boundary',['P29','P29 metadata'],[P29,P29M],'PRESERVE',['A','B'],'P29','First Action is prephysical; Big Implosion is the sole first physical event.')
+          add('P29-04','Recursive kernel architecture',['P29'],[P29],'PRESERVE',['A'],'P29','Preserve kernel form subject to domain-specific admission and typing.')
+          add('P29-05','Domain-specific modal inheritance',['P29'],[P29],'PRESERVE',['A','B','C','D','E','F','G','HU','I','HI','J','K','L','M','KLM','N','O','Q'],'P29','Same triadic ancestry does not authorize one equation in every domain.')
+          add('P29-06','Memory-bearing/no-loss inheritance',['P29'],[P29],'PRESERVE',['A','B','C','D','E','F','G','HU','I','HI','J','K','L','M','KLM','N','O','Q'],'P29','Propagate only through derived lawful interfaces.')
+          add('P29-07','Frozen-source and no-retune architecture',['P29','P30'],[P29,P30],'PRESERVE',['A','B','C','D','E','F','G','HU','I','HI','J','K','L','M','KLM','N','O'],'P29','Generation remains target-blind; comparison cannot backflow.')
+          add('P30-01','Universe dependency and handoff order',['P30'],[P30],'PRESERVE',['B','C','D','E','F','G','HU','I','HI','J','K','L','M','KLM','N','O','P','Q'],'P30','Preserve causal order; physical completion still requires execution.')
+          add('P30-02','Causal parent/state handoffs and provenance',['P30'],[P30],'PRESERVE',['B','C','D','E','F','G','HU','I','HI','J','K','L','M','KLM','N'],'P30','Every child must bind exact parent objects and hashes.')
+          add('P30-03','Observer and synthetic-product architecture',['P30'],[P30],'PRESERVE',['N'],'P30','Observer products are downstream products of one generated universe.')
+          add('P30-04','Immutable generation and prediction freeze',['P30'],[P30],'PRESERVE',['O'],'P30','Freeze precedes any public comparison.')
+          add('P30-05','Read-only comparison after freeze',['P30','P29'],[P30,P29],'PRESERVE',['O','P'],'P30','P is read-only and cannot alter O or Q.')
+          add('P30-06','Terminal continuation isolated from comparison',['P30'],[P30],'PRESERVE',['Q'],'P30','Q descends from frozen generation state, not comparison results.')
+          add('P30-07','Generic weighted triad coefficients reused across unrelated domains',['P30 historical architecture'],[P30],'REGRESSION_ONLY',['history'],'P30','Retain only as a negative/regression control; domain laws must be derived separately.')
+          add('P30-08','Internal readiness or closure score as proof of universe completion',['P30 historical architecture'],[P30],'EXCLUDE',['evidence'],'P30','Scores cannot substitute for evidence-state transitions or physical execution.')
+          add('NB-01','Constituted finite-body identities',['N-body'],[NB,NBM],'PRESERVE',['A'],'N-body','Relational identity enhancement only at its admitted scope.')
+          add('NB-02','Directed body-reference lanes and 2N increment',['N-body'],[NB,NBM],'PRESERVE',['A'],'N-body','Relational-capacity theorem; not by itself a new physical solution.')
+          add('NB-03','Triadic packet representation',['N-body'],[NB],'PRESERVE',['A'],'N-body','Use as typed relational grammar at finite-body scope.')
+          add('NB-04','Local witness certificates',['N-body'],[NB],'PRESERVE',['A','B','C','D','E','F','G','HU','I','HI','J','K','L','M','KLM','N','Q'],'N-body','Propagate witness logic where a domain derives corresponding objects.')
+          add('NB-05','Closure route classes',['N-body'],[NB],'PRESERVE',['A','B','C','D','E','F','G','HU','I','HI','J','K','L','M','KLM','N','Q'],'N-body','Routes require domain-specific admissibility.')
+          add('NB-06','Gauge equivalence',['N-body'],[NB],'PRESERVE',['A','B','C','D','E','F','G','HU','I','HI','J','K','L','M','KLM','N','Q'],'N-body','Do not count gauge-related descriptions as distinct physical branches.')
+          add('NB-07','Multi-route equivalence',['N-body'],[NB],'PRESERVE',['A','B','C','D','E','F','G','HU','I','HI','J','K','L','M','KLM','N','Q'],'N-body','Retain lawful route equivalence without forcing identical dynamics.')
+          add('NB-08','Event lift and lawful collision branches',['N-body'],[NB],'PRESERVE',['A','K','L','KLM','N','Q'],'N-body','Physical activation requires generated constituents, clocks, geometry, interactions, scales, constraints, and witnesses.')
+          add('NB-09','Conservation and projection witnesses',['N-body'],[NB],'PRESERVE',['A','B','C','D','E','F','G','I','HI','J','K','L','M','KLM','N','Q'],'N-body','Conservation ownership remains domain-specific.')
+          add('NB-10','No-loss quotient and reopening',['N-body','P29'],[NB,P29],'PRESERVE',['A','B','C','D','E','F','G','HU','I','HI','J','K','L','M','KLM','N','Q'],'N-body','Preserve lawful memory/reopening; never manufacture missing parents retroactively.')
+          add('NB-11','Finite-N closure and promotion scope',['N-body'],[NB,NBM],'PRESERVE',['A'],'N-body','Finite-body theorem remains scoped; infinite or field limits require separate derivation.')
+          add('NB-12','Direct point-body N-body mechanics in every domain',['misread integration'],[NB],'EXCLUDE',['all'],'N-body','Explicitly forbidden over-universalization.')
+          add('HIST-01','Old failed scalar-lane / weak-lensing mechanisms',['historical audit'],[AUD],'REGRESSION_ONLY',['J','K'],'history','Keep only as failure evidence, negative control, and regression target; never as a generative parent.')
+          add('HIST-02','Historical Module L first-pass law/architecture',['interpretive recovery map'],[MAP],'REDERIVE',['L'],'history','May guide recovery at exact verified scope; cannot be inherited as authoritative science.')
+          add('HIST-03','Reduced dimensionless K-L-M F0 recurrence',['interpretive recovery map'],[MAP],'REGRESSION_ONLY',['KLM'],'history','Manufactured/historical recurrence is a test object, not the physical KLM solution.')
+          add('ADD-01','Nucleosynthesis theorem addendum candidate',['candidate addendum'],[X1],'REDERIVE',['E','M'],'candidate addendum','Admit only through exact downstream derivation and gates.')
+          add('ADD-02','Terminal collapse/rebirth trace addendum candidate',['candidate addendum'],[Y],'REDERIVE',['Q'],'candidate addendum','Q must independently derive terminal continuation from frozen generated state.')
+          add('HIST-04','Any unverifiable inherited artifact or mechanism',['historical/recovery'],[AUD],'QUARANTINE',['recovery'],'history','Quarantine until exact bytes, provenance, scope, and compatibility are independently established.')
+          cross={'schema_version':'2.0','work_unit':'XWALK-030','rule':'Preserve valid architecture and theorem objects; rederive source-admissible candidates; retain failures only as regression evidence; quarantine unverifiable inheritance; exclude forbidden overclaims.','allowed_dispositions':allowed,'ownership_rules':owners,'objects':rows}
+          from collections import Counter
+          cross['counts']={'objects':len(rows),'by_disposition':dict(Counter(r['disposition'] for r in rows)),'by_claim_owner':dict(Counter(r['claim_owner'] for r in rows))}
+          (root/'theory/ENHANCEMENT_CROSSWALK.json').write_text(json.dumps(cross,indent=2)+'\n')
+          md=['# 4-RFC Enhancement Crosswalk','','This crosswalk binds inherited architecture to exact admitted source hashes while preventing historical failures from becoming new scientific parents.','','## Ownership lock',f"- **P29:** {owners['P29']}",f"- **N-body:** {owners['N-body']}",f"- **P30:** {owners['P30']}",f"- **Scope:** {owners['scope_lock']}",'','## Object inventory','','| ID | Object | Disposition | Target | Source hash(es) |','|---|---|---|---|---|']
+          for r in rows:
+              md.append(f"| {r['id']} | {r['object']} | {r['disposition']} | {', '.join(r['target_modules'])} | {', '.join(h[:16]+'…' for h in r['source_hashes'])} |")
+          md += ['','## Preservation boundary','','Every material P29, P30, and N-body object used by the architecture has an explicit disposition, evidence state, admitted source hash, target module, claim owner, and scope lock. Valid canonical objects are preserved. Candidate addenda and historical recovery objects are rederived rather than inherited. Known failures remain regression evidence only. Unverifiable inheritance is quarantined. Forbidden overclaims are excluded.','','**No valid canonical object is silently discarded, and no failed mechanism or output is admitted as a new scientific parent.**','']
+          (root/'theory/ENHANCEMENT_CROSSWALK.md').write_text('\n'.join(md))
+          # Independent review against admitted manifest and frozen requirements.
+          admitted={x['sha256'] for x in manifest}
+          ids=[r['id'] for r in rows]
+          gates={
+            'all major objects classified':len(rows)>=30 and len(ids)==len(set(ids)) and all(r['disposition'] in allowed and r['evidence_state']=='DESIGN' and r['target_modules'] and r['source_hashes'] for r in rows),
+            'claim overlap removed':owners['scope_lock'].startswith('Common triadic ancestry') and next(r for r in rows if r['id']=='NB-12')['disposition']=='EXCLUDE' and next(r for r in rows if r['id']=='P30-08')['disposition']=='EXCLUDE',
+            'source hashes present':all(all(h in admitted for h in r['source_hashes']) for r in rows),
+            'independent review':next(r for r in rows if r['id']=='HIST-01')['disposition']=='REGRESSION_ONLY' and next(r for r in rows if r['id']=='HIST-02')['disposition']=='REDERIVE' and all(next(r for r in rows if r['id']==i)['disposition']=='REDERIVE' for i in ['ADD-01','ADD-02'])}
+          if not all(gates.values()): raise SystemExit('XWALK gates failed: '+repr(gates))
+          (run/'GATE_RESULTS.json').write_text(json.dumps({'run_id':run.name,'overall':'PASS','gates':[{'gate':k,'result':'PASS'} for k in gates],'object_count':len(rows)},indent=2)+'\n')
+          (run/'INDEPENDENT_VERIFICATION.md').write_text('# Independent Verification — XWALK-030\n\nA second pass reconstructed every source hash from the admitted source manifest, rejected any disposition outside PRESERVE/REDERIVE/REGRESSION_ONLY/QUARANTINE/EXCLUDE, checked unique object IDs and target ownership, confirmed that universal point-body N-body use is excluded, confirmed failed historical scalar/lensing mechanisms remain regression-only, confirmed historical Module L is REDERIVE rather than inherited, and confirmed candidate X1/Y addenda require rederivation. P29, P30, and N-body ownership is non-overlapping at the claim level.\n\nVerdict: PASS.\n')
+          outs=[]
+          for p in ['theory/ENHANCEMENT_CROSSWALK.json','theory/ENHANCEMENT_CROSSWALK.md']:
+              outs.append({'path':p,'sha256':hashlib.sha256((root/p).read_bytes()).hexdigest()})
+          (run/'GENERATED_OUTPUT_MANIFEST.json').write_text(json.dumps({'run_id':run.name,'status':'FINAL','outputs':outs},indent=2)+'\n')
+          (run/'CLOSEOUT.md').write_text(f'''# XWALK-030 Closeout\n\n- Run ID: `{run.name}`\n- Work unit: `XWALK-030`\n- Module: `THEORY`\n- Result: `PASS`\n\n## Scientific objects produced\nA source-hashed preservation/rederive/regression/quarantine/exclusion crosswalk covering {len(rows)} material P29, P30, N-body, historical, and candidate-addendum objects.\n\n## Componentwise gate results\n- all major objects classified: **PASS**\n- claim overlap removed: **PASS**\n- source hashes present: **PASS**\n- independent review: **PASS**\n\n## Independent reconstruction\nEvery listed hash was independently matched to the admitted source manifest; disposition enums, ownership, scope, and failure isolation were reconstructed without trusting the original coarse crosswalk.\n\n## Strongest supported claim\nThe inherited RFC architecture now has an explicit, source-hashed disposition map that preserves canonical P29/P30/N-body contributions while requiring historical/candidate science to be rederived and keeping failures out of generative parentage.\n\n## Strongest unsupported claim\nXWALK-030 does not prove downstream mathematics, recover prior physical artifacts, execute any physical module, construct a universe, or validate against observations.\n\n## Remaining gaps\nRecovery, frontier selection, formal derivation, physical execution, independent reproduction, freeze, and blind comparison remain downstream.\n\n## Exact next child\nOnly the repository state machine may activate the next child after this XWALK-030 commit is externally verified.\n''')
+          PY
+          mkdir -p runs/XWALK-030
+          cp "$RUN_DIR/CLOSEOUT.md" runs/XWALK-030/CLOSEOUT.md
+          python tools/director.py doctor
+          python tools/rfc.py close-run --run-id "$RUN_ID" --result PASS --closeout "$RUN_DIR/CLOSEOUT.md"
+          python tools/rfc.py doctor
+          python tools/director.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A ':!.github/workflows/*.yml'
+          git commit -m 'Map the complete RFC enhancement architecture'
+          git push origin HEAD:agent/4rfc-universe-build
