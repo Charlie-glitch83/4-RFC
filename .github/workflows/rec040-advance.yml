@@ -1,0 +1,83 @@
+name: Advance verified REC-040
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  advance-rec040:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy scipy sympy networkx
+      - name: Record externally verified REC commit and advance one child
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERIFIED='d79e18a736ef6f061b2dc79a6080d225a0ab67dc'
+          RUN='REC-040-20260811T045909Z'
+          test "$(git rev-parse HEAD)" = "$VERIFIED"
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from tools.rfc import sha256_tree
+          run_id='REC-040-20260811T045909Z'
+          state=json.loads(Path('STATE.json').read_text())
+          index=json.loads(Path('memory/RUN_INDEX.json').read_text())
+          registry=json.loads(Path('memory/ARTIFACT_REGISTRY.json').read_text())
+          rows=[x for x in index['runs'] if x.get('run_id')==run_id]
+          if len(rows)!=1 or rows[0].get('status')!='PASS':
+              raise SystemExit('REC-040 is not uniquely closed PASS')
+          digest=rows[0].get('tree_sha256')
+          actual=sha256_tree(Path(rows[0]['path']))
+          if actual!=digest:
+              raise SystemExit(f'REC run-tree drift {actual} != {digest}')
+          arts=[x for x in registry.get('artifacts',[]) if x.get('kind')=='RUN_BUNDLE' and x.get('run_id')==run_id]
+          if len(arts)!=1 or arts[0].get('sha256')!=digest:
+              raise SystemExit('REC artifact registry mismatch')
+          if state.get('active_work_unit')!='REC-040' or state.get('current_run') is not None:
+              raise SystemExit('controller is not at closed REC-040 transition boundary')
+          PY
+
+          python tools/rfc.py doctor
+          python tools/director.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+
+          python tools/rfc.py record-commit "$VERIFIED" --branch agent/4rfc-universe-build --note 'Externally verified REC-040 exact-object recovery, replay, closeout, registered run tree, and diff'
+          python tools/rfc.py advance --task REC-040 --result PASS --evidence runs/$RUN/CLOSEOUT.md
+
+          # Let the repository materialize exactly the one child it selected.
+          bash tools/start_work.sh
+          python tools/director.py doctor
+          python tools/rfc.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+
+          python - <<'PY'
+          import json
+          state=json.load(open('STATE.json'))
+          queue=json.load(open('WORK_QUEUE.json'))['items']
+          active=[x for x in queue if x.get('status')=='ACTIVE']
+          if len(active)!=1 or active[0]['id']!=state['active_work_unit']:
+              raise SystemExit('post-advance singular active child invariant failed')
+          if state['active_work_unit']=='REC-040':
+              raise SystemExit('REC-040 did not advance')
+          print(json.dumps({'active_work_unit':state['active_work_unit'],'current_module':state['current_module'],'current_run':state.get('current_run'),'last_verified_commit':state.get('last_verified_commit')},indent=2))
+          PY
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add STATE.json WORK_QUEUE.json memory work_packets runs
+          git commit -m 'Advance REC-040 to repository-selected child'
+          git push origin HEAD:agent/4rfc-universe-build
