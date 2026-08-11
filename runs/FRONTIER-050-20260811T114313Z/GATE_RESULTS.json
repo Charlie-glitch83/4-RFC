@@ -1,7 +1,23 @@
 {
-  "run_id": "",
-  "overall": "BLOCKED",
-  "gates": [],
+  "run_id": "FRONTIER-050-20260811T114313Z",
+  "overall": "PASS",
+  "gates": [
+    {
+      "gate": "no status word hides a missing object",
+      "status": "PASS",
+      "evidence": "Each A-J row separately records law, implementation, representative tests, completed output, restart, covariance, independent reconstruction, evidence state, and missing objects."
+    },
+    {
+      "gate": "one frontier selected",
+      "status": "PASS",
+      "evidence": "Exactly one selected frontier: Module A missing frozen H_A_to_B; exactly one proposed child: A-100."
+    },
+    {
+      "gate": "recovered parents verified",
+      "status": "PASS",
+      "evidence": "All 29 frozen source records recomputed exactly; REC-040 is uniquely PASS with registered tree 51ddd5b6788cd768fbb38c1598ac4ef4aa8daecb896ae78d387098a2802a133d."
+    }
+  ],
   "diagnostics": [],
   "score_rule": "mandatory gates componentwise; below 0.95 triggers analysis"
 }

@@ -1,0 +1,947 @@
+{
+  "schema_version": "1.0",
+  "work_unit": "FRONTIER-050",
+  "rule": "Select the earliest boundary whose exact parent-driven physical output, restart packet, covariance, and independent reconstruction are absent. Do not infer execution from formal law or representative verification.",
+  "audited_modules": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "HU",
+    "I",
+    "HI",
+    "J"
+  ],
+  "source_verification": [
+    {
+      "label": "Triadic emergence and theorem architecture",
+      "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "verified": true
+    },
+    {
+      "label": "P29 metadata and reproducibility context",
+      "sha256": "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215",
+      "verified": true
+    },
+    {
+      "label": "Revised triadic N-body proof",
+      "sha256": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+      "verified": true
+    },
+    {
+      "label": "N-body metadata",
+      "sha256": "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+      "verified": true
+    },
+    {
+      "label": "Universe architecture and full ledger",
+      "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+      "verified": true
+    },
+    {
+      "label": "Universe reproducibility metadata candidate",
+      "sha256": "65cbeb7259c126ecab705a9f5dca54a6c3e510a7cbe592448b7d7305f3c74e70",
+      "verified": true
+    },
+    {
+      "label": "Revised W2/BBN closeout metadata candidate",
+      "sha256": "0e54ae0a037fc0e35329c452c25e71d71f716dc6a700982083a207afd9adde8f",
+      "verified": true
+    },
+    {
+      "label": "Consolidated prior triadic rebuild",
+      "sha256": "52ff9b4a79f0a052d17d5592c32a44d471cdfb209ed803f7f12253c4c0f50599",
+      "verified": true
+    },
+    {
+      "label": "Deterministic rebuild and no-retune lineage",
+      "sha256": "9a8e0bb8fcbaeb3ab391b5ccb1213b83318685a54953b0d1b1ba9e0eca26a086",
+      "verified": true
+    },
+    {
+      "label": "Mathematical codex",
+      "sha256": "01c15530f437d0dd37937e7789e410f85fb4417a049357eb31f140c345b954f5",
+      "verified": true
+    },
+    {
+      "label": "One kernel, many modal manifestations",
+      "sha256": "c89cdfa633961934306cc03121c4fe911b0140610f7a1da6be97d220de8b2540",
+      "verified": true
+    },
+    {
+      "label": "Original ontology and explanatory vision",
+      "sha256": "f3c1f848255334fcefc5eae6a8110a7e463e244fa605c1d9e56faa8ecd7aad17",
+      "verified": true
+    },
+    {
+      "label": "Narrative synthesis",
+      "sha256": "c8b617f643db47c2a520d018bee82328204430ed39a85d7ab918acc001546a18",
+      "verified": true
+    },
+    {
+      "label": "Nucleosynthesis addendum",
+      "sha256": "d44cb226d6ebc35fae8d4122f86ce8a80a3a6458b209c328a55ecfbaa44b561c",
+      "verified": true
+    },
+    {
+      "label": "Collapse/rebirth addendum",
+      "sha256": "522da698be7c70b17e327d54fe5825321934550c0ee3a8a187fcce9098895d3a",
+      "verified": true
+    },
+    {
+      "label": "Triad/kernel source book",
+      "sha256": "23cf3e0f8c2b125f1733e02cdd1a795738849fa1a5f2951669c1f84d9417fdab",
+      "verified": true
+    },
+    {
+      "label": "Source audits and drafting doctrine",
+      "sha256": "2166865f16a2daefa1f40ddd80a180c05ba154c8dfb467c1381b8006d01589be",
+      "verified": true
+    },
+    {
+      "label": "Historical closeout ledgers",
+      "sha256": "e372302fdc09e204345e615c059b41bd4f9a8e9d4d8b1d38bd8d2ee28afe0cad",
+      "verified": true
+    },
+    {
+      "label": "Historical simulation logs",
+      "sha256": "9f6f05a297e95ef01813fd6eb9532c8ee41d6feb7f4d7cb723da87ff5858a9da",
+      "verified": true
+    },
+    {
+      "label": "Non-cosmological triadic manifestation exemplar",
+      "sha256": "ac37b05c67b26c882d171b7986a5c1a5536a4ecbdf1152731897f876972bb7fe",
+      "verified": true
+    },
+    {
+      "label": "Arithmetic proof closeout exemplar",
+      "sha256": "21057508fcdb9cbb0fa3a932cc297dc2754b38ed59cab79d460f64ca1f2eb43f",
+      "verified": true
+    },
+    {
+      "label": "Arithmetic source map exemplar",
+      "sha256": "5d3cdf28aa14fdd2dbcff8307ec2e391a40623148696e1baa5623037d29ba84e",
+      "verified": true
+    },
+    {
+      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "sha256": "dd4a84a3ac27c04a6e9b20d41696ef4896a25581e1184cbb7ac25c2f22edfb4b",
+      "verified": true
+    },
+    {
+      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "sha256": "12575578458a7f908f4c10dcf69eddb095d436e21c9f4b51ea758e380ceda4d8",
+      "verified": true
+    },
+    {
+      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "sha256": "2f3539d6493f87a407765a9f24d6cd61e825a36fe9217d2adfa075c070d27b6e",
+      "verified": true
+    },
+    {
+      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "sha256": "c3b22b3f6973cef75409162c406ac224b2d66aa8bb938a6f035d386384fab226",
+      "verified": true
+    },
+    {
+      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "sha256": "af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d",
+      "verified": true
+    },
+    {
+      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "sha256": "275ce318acfb84f88e9edb91ca371bcfa8d8dd248172ee9444e4d108fb6472c7",
+      "verified": true
+    },
+    {
+      "label": "Prior audit/synthesis; never supersedes exact sources",
+      "sha256": "c0458d1905da03c21c7a93b1d11c19fa6679c18c5b1a0a95fefacf38e66a8240",
+      "verified": true
+    }
+  ],
+  "recovery_parent": {
+    "run_id": "REC-040-20260811T045909Z",
+    "status": "PASS",
+    "tree_sha256": "51ddd5b6788cd768fbb38c1598ac4ef4aa8daecb896ae78d387098a2802a133d"
+  },
+  "rows": [
+    {
+      "module": "A",
+      "parents": [],
+      "parent_evidence_states": {},
+      "source_authority": {
+        "manifest": "sources/SOURCE_MANIFEST.json",
+        "verified_source_count": 29
+      },
+      "law": {
+        "present": true,
+        "recipe_path": "recipes/A/recipe.json",
+        "recipe_sha256": "5f7d4b77bcbf9e379c6ab22a377b5dde64295b742a028556302bfc58562a2b73",
+        "spec_path": "modules/A/spec.json",
+        "spec_sha256": "c0ecc12e47bccc1859afed211bbf5d0aa75e056ece7a39403b26d59b55080ee1"
+      },
+      "implementation": {
+        "present": true,
+        "solver_bindings": [
+          {
+            "solver": "triad_kernel",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/A_triad_kernel.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/A_triad_kernel.bindings.json"
+          }
+        ]
+      },
+      "representative_test": {
+        "available": true,
+        "wolfram_calls": [
+          "A-WL-001",
+          "A-WL-002"
+        ],
+        "numerical_execution": [
+          "run the complete A manufactured reference matrix",
+          "enumerate finite-N lanes and route equivalence on N=2..8",
+          "test dormant direct dynamics gives exactly zero backreaction"
+        ]
+      },
+      "physical_or_prephysical_output": {
+        "present": false,
+        "frozen_artifacts": [],
+        "registered_module_artifacts": [],
+        "output_hashes": []
+      },
+      "restart": {
+        "present": false
+      },
+      "covariance": {
+        "present": false
+      },
+      "independent_reconstruction": {
+        "present": false
+      },
+      "repository_evidence_state": "DESIGN",
+      "repository_fidelity": "UNSTARTED",
+      "module_runs": [],
+      "missing_objects": [
+        "frozen exact prephysical A output packet H_A_to_B",
+        "restart/replay packet for completed module output",
+        "covariance/uncertainty packet tied to completed output",
+        "independent reconstruction of completed output"
+      ],
+      "boundary_complete": false
+    },
+    {
+      "module": "B",
+      "parents": [
+        "A"
+      ],
+      "parent_evidence_states": {
+        "A": "DESIGN"
+      },
+      "source_authority": {
+        "manifest": "sources/SOURCE_MANIFEST.json",
+        "verified_source_count": 29
+      },
+      "law": {
+        "present": true,
+        "recipe_path": "recipes/B/recipe.json",
+        "recipe_sha256": "10ea5c76a470cc58cfc58a27a3de9d82c9754b763b34adcc35a021fcbf4c86d3",
+        "spec_path": "modules/B/spec.json",
+        "spec_sha256": "70f00fd579bc6463972b046890af53caf17da0377edc20f67475c84ebee84473"
+      },
+      "implementation": {
+        "present": true,
+        "solver_bindings": [
+          {
+            "solver": "big_implosion",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/B_big_implosion.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/B_big_implosion.bindings.json"
+          }
+        ]
+      },
+      "representative_test": {
+        "available": true,
+        "wolfram_calls": [
+          "B-WL-001",
+          "B-WL-002"
+        ],
+        "numerical_execution": [
+          "execute multiple graph sizes and nontrivial modes",
+          "check spectral compression, conserved carrier mode, restart and exact reopening",
+          "ablate compression and relational coupling"
+        ]
+      },
+      "physical_or_prephysical_output": {
+        "present": false,
+        "frozen_artifacts": [],
+        "registered_module_artifacts": [],
+        "output_hashes": []
+      },
+      "restart": {
+        "present": false
+      },
+      "covariance": {
+        "present": false
+      },
+      "independent_reconstruction": {
+        "present": false
+      },
+      "repository_evidence_state": "DESIGN",
+      "repository_fidelity": "UNSTARTED",
+      "module_runs": [],
+      "missing_objects": [
+        "exact parent-driven B output packet",
+        "restart/replay packet for completed module output",
+        "covariance/uncertainty packet tied to completed output",
+        "independent reconstruction of completed output"
+      ],
+      "boundary_complete": false
+    },
+    {
+      "module": "C",
+      "parents": [
+        "B"
+      ],
+      "parent_evidence_states": {
+        "B": "DESIGN"
+      },
+      "source_authority": {
+        "manifest": "sources/SOURCE_MANIFEST.json",
+        "verified_source_count": 29
+      },
+      "law": {
+        "present": true,
+        "recipe_path": "recipes/C/recipe.json",
+        "recipe_sha256": "6451efceef8b53659fb58c4d591648e2e24b1340e43d1a62e364c5d98f0d9ad8",
+        "spec_path": "modules/C/spec.json",
+        "spec_sha256": "ca8e81068e8bc9b7c5711738f3c45e2751f30f6e5a9cff2a0c65ef4ef7b8dacb"
+      },
+      "implementation": {
+        "present": true,
+        "solver_bindings": [
+          {
+            "solver": "spectral_model",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/C_spectral_model.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/C_spectral_model.bindings.json"
+          }
+        ]
+      },
+      "representative_test": {
+        "available": true,
+        "wolfram_calls": [
+          "C-WL-001",
+          "C-WL-002"
+        ],
+        "numerical_execution": [
+          "symbolic symmetry and Hermiticity/unitarity checks",
+          "manufactured spectral reconstruction",
+          "independent implementation of the selected microscopic law"
+        ]
+      },
+      "physical_or_prephysical_output": {
+        "present": false,
+        "frozen_artifacts": [],
+        "registered_module_artifacts": [],
+        "output_hashes": []
+      },
+      "restart": {
+        "present": false
+      },
+      "covariance": {
+        "present": false
+      },
+      "independent_reconstruction": {
+        "present": false
+      },
+      "repository_evidence_state": "DESIGN",
+      "repository_fidelity": "UNSTARTED",
+      "module_runs": [],
+      "missing_objects": [
+        "exact parent-driven C output packet",
+        "restart/replay packet for completed module output",
+        "covariance/uncertainty packet tied to completed output",
+        "independent reconstruction of completed output"
+      ],
+      "boundary_complete": false
+    },
+    {
+      "module": "D",
+      "parents": [
+        "C"
+      ],
+      "parent_evidence_states": {
+        "C": "DESIGN"
+      },
+      "source_authority": {
+        "manifest": "sources/SOURCE_MANIFEST.json",
+        "verified_source_count": 29
+      },
+      "law": {
+        "present": true,
+        "recipe_path": "recipes/D/recipe.json",
+        "recipe_sha256": "1ad9720aa394d62df35bf6161414522f7a5563e8a8f94f5c8cd0c5e0b466cb16",
+        "spec_path": "modules/D/spec.json",
+        "spec_sha256": "895114ac15efd3dfc5859ceba6e855012f8950217626f339346a245a9f49820c"
+      },
+      "implementation": {
+        "present": true,
+        "solver_bindings": [
+          {
+            "solver": "transport",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/D_transport.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/D_transport.bindings.json"
+          }
+        ]
+      },
+      "representative_test": {
+        "available": true,
+        "wolfram_calls": [
+          "D-WL-001",
+          "D-WL-002"
+        ],
+        "numerical_execution": [
+          "positive distribution manufactured cases",
+          "stiffness and time-step convergence",
+          "conservation and entropy ledger"
+        ]
+      },
+      "physical_or_prephysical_output": {
+        "present": false,
+        "frozen_artifacts": [],
+        "registered_module_artifacts": [],
+        "output_hashes": []
+      },
+      "restart": {
+        "present": false
+      },
+      "covariance": {
+        "present": false
+      },
+      "independent_reconstruction": {
+        "present": false
+      },
+      "repository_evidence_state": "DESIGN",
+      "repository_fidelity": "UNSTARTED",
+      "module_runs": [],
+      "missing_objects": [
+        "exact parent-driven D output packet",
+        "restart/replay packet for completed module output",
+        "covariance/uncertainty packet tied to completed output",
+        "independent reconstruction of completed output"
+      ],
+      "boundary_complete": false
+    },
+    {
+      "module": "E",
+      "parents": [
+        "D"
+      ],
+      "parent_evidence_states": {
+        "D": "DESIGN"
+      },
+      "source_authority": {
+        "manifest": "sources/SOURCE_MANIFEST.json",
+        "verified_source_count": 29
+      },
+      "law": {
+        "present": true,
+        "recipe_path": "recipes/E/recipe.json",
+        "recipe_sha256": "c6e8996887ddb6ed2798e9de933e636b256b3d28aff6586bdf330bf0fcf6442f",
+        "spec_path": "modules/E/spec.json",
+        "spec_sha256": "3a73e6482152d8d2d465e711be19d634e170f5a6bcee2b564fa046b133014cc8"
+      },
+      "implementation": {
+        "present": true,
+        "solver_bindings": [
+          {
+            "solver": "reaction_network",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/E_reaction_network.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/E_reaction_network.bindings.json"
+          }
+        ]
+      },
+      "representative_test": {
+        "available": true,
+        "wolfram_calls": [
+          "E-WL-001",
+          "E-WL-002"
+        ],
+        "numerical_execution": [
+          "network-size and rate convergence",
+          "withheld-reaction tests",
+          "independent reaction integrator"
+        ]
+      },
+      "physical_or_prephysical_output": {
+        "present": false,
+        "frozen_artifacts": [],
+        "registered_module_artifacts": [],
+        "output_hashes": []
+      },
+      "restart": {
+        "present": false
+      },
+      "covariance": {
+        "present": false
+      },
+      "independent_reconstruction": {
+        "present": false
+      },
+      "repository_evidence_state": "DESIGN",
+      "repository_fidelity": "UNSTARTED",
+      "module_runs": [],
+      "missing_objects": [
+        "exact parent-driven E output packet",
+        "restart/replay packet for completed module output",
+        "covariance/uncertainty packet tied to completed output",
+        "independent reconstruction of completed output"
+      ],
+      "boundary_complete": false
+    },
+    {
+      "module": "F",
+      "parents": [
+        "E"
+      ],
+      "parent_evidence_states": {
+        "E": "DESIGN"
+      },
+      "source_authority": {
+        "manifest": "sources/SOURCE_MANIFEST.json",
+        "verified_source_count": 29
+      },
+      "law": {
+        "present": true,
+        "recipe_path": "recipes/F/recipe.json",
+        "recipe_sha256": "b4aa226ef4185da09330375afc51ff1959147bce1d3b4770226876840984403d",
+        "spec_path": "modules/F/spec.json",
+        "spec_sha256": "9108762324e581e48493e81d8cbaf7efb115f3d78b3756ebe3b4270f01292a8d"
+      },
+      "implementation": {
+        "present": true,
+        "solver_bindings": [
+          {
+            "solver": "reaction_network",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/F_reaction_network.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/F_reaction_network.bindings.json"
+          },
+          {
+            "solver": "transport",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/F_transport.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/F_transport.bindings.json"
+          }
+        ]
+      },
+      "representative_test": {
+        "available": true,
+        "wolfram_calls": [
+          "F-WL-001",
+          "F-WL-002"
+        ],
+        "numerical_execution": [
+          "charge-neutrality and transport manufactured case",
+          "PSD covariance evolution",
+          "restart from E"
+        ]
+      },
+      "physical_or_prephysical_output": {
+        "present": false,
+        "frozen_artifacts": [],
+        "registered_module_artifacts": [],
+        "output_hashes": []
+      },
+      "restart": {
+        "present": false
+      },
+      "covariance": {
+        "present": false
+      },
+      "independent_reconstruction": {
+        "present": false
+      },
+      "repository_evidence_state": "DESIGN",
+      "repository_fidelity": "UNSTARTED",
+      "module_runs": [],
+      "missing_objects": [
+        "exact parent-driven F output packet",
+        "restart/replay packet for completed module output",
+        "covariance/uncertainty packet tied to completed output",
+        "independent reconstruction of completed output"
+      ],
+      "boundary_complete": false
+    },
+    {
+      "module": "G",
+      "parents": [
+        "F"
+      ],
+      "parent_evidence_states": {
+        "F": "DESIGN"
+      },
+      "source_authority": {
+        "manifest": "sources/SOURCE_MANIFEST.json",
+        "verified_source_count": 29
+      },
+      "law": {
+        "present": true,
+        "recipe_path": "recipes/G/recipe.json",
+        "recipe_sha256": "b800ffef478be6131fd1c83993931f150ba794024c8f3be845696bb254ec0293",
+        "spec_path": "modules/G/spec.json",
+        "spec_sha256": "69b5c7cbf6faca7f6487bc70201f321ee873474e2240e02dea5887027d0da992"
+      },
+      "implementation": {
+        "present": true,
+        "solver_bindings": [
+          {
+            "solver": "reaction_network",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/G_recombination_network.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/G_recombination_network.bindings.json"
+          },
+          {
+            "solver": "visibility",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/G_visibility.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/G_visibility.bindings.json"
+          }
+        ]
+      },
+      "representative_test": {
+        "available": true,
+        "wolfram_calls": [
+          "G-WL-001",
+          "G-WL-002"
+        ],
+        "numerical_execution": [
+          "stiff network convergence",
+          "visibility normalization/positivity",
+          "independent reconstruction"
+        ]
+      },
+      "physical_or_prephysical_output": {
+        "present": false,
+        "frozen_artifacts": [],
+        "registered_module_artifacts": [],
+        "output_hashes": []
+      },
+      "restart": {
+        "present": false
+      },
+      "covariance": {
+        "present": false
+      },
+      "independent_reconstruction": {
+        "present": false
+      },
+      "repository_evidence_state": "DESIGN",
+      "repository_fidelity": "UNSTARTED",
+      "module_runs": [],
+      "missing_objects": [
+        "exact parent-driven G output packet",
+        "restart/replay packet for completed module output",
+        "covariance/uncertainty packet tied to completed output",
+        "independent reconstruction of completed output"
+      ],
+      "boundary_complete": false
+    },
+    {
+      "module": "HU",
+      "parents": [
+        "G"
+      ],
+      "parent_evidence_states": {
+        "G": "DESIGN"
+      },
+      "source_authority": {
+        "manifest": "sources/SOURCE_MANIFEST.json",
+        "verified_source_count": 29
+      },
+      "law": {
+        "present": true,
+        "recipe_path": "recipes/HU/recipe.json",
+        "recipe_sha256": "f603d753ed1c396af6e0fec65d36fda56c2574b63ac3833ede030f8ecd574955",
+        "spec_path": "modules/HU/spec.json",
+        "spec_sha256": "ca2547a8d219db6b1c3992097fa84db29cc7085860f66a233a0fab8d2826c8da"
+      },
+      "implementation": {
+        "present": true,
+        "solver_bindings": [
+          {
+            "solver": "linear_transfer",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/HU_linear_transfer.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/HU_linear_transfer.bindings.json"
+          }
+        ]
+      },
+      "representative_test": {
+        "available": true,
+        "wolfram_calls": [
+          "HU-WL-001",
+          "HU-WL-002"
+        ],
+        "numerical_execution": [
+          "semigroup and superposition tests",
+          "symbolic identity verification",
+          "hash freeze before I instantiation"
+        ]
+      },
+      "physical_or_prephysical_output": {
+        "present": false,
+        "frozen_artifacts": [],
+        "registered_module_artifacts": [],
+        "output_hashes": []
+      },
+      "restart": {
+        "present": false
+      },
+      "covariance": {
+        "present": false
+      },
+      "independent_reconstruction": {
+        "present": false
+      },
+      "repository_evidence_state": "DESIGN",
+      "repository_fidelity": "UNSTARTED",
+      "module_runs": [],
+      "missing_objects": [
+        "exact parent-driven HU output packet",
+        "restart/replay packet for completed module output",
+        "covariance/uncertainty packet tied to completed output",
+        "independent reconstruction of completed output"
+      ],
+      "boundary_complete": false
+    },
+    {
+      "module": "I",
+      "parents": [
+        "G"
+      ],
+      "parent_evidence_states": {
+        "G": "DESIGN"
+      },
+      "source_authority": {
+        "manifest": "sources/SOURCE_MANIFEST.json",
+        "verified_source_count": 29
+      },
+      "law": {
+        "present": true,
+        "recipe_path": "recipes/I/recipe.json",
+        "recipe_sha256": "61c3048ceb4ad6167dfb9b6d8a60d51c5b607b4c2c6ad7e7b4bd13b022a56a34",
+        "spec_path": "modules/I/spec.json",
+        "spec_sha256": "ef572702335c6c533cbceafd662795c24ea8fec38462b2794c76a3a6acf2a39d"
+      },
+      "implementation": {
+        "present": true,
+        "solver_bindings": [
+          {
+            "solver": "transport",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/I_background_ode.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/I_background_ode.bindings.json"
+          }
+        ]
+      },
+      "representative_test": {
+        "available": true,
+        "wolfram_calls": [
+          "I-WL-001",
+          "I-WL-002"
+        ],
+        "numerical_execution": [
+          "constraint residual convergence",
+          "gauge/frame consistency",
+          "distance/horizon identities and independent solver"
+        ]
+      },
+      "physical_or_prephysical_output": {
+        "present": false,
+        "frozen_artifacts": [],
+        "registered_module_artifacts": [],
+        "output_hashes": []
+      },
+      "restart": {
+        "present": false
+      },
+      "covariance": {
+        "present": false
+      },
+      "independent_reconstruction": {
+        "present": false
+      },
+      "repository_evidence_state": "DESIGN",
+      "repository_fidelity": "UNSTARTED",
+      "module_runs": [],
+      "missing_objects": [
+        "exact parent-driven I output packet",
+        "restart/replay packet for completed module output",
+        "covariance/uncertainty packet tied to completed output",
+        "independent reconstruction of completed output"
+      ],
+      "boundary_complete": false
+    },
+    {
+      "module": "HI",
+      "parents": [
+        "HU",
+        "I"
+      ],
+      "parent_evidence_states": {
+        "HU": "DESIGN",
+        "I": "DESIGN"
+      },
+      "source_authority": {
+        "manifest": "sources/SOURCE_MANIFEST.json",
+        "verified_source_count": 29
+      },
+      "law": {
+        "present": true,
+        "recipe_path": "recipes/HI/recipe.json",
+        "recipe_sha256": "a75977151e79de588728817b6e4871c962192481067c1364fd5d260485f28493",
+        "spec_path": "modules/HI/spec.json",
+        "spec_sha256": "9533bf859961ec26cdc69e39fc6febc64ba1d184a6fe89b126aa2b00143bd21a"
+      },
+      "implementation": {
+        "present": true,
+        "solver_bindings": [
+          {
+            "solver": "linear_transfer",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/HI_instantiated_transfer.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/HI_instantiated_transfer.bindings.json"
+          }
+        ]
+      },
+      "representative_test": {
+        "available": true,
+        "wolfram_calls": [
+          "HI-WL-001",
+          "HI-WL-002"
+        ],
+        "numerical_execution": [
+          "parent-hash check",
+          "composition/reconstruction test",
+          "independent instantiation"
+        ]
+      },
+      "physical_or_prephysical_output": {
+        "present": false,
+        "frozen_artifacts": [],
+        "registered_module_artifacts": [],
+        "output_hashes": []
+      },
+      "restart": {
+        "present": false
+      },
+      "covariance": {
+        "present": false
+      },
+      "independent_reconstruction": {
+        "present": false
+      },
+      "repository_evidence_state": "DESIGN",
+      "repository_fidelity": "UNSTARTED",
+      "module_runs": [],
+      "missing_objects": [
+        "exact parent-driven HI output packet",
+        "restart/replay packet for completed module output",
+        "covariance/uncertainty packet tied to completed output",
+        "independent reconstruction of completed output"
+      ],
+      "boundary_complete": false
+    },
+    {
+      "module": "J",
+      "parents": [
+        "HI"
+      ],
+      "parent_evidence_states": {
+        "HI": "DESIGN"
+      },
+      "source_authority": {
+        "manifest": "sources/SOURCE_MANIFEST.json",
+        "verified_source_count": 29
+      },
+      "law": {
+        "present": true,
+        "recipe_path": "recipes/J/recipe.json",
+        "recipe_sha256": "fc0d0a507c7ad2617c32105aa31230235bc77e5ffa250002e29db38623d2284b",
+        "spec_path": "modules/J/spec.json",
+        "spec_sha256": "7c3198e07239f5fbec7fd452ee086492233bd014607edcc162011daac5d814ab"
+      },
+      "implementation": {
+        "present": true,
+        "solver_bindings": [
+          {
+            "solver": "covariance",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/J_covariance.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/J_covariance.bindings.json"
+          },
+          {
+            "solver": "fourier_field",
+            "status": "UNBOUND_UNTIL_EXACT_PARENT_DERIVATION",
+            "template": "configured_runs/templates/J_fourier_field.template.json",
+            "binding_sheet": "configured_runs/binding_sheets/J_fourier_field.bindings.json"
+          }
+        ]
+      },
+      "representative_test": {
+        "available": true,
+        "wolfram_calls": [
+          "J-WL-001",
+          "J-WL-002"
+        ],
+        "numerical_execution": [
+          "PSD and Cholesky checks",
+          "volume/resolution ensembles",
+          "independent field reconstruction"
+        ]
+      },
+      "physical_or_prephysical_output": {
+        "present": false,
+        "frozen_artifacts": [],
+        "registered_module_artifacts": [],
+        "output_hashes": []
+      },
+      "restart": {
+        "present": false
+      },
+      "covariance": {
+        "present": false
+      },
+      "independent_reconstruction": {
+        "present": false
+      },
+      "repository_evidence_state": "DESIGN",
+      "repository_fidelity": "UNSTARTED",
+      "module_runs": [],
+      "missing_objects": [
+        "exact parent-driven J output packet",
+        "restart/replay packet for completed module output",
+        "covariance/uncertainty packet tied to completed output",
+        "independent reconstruction of completed output"
+      ],
+      "boundary_complete": false
+    }
+  ],
+  "selected_frontier": {
+    "module": "A",
+    "missing_object": "frozen exact prephysical A output packet H_A_to_B",
+    "reason": "4-RFC contains exact admitted sources, a governed formal recipe, solver templates, and representative-test machinery for A, but no completed A run, frozen A output, restart packet, covariance packet, or independent reconstruction. Formal law and available test machinery therefore cannot be relabeled as executed A.",
+    "next_work_unit": "A-100",
+    "authorized_count": 1
+  },
+  "claim_boundary": {
+    "supported": "The earliest exact execution frontier in the current 4-RFC lineage is Module A output H_A_to_B.",
+    "unsupported": "No A-J physical or prephysical module completion is inferred from prior formal laws, representative checks, or historical completion labels."
+  }
+}
