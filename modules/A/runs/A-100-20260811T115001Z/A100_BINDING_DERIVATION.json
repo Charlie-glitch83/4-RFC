@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "run_id": "A-100-20260811T115001Z",
+  "classification": "FROZEN_INTERNAL_DERIVATION",
+  "scope": "PREPHYSICAL_MATHEMATICAL_ONLY",
+  "bindings": {
+    "delta": {
+      "value": 4.6692,
+      "source_sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "source_statement": "P29 deterministic recursive bifurcation scale delta = 4.6692"
+    },
+    "alpha": {
+      "value": 0.02568312917993952,
+      "derivation": "Log[delta]/60",
+      "inputs": {
+        "delta": 4.6692,
+        "recursive_cycle_length": 60
+      },
+      "source_sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e"
+    },
+    "depth": {
+      "value": 40,
+      "source_sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "source_statement": "P29 full canonical projection depth n_* = 40"
+    },
+    "constituents": {
+      "value": ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8"],
+      "derivation": "Abstract typed prephysical constituent labels for the maximal required finite-N carrier case N=8; no physical body identity is assigned. N=2..8 are audited separately."
+    },
+    "basis_matrix": {
+      "value": [
+        [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0],
+        [1.0, 0.0, 0.0]
+      ],
+      "derivation": "40x3 bounded role-separating modal basis cycling the three frozen independent CIF/QV/RFL role coordinates. Each row has norm 1 and no physical-domain content."
+    }
+  },
+  "prohibitions": [
+    "no physical time",
+    "no geometry",
+    "no particles",
+    "no empirical constants",
+    "no later-module object",
+    "constituent labels are abstract prephysical identifiers only"
+  ],
+  "claim_boundary": "Mathematical constitution and relational enhancement only; no physical universe yet."
+}
