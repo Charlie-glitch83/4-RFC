@@ -97,3 +97,4 @@ jobs:
           git add -A ':!.github/workflows/activate-4rfc.yml'
           git commit -m 'Advance governed queue after SRC-010'
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
+# synchronization trigger
