@@ -1,0 +1,131 @@
+name: E-140 Final Governed Source Audit
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    if: github.event.pull_request.head.ref == 'agent/4rfc-universe-build'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install repository runtime dependencies
+        run: python -m pip install numpy networkx scipy sympy
+      - name: Refresh E-140 and perform exact pre-execution source audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN='E-140-20260811T175023Z'
+          RUN_DIR="modules/E/runs/$RUN"
+          bash tools/start_work.sh
+          cat work_packets/ACTIVE_WORK_PACKET.md
+          grep -q 'ACTIVE WORK PACKET — E-140' work_packets/ACTIVE_WORK_PACKET.md
+          python - <<'PY'
+          import hashlib, json, re
+          from pathlib import Path
+          ROOT=Path('.')
+          RUN=ROOT/'modules/E/runs/E-140-20260811T175023Z'
+          def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+          hand_path=ROOT/'modules/D/runs/D-130-20260811T165602Z/H_D_to_E.json'
+          hand=json.loads(hand_path.read_text(encoding='utf-8'))
+          expected='c26421f00e724547f476a65fc8a2fc4f82dc9334'
+          assert sha(hand_path)==expected
+          assert hand['generation_mode']=='GENERATION_SEALED'
+          assert hand['preserved_obstructions']['primordial_abundances']=='OWNED_BY_MODULE_E'
+          manifest=json.loads((ROOT/'sources/SOURCE_MANIFEST.json').read_text(encoding='utf-8'))
+          allowed={'CANONICAL_AUTHORITY','ADMITTED_SOURCE','CANDIDATE_ADDENDUM'}
+          records=[]
+          for rec in manifest.get('sources',[]):
+              if rec.get('classification') not in allowed: continue
+              p=ROOT/rec.get('frozen_path','')
+              if not p.exists() or p.suffix.lower() not in {'.md','.txt','.json','.tex'}: continue
+              text=p.read_text(encoding='utf-8',errors='ignore')
+              # Evidence markers are deliberately strict: a candidate must expose all
+              # three executable ingredients rather than merely discuss BBN outcomes.
+              species_hits=[]; reaction_hits=[]; rate_hits=[]; observational_hits=[]
+              for i,line in enumerate(text.splitlines(),1):
+                  if re.search(r'(?i)\b(species|isotope)\b.*(?:=|:)',line): species_hits.append([i,line[:600]])
+                  if re.search(r'(?i)(?:->|→|\\to|\\rightarrow)',line) and re.search(r'(?i)(?:n|p|D|H2|He3|He4|Li7|Be7)',line): reaction_hits.append([i,line[:600]])
+                  if re.search(r'(?i)(?:reaction\s+rate|rate\s+law|rate\s+coefficient|lambda[_A-Za-z0-9]*\s*=|k[_A-Za-z0-9]*\s*=)',line): rate_hits.append([i,line[:600]])
+                  if re.search(r'(?i)(observed|solar|public\s+BBN|abundance\s+target|overobserved|over observed)',line): observational_hits.append([i,line[:600]])
+              if species_hits or reaction_hits or rate_hits or re.search(r'(?i)BBN|nucleosynth|Li7|Be7',text):
+                  records.append({
+                    'label':rec.get('label'),'classification':rec.get('classification'),'path':rec.get('frozen_path'),'sha256':rec.get('sha256'),
+                    'species_declarations':species_hits[:80],'reaction_equations':reaction_hits[:120],'rate_law_declarations':rate_hits[:120],
+                    'observational_or_proxy_markers':observational_hits[:120],
+                    'executable_complete':bool(species_hits and reaction_hits and rate_hits)
+                  })
+          complete=[r for r in records if r['executable_complete']]
+          # D itself contains no nuclear law; confirm the exact handoff obstruction.
+          decision='PROCEED_TO_FREEZE' if complete else 'BLOCKED_UNDERDETERMINED'
+          audit={
+            'run_id':'E-140-20260811T175023Z','classification':'E140_EXACT_SOURCE_OWNERSHIP_AUDIT','generation_mode':'GENERATION_SEALED',
+            'exact_parent':{'path':str(hand_path),'sha256':expected},'parent_obstructions':hand['preserved_obstructions'],
+            'admissible_source_records':records,'complete_executable_source_objects':[{'path':r['path'],'sha256':r['sha256']} for r in complete],
+            'decision':decision,
+            'decision_rule':'Freeze only if exact admitted bytes supply species, reaction equations/stoichiometry, and executable rate laws. Proxy outcomes, prior PASS labels, observational anchors, and public/familiar BBN rates are not generation authority.',
+            'public_or_observational_generation_inputs_used':False
+          }
+          (RUN/'E140_SOURCE_OWNERSHIP_AUDIT.json').write_text(json.dumps(audit,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          source={
+            'run_id':'E-140-20260811T175023Z',
+            'exact_parents':[{'path':str(hand_path),'sha256':expected,'kind':'EXACT_D_TO_E_HANDOFF'}],
+            'admitted_sources':[{'path':r['path'],'sha256':r['sha256'],'classification':r['classification'],'use':'PREEXECUTION_SOURCE_AUDIT'} for r in records],
+            'imports':['hashlib','json','re'],'files':['recipes/E/WORK_ORDER.md','recipes/E/recipe.json','configured_runs/templates/E_reaction_network.template.json'],'urls':[],
+            'constants':[],'public_data_declaration':'NONE'
+          }
+          (RUN/'SOURCE_REGISTER.json').write_text(json.dumps(source,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+          if not complete:
+              failure={
+                'run_id':'E-140-20260811T175023Z','stage':'PRE_EXECUTION_SOURCE_ADMISSION','status':'BLOCKED_UNDERDETERMINED',
+                'falsifier':'NO_EXACT_SOURCE_OWNED_EXECUTABLE_REACTION_NETWORK','action':'DO_NOT_FREEZE_OR_EXECUTE',
+                'preserved_obstructions':[
+                  'Exact D-to-E handoff owns primordial abundances to E but provides no nuclear reaction law.',
+                  'Admitted nucleosynthesis documents discuss theorem/proxy results but do not supply a complete executable species/reaction/rate object under sealed generation.',
+                  'Observed/public abundance anchors and familiar external BBN rates remain forbidden generation inputs.'
+                ]
+              }
+              (RUN/'E140_PREEXECUTION_FAILURE.json').write_text(json.dumps(failure,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+              with (RUN/'FAILURES.jsonl').open('a',encoding='utf-8') as f: f.write(json.dumps(failure,sort_keys=True)+'\n')
+          print(json.dumps({'decision':decision,'source_records':len(records),'complete_executable_objects':len(complete)},indent=2))
+          PY
+          python tools/rfc.py doctor
+          python tools/director.py doctor
+          python tools/rfc.py firewall-scan
+      - name: Preserve E-140 audit evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git restore memory/CURRENT_CONTEXT.md || true
+          git add -A modules/E/runs/E-140-20260811T175023Z work_packets/ACTIVE_WORK_PACKET.md STATE.json memory/RUN_INDEX.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'E-140: preserve exact source-ownership audit'
+            git fetch origin agent/4rfc-universe-build
+            git rebase origin/agent/4rfc-universe-build
+            git push origin HEAD:agent/4rfc-universe-build
+          fi
+      - name: Enforce E-140 hard-stop decision
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('modules/E/runs/E-140-20260811T175023Z/E140_SOURCE_OWNERSHIP_AUDIT.json')
+          d=json.loads(p.read_text())
+          if d['decision']!='PROCEED_TO_FREEZE':
+              raise SystemExit('E-140 hard stop: exact source-owned executable reaction network is underdetermined')
+          PY
