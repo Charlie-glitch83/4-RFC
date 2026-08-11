@@ -22,21 +22,23 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install numpy networkx scipy sympy
-      - name: Reconcile finalized C-120 bundle after implementation-only corrections
+      - name: Verify C-120 closeout and advance exactly one child
         shell: bash
         run: |
           set -euo pipefail
           RUN='C-120-20260811T142152Z'
           RUN_DIR="modules/C/runs/$RUN"
-          python "$RUN_DIR/C120_VERIFY.py"
-          python "$RUN_DIR/C120_PRE_FINALIZE.py"
-          python "$RUN_DIR/C120_FINALIZE.py"
-          python tools/rfc.py close-run --run-id "$RUN" --result PASS --closeout "$RUN_DIR/CLOSEOUT.md"
+          VERIFIED_SHA='9aba5d1e1c83506f03176e4bc08a74bafaa9249e'
+          python tools/rfc.py doctor
+          python tools/rfc.py record-commit "$VERIFIED_SHA" --branch agent/4rfc-universe-build --note 'Verified C-120 closeout commit and exact diff'
+          python tools/rfc.py advance --task C-120 --result PASS --evidence "$RUN_DIR/CLOSEOUT.md"
+          bash tools/start_work.sh
+          cat work_packets/ACTIVE_WORK_PACKET.md
           python tools/rfc.py doctor
           python tools/director.py doctor
           python -m unittest discover -s tests -v
           python tools/rfc.py firewall-scan
-      - name: Commit final reconciled C-120 bundle
+      - name: Commit C-120 transition and prepared child packet
         shell: bash
         run: |
           set -euo pipefail
@@ -45,7 +47,7 @@ jobs:
           git restore memory/CURRENT_CONTEXT.md || true
           git add -A
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Close Module C at its verified scientific scope'
+          git commit -m 'Advance from frozen Module C to its authorized child'
           git fetch origin agent/4rfc-universe-build
           git rebase origin/agent/4rfc-universe-build
           git push origin HEAD:agent/4rfc-universe-build
