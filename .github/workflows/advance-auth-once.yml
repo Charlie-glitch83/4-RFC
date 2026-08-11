@@ -1,10 +1,8 @@
 name: One-shot AUTH advance
 
 on:
-  push:
-    branches: [agent/4rfc-universe-build]
-    paths:
-      - .github/workflows/advance-auth-once.yml
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: write
@@ -57,4 +55,3 @@ jobs:
           git add -A ':!.github/workflows/advance-auth-once.yml' ':!.github/workflows/src010-governed.yml'
           git commit -m 'Advance governed queue after AUTH-020'
           git push origin HEAD:agent/4rfc-universe-build
-# one-shot trigger
