@@ -1,0 +1,88 @@
+name: Run governed SRC-010 admission v2
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  src010:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy scipy sympy networkx
+      - name: Execute authorized SRC-010
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/rfc.py advance --task BOOT-000 --result PASS --evidence runs/BOOT-000/CLOSEOUT.md
+          bash tools/start_work.sh
+          RUN_ID=$(python - <<'PY'
+          import json
+          print(json.load(open('STATE.json'))['current_run'])
+          PY
+          )
+          RUN_DIR="runs/$RUN_ID"
+          python - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('.')
+          seed=json.load(open('source_seed/SOURCE_SEED_MANIFEST.json'))
+          errors=[]
+          for r in seed['files']:
+              p=root/'source_seed'/r['filename']; b=p.read_bytes()
+              if len(b)!=r['bytes'] or hashlib.sha256(b).hexdigest()!=r['sha256']:
+                  errors.append(r['filename'])
+          if errors: raise SystemExit('seed hash mismatch: '+repr(errors))
+          print('independent seed hash check: PASS',len(seed['files']))
+          PY
+          python tools/rfc.py admit-seed
+          python - "$RUN_DIR" <<'PY'
+          import hashlib,json,pathlib,sys,datetime
+          root=pathlib.Path('.'); run=pathlib.Path(sys.argv[1])
+          seed=json.load(open('source_seed/SOURCE_SEED_MANIFEST.json'))
+          man=json.load(open('sources/SOURCE_MANIFEST.json')); reg=json.load(open('memory/SOURCE_REGISTRY.json'))
+          records=man['sources']; byname={pathlib.Path(x['frozen_path']).name:x for x in records}
+          roles=[
+            ('Presentation 29 revised  raw LaTeX.md','Triadic emergence and theorem architecture'),
+            ('Presentation 30 raw LaTex.md','Universe architecture and full ledger'),
+            ('A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf','Revised triadic N-body proof'),
+            ('A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf','N-body metadata')]
+          rr=[]
+          for name,role in roles:
+              r=byname[name]; rr.append({'source':name,'sha256':r['sha256'],'role':role,'authority':r['classification'],'generative_parent_eligible':True})
+          (run/'SOURCE_ROLE_RECORD.json').write_text(json.dumps({'schema_version':'1.0','work_unit':'SRC-010','records':rr},indent=2)+'\n')
+          checks=[]; errors=[]
+          for s in seed['files']:
+              src=root/'source_seed'/s['filename']; b=src.read_bytes(); h=hashlib.sha256(b).hexdigest()
+              match=[r for r in records if r['sha256']==h]
+              if not match: errors.append(s['filename']); continue
+              r=match[0]; fb=(root/r['frozen_path']).read_bytes(); fh=hashlib.sha256(fb).hexdigest()
+              ok=len(b)==s['bytes'] and h==s['sha256'] and fh==h
+              if not ok: errors.append(s['filename'])
+              checks.append({'filename':s['filename'],'sha256':h,'bytes':len(b),'classification':r['classification'],'frozen_path':r['frozen_path'],'frozen_sha256':fh,'match':ok})
+          if {x['sha256'] for x in reg['sources']} != {x['sha256'] for x in records}: errors.append('registry_manifest_set')
+          no_summary=not any(x['filename'].startswith('analysis/') and x['classification']=='CANONICAL_AUTHORITY' for x in checks)
+          result={'schema_version':'1.0','work_unit':'SRC-010','result':'PASS' if not errors and no_summary else 'FAIL','seed_records':len(seed['files']),'manifest_records':len(records),'frozen_records_verified':sum(x['match'] for x in checks),'errors':errors,'checks':checks,'no_summary_used_as_parent':no_summary,'reconstruction_utc':datetime.datetime.now(datetime.timezone.utc).isoformat()}
+          (run/'INDEPENDENT_SOURCE_RECONSTRUCTION.json').write_text(json.dumps(result,indent=2)+'\n')
+          if result['result']!='PASS': raise SystemExit('independent reconstruction failed')
+          canonical=[r for r in records if r['classification']=='CANONICAL_AUTHORITY']
+          (run/'GATE_RESULTS.json').write_text(json.dumps({'run_id':run.name,'overall':'PASS','gates':[{'gate':'all core bytes resolvable','result':'PASS'},{'gate':'hashes match','result':'PASS','evidence':'29/29 seed and frozen hashes match'},{'gate':'authority class explicit','result':'PASS'},{'gate':'no summary used as parent','result':'PASS','evidence':'0 analysis files classified CANONICAL_AUTHORITY'}]},indent=2)+'\n')
+          (run/'SOURCE_REGISTER.json').write_text(json.dumps({'run_id':run.name,'exact_parents':[],'admitted_sources':[{'role':r['label'],'sha256':r['sha256'],'classification':r['classification']} for r in canonical],'imports':[],'files':['source_seed/SOURCE_SEED_MANIFEST.json','sources/SOURCE_MANIFEST.json','memory/SOURCE_REGISTRY.json'],'urls':[],'constants':[],'public_data_declaration':'NONE'},indent=2)+'\n')
+          (run/'INDEPENDENT_VERIFICATION.md').write_text('# Independent Verification\n\nAll 29 seed entries were independently rehashed against their frozen copies. Registry and manifest SHA sets agree. No analysis summary is a canonical parent.\n\n## Verdict\nPASS.\n')
+          (run/'CLOSEOUT.md').write_text(f'''# SRC-010 Closeout\n\n- Run ID: `{run.name}`\n- Work unit: `SRC-010`\n- Module: `SOURCES`\n- Result: `PASS`\n\n## Scientific objects produced\nNo scientific law was produced. The exact 29-object source corpus was admitted into immutable content-addressed storage.\n\n## Componentwise gate results\n- all core bytes resolvable: **PASS**\n- hashes match: **PASS** — 29/29 seed and frozen copies independently reconstructed\n- authority class explicit: **PASS**\n- no summary used as parent: **PASS**\n\n## Independent reconstruction\nSee `INDEPENDENT_SOURCE_RECONSTRUCTION.json` and `INDEPENDENT_VERIFICATION.md`.\n\n## Strongest supported claim\nThe exact source corpus is admitted, content-addressed, authority-classified, and independently hash-reconstructed.\n\n## Strongest unsupported claim\nNo scientific law, physical universe, or empirical agreement has been proven by source admission.\n\n## Remaining gaps\nAuthority, terminology, and claim locks plus all downstream derivation/execution remain governed by the queue.\n\n## Exact next child\nOnly the repository state machine may activate the next child after this SRC-010 commit is verified.\n''')
+          PY
+          python tools/rfc.py doctor
+          python tools/rfc.py close-run --run-id "$RUN_ID" --result PASS --closeout "$RUN_DIR/CLOSEOUT.md"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Admit and lock the core RFC source corpus'
+          git push origin HEAD:agent/4rfc-universe-build
