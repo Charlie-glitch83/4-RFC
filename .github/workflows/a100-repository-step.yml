@@ -44,14 +44,21 @@ jobs:
           manifest_sha=sha(mp)
           assert parent_sha=='79a8f4d5e06558d1114ccd3af832d92344c5d47a075f1f0b708a19ccfc6a59db'
           audit=json.loads((run/'E140_SOURCE_ADMISSION_AUDIT.json').read_text(encoding='utf-8'))
-          assert audit['decision']=='REQUIRES_EXACT_SOURCE_OWNED_SPECIES_STOICHIOMETRY_AND_RATE_LAWS_BEFORE_FREEZE'
+          assert audit['status']=='BLOCKED_UNDERDETERMINED'
+          for key in ['source_owned_species_graph','source_owned_rate_laws','source_owned_rate_uncertainty']:
+              assert audit['determination'][key] is False
+          assert audit['determination']['manufactured_example_admissible_as_physical_parent'] is False
           lock=json.loads((run/'PRE_EXECUTION_LOCK.json').read_text(encoding='utf-8'))
           assert lock['status']=='BLOCKED_UNDERDETERMINED'
           assert lock['parent_hashes']==[parent_sha]
           example=root/'configured_runs/examples/E_reaction_network.json'
           frozen_example=root/'configured_runs/results/E_reaction_network/frozen_config.json'
           assert example.read_bytes()==frozen_example.read_bytes()
-          inspected=[{'path':rec['path'],'sha256':rec['sha256'],'admission_role':'INSPECTED_NOT_GENERATIVE_FOR_E_RATE_LAW'} for rec in audit['candidate_text_sources']]
+          inspected=[]
+          for rec in audit['inspected_objects']:
+              if rec['classification']=='MANUFACTURED_EXAMPLE_NOT_SCIENTIFIC_PARENT':
+                  continue
+              inspected.append({'path':rec['path'],'sha256':rec['sha256'],'classification':rec['classification'],'admission_role':'INSPECTED_NOT_GENERATIVE_FOR_E_RATE_LAW'})
           source_register={
             'run_id':'E-140-20260811T175023Z',
             'exact_parents':[{'path':str(hp),'sha256':parent_sha,'kind':'EXACT_FROZEN_D_TO_E_HANDOFF'}],
@@ -73,6 +80,7 @@ jobs:
             'exact_parent':{'path':str(hp),'sha256':parent_sha},
             'source_manifest':{'path':str(mp),'sha256':manifest_sha},
             'pre_execution_lock_status':'BLOCKED_UNDERDETERMINED_NOT_FROZEN',
+            'source_admission_audit_sha256':sha(run/'E140_SOURCE_ADMISSION_AUDIT.json'),
             'missing_objects':['source-owned species/reaction graph','executable source-owned rate laws and uncertainty'],
             'manufactured_fixture':{'path':str(example),'sha256':sha(example),'decision':'REJECTED_NOT_AN_ADMITTED_PARENT_OR_DERIVATION'},
             'proxy_closeout_decision':'Prior BBN proxy and observational comparison ledgers are comparison or methodological evidence only and are not generation inputs.',
