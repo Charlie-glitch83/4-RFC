@@ -2,79 +2,13 @@
   "schema_version": "1.0",
   "template": "configured_runs/templates/B_big_implosion.template.json",
   "template_sha256": "13f90965db1214ce6e7e722b1f8c4af204e001ccfff535672c7718f28dc80242",
-  "expected_binding_paths": [
-    "model.delta",
-    "model.node_count",
-    "model.weighted_edges",
-    "model.initial_state",
-    "model.sector_projection"
-  ],
+  "expected_binding_paths": ["model.delta","model.node_count","model.weighted_edges","model.initial_state","model.sector_projection"],
   "binding_rule": "Every value requires an exact admitted source, exact parent artifact, or hashed internal derivation record. Module P alone may bind preregistered public comparison sources.",
   "bindings": [
-    {
-      "path": "model.delta",
-      "placeholder": "__BIND_FROM_ADMITTED_SOURCE__",
-      "value": 4.6692,
-      "origin_kind": "FROZEN_PARENT",
-      "origin_path": "modules/A/runs/A-100-20260811T115001Z/H_A_to_B.json",
-      "origin_sha256": "198816819e027409812de925efe42878f9898d628b8c7a137e92c2d52bc568a6",
-      "module": "B",
-      "derivation_object": "recursive_kernel.delta",
-      "units": "dimensionless",
-      "dimensions": "1",
-      "justification": "Exact frozen A handoff recursive scale; no retuning."
-    },
-    {
-      "path": "model.node_count",
-      "placeholder": "__BIND_FROM_FROZEN_PARENT_OR_DERIVATION__",
-      "value": 40,
-      "origin_kind": "FROZEN_PARENT",
-      "origin_path": "modules/A/runs/A-100-20260811T115001Z/H_A_to_B.json",
-      "origin_sha256": "198816819e027409812de925efe42878f9898d628b8c7a137e92c2d52bc568a6",
-      "module": "B",
-      "derivation_object": "recursive_kernel.depth",
-      "units": "count",
-      "dimensions": "1",
-      "justification": "Use the complete frozen A recursive-depth support as the B pregeometry carrier node set."
-    },
-    {
-      "path": "model.weighted_edges",
-      "placeholder": "__BIND_FROM_FROZEN_PARENT_OR_DERIVATION__",
-      "value": [[0,1,1.0],[1,2,1.0],[2,3,1.0],[3,4,1.0],[4,5,1.0],[5,6,1.0],[6,7,1.0],[7,8,1.0],[8,9,1.0],[9,10,1.0],[10,11,1.0],[11,12,1.0],[12,13,1.0],[13,14,1.0],[14,15,1.0],[15,16,1.0],[16,17,1.0],[17,18,1.0],[18,19,1.0],[19,20,1.0],[20,21,1.0],[21,22,1.0],[22,23,1.0],[23,24,1.0],[24,25,1.0],[25,26,1.0],[26,27,1.0],[27,28,1.0],[28,29,1.0],[29,30,1.0],[30,31,1.0],[31,32,1.0],[32,33,1.0],[33,34,1.0],[34,35,1.0],[35,36,1.0],[36,37,1.0],[37,38,1.0],[38,39,1.0]],
-      "origin_kind": "INTERNAL_DERIVATION",
-      "origin_path": "modules/B/runs/B-110-20260811T140258Z/B110_STRUCTURAL_BINDING_RULES.json",
-      "origin_sha256": "5814d78ccf15a97c222d4a49c3ab4442d8515beb5f07b1e6854d7509f1c62f98",
-      "module": "B",
-      "derivation_object": "weighted_edge_rule",
-      "units": "incidence",
-      "dimensions": "dimensionless",
-      "justification": "Only successive recursive depths are adjacent; weight 1 is structural incidence, not an empirical coefficient."
-    },
-    {
-      "path": "model.initial_state",
-      "placeholder": "__BIND_FROM_FROZEN_PARENT_OR_DERIVATION__",
-      "value": [0.785830549130472,0.1683008971837728,0.03604491073069751,0.007719718737834642,0.0016533279229492509,0.00035409233336529834,7.583576059395577e-05,1.6241703202680496e-05,3.478476656103936e-06,7.449834353002518e-07,1.5955269324514944e-07,3.4171312697067904e-08,7.318451275821961e-09,1.5673886909581858e-09,3.3568677524162293e-10,7.189385231766104e-11,1.5397466871768408e-11,3.297667024708388e-12,7.062595358323456e-13,1.5125921696058118e-13,3.239510343540246e-14,6.9380415136217045e-15,1.485916541082349e-15,3.1823792964155506e-16,6.815684263718733e-17,1.459711356060724e-17,3.126255795555393e-18,6.695484870117778e-19,1.4339683179383576e-19,3.071122072171587e-20,6.577405277502756e-21,1.4086792764291005e-21,3.0169606708410445e-22,6.461408101689892e-23,1.3838362249828435e-23,2.9637544439793614e-24,6.34745661779183e-25,1.3594312982506274e-25,2.911486546411864e-26,6.2355147485904735e-27],
-      "origin_kind": "FROZEN_PARENT",
-      "origin_path": "modules/A/runs/A-100-20260811T115001Z/solver_outputs/triad_kernel/result.json",
-      "origin_sha256": "f04f69ae94e9c4ce0105c835f0ba421377cc47df322d180b0b253cdcc8e5257b",
-      "module": "B",
-      "derivation_object": "normalized_weights",
-      "units": "normalized carrier amplitude",
-      "dimensions": "dimensionless",
-      "justification": "Exact A normalized recursive-depth state, unchanged."
-    },
-    {
-      "path": "model.sector_projection",
-      "placeholder": "__BIND_FROM_FROZEN_PARENT_OR_DERIVATION__",
-      "value": [[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]],
-      "origin_kind": "INTERNAL_DERIVATION",
-      "origin_path": "modules/B/runs/B-110-20260811T140258Z/B110_STRUCTURAL_BINDING_RULES.json",
-      "origin_sha256": "5814d78ccf15a97c222d4a49c3ab4442d8515beb5f07b1e6854d7509f1c62f98",
-      "module": "B",
-      "derivation_object": "sector_projection_rule",
-      "units": "ledger incidence",
-      "dimensions": "1x40",
-      "justification": "Single total-carrier ledger only; no later named physical sector is introduced."
-    }
+    {"path":"model.delta","placeholder":"__BIND_FROM_ADMITTED_SOURCE__","value":4.6692,"origin_kind":"EXACT_PARENT_ARTIFACT","origin_path":"modules/A/runs/A-100-20260811T115001Z/H_A_to_B.json","origin_sha256":"198816819e027409812de925efe42878f9898d628b8c7a137e92c2d52bc568a6","module":"B","derivation_object":"recursive_kernel.delta","units":"dimensionless","dimensions":"1","justification":"Exact frozen A handoff recursive scale; no retuning."},
+    {"path":"model.node_count","placeholder":"__BIND_FROM_FROZEN_PARENT_OR_DERIVATION__","value":40,"origin_kind":"EXACT_PARENT_ARTIFACT","origin_path":"modules/A/runs/A-100-20260811T115001Z/H_A_to_B.json","origin_sha256":"198816819e027409812de925efe42878f9898d628b8c7a137e92c2d52bc568a6","module":"B","derivation_object":"recursive_kernel.depth","units":"count","dimensions":"1","justification":"Use the complete frozen A recursive-depth support as the B pregeometry carrier node set."},
+    {"path":"model.weighted_edges","placeholder":"__BIND_FROM_FROZEN_PARENT_OR_DERIVATION__","value":[[0,1,1.0],[1,2,1.0],[2,3,1.0],[3,4,1.0],[4,5,1.0],[5,6,1.0],[6,7,1.0],[7,8,1.0],[8,9,1.0],[9,10,1.0],[10,11,1.0],[11,12,1.0],[12,13,1.0],[13,14,1.0],[14,15,1.0],[15,16,1.0],[16,17,1.0],[17,18,1.0],[18,19,1.0],[19,20,1.0],[20,21,1.0],[21,22,1.0],[22,23,1.0],[23,24,1.0],[24,25,1.0],[25,26,1.0],[26,27,1.0],[27,28,1.0],[28,29,1.0],[29,30,1.0],[30,31,1.0],[31,32,1.0],[32,33,1.0],[33,34,1.0],[34,35,1.0],[35,36,1.0],[36,37,1.0],[37,38,1.0],[38,39,1.0]],"origin_kind":"INTERNAL_DERIVATION","origin_path":"modules/B/runs/B-110-20260811T140258Z/B110_STRUCTURAL_BINDING_RULES.json","origin_sha256":"5814d78ccf15a97c222d4a49c3ab4442d8515beb5f07b1e6854d7509f1c62f98","module":"B","derivation_object":"weighted_edge_rule","units":"incidence","dimensions":"dimensionless","justification":"Only successive recursive depths are adjacent; weight 1 is structural incidence, not an empirical coefficient."},
+    {"path":"model.initial_state","placeholder":"__BIND_FROM_FROZEN_PARENT_OR_DERIVATION__","value":[0.785830549130472,0.1683008971837728,0.03604491073069751,0.007719718737834642,0.0016533279229492509,0.00035409233336529834,7.583576059395577e-05,1.6241703202680496e-05,3.478476656103936e-06,7.449834353002518e-07,1.5955269324514944e-07,3.4171312697067904e-08,7.318451275821961e-09,1.5673886909581858e-09,3.3568677524162293e-10,7.189385231766104e-11,1.5397466871768408e-11,3.297667024708388e-12,7.062595358323456e-13,1.5125921696058118e-13,3.239510343540246e-14,6.9380415136217045e-15,1.485916541082349e-15,3.1823792964155506e-16,6.815684263718733e-17,1.459711356060724e-17,3.126255795555393e-18,6.695484870117778e-19,1.4339683179383576e-19,3.071122072171587e-20,6.577405277502756e-21,1.4086792764291005e-21,3.0169606708410445e-22,6.461408101689892e-23,1.3838362249828435e-23,2.9637544439793614e-24,6.34745661779183e-25,1.3594312982506274e-25,2.911486546411864e-26,6.2355147485904735e-27],"origin_kind":"EXACT_PARENT_ARTIFACT","origin_path":"modules/A/runs/A-100-20260811T115001Z/solver_outputs/triad_kernel/result.json","origin_sha256":"f04f69ae94e9c4ce0105c835f0ba421377cc47df322d180b0b253cdcc8e5257b","module":"B","derivation_object":"normalized_weights","units":"normalized carrier amplitude","dimensions":"dimensionless","justification":"Exact A normalized recursive-depth state, unchanged."},
+    {"path":"model.sector_projection","placeholder":"__BIND_FROM_FROZEN_PARENT_OR_DERIVATION__","value":[[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]],"origin_kind":"INTERNAL_DERIVATION","origin_path":"modules/B/runs/B-110-20260811T140258Z/B110_STRUCTURAL_BINDING_RULES.json","origin_sha256":"5814d78ccf15a97c222d4a49c3ab4442d8515beb5f07b1e6854d7509f1c62f98","module":"B","derivation_object":"sector_projection_rule","units":"ledger incidence","dimensions":"1x40","justification":"Single total-carrier ledger only; no later named physical sector is introduced."}
   ]
 }
