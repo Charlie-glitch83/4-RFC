@@ -1,0 +1,91 @@
+name: RFC OS Command Bridge
+
+on:
+  push:
+    branches:
+      - agent/rfc-os-runner
+    paths:
+      - .github/rfc-os-command.sh
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rfc-os-authoritative-run
+  cancel-in-progress: false
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout control branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/rfc-os-runner
+          path: control
+          fetch-depth: 1
+
+      - name: Checkout authoritative repository branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          path: repo
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install locked runtime
+        working-directory: repo
+        run: python -m pip install -r requirements-lock.txt
+
+      - name: Execute exact repository command
+        id: governed_command
+        working-directory: repo
+        shell: bash
+        run: |
+          set +e
+          bash ../control/.github/rfc-os-command.sh 2>&1 | tee "$RUNNER_TEMP/rfc-os-command.log"
+          status=${PIPESTATUS[0]}
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Persist repository-generated changes
+        working-directory: repo
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          before=$(git rev-parse HEAD)
+          git fetch origin agent/4rfc-universe-build
+          remote=$(git rev-parse origin/agent/4rfc-universe-build)
+          if [ "$remote" != "$before" ]; then
+            echo "Authoritative branch advanced during execution; refusing to overwrite it." >&2
+            exit 1
+          fi
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No repository-generated changes to persist."
+            exit 0
+          fi
+          git commit -m "RFC OS checkpoint: ${GITHUB_SHA::12}"
+          git push origin HEAD:agent/4rfc-universe-build
+
+      - name: Show active work packet
+        if: always()
+        working-directory: repo
+        shell: bash
+        run: |
+          if [ -f work_packets/ACTIVE_WORK_PACKET.md ]; then
+            cat work_packets/ACTIVE_WORK_PACKET.md
+          fi
+
+      - name: Propagate governed command status
+        if: always()
+        shell: bash
+        run: |
+          test "${{ steps.governed_command.outputs.status }}" = "0"
