@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "work_unit": "SRC-010",
+  "overall": "PASS",
+  "gates": [
+    {
+      "gate": "all core bytes resolvable",
+      "result": "PASS"
+    },
+    {
+      "gate": "hashes match",
+      "result": "PASS",
+      "detail": "29/29 seed and frozen copies independently matched"
+    },
+    {
+      "gate": "authority class explicit",
+      "result": "PASS"
+    },
+    {
+      "gate": "no summary used as parent",
+      "result": "PASS"
+    }
+  ]
+}

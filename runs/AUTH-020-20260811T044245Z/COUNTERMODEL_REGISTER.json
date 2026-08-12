@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "work_unit": "AUTH-020",
+  "countermodels": [
+    {
+      "id": "CM-IDENTICAL-EQUATION",
+      "rejected": "All manifestations must obey one identical observable equation",
+      "boundary": "Common triadic ancestry permits domain-specific lawful manifestations."
+    },
+    {
+      "id": "CM-UNIVERSAL-NBODY",
+      "rejected": "Every domain is direct point-body N-body mechanics",
+      "boundary": "N-body provides relational enhancement; direct many-body mechanics requires generated physical prerequisites and witnesses."
+    },
+    {
+      "id": "CM-INHERITED-FAILURE",
+      "rejected": "A previously failed mechanism or output is a required parent",
+      "boundary": "Failure evidence may be a warning, falsifier, regression test, or negative control only."
+    },
+    {
+      "id": "CM-PUBLIC-TUNING",
+      "rejected": "Public targets may guide generation or repair",
+      "boundary": "Generation remains sealed; public comparison occurs only after immutable freeze."
+    }
+  ]
+}

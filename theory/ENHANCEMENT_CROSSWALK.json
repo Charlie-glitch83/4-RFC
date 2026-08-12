@@ -1,102 +1,360 @@
 {
-  "version": "1.0",
-  "rule": "Preserve valid architecture and theorem objects; strengthen or rederive inadequate mechanisms; keep failures only as history/regression evidence.",
+  "version": "2.0",
+  "work_unit": "XWALK-030",
+  "rule": "Classify inherited objects without importing failed mechanisms. PRESERVE retains valid architecture; REDERIVE requires current-governance derivation; REGRESSION_ONLY preserves failure/manufactured evidence only; QUARANTINE blocks unresolved material; EXCLUDE forbids use as a generative mechanism or proof.",
+  "allowed_dispositions": [
+    "PRESERVE",
+    "REDERIVE",
+    "REGRESSION_ONLY",
+    "QUARANTINE",
+    "EXCLUDE"
+  ],
   "objects": [
     {
       "object": "Ordered CIF/QV/RFL triad",
-      "source": "P29",
-      "disposition": "PRESERVE_CANONICAL",
-      "target": "A"
+      "disposition": "PRESERVE",
+      "action_detail": "canonical ontology retained; formal proof remains Module A work",
+      "evidence_state": "DESIGN",
+      "target_module": "A",
+      "source_records": [
+        {
+          "role": "P29",
+          "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e/Presentation 29 revised  raw LaTeX.md"
+        },
+        {
+          "role": "P29_META",
+          "sha256": "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215/Presentation 29 revised Metadata.md"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "First Action QV(CIF)->RFL",
-      "source": "P29",
-      "disposition": "PRESERVE_AND_FORMALIZE",
-      "target": "A"
+      "disposition": "PRESERVE",
+      "action_detail": "canonical First Action retained; Module A must formalize it without importing physical time",
+      "evidence_state": "DESIGN",
+      "target_module": "A",
+      "source_records": [
+        {
+          "role": "P29",
+          "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e/Presentation 29 revised  raw LaTeX.md"
+        },
+        {
+          "role": "P29_META",
+          "sha256": "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215/Presentation 29 revised Metadata.md"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "Recursive kernel K_f(t)=Sum delta^-j f_j(t) exp(-alpha j t)",
-      "source": "P29",
-      "disposition": "PRESERVE_WITH_DOMAIN_ADMISSION",
-      "target": "A"
+      "disposition": "PRESERVE",
+      "action_detail": "retain source kernel subject to domain-specific admission and type/dimension reconstruction",
+      "evidence_state": "DESIGN",
+      "target_module": "A",
+      "source_records": [
+        {
+          "role": "P29",
+          "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e/Presentation 29 revised  raw LaTeX.md"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "Frozen-source/no-retune architecture",
-      "source": "P29/P30",
-      "disposition": "PRESERVE_AND_STRENGTHEN",
-      "target": "A-O"
+      "disposition": "PRESERVE",
+      "action_detail": "retain and strengthen through generation-sealed provenance controls",
+      "evidence_state": "DESIGN",
+      "target_module": "A-O",
+      "source_records": [
+        {
+          "role": "P29",
+          "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e/Presentation 29 revised  raw LaTeX.md"
+        },
+        {
+          "role": "P30",
+          "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "Generic weighted triad coefficients used across every old module",
-      "source": "P30",
-      "disposition": "HISTORICAL_REGRESSION_ONLY",
-      "target": "history"
+      "disposition": "REGRESSION_ONLY",
+      "action_detail": "retain only as negative-control history; never a generative parent",
+      "evidence_state": "DESIGN",
+      "target_module": "history",
+      "source_records": [
+        {
+          "role": "P30",
+          "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md"
+        },
+        {
+          "role": "INTEGRATION_AUDIT",
+          "sha256": "af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d",
+          "classification": "INTERPRETIVE_SYNTHESIS",
+          "frozen_path": "sources/frozen/af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d/2RFC_Integration_Fidelity_Audit_20260805.md"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "Internal closure scores as universe completion proof",
-      "source": "P30",
-      "disposition": "SUPERSEDE",
-      "target": "evidence states"
+      "disposition": "EXCLUDE",
+      "action_detail": "exclude as completion evidence; preserve only the historical record",
+      "evidence_state": "DESIGN",
+      "target_module": "evidence states",
+      "source_records": [
+        {
+          "role": "P30",
+          "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md"
+        },
+        {
+          "role": "INTEGRATION_AUDIT",
+          "sha256": "af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d",
+          "classification": "INTERPRETIVE_SYNTHESIS",
+          "frozen_path": "sources/frozen/af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d/2RFC_Integration_Fidelity_Audit_20260805.md"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "Universe dependency and handoff order",
-      "source": "P30",
-      "disposition": "PRESERVE_AND_PHYSICALLY_EXECUTE",
-      "target": "B-Q"
+      "disposition": "PRESERVE",
+      "action_detail": "retain causal dependency architecture; physical execution remains downstream",
+      "evidence_state": "DESIGN",
+      "target_module": "B-Q",
+      "source_records": [
+        {
+          "role": "P30",
+          "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "Directed lanes and 2N lane increment",
-      "source": "N-body",
-      "disposition": "PRESERVE_AND_VERIFY",
-      "target": "A"
+      "disposition": "PRESERVE",
+      "action_detail": "retain relational theorem object; verify within Module A",
+      "evidence_state": "DESIGN",
+      "target_module": "A",
+      "source_records": [
+        {
+          "role": "NBODY",
+          "sha256": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28/A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf"
+        },
+        {
+          "role": "NBODY_META",
+          "sha256": "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94/A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "Local witness, route, gauge/multiroute, event and branch classes",
-      "source": "N-body",
-      "disposition": "PRESERVE_AND_PROPAGATE",
-      "target": "A-Q"
+      "disposition": "PRESERVE",
+      "action_detail": "retain relational grammar; activation remains domain-specific",
+      "evidence_state": "DESIGN",
+      "target_module": "A-Q",
+      "source_records": [
+        {
+          "role": "NBODY",
+          "sha256": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28/A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf"
+        },
+        {
+          "role": "NBODY_META",
+          "sha256": "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94/A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "No-loss memory and reopening",
-      "source": "N-body/P29",
-      "disposition": "PRESERVE_AND_PROPAGATE",
-      "target": "A-Q"
+      "disposition": "PRESERVE",
+      "action_detail": "retain no-loss relational memory while preserving CIF/QV/RFL roles",
+      "evidence_state": "DESIGN",
+      "target_module": "A-Q",
+      "source_records": [
+        {
+          "role": "NBODY",
+          "sha256": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28/A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf"
+        },
+        {
+          "role": "NBODY_META",
+          "sha256": "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94/A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf"
+        },
+        {
+          "role": "P29",
+          "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e/Presentation 29 revised  raw LaTeX.md"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "Direct N-body mechanics in every domain",
-      "source": "misread integration",
-      "disposition": "FORBID",
-      "target": "all"
+      "disposition": "EXCLUDE",
+      "action_detail": "forbidden over-universalization; direct mechanics requires generated physical prerequisites and witnesses",
+      "evidence_state": "DESIGN",
+      "target_module": "all",
+      "source_records": [
+        {
+          "role": "NBODY",
+          "sha256": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28/A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf"
+        },
+        {
+          "role": "INTEGRATION_AUDIT",
+          "sha256": "af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d",
+          "classification": "INTERPRETIVE_SYNTHESIS",
+          "frozen_path": "sources/frozen/af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d/2RFC_Integration_Fidelity_Audit_20260805.md"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "Old failed scalar lanes and weak-lensing tension",
-      "source": "prior RFC",
-      "disposition": "REGRESSION_TEST_ONLY",
-      "target": "relevant modules"
+      "disposition": "REGRESSION_ONLY",
+      "action_detail": "retain only as failure evidence, regression tests, and falsifiers; never required parents",
+      "evidence_state": "DESIGN",
+      "target_module": "relevant modules",
+      "source_records": [
+        {
+          "role": "CLOSEOUT_LEDGER",
+          "sha256": "e372302fdc09e204345e615c059b41bd4f9a8e9d4d8b1d38bd8d2ee28afe0cad",
+          "classification": "REPLAY_REQUIRED",
+          "frozen_path": "sources/frozen/e372302fdc09e204345e615c059b41bd4f9a8e9d4d8b1d38bd8d2ee28afe0cad/1 RFC close out ledgers.zip"
+        },
+        {
+          "role": "INTEGRATION_AUDIT",
+          "sha256": "af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d",
+          "classification": "INTERPRETIVE_SYNTHESIS",
+          "frozen_path": "sources/frozen/af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d/2RFC_Integration_Fidelity_Audit_20260805.md"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "Repaired Module L law/first-pass architecture",
-      "source": "2-RFC",
-      "disposition": "RECOVER_AT_EXACT_VERIFIED_SCOPE",
-      "target": "L"
+      "disposition": "REDERIVE",
+      "action_detail": "recover exact verified scope in REC-040, then rederive/validate under current source authority before any L use",
+      "evidence_state": "DESIGN",
+      "target_module": "L",
+      "source_records": [
+        {
+          "role": "CROSSWALK_ADVISORY",
+          "sha256": "12575578458a7f908f4c10dcf69eddb095d436e21c9f4b51ea758e380ceda4d8",
+          "classification": "INTERPRETIVE_SYNTHESIS",
+          "frozen_path": "sources/frozen/12575578458a7f908f4c10dcf69eddb095d436e21c9f4b51ea758e380ceda4d8/2RFC_Canonical_Enhancement_Map_20260805.md"
+        },
+        {
+          "role": "CLOSEOUT_LEDGER",
+          "sha256": "e372302fdc09e204345e615c059b41bd4f9a8e9d4d8b1d38bd8d2ee28afe0cad",
+          "classification": "REPLAY_REQUIRED",
+          "frozen_path": "sources/frozen/e372302fdc09e204345e615c059b41bd4f9a8e9d4d8b1d38bd8d2ee28afe0cad/1 RFC close out ledgers.zip"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "Reduced dimensionless K-L-M F0 recurrence",
-      "source": "2-RFC",
-      "disposition": "MANUFACTURED_REGRESSION_ONLY",
-      "target": "KLM"
+      "disposition": "REGRESSION_ONLY",
+      "action_detail": "manufactured/regression object only; not the physical K-L-M recurrence",
+      "evidence_state": "DESIGN",
+      "target_module": "KLM",
+      "source_records": [
+        {
+          "role": "KLM_QUEUE_ADVISORY",
+          "sha256": "275ce318acfb84f88e9edb91ca371bcfa8d8dd248172ee9444e4d108fb6472c7",
+          "classification": "INTERPRETIVE_SYNTHESIS",
+          "frozen_path": "sources/frozen/275ce318acfb84f88e9edb91ca371bcfa8d8dd248172ee9444e4d108fb6472c7/2RFC_Revised_Work_Queue_after_Integration_Audit_20260805.md"
+        },
+        {
+          "role": "INTEGRATION_AUDIT",
+          "sha256": "af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d",
+          "classification": "INTERPRETIVE_SYNTHESIS",
+          "frozen_path": "sources/frozen/af15e723cf93e2cf05873ca74514661393d2d669db502b66838e1ee5979a0f2d/2RFC_Integration_Fidelity_Audit_20260805.md"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "Public comparison after immutable generation freeze",
-      "source": "P29/P30",
-      "disposition": "PRESERVE_STRICTLY",
-      "target": "O/P"
+      "disposition": "PRESERVE",
+      "action_detail": "retain strict O freeze before read-only P comparison; no backflow",
+      "evidence_state": "DESIGN",
+      "target_module": "O/P",
+      "source_records": [
+        {
+          "role": "P29",
+          "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e/Presentation 29 revised  raw LaTeX.md"
+        },
+        {
+          "role": "P30",
+          "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     },
     {
       "object": "Terminal collapse/rebirth and qualified memory",
-      "source": "P29/addendum",
-      "disposition": "PRESERVE_AS_Q_TARGET",
-      "target": "Q"
+      "disposition": "REDERIVE",
+      "action_detail": "reserve candidate addendum content for Q and derive/verify at Q scope; do not identify RFL memory as a new CIF",
+      "evidence_state": "DESIGN",
+      "target_module": "Q",
+      "source_records": [
+        {
+          "role": "P29",
+          "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+          "classification": "CANONICAL_AUTHORITY",
+          "frozen_path": "sources/frozen/cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e/Presentation 29 revised  raw LaTeX.md"
+        },
+        {
+          "role": "Q_ADDENDUM",
+          "sha256": "522da698be7c70b17e327d54fe5825321934550c0ee3a8a187fcce9098895d3a",
+          "classification": "CANDIDATE_ADDENDUM",
+          "frozen_path": "sources/frozen/522da698be7c70b17e327d54fe5825321934550c0ee3a8a187fcce9098895d3a/RFC_Module_Y_Global_Collapse_Rebirth_Trace_Addendum_and_Metadata.md"
+        }
+      ],
+      "generative_parent_rule": "Only CANONICAL_AUTHORITY bytes may directly parent new derivation unless a later governed work unit explicitly promotes/adopts another admitted object at exact verified scope."
     }
   ]
 }

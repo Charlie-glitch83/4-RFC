@@ -1,4 +1,45 @@
 {
   "schema_version": "1.0",
-  "artifacts": []
+  "artifacts": [
+    {
+      "path": "runs/SRC-010-20260811T044241Z",
+      "sha256": "a8b8317cf5639afdc65dcda6e860b0637973f00b54b3e8a9939ab83a4396f483",
+      "kind": "RUN_BUNDLE",
+      "created_utc": "2026-08-11T04:42:41.558180+00:00",
+      "work_unit": "SRC-010",
+      "run_id": "SRC-010-20260811T044241Z"
+    },
+    {
+      "path": "runs/AUTH-020-20260811T044245Z",
+      "sha256": "bbc147b78fccbba719b7868d4ebe046588106c7449a6387003efa65e8822f7dc",
+      "kind": "RUN_BUNDLE",
+      "created_utc": "2026-08-11T04:47:18.790307+00:00",
+      "work_unit": "AUTH-020",
+      "run_id": "AUTH-020-20260811T044245Z"
+    },
+    {
+      "path": "runs/XWALK-030-20260811T045240Z",
+      "sha256": "3be8b9cad37e9429d10646247c5c3e855218ac0d1d57fee5ea384752c926d6e9",
+      "kind": "RUN_BUNDLE",
+      "created_utc": "2026-08-11T04:57:55.801623+00:00",
+      "work_unit": "XWALK-030",
+      "run_id": "XWALK-030-20260811T045240Z"
+    },
+    {
+      "path": "runs/REC-040-20260811T045909Z",
+      "sha256": "51ddd5b6788cd768fbb38c1598ac4ef4aa8daecb896ae78d387098a2802a133d",
+      "kind": "RUN_BUNDLE",
+      "created_utc": "2026-08-11T11:40:42.608422+00:00",
+      "work_unit": "REC-040",
+      "run_id": "REC-040-20260811T045909Z"
+    },
+    {
+      "path": "runs/FRONTIER-050-20260811T114313Z",
+      "sha256": "3d2f66d90dc900771a692ee34ff91ccea8bec35947fbd263d0e39eea143c2a9e",
+      "kind": "RUN_BUNDLE",
+      "created_utc": "2026-08-11T11:46:38.578003+00:00",
+      "work_unit": "FRONTIER-050",
+      "run_id": "FRONTIER-050-20260811T114313Z"
+    }
+  ]
 }

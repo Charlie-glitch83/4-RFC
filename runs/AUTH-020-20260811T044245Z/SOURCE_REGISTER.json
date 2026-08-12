@@ -1,0 +1,77 @@
+{
+  "run_id": "AUTH-020-20260811T044245Z",
+  "exact_parents": [
+    {
+      "role": "P29",
+      "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "classification": "CANONICAL_AUTHORITY",
+      "frozen_path": "sources/frozen/cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e/Presentation 29 revised  raw LaTeX.md"
+    },
+    {
+      "role": "P29_METADATA",
+      "sha256": "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215",
+      "classification": "CANONICAL_AUTHORITY",
+      "frozen_path": "sources/frozen/82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215/Presentation 29 revised Metadata.md"
+    },
+    {
+      "role": "NBODY",
+      "sha256": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+      "classification": "CANONICAL_AUTHORITY",
+      "frozen_path": "sources/frozen/0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28/A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf"
+    },
+    {
+      "role": "NBODY_METADATA",
+      "sha256": "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+      "classification": "CANONICAL_AUTHORITY",
+      "frozen_path": "sources/frozen/caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94/A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf"
+    },
+    {
+      "role": "P30",
+      "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+      "classification": "CANONICAL_AUTHORITY",
+      "frozen_path": "sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md"
+    }
+  ],
+  "admitted_sources": [
+    {
+      "role": "P29",
+      "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "classification": "CANONICAL_AUTHORITY",
+      "frozen_path": "sources/frozen/cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e/Presentation 29 revised  raw LaTeX.md"
+    },
+    {
+      "role": "P29_METADATA",
+      "sha256": "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215",
+      "classification": "CANONICAL_AUTHORITY",
+      "frozen_path": "sources/frozen/82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215/Presentation 29 revised Metadata.md"
+    },
+    {
+      "role": "NBODY",
+      "sha256": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+      "classification": "CANONICAL_AUTHORITY",
+      "frozen_path": "sources/frozen/0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28/A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf"
+    },
+    {
+      "role": "NBODY_METADATA",
+      "sha256": "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+      "classification": "CANONICAL_AUTHORITY",
+      "frozen_path": "sources/frozen/caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94/A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf"
+    },
+    {
+      "role": "P30",
+      "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+      "classification": "CANONICAL_AUTHORITY",
+      "frozen_path": "sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md"
+    }
+  ],
+  "imports": [],
+  "files": [
+    "sources/SOURCE_MANIFEST.json",
+    "theory/SCIENTIFIC_CONSTITUTION.md",
+    "theory/TERMINOLOGY_LOCK.json",
+    "theory/CLAIM_MAP.json"
+  ],
+  "urls": [],
+  "constants": [],
+  "public_data_declaration": "NONE"
+}

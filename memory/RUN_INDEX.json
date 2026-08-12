@@ -1,4 +1,60 @@
 {
   "schema_version": "1.0",
-  "runs": []
+  "runs": [
+    {
+      "run_id": "SRC-010-20260811T044241Z",
+      "module": "SOURCES",
+      "task_id": "SRC-010",
+      "status": "PASS",
+      "path": "runs/SRC-010-20260811T044241Z",
+      "created_utc": "2026-08-11T04:42:41.250642+00:00",
+      "closed_utc": "2026-08-11T04:42:41.556643+00:00",
+      "tree_sha256": "a8b8317cf5639afdc65dcda6e860b0637973f00b54b3e8a9939ab83a4396f483",
+      "closeout": "runs/SRC-010-20260811T044241Z/CLOSEOUT.md"
+    },
+    {
+      "run_id": "AUTH-020-20260811T044245Z",
+      "module": "THEORY",
+      "task_id": "AUTH-020",
+      "status": "PASS",
+      "path": "runs/AUTH-020-20260811T044245Z",
+      "created_utc": "2026-08-11T04:42:45.468076+00:00",
+      "closed_utc": "2026-08-11T04:47:18.785897+00:00",
+      "tree_sha256": "bbc147b78fccbba719b7868d4ebe046588106c7449a6387003efa65e8822f7dc",
+      "closeout": "runs/AUTH-020-20260811T044245Z/CLOSEOUT.md"
+    },
+    {
+      "run_id": "XWALK-030-20260811T045240Z",
+      "module": "THEORY",
+      "task_id": "XWALK-030",
+      "status": "PASS",
+      "path": "runs/XWALK-030-20260811T045240Z",
+      "created_utc": "2026-08-11T04:52:40.249413+00:00",
+      "closed_utc": "2026-08-11T04:57:55.800603+00:00",
+      "tree_sha256": "3be8b9cad37e9429d10646247c5c3e855218ac0d1d57fee5ea384752c926d6e9",
+      "closeout": "runs/XWALK-030-20260811T045240Z/CLOSEOUT.md"
+    },
+    {
+      "run_id": "REC-040-20260811T045909Z",
+      "module": "RECOVERY",
+      "task_id": "REC-040",
+      "status": "PASS",
+      "path": "runs/REC-040-20260811T045909Z",
+      "created_utc": "2026-08-11T04:59:09.565127+00:00",
+      "closed_utc": "2026-08-11T11:40:42.607625+00:00",
+      "tree_sha256": "51ddd5b6788cd768fbb38c1598ac4ef4aa8daecb896ae78d387098a2802a133d",
+      "closeout": "runs/REC-040-20260811T045909Z/CLOSEOUT.md"
+    },
+    {
+      "run_id": "FRONTIER-050-20260811T114313Z",
+      "module": "AUDIT",
+      "task_id": "FRONTIER-050",
+      "status": "PASS",
+      "path": "runs/FRONTIER-050-20260811T114313Z",
+      "created_utc": "2026-08-11T11:43:13.264588+00:00",
+      "closed_utc": "2026-08-11T11:46:38.576698+00:00",
+      "tree_sha256": "3d2f66d90dc900771a692ee34ff91ccea8bec35947fbd263d0e39eea143c2a9e",
+      "closeout": "runs/FRONTIER-050-20260811T114313Z/CLOSEOUT.md"
+    }
+  ]
 }

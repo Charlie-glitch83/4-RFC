@@ -1,0 +1,91 @@
+name: Repair governed A-100 run workspace
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  repair-a100-workspace:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/4rfc-universe-build
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy scipy sympy networkx
+      - name: Re-materialize repository-created A-100 workspace
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN='A-100-20260811T115001Z'
+          RUN_PATH="modules/A/runs/$RUN"
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          run_id='A-100-20260811T115001Z'
+          run_path=Path('modules/A/runs')/run_id
+          state=json.load(open('STATE.json'))
+          index=json.load(open('memory/RUN_INDEX.json'))
+          if state.get('active_work_unit')!='A-100' or state.get('current_module')!='A':
+              raise SystemExit('A-100 is not the sole active work unit')
+          if state.get('current_run')!=run_id or state['modules']['A'].get('active_run')!=run_id:
+              raise SystemExit('unexpected A-100 run registration')
+          if run_path.exists():
+              raise SystemExit('A-100 workspace already exists; no repair required')
+          rows=[r for r in index.get('runs',[]) if r.get('run_id')==run_id]
+          if len(rows)!=1 or rows[0].get('status')!='CREATED' or rows[0].get('path')!=str(run_path):
+              raise SystemExit('stale run registration is not the expected CREATED record')
+
+          failure={
+              'failure_id':'A-100-WORKSPACE-STAGING-OMISSION-20260811T115001Z',
+              'run_id':run_id,
+              'gate':'run workspace materialization',
+              'category':'INFRASTRUCTURE_TRANSPORT_STAGING_OMISSION',
+              'description':'FRONTIER-to-A transition created the governed A-100 workspace in the runner but its transport commit staged state/index/work packet without modules/A/runs, leaving a stale CREATED registration with no workspace on the authoritative branch.',
+              'earliest_affected_object':str(run_path),
+              'changes_frozen_science':False,
+              'required_replay_scope':'recreate the same run ID through rfc.py new-run and director.py prepare-active, then rerun repository doctor/tests/firewall',
+              'strongest_claim_remaining':state.get('strongest_supported_claim'),
+          }
+          with open('memory/FAILURE_LOG.jsonl','a') as f:
+              f.write(json.dumps(failure)+'\n')
+
+          # Remove only the stale registration fields so the repository's own run creator
+          # can regenerate the exact governed shell with the same run ID.
+          index['runs']=[r for r in index.get('runs',[]) if r.get('run_id')!=run_id]
+          state['current_run']=None
+          state['modules']['A']['active_run']=None
+          with open('memory/RUN_INDEX.json','w') as f:
+              json.dump(index,f,indent=2); f.write('\n')
+          with open('STATE.json','w') as f:
+              json.dump(state,f,indent=2); f.write('\n')
+          PY
+
+          python tools/rfc.py new-run A --run-id "$RUN"
+          python tools/director.py prepare-active --create-run
+
+          test -f "$RUN_PATH/SOURCE_REGISTER.json"
+          test -f "$RUN_PATH/PRE_EXECUTION_LOCK.json"
+          test -f "$RUN_PATH/FROZEN_RECIPE.json"
+          test -f "$RUN_PATH/WORK_ORDER.md"
+          test -f "$RUN_PATH/REQUIRED_GATES.json"
+          test -f "$RUN_PATH/WOLFRAM_SEQUENCE.md"
+          test -f "$RUN_PATH/RUN_LOCAL_PHASE.sh"
+
+          python tools/rfc.py doctor
+          python tools/director.py doctor
+          python -m unittest discover -s tests -v
+          python tools/rfc.py firewall-scan
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add STATE.json memory/RUN_INDEX.json memory/FAILURE_LOG.jsonl work_packets/ACTIVE_WORK_PACKET.md "$RUN_PATH"
+          git commit -m 'Re-materialize governed A-100 run workspace'
+          git push origin HEAD:agent/4rfc-universe-build

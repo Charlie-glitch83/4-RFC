@@ -6,7 +6,7 @@
       "id": "BOOT-000",
       "title": "Install, Verify, and Commit the Repository Scaffold",
       "module": "REPO",
-      "status": "ACTIVE",
+      "status": "PASS",
       "depends_on": [],
       "objective": "Place this scaffold at the root of Charlie-glitch83/4-RFC, run all local checks, commit it, and verify the exact GitHub SHA and diff.",
       "steps": [
@@ -33,7 +33,7 @@
       "id": "SRC-010",
       "title": "Hash and Admit the Core Source Corpus",
       "module": "SOURCES",
-      "status": "BLOCKED",
+      "status": "PASS",
       "depends_on": [
         "BOOT-000"
       ],
@@ -61,7 +61,7 @@
       "id": "AUTH-020",
       "title": "Lock Canonical Authority, Terminology, and Claims",
       "module": "THEORY",
-      "status": "BLOCKED",
+      "status": "PASS",
       "depends_on": [
         "SRC-010"
       ],
@@ -91,7 +91,7 @@
       "id": "XWALK-030",
       "title": "P29/P30/N-body Preservation and Enhancement Crosswalk",
       "module": "THEORY",
-      "status": "BLOCKED",
+      "status": "PASS",
       "depends_on": [
         "AUTH-020"
       ],
@@ -120,7 +120,7 @@
       "id": "REC-040",
       "title": "Recover Valid Prior 2-RFC Assets by Exact Object Admission",
       "module": "RECOVERY",
-      "status": "BLOCKED",
+      "status": "PASS",
       "depends_on": [
         "XWALK-030"
       ],
@@ -150,7 +150,7 @@
       "id": "FRONTIER-050",
       "title": "Determine the Earliest Missing Physical Parent",
       "module": "AUDIT",
-      "status": "BLOCKED",
+      "status": "ACTIVE",
       "depends_on": [
         "REC-040"
       ],

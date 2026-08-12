@@ -1,0 +1,129 @@
+{
+  "all_f0_checks_pass": true,
+  "causal_replay": {
+    "changed_domain": "M.processed_fraction",
+    "descendants": [
+      "M.microphysics",
+      "K.structure_metric_lensing",
+      "L.gas_stars_feedback",
+      "M.return"
+    ],
+    "max_abs_residual": 0.0,
+    "pass": true,
+    "upstream_A_J_mutated": false
+  },
+  "certificate_scope": "F0_CONSTRUCTED_REDUCED_RECURRENCE_ONLY",
+  "classification": "FIXED_POINT_F0",
+  "classifier_self_tests": {
+    "cycle_self_test": "BOUNDED_CYCLE_PERIOD_2",
+    "divergent_self_test": "NONCONVERGENT_UNBOUNDED",
+    "fixed_self_test": "FIXED_POINT"
+  },
+  "covariance": {
+    "eigenvalues": [
+      6.32729112411294e-07,
+      6.513490327217448e-07,
+      7.353841622137611e-07,
+      8.580622196509952e-07,
+      8.835263593639505e-07,
+      9.414165409791864e-07,
+      1.0197324241088594e-06,
+      1.1786175161145051e-06,
+      1.2099264126401785e-06,
+      1.2307704615384381e-06,
+      1.247114024098353e-06,
+      1.2801535139625224e-06,
+      1.362163643401818e-06,
+      1.7552691082107699e-06
+    ],
+    "min_eigenvalue": 6.32729112411294e-07,
+    "psd": true
+  },
+  "derived_coefficients": {
+    "dust_share": 0.33604282315622525,
+    "eta_escape": 2.2558627065170236e-05,
+    "eta_k": 0.20873894999741127,
+    "eta_l": 0.20558031220605044,
+    "eta_m": 0.20767751243667443,
+    "eta_remnant": 0.0010614375607368362,
+    "eta_return": 0.0020972002306239913,
+    "feedback_scale": 0.10216560916463296,
+    "kernel_decay": 0.20873894999741127
+  },
+  "final_state": {
+    "cooling": 2.0033754988613097,
+    "dust_fraction": 0.3359708232635247,
+    "escaped": 2.1573038828075027e-05,
+    "event_yield": 0.002097154977641706,
+    "feedback": 0.00021425808389099037,
+    "gas": 1.3563883107841508e-10,
+    "lensing": 1.220834438215249,
+    "metric": 1.2208344382241483,
+    "opacity": 1.9865764116362823,
+    "processed_fraction": 0.9999999999999939,
+    "radiation": 9.427444547052467e-09,
+    "remnants": 0.9999784174837534,
+    "stars": 9.341786591264963e-09,
+    "structure": 1.208690982028688
+  },
+  "final_state_sha256": "a8bc1eb5902a063a026bdc216fd0611661b7cb7c9f3f52c647a5acbc98b01053",
+  "independent_implementation": {
+    "iterations": 17660,
+    "ledger_sha256": "339884013a8cc4076bdb07c2b226ccafb83cad26ec3f44a25fe4e91b1f0b09bb",
+    "max_abs_residual": 0.0,
+    "pass": true
+  },
+  "iteration_ledger_sha256": "339884013a8cc4076bdb07c2b226ccafb83cad26ec3f44a25fe4e91b1f0b09bb",
+  "iterations": 17660,
+  "local_linearization": {
+    "eigenvalues": [
+      [0.9999999999999905, 0.0],
+      [0.7923224876194013, 0.0],
+      [0.7912610500149242, 0.0],
+      [0.7912610500149242, 0.0],
+      [0.8524019200626689, 0.0],
+      [0.791261052597349, 0.0],
+      [0.7923200320404378, 0.0],
+      [0.7923237164309628, 1.3423473123780547e-06],
+      [0.7923237164309628, -1.3423473123780547e-06],
+      [0.7944176017043925, 0.0],
+      [0.7944217708726994, 0.0],
+      [0.9989537534312668, 0.0],
+      [0.9999999994736449, 0.0],
+      [0.7923224998318545, 0.0]
+    ],
+    "full_state_nonexpansive": true,
+    "neutral_mode_count": 2,
+    "quotient_locally_contractive": true,
+    "quotient_spectral_radius": 0.9989537534312668,
+    "spectral_radius": 0.9999999999999905
+  },
+  "mandatory_checks": {
+    "composition_bounds": true,
+    "mass_conservation": true,
+    "mass_positivity": true,
+    "metric_lensing_finite": true,
+    "microphysics_positive": true,
+    "radiation_feedback_nonnegative": true
+  },
+  "module_n_authorized": false,
+  "module_n_blocker": "No instantiated F1-F4 K/L/M physical state, field history, event history, metric/lightcone maps, or full covariance packet exists.",
+  "physical_full_volume_claim": false,
+  "restart": {
+    "checkpoint_iteration": 137,
+    "continuation_iterations": 17523,
+    "ledger_sha256": "2513213d53f0c24fe46d959153af9fd8f71e1c486ec7c69742889f3245d8c423",
+    "max_abs_residual": 0.0,
+    "pass": true
+  },
+  "source_constants": {
+    "alpha": 0.0256831,
+    "delta": 4.6692,
+    "epsilon": 0.000108071,
+    "lambda_normalized": 0.489442,
+    "nu": 0.00420784,
+    "w_cif": 0.005085,
+    "w_qv": 0.984868,
+    "w_rfl": 0.010047
+  }
+}

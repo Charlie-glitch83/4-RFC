@@ -1,45 +1,39 @@
-# ACTIVE WORK PACKET — BOOT-000
+# ACTIVE WORK PACKET — FRONTIER-050
 
 **This is the only authorized work. Execute it in order.**
 
-- Module: `REPO`
-- Objective: Place this scaffold at the root of Charlie-glitch83/4-RFC, run all local checks, commit it, and verify the exact GitHub SHA and diff.
-- Run workspace: `runs/BOOT-000`
+- Module: `AUDIT`
+- Objective: Audit A–J and choose the earliest exact break between formal law and one physically executed parent chain.
+- Run workspace: `runs/FRONTIER-050-20260811T114313Z`
 
 ## Exact sequence
 
-1. Read `work_units/BOOT-000/WORK_ORDER.md` and `work_units/BOOT-000/recipe.json`.
+1. Read `work_units/FRONTIER-050/WORK_ORDER.md` and `work_units/FRONTIER-050/recipe.json`.
 2. Execute the frozen sequence below without redesigning it:
 
-   1. Copy the complete bundle to the empty repository root.
-   2. Commit the scaffold exactly once.
-   3. Fetch README.md and the commit through GitHub, verify SHA and diff, then record the commit.
-   4. Copy the bundle contents into the empty 4-RFC repository without redesigning them.
-   5. Run python tools/rfc.py doctor, python -m unittest discover -s tests -v, and python tools/rfc.py firewall-scan.
-   6. Create work branch agent/4rfc-universe-build after the scaffold is visible on the default branch or as the initial branch, according to repository state.
-   7. Commit with the prescribed message and verify the commit SHA, file list, fetched README, and branch comparison.
-   8. Record the verified SHA in memory/DECISION_LOG.jsonl and the closeout.
+   1. Populate one row per A-J boundary with exact hashes and evidence.
+   2. Distinguish law, implementation, representative test, physical state, restart, covariance, and independent reconstruction.
+   3. Select the earliest missing parent and authorize exactly one child.
+   4. For each boundary, record source, law, representative test, physical parent, solver, output, restart, covariance, independent reconstruction, and evidence state.
+   5. Select the earliest missing object.
+   6. Authorize exactly one next module.
 
 3. Run the exact commands:
 
-   - `bash bootstrap.sh`
    - `python tools/director.py doctor`
-   - `python -m unittest discover -s tests -v`
-   - `python tools/rfc.py firewall-scan`
 
 ## Required deliverables
 
-- runs/BOOT-000/CLOSEOUT.md
-- verified GitHub commit SHA
-- passing doctor/tests/firewall scan
+- audit/PHYSICAL_FRONTIER.json
+- audit/PHYSICAL_FRONTIER.md
+- runs/FRONTIER-050/CLOSEOUT.md
 
 ## Componentwise gates
 
-- README visible in GitHub
-- new commit SHA exists
-- diff contains scaffold
-- doctor and tests pass
+- no status word hides a missing object
+- one frontier selected
+- recovered parents verified
 
 ## Commit message
 
-`Initialize the 4-RFC governed universe workspace`
+`Locate the exact RFC physical execution frontier`
