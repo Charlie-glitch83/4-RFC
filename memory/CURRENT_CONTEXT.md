@@ -1,6 +1,6 @@
 # Current Context
 
-Generated: 2026-08-11T19:09:32.152270+00:00
+Generated: 2026-08-12T11:33:59.365478+00:00
 
 ## Project truth
 
@@ -94,6 +94,7 @@ Execute a source-owned reaction network to generate primordial isotope abundance
 - REC-040-FIREWALL-PROHIBITION-FALSE-POSITIVE-20260811T113215Z: First REC-040 attempt was stopped because the firewall scanner treated the required negative gate label no public-data contamination as evidence of public-data use.
 - A-100-WORKSPACE-STAGING-OMISSION-20260811T115001Z: FRONTIER-to-A transition created the governed A-100 workspace in the runner but its transport commit staged state/index/work packet without modules/A/runs, leaving a stale CREATED registration with no workspace on the authoritative branch.
 - E-140-20260811T190910Z: BLOCKED_UNDERDETERMINED: admitted E-relevant sources do not provide an exact source-owned executable species set, stoichiometric reaction graph, and reaction rate laws. Old W2/X1 abundance proxy outcomes and solver examples are non-generative and were not used. Pre-execution lock is blocked and unfrozen; no E Wolfram call or reaction solver is authorized.
+- E-140-20260811T190946Z: E-140 blocked before pre-execution freeze: admitted parent/source bytes do not specify an executable source-owned reaction graph and rate laws without prohibited target fitting.
 
 ## Resume commands
 
