@@ -1,0 +1,25 @@
+{
+  "artifact_hashes_match": true,
+  "checks": {
+    "classification_match": true,
+    "eigenprojectors_match": true,
+    "eigenvalues_match": true,
+    "generator_audits_match": true,
+    "reconstruction_error_match": true,
+    "shape_match": true,
+    "success_match": true,
+    "symmetric_match": true
+  },
+  "clean_checkout": true,
+  "commands": [
+    "python tools/run_configured_solver.py --config modules/C/runs/C-120-20260811T142152Z/solver_configs/C_spectral_model.json --output-dir <fresh-temp-dir>",
+    "python modules/C/runs/C-120-20260811T142152Z/C120_VERIFY.py"
+  ],
+  "earliest_change_replay": true,
+  "primary_solver_success": true,
+  "representation_rule": "eigenvector signs are gauge; compare eigenvalues and rank-1 eigenprojectors",
+  "restart_check": true,
+  "result": "PASS",
+  "run_id": "C-120-20260811T142152Z",
+  "status": "FINAL"
+}

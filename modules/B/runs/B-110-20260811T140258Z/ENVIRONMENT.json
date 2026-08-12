@@ -1,0 +1,35 @@
+{
+  "commands": [
+    "WolframLanguageEvaluator B-WL-001",
+    "WolframLanguageEvaluator B-WL-002",
+    "python tools/run_reference_checks.py --module B",
+    "python tools/materialize_solver_config.py",
+    "python tools/run_configured_solver.py",
+    "python modules/B/runs/B-110-20260811T140258Z/B110_VERIFY.py"
+  ],
+  "hardware": {
+    "machine": "x86_64",
+    "processor": "x86_64"
+  },
+  "hidden_defaults_audit": "B config explicitly fixes delta, node_count, ordered-depth weighted edges, exact parent state, null pre-event clock, total-ledger projection, tolerance, strict compression margin, and generation mode. No stochastic seed, metric geometry, particle content, empirical constant, public target, or named later sector is used.",
+  "hidden_defaults_audited": true,
+  "imports": [
+    "hashlib",
+    "json",
+    "numpy",
+    "rfc_engine.solvers.big_implosion"
+  ],
+  "network_policy": "DISABLED_DURING_GENERATION_EXCEPT_GOVERNED_GITHUB_TRANSPORT",
+  "operating_system": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+  "python": "3.11.15 (main, Jun 16 2026, 21:41:52) [GCC 13.3.0]",
+  "random_seeds": [],
+  "run_id": "B-110-20260811T140258Z",
+  "software": [
+    "Python 3.11.15",
+    "numpy",
+    "networkx",
+    "scipy",
+    "sympy"
+  ],
+  "status": "FINAL"
+}

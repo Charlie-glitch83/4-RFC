@@ -1,0 +1,118 @@
+{
+  "run_id": "B-110-20260811T140258Z",
+  "status": "FROZEN",
+  "frozen_utc": "2026-08-11T14:05:00Z",
+  "authority_hashes": [
+    "58a735dc94366ed57d592bc5535918a477976bf93efbe736dfb39325b19154d4",
+    "198816819e027409812de925efe42878f9898d628b8c7a137e92c2d52bc568a6",
+    "f04f69ae94e9c4ce0105c835f0ba421377cc47df322d180b0b253cdcc8e5257b"
+  ],
+  "parent_hashes": [
+    "58a735dc94366ed57d592bc5535918a477976bf93efbe736dfb39325b19154d4",
+    "198816819e027409812de925efe42878f9898d628b8c7a137e92c2d52bc568a6",
+    "f04f69ae94e9c4ce0105c835f0ba421377cc47df322d180b0b253cdcc8e5257b"
+  ],
+  "definition_hashes": [
+    "5814d78ccf15a97c222d4a49c3ab4442d8515beb5f07b1e6854d7509f1c62f98",
+    "13f90965db1214ce6e7e722b1f8c4af204e001ccfff535672c7718f28dc80242"
+  ],
+  "candidate_classes": [
+    "A_RECURSIVE_DEPTH_CARRIER_NODE",
+    "SUCCESSIVE_DEPTH_RELATIONAL_EDGE",
+    "BIG_IMPLOSION_EVENT",
+    "FIRST_PHYSICAL_CARRIER_STATE",
+    "PREGEOMETRY_GRAPH",
+    "TOTAL_CARRIER_LEDGER",
+    "REOPENING_MEMORY_MAP"
+  ],
+  "equations_and_laws": [
+    "Big Implosion operator Q=(I+L/(delta-1))^-1",
+    "L is the path-graph Laplacian on the complete frozen A recursive-depth support n=1..40",
+    "Pre-event state is exactly the A normalized recursive-depth vector",
+    "No physical clock exists before Q is applied; intrinsic physical event order begins at the event with origin index 0",
+    "L annihilates the constant carrier mode, so Q preserves the total/mean ledger",
+    "All nonconstant Laplacian modes must contract strictly",
+    "No-loss reopening is x_parent = LinearSolve[Q, x_manifested] within frozen tolerance",
+    "The B graph is PREGEOMETRY only; metric geometry is not assumed"
+  ],
+  "dimensions_units_frames_gauges_clocks": [
+    "delta and carrier amplitudes are inherited dimensionless parent quantities",
+    "edge weight 1.0 is structural incidence and carries no empirical unit",
+    "pre_event_clock is exactly null",
+    "event_order_origin is 0 only after the Big Implosion event",
+    "no metric, coordinate frame, particle species, field identity, or empirical physical constant is imported"
+  ],
+  "methods": [
+    "Exact frozen-parent hash verification",
+    "Wolfram symbolic call B-WL-001",
+    "Wolfram symbolic call B-WL-002",
+    "Module B manufactured reference matrix",
+    "Provenance-bound big_implosion configured execution",
+    "Multiple ordered-depth graph sizes derived by prefix restriction of the exact parent",
+    "Compression and relational-coupling ablations",
+    "Restart/replay and exact reopening",
+    "Independent reconstruction of L, Q, manifested state, conservation and reopening"
+  ],
+  "tolerances": [
+    "Configured execution numerical tolerance: 1e-11",
+    "Strict compression margin: 1e-12",
+    "Parent hashes, null pre-event clock and prohibited later-physics checks: exact",
+    "No aggregate score may override a failed component gate"
+  ],
+  "stopping_rules": [
+    "Stop on any unresolved __BIND_ token",
+    "Stop if any exact A parent hash differs",
+    "Stop if a pre-event physical clock or metric geometry is assumed",
+    "Stop if particles, later-module sectors, empirical constants or public targets enter B",
+    "Stop if nontrivial compression fails",
+    "Stop if total carrier ledger is not preserved",
+    "Stop if reopening fails",
+    "Stop on any mandatory component gate failure"
+  ],
+  "expected_invariants": [
+    "pre_event_clock remains null",
+    "Q is symmetric positive definite",
+    "operator eigenvalues lie in (0,1]",
+    "constant carrier mode is conserved",
+    "every nonconstant mode is strictly compressed",
+    "total carrier ledger is preserved within tolerance",
+    "reopening recovers the exact parent within tolerance",
+    "B output contains pregeometry and first-event order only, with no later physics"
+  ],
+  "tests": [
+    "B-WL-001 full symbolic output",
+    "B-WL-002 full symbolic output",
+    "Module B manufactured reference checks",
+    "Main N=40 parent-driven execution",
+    "Prefix-size executions N=8,16,24,32,40",
+    "Compression ablation Q=I must fail strict compression",
+    "Relational-coupling ablation L=0 must fail strict compression",
+    "Clean replay and restart",
+    "Independent numerical reconstruction",
+    "Internal numerical uncertainty/covariance audit"
+  ],
+  "gates": [
+    "no pre-event physical time",
+    "exact parent bytes",
+    "strict nontrivial compression or derived equivalent",
+    "total ledger preservation",
+    "no-loss reopening",
+    "no later physics smuggled into B",
+    "ablation, replay, restart, and independent reconstruction"
+  ],
+  "falsifiers": [
+    "A parent artifact cannot be reproduced by its frozen hash",
+    "pre_event_clock is non-null",
+    "Q leaves a nonconstant parent mode unchanged within the strict margin",
+    "total or mean carrier changes beyond tolerance",
+    "LinearSolve[Q, Q.x] fails to reopen x within tolerance",
+    "any later-module particle, metric, named sector or empirical constant is required for the B result",
+    "independent reconstruction disagrees with the primary B state"
+  ],
+  "claim_boundary": "First physical RFC state at declared MINIMAL_SPINE fidelity; no microscopic or cosmological late-time completion.",
+  "independent_verifier_design": "Reconstruct the ordered-depth path Laplacian directly from the frozen A depth count and parent normalized weights, rebuild Q without trusting primary solver summaries, recompute compression/conservation/reopening, and compare exact scientific outputs; separately rerun prefix-size and ablation tests.",
+  "allowed_implementation_only_corrections": [
+    "Formatting, serialization, path handling, environment dependency, recorder normalization, or idempotent-copy corrections that do not alter parent hashes, derivation rules, equations, graph construction, tolerances, expected outcomes, gates, falsifiers, or claim scope",
+    "After any allowed implementation correction, rerun the full frozen B matrix"
+  ]
+}

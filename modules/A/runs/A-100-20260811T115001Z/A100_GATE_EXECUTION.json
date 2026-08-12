@@ -1,0 +1,290 @@
+{
+  "claim_boundary": "Mathematical constitution and relational enhancement only; no physical universe yet.",
+  "classification": "A100_FROZEN_GATE_EXECUTION",
+  "convergence": {
+    "depth40_tail_below_solver_tolerance": true,
+    "pass": true,
+    "sequence": [
+      {
+        "depth": 10,
+        "finite_sum": 0.27253891773764843,
+        "infinite_sum": 0.27253897307314945,
+        "tail_error": 5.533550101466389e-08
+      },
+      {
+        "depth": 20,
+        "finite_sum": 0.2725389730731382,
+        "infinite_sum": 0.27253897307314945,
+        "tail_error": 1.1268763699945339e-14
+      },
+      {
+        "depth": 30,
+        "finite_sum": 0.2725389730731494,
+        "infinite_sum": 0.27253897307314945,
+        "tail_error": 5.551115123125783e-17
+      },
+      {
+        "depth": 40,
+        "finite_sum": 0.27253897307314945,
+        "infinite_sum": 0.27253897307314945,
+        "tail_error": 0.0
+      }
+    ],
+    "tail_monotone": true
+  },
+  "countermodels": {
+    "role_ablation_ranks": [
+      2,
+      2,
+      2
+    ],
+    "role_ablations_fail_irreducibility": true,
+    "scalar_collapse_rank": 1,
+    "scalar_collapse_rejected": true,
+    "triad_full_rank": 3
+  },
+  "dormant_direct_dynamics": {
+    "backreaction_vector": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "direct_dynamics_mode": "DORMANT",
+    "no_physical_dynamics_engine_invoked": true,
+    "zero_backreaction": true
+  },
+  "finite_N": [
+    {
+      "N": 2,
+      "expected": 2,
+      "lane_count": 2,
+      "next_increment": 4,
+      "pass": true
+    },
+    {
+      "N": 3,
+      "expected": 6,
+      "lane_count": 6,
+      "next_increment": 6,
+      "pass": true
+    },
+    {
+      "N": 4,
+      "expected": 12,
+      "lane_count": 12,
+      "next_increment": 8,
+      "pass": true
+    },
+    {
+      "N": 5,
+      "expected": 20,
+      "lane_count": 20,
+      "next_increment": 10,
+      "pass": true
+    },
+    {
+      "N": 6,
+      "expected": 30,
+      "lane_count": 30,
+      "next_increment": 12,
+      "pass": true
+    },
+    {
+      "N": 7,
+      "expected": 42,
+      "lane_count": 42,
+      "next_increment": 14,
+      "pass": true
+    },
+    {
+      "N": 8,
+      "expected": 56,
+      "lane_count": 56,
+      "next_increment": 16,
+      "pass": true
+    }
+  ],
+  "gates": {
+    "canonical_terminology_exact": true,
+    "convergence": true,
+    "dormant_direct_dynamics_zero_backreaction": true,
+    "independent_symbolic_reconstruction": true,
+    "lane_increment_2N_verified": true,
+    "new_solution_claim_requires_non_gauge_witnessed_closure": true,
+    "no_physical_time_geometry_constants_or_later_objects": true,
+    "restart_replay": true,
+    "scalar_collapse_countermodel_rejected": true,
+    "triad_ablations_fail_as_predeclared": true,
+    "uncertainty_covariance": true
+  },
+  "independent_reconstruction": {
+    "classification": "INDEPENDENT_RECONSTRUCTION",
+    "kernel_state": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "lane_count": 6,
+    "lanes": [
+      [
+        "CIF",
+        "QV"
+      ],
+      [
+        "CIF",
+        "RFL"
+      ],
+      [
+        "QV",
+        "CIF"
+      ],
+      [
+        "QV",
+        "RFL"
+      ],
+      [
+        "RFL",
+        "CIF"
+      ],
+      [
+        "RFL",
+        "QV"
+      ]
+    ],
+    "matches_primary": {
+      "kernel_state": true,
+      "lanes": true,
+      "normalized_weights": true,
+      "raw_weights": true
+    },
+    "normalization_error": 1.1102230246251565e-16,
+    "normalized_weights": [
+      0.785830549130472,
+      0.1683008971837728,
+      0.03604491073069751,
+      0.007719718737834642,
+      0.0016533279229492509,
+      0.00035409233336529834,
+      7.583576059395577e-05,
+      1.6241703202680496e-05,
+      3.478476656103936e-06,
+      7.449834353002518e-07,
+      1.5955269324514944e-07,
+      3.4171312697067904e-08,
+      7.318451275821961e-09,
+      1.5673886909581858e-09,
+      3.3568677524162293e-10,
+      7.189385231766104e-11,
+      1.5397466871768408e-11,
+      3.297667024708388e-12,
+      7.062595358323456e-13,
+      1.5125921696058118e-13,
+      3.239510343540246e-14,
+      6.9380415136217045e-15,
+      1.485916541082349e-15,
+      3.1823792964155506e-16,
+      6.815684263718733e-17,
+      1.459711356060724e-17,
+      3.126255795555393e-18,
+      6.695484870117778e-19,
+      1.4339683179383576e-19,
+      3.071122072171587e-20,
+      6.577405277502756e-21,
+      1.4086792764291005e-21,
+      3.0169606708410445e-22,
+      6.461408101689892e-23,
+      1.3838362249828435e-23,
+      2.9637544439793614e-24,
+      6.34745661779183e-25,
+      1.3594312982506274e-25,
+      2.911486546411864e-26,
+      6.2355147485904735e-27
+    ],
+    "pass": true,
+    "raw_weights": [
+      0.21416945086952796,
+      0.04586855368575515,
+      0.009823642955057645,
+      0.0021039242172230027,
+      0.000450596294273752,
+      9.65039609084537e-05,
+      2.0668200314497922e-05,
+      4.426497111817425e-06,
+      9.480204557134895e-07,
+      2.030370204132377e-07,
+      4.348432716808826e-08,
+      9.31301447102036e-09,
+      1.9945631951983977e-09,
+      4.2717450424021196e-10,
+      9.148772899858905e-11,
+      1.9593876680928006e-11,
+      4.1964098091596005e-12,
+      8.987427844512123e-13,
+      1.9248324861886668e-13,
+      4.1224031658285505e-14,
+      8.828928222883043e-15,
+      1.8908867092613387e-15,
+      4.049701681789897e-16,
+      8.673223853743461e-17,
+      1.8575395900247284e-17,
+      3.9782823396400416e-18,
+      8.5202654408464865e-19,
+      1.8247805707287086e-19,
+      3.908122527903514e-20,
+      8.37000455731927e-21,
+      1.7925992798165148e-21,
+      3.839200033874143e-22,
+      8.222393630330983e-23,
+      1.7609855286410912e-23,
+      3.77149303658248e-24,
+      8.077385926031182e-25,
+      1.7299293082393518e-25,
+      3.7049800998872436e-26,
+      7.9349355347538e-27,
+      1.6994207861633252e-27
+    ]
+  },
+  "overall": "PASS",
+  "replay": {
+    "pass": true,
+    "primary_scientific_sha256": "81b54087ca4a984e8e1e4790c644ae8e02a3232ddd5d23eedd6ddfd5af1dc999",
+    "replay1_equals_stored": true,
+    "replay1_sha256": "81b54087ca4a984e8e1e4790c644ae8e02a3232ddd5d23eedd6ddfd5af1dc999",
+    "replay2_sha256": "81b54087ca4a984e8e1e4790c644ae8e02a3232ddd5d23eedd6ddfd5af1dc999",
+    "restart_roundtrip_equal": true
+  },
+  "run_id": "A-100-20260811T115001Z",
+  "uncertainty": {
+    "classification": "INTERNAL_NUMERICAL_ONLY",
+    "covariance_psd": true,
+    "max_abs_weight_float64_vs_80digit": 5.421010862427522e-20,
+    "pass": true,
+    "public_or_empirical_uncertainty_used": false,
+    "role_residual_covariance": [
+      [
+        7.163168700323664e-41,
+        7.163168700323664e-41,
+        7.163168700323664e-41
+      ],
+      [
+        7.163168700323664e-41,
+        7.163168700323664e-41,
+        7.163168700323664e-41
+      ],
+      [
+        7.163168700323664e-41,
+        7.163168700323664e-41,
+        7.163168700323664e-41
+      ]
+    ]
+  },
+  "witnessed_closure": {
+    "admitted_witnessed_route_count": 3,
+    "candidate_route_count": 4,
+    "distinct_non_gauge_closures": 2,
+    "new_solution_requires_non_gauge_witnessed_closure": true,
+    "pass": true,
+    "same_gauge_does_not_double_count": true,
+    "unwitnessed_lane_rejected": true
+  }
+}

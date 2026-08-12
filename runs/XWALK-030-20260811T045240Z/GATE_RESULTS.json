@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "work_unit": "XWALK-030",
+  "overall": "PASS",
+  "gates": [
+    {
+      "gate": "all major objects classified",
+      "result": "PASS"
+    },
+    {
+      "gate": "claim overlap removed",
+      "result": "PASS"
+    },
+    {
+      "gate": "source hashes present",
+      "result": "PASS"
+    },
+    {
+      "gate": "independent review",
+      "result": "PASS"
+    }
+  ],
+  "diagnostics": []
+}

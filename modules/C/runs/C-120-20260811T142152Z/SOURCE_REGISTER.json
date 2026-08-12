@@ -1,0 +1,41 @@
+{
+  "admitted_sources": [],
+  "constants": [],
+  "exact_parents": [
+    {
+      "kind": "EXACT_PARENT_HANDOFF",
+      "path": "modules/B/runs/B-110-20260811T140258Z/H_B_to_C.json",
+      "sha256": "821a932eacc37da4ec9a384789616bc9f8eb76883b4aa1af125c95a88747138f"
+    },
+    {
+      "kind": "EXACT_PARENT_STATE",
+      "path": "modules/B/runs/B-110-20260811T140258Z/FIRST_PHYSICAL_STATE.json",
+      "sha256": "f50c7e721c38dd9b63f2910f3a0ace399f1854e85cbdafaa9ce51649d40c073a"
+    },
+    {
+      "kind": "EXACT_PARENT_CONFIG",
+      "path": "modules/B/runs/B-110-20260811T140258Z/solver_configs/B_big_implosion.json",
+      "sha256": "16a3761a6562944e36506104594f8ee6b3ba2189e70396a2ae22b1afa67e6076"
+    },
+    {
+      "kind": "EXACT_PARENT_RESULT",
+      "path": "modules/B/runs/B-110-20260811T140258Z/solver_outputs/big_implosion/result.json",
+      "sha256": "a624f6dca4a26ff8b5b3a8e0fb47a37e4cd2a6905c6f302198e3f6db3c303f6a"
+    }
+  ],
+  "files": [
+    "modules/B/runs/B-110-20260811T140258Z/H_B_to_C.json",
+    "modules/B/runs/B-110-20260811T140258Z/FIRST_PHYSICAL_STATE.json",
+    "modules/B/runs/B-110-20260811T140258Z/solver_configs/B_big_implosion.json",
+    "modules/B/runs/B-110-20260811T140258Z/solver_outputs/big_implosion/result.json",
+    "modules/C/runs/C-120-20260811T142152Z/C120_MICROSCOPIC_DERIVATION.json"
+  ],
+  "imports": [
+    "hashlib",
+    "json",
+    "numpy"
+  ],
+  "public_data_declaration": "NONE",
+  "run_id": "C-120-20260811T142152Z",
+  "urls": []
+}

@@ -1,0 +1,58 @@
+{
+  "scope": "F0_CONSTRUCTED_REDUCED_RECURRENCE_ONLY",
+  "source_constants": {
+    "delta": 4.6692,
+    "alpha": 0.0256831,
+    "nu": 0.00420784,
+    "epsilon": 0.000108071,
+    "lambda_normalized": 0.489442,
+    "w_qv": 0.984868,
+    "w_cif": 0.005085,
+    "w_rfl": 0.010047
+  },
+  "derived_coefficients": {
+    "kernel_decay": 0.20873894999741127,
+    "eta_k": 0.20873894999741127,
+    "eta_l": 0.20558031220605044,
+    "eta_m": 0.20767751243667443,
+    "eta_return": 0.0020972002306239913,
+    "eta_remnant": 0.0010614375607368362,
+    "eta_escape": 2.2558627065170236e-05,
+    "dust_share": 0.33604282315622525,
+    "feedback_scale": 0.10216560916463296
+  },
+  "tolerances": {
+    "gas": 1e-11,
+    "stars": 1e-11,
+    "remnants": 1e-11,
+    "escaped": 1e-11,
+    "processed_fraction": 1e-11,
+    "dust_fraction": 1e-11,
+    "cooling": 1e-11,
+    "opacity": 1e-11,
+    "structure": 1e-11,
+    "metric": 1e-11,
+    "lensing": 1e-11,
+    "radiation": 1e-11,
+    "feedback": 1e-11,
+    "event_yield": 1e-11
+  },
+  "max_iterations": 50000,
+  "fixed_window": 8,
+  "initial_state": {
+    "gas": 1.0,
+    "stars": 0.0,
+    "remnants": 0.0,
+    "escaped": 0.0,
+    "processed_fraction": 0.0,
+    "dust_fraction": 0.0,
+    "cooling": 1.0,
+    "opacity": 1.0,
+    "structure": 0.489442,
+    "metric": 0.489442,
+    "lensing": 0.489442,
+    "radiation": 0.0,
+    "feedback": 0.0,
+    "event_yield": 0.0
+  }
+}

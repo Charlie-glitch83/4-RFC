@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "work_unit": "SRC-010",
+  "records": [
+    {
+      "source": "Presentation 29 revised  raw LaTeX.md",
+      "sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "role": "Triadic emergence and theorem architecture",
+      "authority": "CANONICAL_AUTHORITY",
+      "generative_parent_eligible": true
+    },
+    {
+      "source": "Presentation 30 raw LaTex.md",
+      "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6",
+      "role": "Universe architecture and full ledger",
+      "authority": "CANONICAL_AUTHORITY",
+      "generative_parent_eligible": true
+    },
+    {
+      "source": "A_Triadic_Solution_to_the_General_N_Body_Problem_Revised.pdf",
+      "sha256": "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+      "role": "Revised triadic N-body proof",
+      "authority": "CANONICAL_AUTHORITY",
+      "generative_parent_eligible": true
+    },
+    {
+      "source": "A_Triadic_Solution_to_the_General_N_Body_Problem_Metadata_Revised.pdf",
+      "sha256": "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+      "role": "N-body metadata",
+      "authority": "CANONICAL_AUTHORITY",
+      "generative_parent_eligible": true
+    }
+  ]
+}

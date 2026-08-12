@@ -1,0 +1,30 @@
+{
+  "claim_boundary": "RFC microscopic spectral constitution at executed parent-derived scope; anonymous fields/excitations and conserved carrier charge only. Empirical identity remains for Module P; higher nonlinear microscopic interactions remain unresolved unless derived in C.",
+  "componentwise_gates": {
+    "charge_and_conservation_ownership": true,
+    "countermodels_and_ablations": true,
+    "independent_symbolic_and_numerical_checks": true,
+    "manufactured_reference": true,
+    "no_standard_model_label_without_derivation": true,
+    "positivity_or_declared_alternative": true,
+    "prefix_resolution_convergence": true,
+    "prethermal_population": true,
+    "restart_and_replay": true,
+    "symmetry_constraint_closure": true,
+    "uncertainty_covariance": true,
+    "units_and_dimensions": true,
+    "wolfram_symbolic_checks": true
+  },
+  "evidence_files": [
+    "C120_GATE_EXECUTION.json",
+    "independent_reconstruction.json",
+    "solver_outputs/spectral_model/result.json",
+    "reference_checks.json",
+    "MICROSCOPIC_STATE.json",
+    "H_C_to_D.json"
+  ],
+  "module": "C",
+  "overall": "PASS",
+  "primary_solver_success": true,
+  "run_id": "C-120-20260811T142152Z"
+}

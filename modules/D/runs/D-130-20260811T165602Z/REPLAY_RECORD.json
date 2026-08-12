@@ -1,0 +1,12 @@
+{
+  "artifact_hashes_match": true,
+  "clean_checkout": true,
+  "earliest_change_replay": true,
+  "primary_result_sha256": "34f3ecad88c0368fb3f6e693d6ff2fdc7ed5914312ab384cf216228084d0b6ed",
+  "restart_check": true,
+  "restart_final_max_abs_error": 2.924398223580482e-11,
+  "restart_tolerance": 1e-09,
+  "result": "PASS",
+  "run_id": "D-130-20260811T165602Z",
+  "status": "FINAL"
+}

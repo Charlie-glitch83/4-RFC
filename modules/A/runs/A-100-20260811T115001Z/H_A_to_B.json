@@ -1,0 +1,73 @@
+{
+  "claim_boundary": "Mathematical constitution and relational enhancement only; no physical universe yet.",
+  "classification": "EXACT_PREPHYSICAL_HANDOFF",
+  "evidence": {
+    "configured_execution": "PASS",
+    "countermodels_ablations": "PASS",
+    "independent_reconstruction": "PASS",
+    "manufactured_reference": "PASS",
+    "restart_replay": "PASS",
+    "uncertainty_covariance": "PASS",
+    "wolfram_A_WL_001": "PASS_WITH_MANUAL_INTERPRETATION",
+    "wolfram_A_WL_002": "PASS_WITH_MANUAL_INTERPRETATION"
+  },
+  "first_action": {
+    "interpretation": "ordered prephysical dependency operator",
+    "operator": "QV(CIF) -> RFL",
+    "physical_clock": false
+  },
+  "generation_mode": "GENERATION_SEALED",
+  "module": "A",
+  "object_id": "H_A_to_B",
+  "prohibitions": {
+    "empirical_constants": true,
+    "geometry": true,
+    "later_module_objects": true,
+    "particles_or_fields": true,
+    "physical_time": true
+  },
+  "recursive_kernel": {
+    "alpha": 0.02568312917993952,
+    "config_sha256": "13226dea2b62589245ab61ce7f944340b6821aa6524debc726a8ab8a61efc6a4",
+    "delta": 4.6692,
+    "depth": 40,
+    "kernel_state": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "normalization_error": 1.1102230246251565e-16,
+    "result_sha256": "f04f69ae94e9c4ce0105c835f0ba421377cc47df322d180b0b253cdcc8e5257b"
+  },
+  "relational_completion": {
+    "direct_dynamics_mode": "DORMANT_ZERO_BACKREACTION",
+    "directed_lane_law": "N(N-1)",
+    "finite_N_verified": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "no_loss_memory": "lawful promotion and reopening preserve independent closure distinctions",
+    "one_body_extension_increment": "2N",
+    "witness_requirement": "new-solution status requires a valid witness and a closure distinct modulo frozen gauge/multiroute equivalence; lane count alone is insufficient"
+  },
+  "run_id": "A-100-20260811T115001Z",
+  "source_authority_hashes": [
+    "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+    "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215",
+    "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+    "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+    "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6"
+  ],
+  "strongest_supported_claim": "The Module A prephysical mathematical constitution, recursive kernel, typed relational carrier, witnessed closure grammar, memory/reopening law, and exact handoff to B satisfy all frozen A gates.",
+  "strongest_unsupported_claim": "No physical state, physical time, geometry, particles, fields, Big Implosion execution, manifested universe, or empirical validation is established by Module A.",
+  "typed_roles": {
+    "CIF": "modal source/candidate classes",
+    "QV": "First Action and admission witnesses",
+    "RFL": "recursive kernel, memory, relational carrier"
+  }
+}

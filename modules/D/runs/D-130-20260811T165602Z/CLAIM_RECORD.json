@@ -1,0 +1,14 @@
+{
+  "claim_id": "D130-LINEAR-THERMAL-HISTORY",
+  "evidence": [
+    "modules/D/runs/D-130-20260811T165602Z/H_D_to_E.json",
+    "modules/D/runs/D-130-20260811T165602Z/D130_GATE_EXECUTION.json",
+    "modules/D/runs/D-130-20260811T165602Z/independent_reconstruction.json",
+    "modules/D/runs/D-130-20260811T165602Z/THERMAL_TRANSPORT_STATE.json"
+  ],
+  "evidence_state": "FROZEN",
+  "fidelity": "MINIMAL_SPINE",
+  "owner": "D",
+  "supported": true,
+  "text": "Module D establishes the frozen parent-derived linear RFC nonequilibrium thermal/phase history and exact handoff H_D_to_E at MINIMAL_SPINE scope."
+}

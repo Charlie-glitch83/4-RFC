@@ -1,0 +1,29 @@
+{
+  "claim_boundary": "Generated RFC linear nonequilibrium thermal/transport history on inherited pregeometry; nonlinear collisions, metric expansion, empirical temperature units, and primordial abundances remain unestablished.",
+  "componentwise_gates": {
+    "countermodels_and_ablations": true,
+    "energy_charge_conservation": true,
+    "entropy_production": true,
+    "event_ordering": true,
+    "manufactured_reference": true,
+    "nonlinear_collision_obstruction_preserved": true,
+    "positive_distributions": true,
+    "restart_and_independent_reconstruction": true,
+    "stiff_solver_convergence": true,
+    "uncertainty_covariance": true,
+    "wolfram_symbolic_checks": true
+  },
+  "evidence_files": [
+    "D130_GATE_EXECUTION.json",
+    "independent_reconstruction.json",
+    "THERMAL_HISTORY.json",
+    "PHASE_EVENT_LEDGER.json",
+    "ENTROPY_CONSERVATION_LEDGER.json",
+    "UNCERTAINTY_COVARIANCE.json",
+    "REPLAY_RECORD.json",
+    "solver_outputs/transport/result.json"
+  ],
+  "module": "D",
+  "overall": "PASS",
+  "run_id": "D-130-20260811T165602Z"
+}

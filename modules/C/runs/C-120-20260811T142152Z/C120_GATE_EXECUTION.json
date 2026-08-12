@@ -1,0 +1,173 @@
+{
+  "ablations": {
+    "charge_owner_ablation": {
+      "countermodel": "remove constant zero-mode ownership",
+      "parent_total_carrier": 1.0,
+      "rejected": true
+    },
+    "negative_spectrum_countermodel": {
+      "minimum_eigenvalue": -0.010000000000000054,
+      "rejected": true
+    },
+    "parent_operator_ablation": {
+      "countermodel": "K=0",
+      "nontrivial_spectrum": false,
+      "rejected": true
+    },
+    "pass": true,
+    "symmetry_ablation": {
+      "commutator_norm": 0.6675814190513404,
+      "countermodel": "swap nodes 0 and 1",
+      "rejected": true
+    }
+  },
+  "claim_boundary": "RFC microscopic spectral constitution at executed parent-derived scope; anonymous fields/excitations and conserved carrier charge only. Empirical identity remains for Module P; higher nonlinear microscopic interactions remain unresolved unless derived in C.",
+  "classification": "C120_FROZEN_GATE_EXECUTION",
+  "gates": {
+    "charge_and_conservation_ownership": true,
+    "countermodels_and_ablations": true,
+    "independent_symbolic_and_numerical_checks": true,
+    "manufactured_reference": true,
+    "no_standard_model_label_without_derivation": true,
+    "positivity_or_declared_alternative": true,
+    "prefix_resolution_convergence": true,
+    "prethermal_population": true,
+    "restart_and_replay": true,
+    "symmetry_constraint_closure": true,
+    "uncertainty_covariance": true,
+    "units_and_dimensions": true,
+    "wolfram_symbolic_checks": true
+  },
+  "independent_reconstruction": {
+    "classification": "INDEPENDENT_C_RECONSTRUCTION",
+    "matrix_match": true,
+    "minimum_eigenvalue": -1.4399278400441296e-16,
+    "orthogonality_error": 8.9284943509512e-15,
+    "pass": true,
+    "population_minimum": 6.0977731167606955e-06,
+    "population_sum": 1.0,
+    "reconstruction_error": 8.415590260486586e-15,
+    "reflection_commutator": 0.0,
+    "reflection_match": true,
+    "symmetry_error": 0.0,
+    "total_carrier_charge": 1.0,
+    "zero_mode_residual": 0.0
+  },
+  "overall": "PASS",
+  "physical_scope": {
+    "candidate_dimension": 40,
+    "continuous_time_scale": null,
+    "field_identity": "ANONYMOUS_RFC_SPECTRAL_MODES",
+    "metric_geometry_assumed": false,
+    "nonlinear_interactions": "UNDETERMINED_AT_C120",
+    "standard_model_identity_assigned": false
+  },
+  "prefix_runs": [
+    {
+      "N": 8,
+      "maximum_eigenvalue": 1.0486643042141544,
+      "minimum_eigenvalue": 2.588322020668841e-17,
+      "pass": true,
+      "reflection_commutator": 0.0,
+      "zero_mode_residual": 0.0
+    },
+    {
+      "N": 16,
+      "maximum_eigenvalue": 1.0796823723990137,
+      "minimum_eigenvalue": 7.959690200898706e-18,
+      "pass": true,
+      "reflection_commutator": 0.0,
+      "zero_mode_residual": 0.0
+    },
+    {
+      "N": 24,
+      "maximum_eigenvalue": 1.0854926749012372,
+      "minimum_eigenvalue": 2.3893971563497618e-17,
+      "pass": true,
+      "reflection_commutator": 0.0,
+      "zero_mode_residual": 0.0
+    },
+    {
+      "N": 32,
+      "maximum_eigenvalue": 1.0875311929969453,
+      "minimum_eigenvalue": -9.276881812836079e-18,
+      "pass": true,
+      "reflection_commutator": 0.0,
+      "zero_mode_residual": 0.0
+    },
+    {
+      "N": 40,
+      "maximum_eigenvalue": 1.0884755988951964,
+      "minimum_eigenvalue": -9.898367565548949e-17,
+      "pass": true,
+      "reflection_commutator": 0.0,
+      "zero_mode_residual": 0.0
+    }
+  ],
+  "replay_restart": {
+    "checks": {
+      "classification_match": true,
+      "eigenprojectors_match": true,
+      "eigenvalues_match": true,
+      "generator_audits_match": true,
+      "reconstruction_error_match": true,
+      "shape_match": true,
+      "success_match": true,
+      "symmetric_match": true
+    },
+    "maximum_projector_error": 2.0586090502140006e-16,
+    "pass": true,
+    "representation_rule": "eigenvector signs are gauge; compare eigenvalues and rank-1 eigenprojectors"
+  },
+  "run_id": "C-120-20260811T142152Z",
+  "uncertainty_covariance": {
+    "classification": "INTERNAL_NUMERICAL_ONLY",
+    "covariance": [
+      [
+        2.669379964682453e-33,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "covariance_psd": true,
+    "pass": true,
+    "public_or_empirical_uncertainty_used": false,
+    "residual_vectors": [
+      [
+        2.588322020668841e-17,
+        0.0,
+        0.0
+      ],
+      [
+        7.959690200898706e-18,
+        0.0,
+        0.0
+      ],
+      [
+        2.3893971563497618e-17,
+        0.0,
+        0.0
+      ],
+      [
+        -9.276881812836079e-18,
+        0.0,
+        0.0
+      ],
+      [
+        -9.898367565548949e-17,
+        0.0,
+        0.0
+      ]
+    ]
+  }
+}

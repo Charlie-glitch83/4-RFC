@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "run_id": "A-100-20260811T115001Z",
+  "module": "A",
+  "classification": "VERIFIED_PREPHYSICAL_MATHEMATICAL_CONSTITUTION",
+  "authority_hashes": [
+    "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+    "82549b02c8edfabc55db4268c43eeb2d60d3a694ad528516354b1a39cfb09215",
+    "0eb5e85475e9f3ab7242ee35c359b063ea62a4e66fa7124b9f6ccad41141ab28",
+    "caab0133cd29a3fb057a9a918ae9d2adc1477c693acbc2e3ad028754303f7d94",
+    "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6"
+  ],
+  "typed_triad": {
+    "CIF": {"type": "CIF_MODAL_SOURCE_CLASS", "role": "prephysical source/candidate class"},
+    "QV": {"type": "QV_ACTION_WITNESS_CLASS", "role": "prephysical action/witness class"},
+    "RFL": {"type": "RFL_STABILIZED_MEMORY_CLASS", "role": "stabilized relational-memory class"},
+    "irreducibility": "The frozen three-role representation has rank 3; deletion of any role reduces rank to 2. A scalar rank-1 collapse is rejected."
+  },
+  "first_action": {
+    "law": "CIF --QV witness/action--> RFL",
+    "ordering": "source -> action/witness -> stabilized relational memory",
+    "physical_clock": false
+  },
+  "recursive_kernel": {
+    "law": "K_f(tau)=Sum_j delta^(-j) f_j exp(-alpha j tau)",
+    "delta": 4.6692,
+    "alpha": 0.02568312917993952,
+    "canonical_depth": 40,
+    "tau_semantics": "prephysical ordering argument only; not physical time",
+    "normalized_weights": true,
+    "bounded": true,
+    "verified_normalization_error": 1.1102230246251565e-16,
+    "depth40_geometric_tail_error_float64": 0.0
+  },
+  "relational_completion": {
+    "directed_lane_law": "L_N={(i,j): i != j}",
+    "lane_cardinality": "N(N-1)",
+    "one_constituent_increment": "2N",
+    "finite_N_verified": [2,3,4,5,6,7,8],
+    "witness_rule": "No route, branch, event, or closure is admitted without a locally generated witness certificate.",
+    "gauge_rule": "Gauge-equivalent route representatives do not create additional independent closures.",
+    "new_solution_rule": "A new solution requires a distinct non-gauge witnessed closure; lane count alone is insufficient.",
+    "no_loss_rule": "Only redundant representatives may be quotient-removed; witnessed closure and return-memory ancestry are retained.",
+    "reopening_rule": "Stored return-memory may lawfully reopen a prior relational configuration without erasing ancestry.",
+    "branch_event_rule": "Branch and event objects inherit exact witnessed route/gauge ancestry."
+  },
+  "manifestation_theorem_scope": {
+    "statement": "The relational carrier admits arbitrarily large finite-N directed-lane structure. An unbounded family of distinct manifested solutions follows only under the additional condition that arbitrarily many N admit distinct non-gauge witnessed closures.",
+    "prohibited_inference": "Unbounded solution multiplicity may not be inferred from lane-count growth alone."
+  },
+  "dormant_direct_dynamics": {
+    "mode": "DORMANT",
+    "backreaction": [0.0,0.0,0.0],
+    "physical_dynamics_executed": false
+  },
+  "verification": {
+    "wolfram_A_WL_001": "PASS_WITH_MANUAL_INTERPRETATION",
+    "wolfram_A_WL_002": "PASS_WITH_MANUAL_INTERPRETATION",
+    "manufactured_reference_matrix": "PASS_MANUFACTURED_ONLY",
+    "provenance_bound_solver": "PASS",
+    "countermodels_ablations": "PASS",
+    "convergence": "PASS",
+    "restart_replay": "PASS",
+    "independent_reconstruction": "PASS",
+    "uncertainty_covariance": "PASS"
+  },
+  "strongest_supported_claim": "Module A verifies the typed prephysical RFC constitution, First Action, recursive kernel, and witnessed relational completion at mathematical/prephysical scope.",
+  "strongest_unsupported_claim": "Module A does not establish a physical universe, physical time, geometry, particles, fields, or a physically executed Big Implosion.",
+  "claim_boundary": "Mathematical constitution and relational enhancement only; no physical universe yet."
+}

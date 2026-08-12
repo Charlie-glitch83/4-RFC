@@ -1,0 +1,62 @@
+{
+  "allowed_implementation_only_corrections": [
+    "Path/serialization/audit-record corrections only; no invented species, reactions, rate coefficients, empirical scales, abundance targets, or fitted corrections."
+  ],
+  "authority_hashes": [
+    "b573b9fdff0ad7f8b6406954d1fcc44a1d8878598072c2a6c5eb3e543d6cbad7",
+    "c6e8996887ddb6ed2798e9de933e636b256b3d28aff6586bdf330bf0fcf6442f"
+  ],
+  "candidate_classes": [
+    "SOURCE_OWNED_PRIMORDIAL_SPECIES",
+    "SOURCE_OWNED_REACTION_GRAPH",
+    "SOURCE_OWNED_RATE_LAWS",
+    "ISOTOPE_ABUNDANCE_STATE",
+    "ISOTOPE_COVARIANCE",
+    "FREEZE_OUT_WITNESSES"
+  ],
+  "claim_boundary": "E-140 is not executed. Exact admitted parents are insufficient to freeze a source-owned primordial reaction network; observations remain sealed.",
+  "definition_hashes": [
+    "298854bad6d020ece576e3c33376b56380e93495e57cd8c380ef47fa0b531ba7"
+  ],
+  "dimensions_units_frames_gauges_clocks": [
+    "D handoff provides only dimensionless relaxation order; no empirical seconds/kelvin scale is assigned."
+  ],
+  "equations_and_laws": [],
+  "expected_invariants": [
+    "Baryon/charge/energy accounting must be derivable from the eventual exact stoichiometric network."
+  ],
+  "falsifiers": [
+    "Any unproven reaction/rate coefficient inserted from familiarity",
+    "Any public abundance target influences generation",
+    "Manufactured example promoted to physical execution"
+  ],
+  "frozen_utc": null,
+  "gates": [
+    "rate-source audit",
+    "no scalar-channel collapse",
+    "baryon/charge/energy accounting"
+  ],
+  "independent_verifier_design": "Once an exact source-owned network exists, reconstruct stoichiometry/rates independently from exact hashes and compare an independent reaction integrator. Not executable in this blocked state.",
+  "methods": [
+    "exact parent hash verification",
+    "exact admitted-source inspection",
+    "manufactured-example exclusion",
+    "public-target firewall"
+  ],
+  "parent_hashes": [
+    "79a8f4d5e06558d1114ccd3af832d92344c5d47a075f1f0b708a19ccfc6a59db"
+  ],
+  "run_id": "E-140-20260811T175023Z",
+  "status": "BLOCKED_UNDERDETERMINED",
+  "stopping_rules": [
+    "Stop before Wolfram calls and solver execution when required E reaction graph/rate law is underdetermined.",
+    "Do not promote manufactured E example.",
+    "Do not use W2 abundance comparison targets or fitted corrections in generation."
+  ],
+  "tests": [
+    "Source provenance audit must pass before E pre-execution freeze."
+  ],
+  "tolerances": [
+    "No scientific tolerance may be frozen before the source-owned network/rates are determined."
+  ]
+}

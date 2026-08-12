@@ -1,0 +1,33 @@
+{
+  "bindings": {
+    "model.alpha": {
+      "derivation": "alpha=Log[delta]/cycleLength with cycleLength=60 from frozen P29 packet",
+      "source_sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "value": 0.02568312917993952
+    },
+    "model.basis_matrix": {
+      "derivation": "40x3 typed role-incidence basis; each admitted depth retains all three irreducible roles; columns remain typed and are not scalarized",
+      "source_sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "value": [[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0],[1.0,1.0,1.0]]
+    },
+    "model.constituents": {
+      "derivation": "typed triadic source roles",
+      "source_sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "value": ["CIF","QV","RFL"]
+    },
+    "model.delta": {
+      "derivation": "Presentation 29 frozen recursive bifurcation scale delta=4.6692",
+      "source_sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "value": 4.6692
+    },
+    "model.depth": {
+      "derivation": "nFullCanonical=40 from frozen P29 packet",
+      "source_sha256": "cef6d68b05eb509e471c55a18b5fffedd9c411b44bc0d5bd0f6b5ee86bd8b53e",
+      "value": 40
+    }
+  },
+  "claim_boundary": "Prephysical implementation of the frozen Module A law only; no physical domain basis, geometry, time, particles, fields, or empirical constants.",
+  "classification": "INTERNAL_PREPHYSICAL_DERIVATION",
+  "run_id": "A-100-20260811T115001Z",
+  "schema_version": "1.0"
+}

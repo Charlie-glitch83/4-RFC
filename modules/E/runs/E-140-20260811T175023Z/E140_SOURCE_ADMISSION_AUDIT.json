@@ -1,0 +1,57 @@
+{
+  "classification": "E140_EXACT_SOURCE_ADMISSION_AUDIT",
+  "determination": {
+    "manufactured_example_admissible_as_physical_parent": false,
+    "parent_supplies_empirical_time_or_temperature_scale": false,
+    "public_abundance_targets_admissible_for_generation": false,
+    "source_owned_rate_laws": false,
+    "source_owned_rate_uncertainty": false,
+    "source_owned_species_graph": false
+  },
+  "exact_parent": {
+    "classification": "EXACT_LINEAR_THERMAL_TO_PRIMORDIAL_HANDOFF_MINIMAL_SPINE",
+    "path": "modules/D/runs/D-130-20260811T165602Z/H_D_to_E.json",
+    "sha256": "79a8f4d5e06558d1114ccd3af832d92344c5d47a075f1f0b708a19ccfc6a59db"
+  },
+  "generation_mode": "GENERATION_SEALED",
+  "inspected_objects": [
+    {
+      "classification": "ADMITTED_SOURCE_AUDIT_ONLY",
+      "finding": "Internal W2 BBN/Li7 theorem/proxy closeout; public BBN reaction-network implementation explicitly pending. Comparison/proxy quantities are forbidden as E generation targets.",
+      "path": "sources/frozen/0e54ae0a037fc0e35329c452c25e71d71f716dc6a700982083a207afd9adde8f/Reproducibility Metadata - Final Revised W2 BBN Closeout.md",
+      "sha256": "0e54ae0a037fc0e35329c452c25e71d71f716dc6a700982083a207afd9adde8f"
+    },
+    {
+      "classification": "CANDIDATE_ADDENDUM_AUDIT_ONLY",
+      "finding": "W/X/X1 internal theorem/proxy closure; external BBN reaction-network validation explicitly pending. No source-owned executable primordial reaction graph with rate laws and uncertainty.",
+      "path": "sources/frozen/d44cb226d6ebc35fae8d4122f86ce8a80a3a6458b209c328a55ecfbaa44b561c/RFC_Module_X1_Nucleosynthesis_Theorem_Addendum_and_Metadata.md",
+      "sha256": "d44cb226d6ebc35fae8d4122f86ce8a80a3a6458b209c328a55ecfbaa44b561c"
+    },
+    {
+      "classification": "CANONICAL_AUTHORITY_AUDIT_ONLY",
+      "finding": "Triadic universe architecture and prior BBN persistence/proxy handoffs, but no E-authorized source-owned executable species/reaction/rate object.",
+      "path": "sources/frozen/4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6/Presentation 30 raw LaTex.md",
+      "sha256": "4895c3777da3aa84da4ec2343419ffbc07502b3738602308a1f402862441eaf6"
+    },
+    {
+      "classification": "MANUFACTURED_EXAMPLE_NOT_SCIENTIFIC_PARENT",
+      "finding": "Three-species n/p/d example with example kf/kr values; reusable machinery only and not promotable to a physical RFC universe result.",
+      "path": "configured_runs/examples/E_reaction_network.json",
+      "sha256": "8e7cce75dfd4c3d20b70c12c3058c5df48b5f3b1eee481063e6a7a509b8d4a47"
+    }
+  ],
+  "module": "E",
+  "reason": "Exact admitted parents do not determine the executable primordial reaction graph and rate law required by E. Freezing arbitrary familiar nuclear reactions/rates would violate exact-object provenance, no-retune, and the generation firewall.",
+  "required_scientific_bindings": [
+    "species",
+    "stoichiometry",
+    "rate_expressions",
+    "rate parameters with uncertainty/source lineage",
+    "initial isotope state",
+    "network clock/rate scale",
+    "baryon/charge/energy invariants"
+  ],
+  "run_id": "E-140-20260811T175023Z",
+  "status": "BLOCKED_UNDERDETERMINED",
+  "timestamp_utc": "2026-08-11T19:09:12.893058+00:00"
+}

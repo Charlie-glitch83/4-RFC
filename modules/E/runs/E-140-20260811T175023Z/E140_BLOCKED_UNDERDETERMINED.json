@@ -1,0 +1,33 @@
+{
+  "classification": "BLOCKED_UNDERDETERMINED",
+  "earliest_affected_object": "E source-owned reaction-law definition before PRE_EXECUTION_LOCK",
+  "exact_parent": {
+    "path": "modules/D/runs/D-130-20260811T165602Z/H_D_to_E.json",
+    "sha256": "79a8f4d5e06558d1114ccd3af832d92344c5d47a075f1f0b708a19ccfc6a59db"
+  },
+  "generation_mode": "GENERATION_SEALED",
+  "manufactured_fixture": {
+    "decision": "REJECTED_NOT_AN_ADMITTED_PARENT_OR_DERIVATION",
+    "path": "configured_runs/examples/E_reaction_network.json",
+    "sha256": "8e7cce75dfd4c3d20b70c12c3058c5df48b5f3b1eee481063e6a7a509b8d4a47"
+  },
+  "missing_objects": [
+    "source-owned species/reaction graph",
+    "executable source-owned rate laws and uncertainty"
+  ],
+  "pre_execution_lock_status": "BLOCKED_UNDERDETERMINED_NOT_FROZEN",
+  "proxy_closeout_decision": "Prior BBN proxy and observational comparison ledgers are comparison or methodological evidence only and are not generation inputs.",
+  "public_inputs_used": false,
+  "reaction_solver_executed": false,
+  "required_resolution": "Admit or derive exact source-owned species, stoichiometry, executable rate laws, and uncertainty without observational target fitting before any E pre-execution freeze.",
+  "run_id": "E-140-20260811T175023Z",
+  "source_admission_audit_sha256": "8edde81955702ec6dffef20c9f2a3b5ae793193d3092683b807aa8a0f695e2d4",
+  "source_manifest": {
+    "path": "sources/SOURCE_MANIFEST.json",
+    "sha256": "8ccc06209b6d165e87b91f9d46cba026f243d76d8b803ae5f95d858107194b04"
+  },
+  "stage": "PRE_EXECUTION_DEFINITION_AND_LOCK",
+  "strongest_supported_claim": "Module D remains frozen at its verified MINIMAL_SPINE scope; Module E has verified its exact parent but has not established an executable source-owned reaction law.",
+  "strongest_unsupported_claim": "No primordial isotope abundance state, E reaction-network execution, or E-to-F handoff is established.",
+  "wolfram_calls_executed": false
+}
