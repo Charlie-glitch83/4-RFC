@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
-bash tools/start_work.sh
+python tools/rfc.py doctor
+python tools/rfc.py next
